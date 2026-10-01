@@ -18,9 +18,12 @@ public static class RecipeEndpoints
         });
 
         group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
-            await db.Recipes.FindAsync(id) is { } recipe
-                ? Results.Ok(ToResponse(recipe))
-                : Results.NotFound());
+        {
+            var recipe = await db.Recipes.AsNoTracking()
+                .Include(r => r.Techniques)
+                .FirstOrDefaultAsync(r => r.Id == id);
+            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe));
+        });
 
         group.MapPost("/", async (RecipeRequest request, AppDbContext db) =>
         {
@@ -57,6 +60,35 @@ public static class RecipeEndpoints
             await db.SaveChangesAsync();
             return Results.NoContent();
         });
+
+        group.MapPost("/{id:int}/techniques/{techniqueId:int}", async (int id, int techniqueId, AppDbContext db) =>
+        {
+            var recipe = await db.Recipes.Include(r => r.Techniques).FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe is null) return Results.NotFound();
+
+            var technique = await db.Techniques.FindAsync(techniqueId);
+            if (technique is null) return Results.NotFound();
+
+            if (!recipe.Techniques.Any(t => t.Id == techniqueId))
+            {
+                recipe.Techniques.Add(technique);
+                await db.SaveChangesAsync();
+            }
+            return Results.NoContent();
+        });
+
+        group.MapDelete("/{id:int}/techniques/{techniqueId:int}", async (int id, int techniqueId, AppDbContext db) =>
+        {
+            var recipe = await db.Recipes.Include(r => r.Techniques).FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe is null) return Results.NotFound();
+
+            var technique = recipe.Techniques.FirstOrDefault(t => t.Id == techniqueId);
+            if (technique is null) return Results.NotFound();
+
+            recipe.Techniques.Remove(technique);
+            await db.SaveChangesAsync();
+            return Results.NoContent();
+        });
     }
 
     private static void Apply(Recipe recipe, RecipeRequest request)
@@ -85,4 +117,10 @@ public static class RecipeEndpoints
 
     private static RecipeResponse ToResponse(Recipe r) =>
         new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes);
+
+    private static RecipeDetailResponse ToDetail(Recipe r) =>
+        new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,
+            r.Techniques.OrderBy(t => t.Name)
+                .Select(t => new TechniqueSummary(t.Id, t.Name, t.Difficulty))
+                .ToList());
 }

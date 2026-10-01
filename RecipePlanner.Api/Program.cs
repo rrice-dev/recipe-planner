@@ -17,7 +17,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapRecipeEndpoints();
-
+app.MapTechniqueEndpoints();
 app.Run();
 
 public partial class Program { }
