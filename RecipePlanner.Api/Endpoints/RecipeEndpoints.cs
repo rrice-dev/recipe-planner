@@ -21,6 +21,9 @@ public static class RecipeEndpoints
         {
             var recipe = await db.Recipes.AsNoTracking()
                 .Include(r => r.Techniques)
+                .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
+                .Include(r => r.Steps).ThenInclude(s => s.Technique)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync(r => r.Id == id);
             return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe));
         });
@@ -61,6 +64,7 @@ public static class RecipeEndpoints
             return Results.NoContent();
         });
 
+        // Techniques
         group.MapPost("/{id:int}/techniques/{techniqueId:int}", async (int id, int techniqueId, AppDbContext db) =>
         {
             var recipe = await db.Recipes.Include(r => r.Techniques).FirstOrDefaultAsync(r => r.Id == id);
@@ -86,6 +90,88 @@ public static class RecipeEndpoints
             if (technique is null) return Results.NotFound();
 
             recipe.Techniques.Remove(technique);
+            await db.SaveChangesAsync();
+            return Results.NoContent();
+        });
+
+        // Ingredients: replaces the recipe's full ingredient list
+        group.MapPut("/{id:int}/ingredients", async (int id, List<RecipeIngredientRequest> items, AppDbContext db) =>
+        {
+            var recipe = await db.Recipes.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe is null) return Results.NotFound();
+
+            var errors = new Dictionary<string, string[]>();
+            if (items.Select(i => i.IngredientId).Distinct().Count() != items.Count)
+                errors["Ingredients"] = ["Each ingredient can only appear once."];
+            if (items.Any(i => i.Quantity <= 0))
+                errors["Quantity"] = ["Quantities must be greater than zero."];
+            if (items.Any(i => string.IsNullOrWhiteSpace(i.Unit)))
+                errors["Unit"] = ["Unit is required."];
+            if (errors.Count > 0) return Results.ValidationProblem(errors);
+
+            var ids = items.Select(i => i.IngredientId).ToList();
+            var existingCount = await db.Ingredients.CountAsync(i => ids.Contains(i.Id));
+            if (existingCount != ids.Count)
+                return Results.ValidationProblem(new Dictionary<string, string[]>
+                    { ["IngredientId"] = ["One or more ingredients do not exist."] });
+
+            var incoming = items.ToDictionary(i => i.IngredientId);
+            foreach (var existing in recipe.Ingredients.ToList())
+            {
+                if (incoming.Remove(existing.IngredientId, out var req))
+                {
+                    existing.Quantity = req.Quantity;
+                    existing.Unit = req.Unit.Trim();
+                    existing.Note = req.Note;
+                }
+                else
+                {
+                    recipe.Ingredients.Remove(existing);
+                }
+            }
+            foreach (var req in incoming.Values)
+            {
+                recipe.Ingredients.Add(new RecipeIngredient
+                {
+                    IngredientId = req.IngredientId,
+                    Quantity = req.Quantity,
+                    Unit = req.Unit.Trim(),
+                    Note = req.Note
+                });
+            }
+
+            await db.SaveChangesAsync();
+            return Results.NoContent();
+        });
+
+        // Steps: replaces the recipe's full step list, in order
+        group.MapPut("/{id:int}/steps", async (int id, List<StepRequest> steps, AppDbContext db) =>
+        {
+            var recipe = await db.Recipes.Include(r => r.Steps).FirstOrDefaultAsync(r => r.Id == id);
+            if (recipe is null) return Results.NotFound();
+
+            if (steps.Any(s => string.IsNullOrWhiteSpace(s.Instruction)))
+                return Results.ValidationProblem(new Dictionary<string, string[]>
+                    { ["Instruction"] = ["Every step needs an instruction."] });
+
+            var techniqueIds = steps.Where(s => s.TechniqueId.HasValue)
+                .Select(s => s.TechniqueId!.Value).Distinct().ToList();
+            var foundTechniques = await db.Techniques.CountAsync(t => techniqueIds.Contains(t.Id));
+            if (foundTechniques != techniqueIds.Count)
+                return Results.ValidationProblem(new Dictionary<string, string[]>
+                    { ["TechniqueId"] = ["One or more techniques do not exist."] });
+
+            recipe.Steps.Clear();
+            for (var i = 0; i < steps.Count; i++)
+            {
+                recipe.Steps.Add(new Step
+                {
+                    Order = i + 1,
+                    Instruction = steps[i].Instruction.Trim(),
+                    TechniqueId = steps[i].TechniqueId
+                });
+            }
+
             await db.SaveChangesAsync();
             return Results.NoContent();
         });
@@ -122,5 +208,12 @@ public static class RecipeEndpoints
         new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,
             r.Techniques.OrderBy(t => t.Name)
                 .Select(t => new TechniqueSummary(t.Id, t.Name, t.Difficulty))
+                .ToList(),
+            r.Ingredients.OrderBy(i => i.Ingredient.Name)
+                .Select(i => new RecipeIngredientResponse(
+                    i.IngredientId, i.Ingredient.Name, i.Quantity, i.Unit, i.Note, i.Ingredient.StoreSection))
+                .ToList(),
+            r.Steps.OrderBy(s => s.Order)
+                .Select(s => new StepResponse(s.Order, s.Instruction, s.TechniqueId, s.Technique?.Name))
                 .ToList());
 }

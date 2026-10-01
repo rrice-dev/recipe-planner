@@ -18,6 +18,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.MapRecipeEndpoints();
 app.MapTechniqueEndpoints();
+app.MapIngredientEndpoints();
 app.Run();
 
 public partial class Program { }
