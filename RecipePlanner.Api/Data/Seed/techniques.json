@@ -12,6 +12,40 @@
     "donenessCues": "Deep amber color, jammy texture, sweet aroma.",
     "commonMistakes": "Heat too high, rushing it, not stirring often enough near the end.",
     "difficulty": 2
+  },
+   {
+    "name": "Roasting",
+    "summary": "Use indirect, steady heat in the oven.",
+    "donenessCues": "Most reliable cue of doneness is the internal temperature at the thickest part of the meat. Pull 5-10 degrees below target temperature and let rest for 10-20 minutes. The exterior should have a deeply browned, caramelized Maillard crust.",
+    "commonMistakes": "Heat too high, crowding the pan, cooking cold meat, covering the dish, skipping the dry step.",
+    "difficulty": 2
+  },
+  {
+  "name": "Baking",
+    "summary": "Use indirect, steady heat in the oven.",
+    "donenessCues": "Golden brown, toothpick test, edges pulling slightly away from the pan and a top that springs back when pressed.",
+    "commonMistakes": "Inaccurate measuring, wrong ingredient temperatures, overmixing batter, opening the oven door too early, improper oven temperature, making uninformed substitutions.",
+    "difficulty": 2
+  },
+  {
+  "name": "Grilling",
+    "summary": "Apply intense, direct heat from above.",
+    "donenessCues": "Internal temperature, juices run clear, touch test",
+    "commonMistakes": "Not preheating grill, dirty grill, pressing down, cutting or poking meat too soon, opening lid too often, using too much direct heat.",
+    "difficulty": 2
+  },
+  {
+  "name": "Broiling",
+    "summary": "Apply intense, direct heat from above.",
+    "donenessCues": "The most reliable visual and physical cues to determine doneness when broiling food depend entirely on the type of ingredient you are cooking. Because broiling uses intense, direct top heat, food cooks incredibly fast and can quickly move from perfectly done to burned.",
+    "commonMistakes": "Leaving food alone, using the wrong cookware, using parchment paper, skipping preheating, placing food at the wrong height, broiling the wrong foods.",
+    "difficulty": 2
+  },
+  {
+  "name": "Sautéing",
+    "summary": "Cooks food fast in a small amount of fat over medium-high heat.",
+    "donenessCues": "Bright vibrant color and light brown edges, slight resistance to fork, aggressive sizzling will soften slightly, reduced in size or wilted, release easy from pan",
+    "commonMistakes": "Cold pan, overcrowding pan, using wet ingredients, wrong oil, stirring too much or too little, adding garlic too early",
+    "difficulty": 2
   }
-   
 ]
