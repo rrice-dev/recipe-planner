@@ -1,0 +1,19 @@
+[
+  { "name": "Yellow Onion", "storeSection": "Produce" },
+  { "name": "Garlic", "storeSection": "Produce" },
+  { "name": "Butter", "storeSection": "Dairy" },
+  { "name": "Chicken Thighs", "storeSection": "Meat" },
+  { "name": "Sweet Potato", "storeSection": "Produce" },
+  { "name": "Mushrooms", "storeSection": "Produce" },
+  { "name": "Garlic Powder", "storeSection": "Spices" },
+  { "name": "Turmeric", "storeSection": "Spices" },
+  { "name": "Oregano", "storeSection": "Spices" },
+  { "name": "Bell Pepper", "storeSection": "Produce" },
+  { "name": "Zucchini", "storeSection": "Produce" },
+  { "name": "Basil", "storeSection": "Produce" },
+  { "name": "Butternut Squash", "storeSection": "Produce" },
+  { "name": "Ginger", "storeSection": "Produce" },
+  { "name": "Sage", "storeSection": "Spices" },
+  { "name": "Gochugaru", "storeSection": "Spices" },
+  { "name": "Sea Salt", "storeSection": "Spices" }
+]

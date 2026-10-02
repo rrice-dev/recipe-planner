@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Searing",
+    "summary": "Cooking the surface of food at high heat to build a browned, flavorful crust.",
+    "donenessCues": "Deep brown crust; the food releases from the pan on its own.",
+    "commonMistakes": "Crowding the pan, moving the food too early, starting with wet meat.",
+    "difficulty": 2
+  },
+  {
+    "name": "Caramelizing",
+    "summary": "Slowly cooking food until its natural sugars brown and deepen in flavor.",
+    "donenessCues": "Deep amber color, jammy texture, sweet aroma.",
+    "commonMistakes": "Heat too high, rushing it, not stirring often enough near the end.",
+    "difficulty": 2
+  }
+   
+]
