@@ -10,7 +10,10 @@ import { ApiService } from '../api.service';
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
-      <h1>{{ r.title }}</h1>
+      <div class="page-header">
+  <h1>{{ r.title }}</h1>
+  <a [routerLink]="['/recipes', r.id, 'edit']" class="button">Edit</a>
+</div>
       <p class="meta">
         {{ r.cuisine ?? 'Any cuisine' }} · Prep {{ r.prepMinutes }} min · Cook {{ r.cookMinutes }} min · Serves {{ r.servings }}
       </p>

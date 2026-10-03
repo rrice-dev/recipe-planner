@@ -74,3 +74,66 @@ a.card:hover { border-color: var(--accent); }
 
 .back { color: var(--muted); text-decoration: none; }
 .back:hover { color: var(--accent); }
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+input, select, textarea {
+  font: inherit;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #c0392b;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.row label { flex: 1; min-width: 120px; }
+.item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; }
+.grow { flex: 1; min-width: 150px; }
+.narrow { width: 90px; }
+.step-num { font-weight: 600; color: var(--muted); }
+
+button, .button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, .button:hover { border-color: var(--accent); }
+.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.primary:hover { opacity: 0.9; }
+button:disabled { opacity: 0.6; cursor: default; }
+button.link { border: none; background: none; color: var(--muted); padding: 0.25rem 0.5rem; }
+button.link:hover { color: #c0392b; }
+
+.error { color: #c0392b; margin: 0.25rem 0 0.75rem; }
+.actions { margin-top: 1.5rem; }

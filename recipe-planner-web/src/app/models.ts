@@ -44,3 +44,8 @@ export interface Technique {
   commonMistakes: string | null;
   difficulty: number;
 }
+export interface Ingredient {
+  id: number;
+  name: string;
+  storeSection: string | null;
+}

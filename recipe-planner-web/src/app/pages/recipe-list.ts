@@ -7,7 +7,10 @@ import { ApiService } from '../api.service';
   selector: 'app-recipe-list',
   imports: [RouterLink],
   template: `
-    <h1>Recipes</h1>
+    <div class="page-header">
+  <h1>Recipes</h1>
+  <a routerLink="/recipes/new" class="button primary">+ New recipe</a>
+</div>
     @if (recipes(); as list) {
       <div class="grid">
         @for (r of list; track r.id) {
