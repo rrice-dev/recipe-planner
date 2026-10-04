@@ -137,3 +137,42 @@ button.link:hover { color: #c0392b; }
 
 .error { color: #c0392b; margin: 0.25rem 0 0.75rem; }
 .actions { margin-top: 1.5rem; }
+
+.create { margin-bottom: 1.5rem; }
+a.plain { color: inherit; text-decoration: none; }
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.day h2 { margin-top: 0; font-size: 1rem; }
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.add { margin-top: 0.75rem; margin-bottom: 0; }
+.tiny { width: 64px; }
+.small-text { font-size: 0.9rem; margin: 0.25rem 0; }
+.button.disabled { pointer-events: none; opacity: 0.5; }
+
+.shop-section { margin-bottom: 1rem; }
+.shop-section h2 { margin-top: 0; }
+.shop-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+.shop-item .qty { min-width: 90px; color: var(--muted); }
+.shop-item.checked span { text-decoration: line-through; color: var(--muted); }
+
+@media print {
+  .topbar, .no-print { display: none; }
+  body { background: white; }
+  .card { border: none; padding: 0; }
+}

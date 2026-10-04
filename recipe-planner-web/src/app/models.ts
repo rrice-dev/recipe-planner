@@ -49,3 +49,30 @@ export interface Ingredient {
   name: string;
   storeSection: string | null;
 }
+
+export interface MealPlanEntry {
+  day: string;
+  recipeId: number;
+  recipeTitle: string;
+  servings: number;
+}
+
+export interface MealPlan {
+  id: number;
+  name: string;
+  weekStart: string;
+  entries: MealPlanEntry[];
+}
+
+export interface ShoppingListItem {
+  ingredient: string;
+  quantity: number;
+  unit: string;
+  storeSection: string | null;
+}
+
+export interface ShoppingList {
+  mealPlanId: number;
+  name: string;
+  items: ShoppingListItem[];
+}
