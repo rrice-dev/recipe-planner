@@ -23,6 +23,7 @@ app.UseHttpsRedirection();
 app.MapRecipeEndpoints();
 app.MapTechniqueEndpoints();
 app.MapIngredientEndpoints();
+app.MapMealPlanEndpoints();
 app.Run();
 
 public partial class Program { }

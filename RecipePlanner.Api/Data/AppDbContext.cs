@@ -9,6 +9,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Technique> Techniques => Set<Technique>();
 
+public DbSet<MealPlan> MealPlans => Set<MealPlan>();
     protected override void OnModelCreating(ModelBuilder b)
     {
         b.Entity<RecipeIngredient>().HasKey(ri => new { ri.RecipeId, ri.IngredientId });

@@ -52,3 +52,21 @@ public class Technique
     public int Difficulty { get; set; }
     public List<Recipe> Recipes { get; set; } = [];
 }
+
+public class MealPlan
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public DateOnly WeekStart { get; set; }
+    public List<MealPlanEntry> Entries { get; set; } = [];
+}
+
+public class MealPlanEntry
+{
+    public int Id { get; set; }
+    public int MealPlanId { get; set; }
+    public DateOnly Day { get; set; }
+    public int RecipeId { get; set; }
+    public Recipe Recipe { get; set; } = null!;
+    public int Servings { get; set; }
+}
