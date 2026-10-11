@@ -1,9 +1,17 @@
 <header class="topbar">
   <a routerLink="/recipes" class="brand">Recipe Planner</a>
   <nav>
-    <a routerLink="/recipes" routerLinkActive="active">Recipes</a>
+    @if (auth.isLoggedIn()) {
+      <a routerLink="/recipes" routerLinkActive="active">Recipes</a>
+      <a routerLink="/meal-plans" routerLinkActive="active">Meal Plans</a>
+    }
     <a routerLink="/techniques" routerLinkActive="active">Techniques</a>
-    <a routerLink="/meal-plans" routerLinkActive="active">Meal Plans</a>
+    @if (auth.isLoggedIn()) {
+      <span class="user">{{ auth.email() }}</span>
+      <button class="link" (click)="logout()">Log out</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active">Log in</a>
+    }
   </nav>
 </header>
 
