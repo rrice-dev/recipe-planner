@@ -15,7 +15,7 @@ public class MealPlanTests
     public async Task Shopping_list_scales_and_combines_ingredients()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var onion = await Post<IngredientResponse>(client, "/api/ingredients", new IngredientRequest("Onion", "Produce"));
         var butter = await Post<IngredientResponse>(client, "/api/ingredients", new IngredientRequest("Butter", "Dairy"));
@@ -58,7 +58,7 @@ public class MealPlanTests
     public async Task Entry_outside_the_week_returns_400()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var recipe = await Post<RecipeResponse>(client, "/api/recipes", new RecipeRequest("Soup", null, null, 4, 10, 30));
         var plan = await Post<MealPlanResponse>(client, "/api/mealplans", new MealPlanRequest("Week", Monday));
@@ -72,7 +72,7 @@ public class MealPlanTests
     public async Task Entry_with_unknown_recipe_returns_400()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var plan = await Post<MealPlanResponse>(client, "/api/mealplans", new MealPlanRequest("Week", Monday));
         var response = await client.PutAsJsonAsync($"/api/mealplans/{plan.Id}/entries",
@@ -84,7 +84,7 @@ public class MealPlanTests
     public async Task Shopping_list_for_missing_plan_returns_404()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var response = await client.GetAsync("/api/mealplans/9999/shopping-list");
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);

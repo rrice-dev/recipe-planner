@@ -36,7 +36,7 @@ public static class IngredientEndpoints
             await db.SaveChangesAsync();
 
             return Results.Created($"/api/ingredients/{ingredient.Id}", ToResponse(ingredient));
-        });
+        }).RequireAuthorization();
 
         group.MapPut("/{id:int}", async (int id, IngredientRequest request, AppDbContext db) =>
         {
@@ -54,7 +54,7 @@ public static class IngredientEndpoints
             ingredient.StoreSection = request.StoreSection;
             await db.SaveChangesAsync();
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
         {
@@ -67,7 +67,7 @@ public static class IngredientEndpoints
             db.Ingredients.Remove(ingredient);
             await db.SaveChangesAsync();
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
     }
 
     private static Dictionary<string, string[]> Validate(IngredientRequest r)

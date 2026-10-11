@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Data;
@@ -9,31 +10,36 @@ public static class RecipeEndpoints
 {
     public static void MapRecipeEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/recipes");
+        var group = app.MapGroup("/api/recipes").RequireAuthorization();
 
-        group.MapGet("/", async (AppDbContext db) =>
+        group.MapGet("/", async (ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipes = await db.Recipes.AsNoTracking().OrderBy(r => r.Title).ToListAsync();
+            var userId = user.UserId();
+            var recipes = await db.Recipes.AsNoTracking()
+                .Where(r => r.OwnerId == userId)
+                .OrderBy(r => r.Title)
+                .ToListAsync();
             return Results.Ok(recipes.Select(ToResponse));
         });
 
-        group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+        group.MapGet("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
+            var userId = user.UserId();
             var recipe = await db.Recipes.AsNoTracking()
                 .Include(r => r.Techniques)
                 .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
                 .Include(r => r.Steps).ThenInclude(s => s.Technique)
                 .AsSplitQuery()
-                .FirstOrDefaultAsync(r => r.Id == id);
+                .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe));
         });
 
-        group.MapPost("/", async (RecipeRequest request, AppDbContext db) =>
+        group.MapPost("/", async (RecipeRequest request, ClaimsPrincipal user, AppDbContext db) =>
         {
             var errors = Validate(request);
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
-            var recipe = new Recipe { Title = request.Title.Trim() };
+            var recipe = new Recipe { Title = request.Title.Trim(), OwnerId = user.UserId() };
             Apply(recipe, request);
             db.Recipes.Add(recipe);
             await db.SaveChangesAsync();
@@ -41,12 +47,13 @@ public static class RecipeEndpoints
             return Results.Created($"/api/recipes/{recipe.Id}", ToResponse(recipe));
         });
 
-        group.MapPut("/{id:int}", async (int id, RecipeRequest request, AppDbContext db) =>
+        group.MapPut("/{id:int}", async (int id, RecipeRequest request, ClaimsPrincipal user, AppDbContext db) =>
         {
             var errors = Validate(request);
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
-            var recipe = await db.Recipes.FindAsync(id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             Apply(recipe, request);
@@ -54,9 +61,10 @@ public static class RecipeEndpoints
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+        group.MapDelete("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipe = await db.Recipes.FindAsync(id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             db.Recipes.Remove(recipe);
@@ -65,9 +73,12 @@ public static class RecipeEndpoints
         });
 
         // Techniques
-        group.MapPost("/{id:int}/techniques/{techniqueId:int}", async (int id, int techniqueId, AppDbContext db) =>
+        group.MapPost("/{id:int}/techniques/{techniqueId:int}",
+            async (int id, int techniqueId, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipe = await db.Recipes.Include(r => r.Techniques).FirstOrDefaultAsync(r => r.Id == id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.Include(r => r.Techniques)
+                .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             var technique = await db.Techniques.FindAsync(techniqueId);
@@ -81,9 +92,12 @@ public static class RecipeEndpoints
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id:int}/techniques/{techniqueId:int}", async (int id, int techniqueId, AppDbContext db) =>
+        group.MapDelete("/{id:int}/techniques/{techniqueId:int}",
+            async (int id, int techniqueId, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipe = await db.Recipes.Include(r => r.Techniques).FirstOrDefaultAsync(r => r.Id == id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.Include(r => r.Techniques)
+                .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             var technique = recipe.Techniques.FirstOrDefault(t => t.Id == techniqueId);
@@ -95,9 +109,12 @@ public static class RecipeEndpoints
         });
 
         // Ingredients: replaces the recipe's full ingredient list
-        group.MapPut("/{id:int}/ingredients", async (int id, List<RecipeIngredientRequest> items, AppDbContext db) =>
+        group.MapPut("/{id:int}/ingredients",
+            async (int id, List<RecipeIngredientRequest> items, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipe = await db.Recipes.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.Include(r => r.Ingredients)
+                .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             var errors = new Dictionary<string, string[]>();
@@ -145,9 +162,12 @@ public static class RecipeEndpoints
         });
 
         // Steps: replaces the recipe's full step list, in order
-        group.MapPut("/{id:int}/steps", async (int id, List<StepRequest> steps, AppDbContext db) =>
+        group.MapPut("/{id:int}/steps",
+            async (int id, List<StepRequest> steps, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var recipe = await db.Recipes.Include(r => r.Steps).FirstOrDefaultAsync(r => r.Id == id);
+            var userId = user.UserId();
+            var recipe = await db.Recipes.Include(r => r.Steps)
+                .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
             if (steps.Any(s => string.IsNullOrWhiteSpace(s.Instruction)))

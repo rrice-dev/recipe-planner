@@ -12,6 +12,7 @@ public class Recipe
     public List<RecipeIngredient> Ingredients { get; set; } = [];
     public List<Step> Steps { get; set; } = [];
     public List<Technique> Techniques { get; set; } = [];
+    public string OwnerId { get; set; } = null!;
 }
 
 public class Ingredient
@@ -59,6 +60,7 @@ public class MealPlan
     public required string Name { get; set; }
     public DateOnly WeekStart { get; set; }
     public List<MealPlanEntry> Entries { get; set; } = [];
+    public string OwnerId { get; set; } = null!;
 }
 
 public class MealPlanEntry

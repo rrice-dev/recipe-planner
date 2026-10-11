@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Data;
@@ -9,40 +10,49 @@ public static class MealPlanEndpoints
 {
     public static void MapMealPlanEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/api/mealplans");
+        var group = app.MapGroup("/api/mealplans").RequireAuthorization();
 
-        group.MapGet("/", async (AppDbContext db) =>
+        group.MapGet("/", async (ClaimsPrincipal user, AppDbContext db) =>
         {
+            var userId = user.UserId();
             var plans = await db.MealPlans.AsNoTracking()
+                .Where(p => p.OwnerId == userId)
                 .Include(p => p.Entries).ThenInclude(e => e.Recipe)
                 .OrderByDescending(p => p.WeekStart)
                 .ToListAsync();
             return Results.Ok(plans.Select(ToResponse));
         });
 
-        group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+        group.MapGet("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
+            var userId = user.UserId();
             var plan = await db.MealPlans.AsNoTracking()
                 .Include(p => p.Entries).ThenInclude(e => e.Recipe)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
             return plan is null ? Results.NotFound() : Results.Ok(ToResponse(plan));
         });
 
-        group.MapPost("/", async (MealPlanRequest request, AppDbContext db) =>
+        group.MapPost("/", async (MealPlanRequest request, ClaimsPrincipal user, AppDbContext db) =>
         {
             if (string.IsNullOrWhiteSpace(request.Name) || request.Name.Length > 100)
                 return Results.ValidationProblem(new Dictionary<string, string[]>
                     { ["Name"] = ["Name is required (100 characters max)."] });
 
-            var plan = new MealPlan { Name = request.Name.Trim(), WeekStart = request.WeekStart };
+            var plan = new MealPlan
+            {
+                Name = request.Name.Trim(),
+                WeekStart = request.WeekStart,
+                OwnerId = user.UserId()
+            };
             db.MealPlans.Add(plan);
             await db.SaveChangesAsync();
             return Results.Created($"/api/mealplans/{plan.Id}", ToResponse(plan));
         });
 
-        group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+        group.MapDelete("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var plan = await db.MealPlans.FindAsync(id);
+            var userId = user.UserId();
+            var plan = await db.MealPlans.FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
             if (plan is null) return Results.NotFound();
 
             db.MealPlans.Remove(plan);
@@ -50,10 +60,12 @@ public static class MealPlanEndpoints
             return Results.NoContent();
         });
 
-        // Replaces the plan's full list of entries
-        group.MapPut("/{id:int}/entries", async (int id, List<MealPlanEntryRequest> entries, AppDbContext db) =>
+        group.MapPut("/{id:int}/entries",
+            async (int id, List<MealPlanEntryRequest> entries, ClaimsPrincipal user, AppDbContext db) =>
         {
-            var plan = await db.MealPlans.Include(p => p.Entries).FirstOrDefaultAsync(p => p.Id == id);
+            var userId = user.UserId();
+            var plan = await db.MealPlans.Include(p => p.Entries)
+                .FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
             if (plan is null) return Results.NotFound();
 
             var errors = new Dictionary<string, string[]>();
@@ -64,8 +76,9 @@ public static class MealPlanEndpoints
                 errors["Servings"] = ["Servings must be at least 1."];
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
+            // Only the user's OWN recipes can go in their plan
             var recipeIds = entries.Select(e => e.RecipeId).Distinct().ToList();
-            var found = await db.Recipes.CountAsync(r => recipeIds.Contains(r.Id));
+            var found = await db.Recipes.CountAsync(r => recipeIds.Contains(r.Id) && r.OwnerId == userId);
             if (found != recipeIds.Count)
                 return Results.ValidationProblem(new Dictionary<string, string[]>
                     { ["RecipeId"] = ["One or more recipes do not exist."] });
@@ -78,15 +91,16 @@ public static class MealPlanEndpoints
             return Results.NoContent();
         });
 
-        group.MapGet("/{id:int}/shopping-list", async (int id, AppDbContext db) =>
+        group.MapGet("/{id:int}/shopping-list", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
+            var userId = user.UserId();
             var plan = await db.MealPlans.AsNoTracking()
                 .Include(p => p.Entries)
                     .ThenInclude(e => e.Recipe)
                     .ThenInclude(r => r.Ingredients)
                     .ThenInclude(ri => ri.Ingredient)
                 .AsSplitQuery()
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
             if (plan is null) return Results.NotFound();
 
             var items = plan.Entries
@@ -95,7 +109,6 @@ public static class MealPlanEndpoints
                     ri.Ingredient.Name,
                     ri.Ingredient.StoreSection,
                     Unit = ri.Unit.ToLowerInvariant(),
-                    // Scale to planned servings: a 4-serving recipe planned for 8 doubles everything
                     Quantity = ri.Quantity * e.Servings / Math.Max(e.Recipe.Servings, 1)
                 }))
                 .GroupBy(x => new { x.Name, x.Unit, x.StoreSection })

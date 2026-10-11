@@ -20,7 +20,7 @@ public class IngredientAndStepTests
     public async Task Duplicate_ingredient_returns_409()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         await CreateIngredient(client, "Onion");
         var duplicate = await client.PostAsJsonAsync("/api/ingredients", new IngredientRequest("Onion", null));
@@ -31,7 +31,7 @@ public class IngredientAndStepTests
     public async Task Recipe_ingredients_appear_in_detail_and_can_be_replaced()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var recipe = await CreateRecipe(client);
         var onion = await CreateIngredient(client, "Onion");
@@ -62,7 +62,7 @@ public class IngredientAndStepTests
     public async Task Deleting_ingredient_in_use_returns_409()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var recipe = await CreateRecipe(client);
         var onion = await CreateIngredient(client, "Onion");
@@ -77,7 +77,7 @@ public class IngredientAndStepTests
     public async Task Steps_are_saved_in_order_with_technique_names()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var recipe = await CreateRecipe(client);
         var technique = (await (await client.PostAsJsonAsync("/api/techniques",
@@ -101,7 +101,7 @@ public class IngredientAndStepTests
     public async Task Step_with_unknown_technique_returns_400()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var recipe = await CreateRecipe(client);
         var response = await client.PutAsJsonAsync($"/api/recipes/{recipe.Id}/steps",

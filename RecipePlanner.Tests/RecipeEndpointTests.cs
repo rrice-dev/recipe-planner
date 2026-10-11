@@ -13,7 +13,7 @@ public class RecipeEndpointTests
     public async Task Create_then_get_returns_recipe()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var create = await client.PostAsJsonAsync("/api/recipes", Sample());
         Assert.Equal(HttpStatusCode.Created, create.StatusCode);
@@ -27,7 +27,7 @@ public class RecipeEndpointTests
     public async Task Create_with_blank_title_returns_400()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var response = await client.PostAsJsonAsync("/api/recipes", Sample(title: "  "));
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -37,7 +37,7 @@ public class RecipeEndpointTests
     public async Task Get_missing_recipe_returns_404()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var response = await client.GetAsync("/api/recipes/9999");
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
@@ -47,7 +47,7 @@ public class RecipeEndpointTests
     public async Task Update_changes_recipe()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var create = await client.PostAsJsonAsync("/api/recipes", Sample());
         var created = await create.Content.ReadFromJsonAsync<RecipeResponse>();
@@ -63,7 +63,7 @@ public class RecipeEndpointTests
     public async Task Delete_removes_recipe()
     {
         using var factory = new ApiFactory();
-        var client = factory.CreateClient();
+        var client = await factory.CreateUserClientAsync();;
 
         var create = await client.PostAsJsonAsync("/api/recipes", Sample());
         var created = await create.Content.ReadFromJsonAsync<RecipeResponse>();
