@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: recipe_planner
+      POSTGRES_USER: recipe
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recipe -d recipe_planner"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./RecipePlanner.Api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Default: Host=db;Database=recipe_planner;Username=recipe;Password=${POSTGRES_PASSWORD}
+      Database__MigrateOnStartup: "true"
+      Database__SeedOnStartup: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./recipe-planner-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
