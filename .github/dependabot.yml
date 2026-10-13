@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directories:
+      - "/RecipePlanner.Api"
+      - "/RecipePlanner.Tests"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: "/recipe-planner-web"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker
+    directories:
+      - "/RecipePlanner.Api"
+      - "/recipe-planner-web"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
