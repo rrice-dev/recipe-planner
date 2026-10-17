@@ -1,0 +1,35 @@
+# Filled in by the nginx image at container start: only ${API_UPSTREAM} and
+# ${API_HOST} are replaced. nginx's own variables ($host, $scheme, ...) are left alone.
+
+# Pass along the original scheme from Azure's ingress; fall back to $scheme locally
+map $http_x_forwarded_proto $forwarded_proto {
+    default $http_x_forwarded_proto;
+    ""      $scheme;
+}
+
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Forward API calls to the API container
+    location /api/ {
+        proxy_pass ${API_UPSTREAM};
+        # Azure routes by hostname, so this must name the API app
+        proxy_set_header Host ${API_HOST};
+        proxy_ssl_server_name on;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $forwarded_proto;
+    }
+
+    # Angular routes: unknown paths fall back to index.html
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Security headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+}
