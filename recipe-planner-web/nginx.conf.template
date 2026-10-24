@@ -13,13 +13,21 @@ server {
     root /usr/share/nginx/html;
     index index.html;
 
+    # Azure's ingress adds the real client IP as the LAST X-Forwarded-For entry.
+    # Take that entry as $remote_addr. Earlier entries can be faked by the client, so they're ignored.
+    # Trusting every source is safe here only because Azure's ingress is the only way in.
+    set_real_ip_from 0.0.0.0/0;
+    set_real_ip_from ::/0;
+    real_ip_header X-Forwarded-For;
+
     # Forward API calls to the API container
     location /api/ {
         proxy_pass ${API_UPSTREAM};
         # Azure routes by hostname, so this must name the API app
         proxy_set_header Host ${API_HOST};
         proxy_ssl_server_name on;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # Overwrite rather than append, so client-supplied entries never reach the API
+        proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
     }
 

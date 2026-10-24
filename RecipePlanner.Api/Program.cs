@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Endpoints;
 using RecipePlanner.Api.Models;
+using RecipePlanner.Api.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,20 @@ builder.Services.ConfigureApplicationCookie(o =>
     };
 });
 
+builder.Services.AddAppRateLimiting();
+
+// Requests arrive through two proxies: Azure's ingress -> nginx -> Azure's internal ingress -> API.
+// nginx overwrites X-Forwarded-For with the client IP Azure reported, so the API can trust
+// up to two hops. Without this, every user would share nginx's IP and one rate-limit bucket.
+builder.Services.Configure<ForwardedHeadersOptions>(o =>
+{
+    o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    o.ForwardLimit = 2;
+    // The API has internal-only ingress, so only our own proxies can reach it
+    o.KnownIPNetworks.Clear();
+    o.KnownProxies.Clear();
+});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -77,8 +93,10 @@ using (var scope = app.Services.CreateScope())
     await AdminSeeder.EnsureAdminAsync(scope.ServiceProvider, app.Configuration["Admin:Email"]);
 }
 
+app.UseForwardedHeaders(); // First, so everything after sees the real client IP and scheme
 app.UseHttpsRedirection();
 app.UseAuthentication();
+app.UseRateLimiter(); // After authentication, so limits can be per user
 app.UseAuthorization();
 
 app.MapAuthEndpoints();
