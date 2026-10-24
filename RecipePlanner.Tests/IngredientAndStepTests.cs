@@ -62,7 +62,7 @@ public class IngredientAndStepTests
     public async Task Deleting_ingredient_in_use_returns_409()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         var recipe = await CreateRecipe(client);
         var onion = await CreateIngredient(client, "Onion");
@@ -77,7 +77,7 @@ public class IngredientAndStepTests
     public async Task Steps_are_saved_in_order_with_technique_names()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         var recipe = await CreateRecipe(client);
         var technique = (await (await client.PostAsJsonAsync("/api/techniques",

@@ -54,7 +54,7 @@ public static class IngredientEndpoints
             ingredient.StoreSection = request.StoreSection;
             await db.SaveChangesAsync();
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Roles.Admin);
 
         group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
         {
@@ -67,7 +67,7 @@ public static class IngredientEndpoints
             db.Ingredients.Remove(ingredient);
             await db.SaveChangesAsync();
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Roles.Admin);
     }
 
     private static Dictionary<string, string[]> Validate(IngredientRequest r)

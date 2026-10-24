@@ -13,7 +13,7 @@ public class TechniqueEndpointTests
     public async Task Create_then_get_returns_technique()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         var create = await client.PostAsJsonAsync("/api/techniques", Sample());
         Assert.Equal(HttpStatusCode.Created, create.StatusCode);
@@ -27,7 +27,7 @@ public class TechniqueEndpointTests
     public async Task Duplicate_name_returns_409()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         await client.PostAsJsonAsync("/api/techniques", Sample());
         var duplicate = await client.PostAsJsonAsync("/api/techniques", Sample());
@@ -38,7 +38,7 @@ public class TechniqueEndpointTests
     public async Task Invalid_difficulty_returns_400()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         var response = await client.PostAsJsonAsync("/api/techniques", Sample(difficulty: 9));
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -48,7 +48,7 @@ public class TechniqueEndpointTests
     public async Task Linked_technique_appears_on_recipe_and_can_be_removed()
     {
         using var factory = new ApiFactory();
-        var client = await factory.CreateUserClientAsync();;
+        var client = await factory.CreateAdminClientAsync();
 
         var recipe = await (await client.PostAsJsonAsync("/api/recipes",
             new RecipeRequest("Short Ribs", null, "Korean", 4, 20, 180)))

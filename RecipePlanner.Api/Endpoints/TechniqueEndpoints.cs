@@ -37,7 +37,7 @@ public static class TechniqueEndpoints
             await db.SaveChangesAsync();
 
             return Results.Created($"/api/techniques/{technique.Id}", ToResponse(technique));
-        }).RequireAuthorization();
+        }).RequireAuthorization(Roles.Admin);
 
         group.MapPut("/{id:int}", async (int id, TechniqueRequest request, AppDbContext db) =>
         {
@@ -54,7 +54,7 @@ public static class TechniqueEndpoints
             Apply(technique, request);
             await db.SaveChangesAsync();
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Roles.Admin);
 
         group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
         {
@@ -64,7 +64,7 @@ public static class TechniqueEndpoints
             db.Techniques.Remove(technique);
             await db.SaveChangesAsync();
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(Roles.Admin);
     }
 
     private static void Apply(Technique t, TechniqueRequest r)

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Endpoints;
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(o =>
     o.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
-builder.Services.AddAuthorization();
+// "Admin" policy: only users in the Admin role can change shared data
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy(Roles.Admin, p => p.RequireRole(Roles.Admin));
 
 builder.Services.AddIdentityApiEndpoints<AppUser>(o =>
 {
@@ -26,6 +29,7 @@ builder.Services.AddIdentityApiEndpoints<AppUser>(o =>
 
     o.User.RequireUniqueEmail = true;
 })
+.AddRoles<IdentityRole>() // Enables roles; must come before the stores line
 .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.ConfigureApplicationCookie(o =>
@@ -68,6 +72,9 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsDevelopment() || app.Configuration.GetValue<bool>("Database:SeedOnStartup"))
         await DbSeeder.SeedAsync(db, app.Environment.ContentRootPath);
+
+    // Creates the Admin role and promotes the account named in Admin:Email, if set
+    await AdminSeeder.EnsureAdminAsync(scope.ServiceProvider, app.Configuration["Admin:Email"]);
 }
 
 app.UseHttpsRedirection();
