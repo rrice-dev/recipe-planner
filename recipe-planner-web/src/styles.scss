@@ -192,3 +192,5 @@ a.plain { color: inherit; text-decoration: none; }
 nav { display: flex; align-items: center; }
 nav .user { margin-left: 1.25rem; color: var(--muted); font-size: 0.9rem; }
 nav button.link { margin-left: 0.5rem; }
+.chip button.link { padding: 0 0 0 0.35rem; color: var(--accent); }
+a.chip { text-decoration: none; }

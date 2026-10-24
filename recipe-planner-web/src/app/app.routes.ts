@@ -9,6 +9,7 @@ import { TechniqueListPage } from './pages/technique-list';
 import { MealPlanListPage } from './pages/meal-plan-list';
 import { MealPlanDetailPage } from './pages/meal-plan-detail';
 import { ShoppingListPage } from './pages/shopping-list';
+import { FridgePage } from './pages/fridge';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },
   { path: 'recipes/:id', component: RecipeDetailPage, canActivate: [authGuard] },
   { path: 'recipes/:id/edit', component: RecipeFormPage, canActivate: [authGuard] },
+  { path: 'fridge', component: FridgePage, canActivate: [authGuard] },
   { path: 'meal-plans', component: MealPlanListPage, canActivate: [authGuard] },
   { path: 'meal-plans/:id', component: MealPlanDetailPage, canActivate: [authGuard] },
   { path: 'meal-plans/:id/shopping-list', component: ShoppingListPage, canActivate: [authGuard] },

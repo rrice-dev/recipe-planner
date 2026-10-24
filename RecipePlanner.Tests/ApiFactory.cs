@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Data;
 
 namespace RecipePlanner.Tests;
@@ -12,6 +13,9 @@ namespace RecipePlanner.Tests;
 public class ApiFactory : WebApplicationFactory<Program>
 {
     private readonly string _dbName = Guid.NewGuid().ToString();
+
+    // Set this to a fake to test the AI feature without calling a real provider
+    public IMealIdeaGenerator? MealIdeas { get; init; }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -21,6 +25,12 @@ public class ApiFactory : WebApplicationFactory<Program>
             services.RemoveAll<DbContextOptions<AppDbContext>>();
             services.RemoveAll<IDbContextOptionsConfiguration<AppDbContext>>();
             services.AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase(_dbName));
+
+            if (MealIdeas is not null)
+            {
+                services.RemoveAll<IMealIdeaGenerator>();
+                services.AddSingleton(MealIdeas);
+            }
         });
     }
 }

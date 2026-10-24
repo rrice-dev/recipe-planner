@@ -76,3 +76,24 @@ export interface ShoppingList {
   name: string;
   items: ShoppingListItem[];
 }
+export interface FridgeRecipeMatch {
+  recipeId: number;
+  title: string;
+  have: string[];
+  missing: string[];
+}
+
+export interface FridgeMealIdea {
+  name: string;
+  description: string;
+  usesIngredients: string[];
+  extraIngredients: string[];
+  techniques: TechniqueSummary[];
+}
+
+export interface FridgeResponse {
+  fromYourRecipes: FridgeRecipeMatch[];
+  newIdeas: FridgeMealIdea[];
+  aiAvailable: boolean;
+  aiNotice: string | null;
+}

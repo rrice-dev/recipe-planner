@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { FridgeResponse, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -89,6 +89,10 @@ setMealPlanEntries(id: number, entries: { day: string; recipeId: number; serving
 
 getShoppingList(id: number) {
   return this.http.get<ShoppingList>(`/api/mealplans/${id}/shopping-list`);
+}
+
+getFridgeSuggestions(ingredients: string[]) {
+  return this.http.post<FridgeResponse>('/api/fridge/suggestions', { ingredients });
 }
 
 }

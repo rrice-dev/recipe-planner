@@ -13,6 +13,11 @@ public static class RateLimiting
     public const int AuthPermitLimit = 10;
     public static readonly TimeSpan AuthWindow = TimeSpan.FromMinutes(5);
 
+    // AI suggestions cost real money per request, so each user gets a small allowance
+    public const string AiPolicy = "ai";
+    public const int AiPermitLimit = 10;
+    public static readonly TimeSpan AiWindow = TimeSpan.FromHours(1);
+
     // Only POSTs to these paths count against the strict limit.
     // /manage/info is left out because the web app calls it on every page load.
     private static readonly HashSet<string> SensitiveAuthPaths = new(StringComparer.OrdinalIgnoreCase)
@@ -36,6 +41,14 @@ public static class RateLimiting
                     context.HttpContext.Response.Headers.RetryAfter = ((int)Math.Ceiling(retryAfter.TotalSeconds)).ToString();
                 return ValueTask.CompletedTask;
             };
+
+            o.AddPolicy(AiPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = AiPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
 
             // Both limiters run on every request; either one can reject it
             o.GlobalLimiter = PartitionedRateLimiter.CreateChained(

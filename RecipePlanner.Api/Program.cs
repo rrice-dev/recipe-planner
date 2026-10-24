@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Endpoints;
 using RecipePlanner.Api.Models;
@@ -57,6 +58,7 @@ builder.Services.ConfigureApplicationCookie(o =>
 });
 
 builder.Services.AddAppRateLimiting();
+builder.Services.AddMealIdeas(builder.Configuration);
 
 // Requests arrive through two proxies: Azure's ingress -> nginx -> Azure's internal ingress -> API.
 // nginx overwrites X-Forwarded-For with the client IP Azure reported, so the API can trust
@@ -104,6 +106,7 @@ app.MapRecipeEndpoints();
 app.MapTechniqueEndpoints();
 app.MapIngredientEndpoints();
 app.MapMealPlanEndpoints();
+app.MapFridgeEndpoints();
 
 app.Run();
 
