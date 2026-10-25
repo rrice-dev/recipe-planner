@@ -1,0 +1,5693 @@
+[
+  {
+    "slug": "chicken-fried-rice",
+    "title": "Chicken Fried Rice",
+    "cuisine": "Chinese",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Day-old rice, juicy chicken and a smoky wok toss. Better than takeout and ready in half an hour.",
+    "ingredients": [
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "cooked and chilled; day-old is best"
+      },
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "boneless, diced small"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "beaten"
+      },
+      {
+        "name": "Frozen Peas",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "sliced, whites and greens separated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Dice the chicken and carrot into small, even pieces so everything cooks at the same speed.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Heat 1 tbsp oil in a wok or large skillet over high heat. Scramble the eggs until just set, then move them to a plate.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the remaining oil and the chicken. Stir-fry until browned and cooked through (165°F / 74°C), 5–6 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the garlic, carrot and green onion whites; cook 1 minute. Add the peas.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the cold rice, breaking up clumps. Press it against the hot pan and toss every 30 seconds for 3–4 minutes so it toasts.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the soy sauce, sesame oil and eggs. Toss well, top with the green onion greens, and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-and-broccoli",
+    "title": "Beef and Broccoli",
+    "cuisine": "Chinese",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Tender, velvety beef and bright broccoli in a glossy garlic-ginger sauce.",
+    "ingredients": [
+      {
+        "name": "Flank Steak",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "thinly sliced against the grain"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "cut into florets"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 4.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Jasmine Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Toss the beef with 1 tbsp soy sauce and 2 tsp cornstarch. Let it sit 15 minutes while you prep.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Cook the rice. Whisk the remaining soy sauce and cornstarch with the oyster sauce, brown sugar and 1/3 cup water.",
+        "technique": null
+      },
+      {
+        "instruction": "Boil the broccoli for 1 minute, then drain. It finishes cooking in the sauce.",
+        "technique": "Blanching"
+      },
+      {
+        "instruction": "Heat the oil in a wok over high heat. Sear the beef in a single layer, in batches, about 1 minute per side. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Lower the heat to medium. Cook the garlic and ginger for 30 seconds, add the sauce and simmer until glossy, about 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Return the beef and broccoli, toss to coat, and serve over rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "kung-pao-chicken",
+    "title": "Kung Pao Chicken",
+    "cuisine": "Chinese (Sichuan)",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Sichuan classic with a tingle from Sichuan pepper, a little heat, tang from black vinegar and crunchy peanuts.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, cut into 3/4-inch pieces"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Chinkiang Black Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sichuan Peppercorns",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Thai Chili",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "halved; use fewer for less heat"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "sliced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "cut into 1-inch pieces"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "roasted, unsalted"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Toss the chicken with 1 tbsp soy sauce and the cornstarch.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Stir together the remaining soy sauce, black vinegar, sugar and 2 tbsp water.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil over medium. Fry the Sichuan peppercorns and chilies for 30 seconds until fragrant, not burnt.",
+        "technique": "Toasting"
+      },
+      {
+        "instruction": "Turn the heat to high, add the chicken and stir-fry until cooked through (165°F / 74°C), 5–6 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the garlic, ginger and green onions; cook 30 seconds. Pour in the sauce and toss until glossy.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir in the peanuts and serve right away with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "mapo-tofu",
+    "title": "Mapo Tofu",
+    "cuisine": "Chinese (Sichuan)",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Silky tofu in a bold, numbing, spicy pork sauce built on doubanjiang (chili bean paste).",
+    "ingredients": [
+      {
+        "name": "Tofu",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "soft or medium, cut into 1-inch cubes"
+      },
+      {
+        "name": "Ground Pork",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Doubanjiang",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sichuan Peppercorns",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "toasted and ground"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "mixed with 2 tbsp water"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Gently simmer the tofu cubes in salted water for 2 minutes to firm them up, then drain.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Heat the oil over medium-high. Brown the pork, breaking it up, 4–5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the doubanjiang, garlic and ginger and cook until the oil turns red, about 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the broth and soy sauce, slide in the tofu, and simmer 5 minutes without stirring hard.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir the cornstarch mix, drizzle it in and nudge gently until the sauce thickens.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Finish with ground Sichuan pepper and green onions. Serve with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "pork-and-cabbage-dumplings",
+    "title": "Pork and Cabbage Potstickers",
+    "cuisine": "Chinese",
+    "servings": 6,
+    "prepMinutes": 45,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Juicy pork dumplings with crisp, golden bottoms. Makes about 36; they freeze beautifully.",
+    "ingredients": [
+      {
+        "name": "Ground Pork",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Napa Cabbage",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "very finely chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Dumpling Wrappers",
+        "quantity": 36.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Chinkiang Black Vinegar",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "for dipping"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Toss the cabbage with the salt, wait 10 minutes, then squeeze out as much water as you can.",
+        "technique": null
+      },
+      {
+        "instruction": "Mix the pork, cabbage, green onions, ginger, garlic, soy sauce and sesame oil until sticky.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Put a heaping teaspoon of filling in each wrapper, wet the edge, fold and pleat to seal.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat 1 tbsp oil in a nonstick skillet over medium. Add dumplings flat-side down and fry until golden, 2 minutes.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Add 1/3 cup water, cover, and steam until the water is gone and the filling reaches 160°F (71°C), about 6 minutes.",
+        "technique": "Steaming"
+      },
+      {
+        "instruction": "Uncover and crisp the bottoms another minute. Repeat with the rest and serve with black vinegar.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "egg-drop-soup",
+    "title": "Egg Drop Soup",
+    "cuisine": "Chinese",
+    "servings": 4,
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian",
+      "Soup"
+    ],
+    "description": "Silky ribbons of egg in seasoned broth: a ten-minute comfort soup.",
+    "ingredients": [
+      {
+        "name": "Chicken Broth",
+        "quantity": 6.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ground Ginger",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "mixed with 3 tbsp water"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "beaten"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Bring the broth, soy sauce and ginger to a simmer.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the cornstarch mix and simmer until slightly thickened, 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir the soup in one direction, then slowly drizzle in the eggs so they form ribbons.",
+        "technique": null
+      },
+      {
+        "instruction": "Turn off the heat, add the sesame oil and green onions, and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "scallion-pancakes",
+    "title": "Scallion Pancakes",
+    "cuisine": "Chinese",
+    "servings": 4,
+    "prepMinutes": 40,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian",
+      "Vegetarian"
+    ],
+    "description": "Flaky, chewy pan-fried flatbreads layered with green onions.",
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "divided"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "for dipping"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "for dipping"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the flour with 3/4 cup just-boiled water, then knead until smooth, about 5 minutes. Rest covered 30 minutes.",
+        "technique": "Kneading"
+      },
+      {
+        "instruction": "Divide into 4. Roll each very thin, brush with sesame oil, sprinkle with salt and green onions.",
+        "technique": null
+      },
+      {
+        "instruction": "Roll each up like a rope, coil it into a snail, and roll flat again to about 7 inches.",
+        "technique": null
+      },
+      {
+        "instruction": "Pan-fry each in hot oil over medium until golden and crisp, 2–3 minutes per side.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Cut into wedges and serve with soy sauce mixed with rice vinegar.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-teriyaki",
+    "title": "Chicken Teriyaki",
+    "cuisine": "Japanese",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Crisp-skinned chicken in a sticky, from-scratch teriyaki glaze.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, skin on if possible"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Mirin",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "mixed with 1 tbsp water"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Seeds",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Short-Grain Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice. Whisk the soy sauce, mirin, honey, ginger and garlic.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil over medium-high. Cook the chicken skin-side down without moving until crisp, 7–8 minutes. Flip.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook until 165°F (74°C) inside, about 5 more minutes. Pour off excess fat.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the sauce and the cornstarch mix; simmer, turning the chicken, until thick and glossy.",
+        "technique": "Glazing"
+      },
+      {
+        "instruction": "Rest 3 minutes, slice, and top with sesame seeds and green onions.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "miso-glazed-salmon",
+    "title": "Miso-Glazed Salmon",
+    "cuisine": "Japanese",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Sweet, savory, caramelized miso glaze on flaky salmon, under the broiler in minutes.",
+    "ingredients": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "about 6 oz each"
+      },
+      {
+        "name": "Miso Paste",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "white or yellow"
+      },
+      {
+        "name": "Mirin",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Seeds",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the broiler with a rack about 6 inches from the heat. Line a sheet pan with foil.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk the miso, mirin, honey and vinegar. Spread over the tops of the salmon.",
+        "technique": null
+      },
+      {
+        "instruction": "Broil until the glaze is deeply browned in spots and the salmon flakes easily (145°F / 63°C), 7–10 minutes. Watch closely.",
+        "technique": "Broiling"
+      },
+      {
+        "instruction": "Top with sesame seeds and green onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-katsu",
+    "title": "Chicken Katsu",
+    "cuisine": "Japanese",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Panko-crusted cutlets fried golden, with a quick tangy katsu sauce and crunchy cabbage.",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "butterflied and pounded 1/2 inch thick"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "beaten"
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "for frying"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ketchup",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "very finely shredded"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken with salt. Set up three plates: flour, eggs, panko.",
+        "technique": null
+      },
+      {
+        "instruction": "Coat each cutlet in flour, then egg, then press firmly into panko.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat 1/2 inch of oil to 350°F (175°C). Fry the cutlets until deep golden and 165°F (74°C) inside, 3–4 minutes per side.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Drain on a rack for 3 minutes so the crust stays crisp.",
+        "technique": "Resting"
+      },
+      {
+        "instruction": "Stir together ketchup, Worcestershire, soy sauce and sugar for the sauce.",
+        "technique": null
+      },
+      {
+        "instruction": "Slice and serve with the cabbage and sauce.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "miso-soup",
+    "title": "Miso Soup with Tofu and Spinach",
+    "cuisine": "Japanese",
+    "servings": 4,
+    "prepMinutes": 5,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian",
+      "Vegetarian",
+      "Soup"
+    ],
+    "description": "Simple, savory miso soup. The key: never let the miso boil.",
+    "ingredients": [
+      {
+        "name": "Vegetable Broth",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Shiitake Mushrooms",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Miso Paste",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Tofu",
+        "quantity": 7.0,
+        "unit": "oz",
+        "note": "firm, small cubes"
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Simmer the broth and mushrooms for 5 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Add the tofu and spinach and heat through, 1 minute. Turn the heat to low.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk the miso with a ladle of hot broth until smooth, then stir it back in. Don't boil it after this.",
+        "technique": null
+      },
+      {
+        "instruction": "Top with green onions and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "yaki-udon",
+    "title": "Yaki Udon with Chicken",
+    "cuisine": "Japanese",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Thick, chewy udon stir-fried with chicken, cabbage and mushrooms in a savory sauce.",
+    "ingredients": [
+      {
+        "name": "Udon Noodles",
+        "quantity": 14.0,
+        "unit": "oz",
+        "note": null
+      },
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "sliced"
+      },
+      {
+        "name": "Shiitake Mushrooms",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "sliced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "cut into 2-inch pieces"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Mirin",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the udon per the package, drain and rinse briefly.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil over high. Stir-fry the chicken until cooked through (165°F / 74°C), 4–5 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the cabbage, mushrooms and carrot; stir-fry until just tender, 3 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the noodles, soy sauce, mirin and oyster sauce. Toss until glossy and hot.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the green onions and sesame oil and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "bibimbap",
+    "title": "Bibimbap",
+    "cuisine": "Korean",
+    "servings": 4,
+    "prepMinutes": 30,
+    "cookMinutes": 25,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Rice topped with seasoned vegetables, savory beef, a fried egg and spicy-sweet gochujang sauce.",
+    "ingredients": [
+      {
+        "name": "Short-Grain Rice",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Ground Beef",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": 5.0,
+        "unit": "oz",
+        "note": null
+      },
+      {
+        "name": "Bean Sprouts",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Shiitake Mushrooms",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "sliced"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Gochujang",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Sesame Seeds",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice. Stir the gochujang with 1 tbsp sesame oil, the honey and 1 tbsp water for the sauce.",
+        "technique": null
+      },
+      {
+        "instruction": "Blanch the spinach 30 seconds and the bean sprouts 1 minute; squeeze dry and season each with a little sesame oil and soy sauce.",
+        "technique": "Blanching"
+      },
+      {
+        "instruction": "Sauté the carrot, zucchini and mushrooms separately in a little oil until just tender, salting lightly.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Brown the beef with the garlic and 2 tbsp soy sauce until cooked through (160°F / 71°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Fry the eggs sunny-side up.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Divide the rice into bowls, arrange everything on top, and finish with sesame seeds and the sauce. Mix before eating.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-bulgogi",
+    "title": "Beef Bulgogi",
+    "cuisine": "Korean",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Thin-sliced beef in a sweet-savory pear marinade, seared until caramelized at the edges.",
+    "ingredients": [
+      {
+        "name": "Ribeye Steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "very thinly sliced (freeze 30 minutes first to make slicing easy)"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Pear",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "grated"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Sesame Seeds",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the soy sauce, pear, brown sugar, garlic, ginger and sesame oil. Add the beef and onion; marinate 30 minutes to 4 hours in the fridge.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Heat the oil in a large skillet over high. Cook the beef in batches in a single layer until browned and caramelized, 2–3 minutes.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Top with green onions and sesame seeds. Serve with rice and lettuce leaves for wrapping.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "kimchi-fried-rice",
+    "title": "Kimchi Fried Rice",
+    "cuisine": "Korean",
+    "servings": 2,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Tangy, spicy, buttery fried rice crowned with a runny egg. A great use for leftover rice.",
+    "ingredients": [
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "cooked and chilled"
+      },
+      {
+        "name": "Kimchi",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "chopped, plus 2 tbsp of its juice"
+      },
+      {
+        "name": "Bacon",
+        "quantity": 4.0,
+        "unit": "slice",
+        "note": "chopped"
+      },
+      {
+        "name": "Gochujang",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the bacon in a large skillet over medium until crisp.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the kimchi and cook 2–3 minutes until it starts to caramelize.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the rice, gochujang and kimchi juice. Press and toss over high heat until hot and a little crispy.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir in the butter and sesame oil. Fry the eggs in another pan until the whites are set.",
+        "technique": null
+      },
+      {
+        "instruction": "Serve the rice topped with the eggs and green onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "spicy-gochujang-pork",
+    "title": "Spicy Gochujang Pork (Jeyuk Bokkeum)",
+    "cuisine": "Korean",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Fiery, sweet stir-fried pork. Wrap it in lettuce with rice.",
+    "ingredients": [
+      {
+        "name": "Pork Shoulder",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "very thinly sliced"
+      },
+      {
+        "name": "Gochujang",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Gochugaru",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "grated"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "cut into 2-inch pieces"
+      },
+      {
+        "name": "Sesame Oil",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Romaine Lettuce",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "leaves separated, for wrapping"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the gochujang, gochugaru, soy sauce, honey, garlic, ginger and sesame oil. Toss with the pork and marinate 20 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Heat the oil over high. Stir-fry the pork and onion until the pork is cooked through (145°F / 63°C) and the edges char, 6–8 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the green onions, toss 30 seconds, and serve with lettuce and rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "pad-thai",
+    "title": "Shrimp Pad Thai",
+    "cuisine": "Thai",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Sweet, sour, salty rice noodles with shrimp, egg, bean sprouts and peanuts.",
+    "ingredients": [
+      {
+        "name": "Rice Noodles",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "flat, about 1/4 inch wide"
+      },
+      {
+        "name": "Shrimp",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "1 juiced, 1 in wedges"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Bean Sprouts",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "cut into 1-inch pieces"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sriracha",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "optional"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Soak the noodles in hot tap water until pliable but still firm, about 15 minutes. Drain.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir together fish sauce, brown sugar, vinegar, lime juice and sriracha.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil over high. Stir-fry the shrimp and garlic until the shrimp turn pink and opaque, 2 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Push everything aside, scramble the eggs in the empty space, then add the noodles and sauce. Toss until the noodles soften and absorb the sauce.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the bean sprouts and green onions, toss 30 seconds, and serve with peanuts and lime wedges.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "thai-green-curry-chicken",
+    "title": "Thai Green Curry with Chicken",
+    "cuisine": "Thai",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Fragrant coconut curry with tender chicken, vegetables and Thai basil.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, sliced"
+      },
+      {
+        "name": "Thai Green Curry Paste",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "13.5 oz"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Zucchini",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced into half-moons"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Kaffir Lime Leaves",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "torn"
+      },
+      {
+        "name": "Thai Basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Jasmine Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil over medium. Fry the curry paste with a few spoonfuls of the thick coconut cream until fragrant, 1–2 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the chicken and stir to coat, then the rest of the coconut milk, broth, lime leaves, fish sauce and sugar.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer until the chicken is cooked through (165°F / 74°C), 8–10 minutes. Add the zucchini and pepper for the last 4 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the basil and serve over rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "thai-basil-chicken",
+    "title": "Thai Basil Chicken (Pad Kra Pao)",
+    "cuisine": "Thai",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "A Bangkok street-food favorite: garlicky, spicy ground chicken with holy or Thai basil and a crispy fried egg.",
+    "ingredients": [
+      {
+        "name": "Ground Chicken",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 5.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Thai Chili",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced; adjust to taste"
+      },
+      {
+        "name": "Oyster Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Thai Basil",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Jasmine Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice. Mix the oyster sauce, soy sauce, fish sauce, sugar and 2 tbsp water.",
+        "technique": null
+      },
+      {
+        "instruction": "Fry the eggs in 2 tbsp hot oil until the edges are crispy. Set aside.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "In the remaining oil, cook the garlic, shallots and chilies over high heat for 30 seconds.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the chicken and stir-fry until cooked through (165°F / 74°C), 4–5 minutes. Add the sauce.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Turn off the heat and fold in the basil until wilted. Serve over rice with a fried egg.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "tom-kha-gai",
+    "title": "Tom Kha Gai (Coconut Chicken Soup)",
+    "cuisine": "Thai",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "tags": [
+      "Asian",
+      "AIP",
+      "Soup"
+    ],
+    "description": "Creamy, tangy coconut soup scented with lemongrass and lime leaf. Made without chilies so it fits AIP.",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "13.5 oz each"
+      },
+      {
+        "name": "Chicken Bone Broth",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "no added spices"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": 2.0,
+        "unit": "stalk",
+        "note": "cut into 2-inch pieces and bruised"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 2.0,
+        "unit": "inch",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Kaffir Lime Leaves",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "torn"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "sliced"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "no added sugar"
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Simmer the coconut milk, broth, lemongrass, ginger and lime leaves for 10 minutes to infuse.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Add the chicken and mushrooms and gently poach until the chicken is cooked through (165°F / 74°C), 5–7 minutes.",
+        "technique": "Poaching"
+      },
+      {
+        "instruction": "Turn off the heat and stir in the fish sauce and lime juice. Taste: it should be tangy, salty and rich.",
+        "technique": null
+      },
+      {
+        "instruction": "Remove the lemongrass and ginger if you like, and top with cilantro.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "fresh-spring-rolls",
+    "title": "Fresh Shrimp Spring Rolls",
+    "cuisine": "Vietnamese",
+    "servings": 4,
+    "prepMinutes": 35,
+    "cookMinutes": 5,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Translucent rice-paper rolls packed with shrimp, herbs and noodles, with a peanut-hoisin dip.",
+    "ingredients": [
+      {
+        "name": "Rice Paper Wrappers",
+        "quantity": 12.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Shrimp",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Rice Noodles",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "thin vermicelli"
+      },
+      {
+        "name": "Romaine Lettuce",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "leaves torn"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "cut into thin sticks"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Mint",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Peanut Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Hoisin Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the shrimp until pink and opaque, about 2 minutes. Cool and halve lengthwise.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Cook the noodles per the package, rinse in cold water and drain.",
+        "technique": null
+      },
+      {
+        "instruction": "Dip one rice paper in warm water for 5 seconds and lay it flat. It softens as you work.",
+        "technique": null
+      },
+      {
+        "instruction": "Layer shrimp (pink side down), lettuce, noodles, vegetables and herbs. Fold in the sides and roll tightly.",
+        "technique": null
+      },
+      {
+        "instruction": "For the dip, whisk the peanut butter, hoisin, vinegar and 2–3 tbsp warm water until smooth.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "lemongrass-pork-noodle-bowls",
+    "title": "Lemongrass Pork Noodle Bowls (Bun Thit Nuong)",
+    "cuisine": "Vietnamese",
+    "servings": 4,
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Caramelized lemongrass pork over cool noodles, crisp vegetables, herbs and a bright dressing.",
+    "ingredients": [
+      {
+        "name": "Pork Shoulder",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": 2.0,
+        "unit": "stalk",
+        "note": "tender inner part, minced"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "minced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Rice Noodles",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "thin vermicelli"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Rice Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Romaine Lettuce",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "shredded"
+      },
+      {
+        "name": "Mint",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Peanuts",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Thai Chili",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "minced, optional"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the lemongrass, 2 tbsp fish sauce, 1 tbsp sugar, half the garlic, the shallots and oil. Marinate the pork 30 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Toss the carrot with the vinegar and a pinch of sugar; let sit while you cook.",
+        "technique": "Quick Pickling"
+      },
+      {
+        "instruction": "Grill or broil the pork until caramelized and cooked through (145°F / 63°C), 3–4 minutes per side.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Cook the noodles, rinse in cold water and drain.",
+        "technique": null
+      },
+      {
+        "instruction": "For the dressing, stir the lime juice, remaining fish sauce and sugar, the rest of the garlic, the chili and 1/4 cup water.",
+        "technique": null
+      },
+      {
+        "instruction": "Build bowls: lettuce, noodles, vegetables, herbs, pork, peanuts. Spoon over the dressing.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-pho",
+    "title": "Chicken Pho",
+    "cuisine": "Vietnamese",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 45,
+    "tags": [
+      "Asian",
+      "Soup"
+    ],
+    "description": "Aromatic broth with charred onion, ginger and star anise, poured over rice noodles and tender chicken.",
+    "ingredients": [
+      {
+        "name": "Chicken Broth",
+        "quantity": 8.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Chicken Breast",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "halved"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 3.0,
+        "unit": "inch",
+        "note": "halved lengthwise"
+      },
+      {
+        "name": "Star Anise",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Rice Noodles",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "flat"
+      },
+      {
+        "name": "Bean Sprouts",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Thai Basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Hoisin Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "for serving"
+      },
+      {
+        "name": "Sriracha",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Broil the onion and ginger cut-side up until charred, about 10 minutes.",
+        "technique": "Broiling"
+      },
+      {
+        "instruction": "Toast the star anise in a dry pot for 1 minute, then add the broth, onion, ginger, cinnamon, fish sauce and sugar. Simmer 30 minutes.",
+        "technique": "Toasting"
+      },
+      {
+        "instruction": "Add the chicken and poach gently until 165°F (74°C), 15–20 minutes. Remove, rest, and slice.",
+        "technique": "Poaching"
+      },
+      {
+        "instruction": "Strain the broth. Cook the noodles per the package.",
+        "technique": null
+      },
+      {
+        "instruction": "Divide the noodles and chicken into bowls, ladle over the hot broth, and serve with sprouts, herbs, lime, hoisin and sriracha.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-tikka-masala",
+    "title": "Chicken Tikka Masala",
+    "cuisine": "Indian",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 35,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Yogurt-marinated chicken charred under the broiler, then simmered in a creamy spiced tomato sauce.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, cut into 1.5-inch pieces"
+      },
+      {
+        "name": "Plain Greek Yogurt",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 5.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "14 oz"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the yogurt, 1 tbsp garam masala, half the garlic and ginger, and the salt. Coat the chicken and marinate at least 30 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Broil the chicken on a foil-lined pan until charred in spots, about 10 minutes. It finishes in the sauce.",
+        "technique": "Broiling"
+      },
+      {
+        "instruction": "Melt the butter over medium. Cook the onion until golden, 8 minutes, then the rest of the garlic and ginger and all the spices for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the tomatoes and simmer 10 minutes. Stir in the cream and chicken and simmer until the chicken reaches 165°F (74°C).",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Top with cilantro and serve with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chana-masala",
+    "title": "Chana Masala",
+    "cuisine": "Indian",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "tags": [
+      "Asian",
+      "Vegetarian"
+    ],
+    "description": "Hearty spiced chickpeas in a tangy tomato-onion sauce. Pantry-friendly and better the next day.",
+    "ingredients": [
+      {
+        "name": "Chickpeas",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "drained and rinsed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Diced Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "14 oz"
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Coriander",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oil over medium and cook the onion until deep golden, 10 minutes.",
+        "technique": "Caramelizing"
+      },
+      {
+        "instruction": "Add the garlic, ginger and all the spices; stir 1 minute until fragrant.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the tomatoes, chickpeas, salt and 1/2 cup water. Simmer 15 minutes, mashing a few chickpeas to thicken.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the lemon juice, top with cilantro, and serve with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "red-lentil-dal",
+    "title": "Coconut Red Lentil Dal",
+    "cuisine": "Indian",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "tags": [
+      "Asian",
+      "Vegetarian",
+      "Soup"
+    ],
+    "description": "Creamy, golden lentils simmered with coconut milk and warm spices, finished with spinach and lemon.",
+    "ingredients": [
+      {
+        "name": "Lentils",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "red"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "13.5 oz"
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garam Masala",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion in the oil over medium until soft, 5 minutes. Add the garlic, ginger and spices for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the lentils, coconut milk, broth and salt. Simmer, stirring now and then, until the lentils break down, 18–20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the spinach until wilted, then the lemon juice. Serve with rice or naan.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-adobo",
+    "title": "Chicken Adobo",
+    "cuisine": "Filipino",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 45,
+    "tags": [
+      "Asian"
+    ],
+    "description": "The Philippines' beloved braise: chicken in soy, vinegar, garlic and bay leaf, reduced to a glossy sauce.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Distilled White Vinegar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 8.0,
+        "unit": "clove",
+        "note": "smashed"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Black Peppercorns",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "lightly crushed"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Brown the chicken skin-side down in the oil over medium-high until golden, 6–8 minutes.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Add the garlic for 1 minute, then the soy sauce, vinegar, 1/2 cup water, bay leaves, peppercorns and sugar. Don't stir for the first few minutes so the vinegar mellows.",
+        "technique": null
+      },
+      {
+        "instruction": "Cover and simmer gently until the chicken is very tender (at least 165°F / 74°C), 30–35 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Uncover and simmer until the sauce reduces and turns glossy, 5–10 minutes.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Top with green onions and serve with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-chicken-adobo",
+    "title": "AIP Chicken Adobo",
+    "cuisine": "Filipino",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 45,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "All the tang of classic adobo, made AIP-friendly with coconut aminos and apple cider vinegar and no peppercorns.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 8.0,
+        "unit": "clove",
+        "note": "smashed"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken with salt and brown it skin-side down in the oil until golden, 6–8 minutes.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Add the garlic, coconut aminos, vinegar, 1/3 cup water and bay leaves.",
+        "technique": null
+      },
+      {
+        "instruction": "Cover and simmer gently until very tender (at least 165°F / 74°C), 30–35 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Uncover and reduce the sauce until glossy, 5–10 minutes. Coconut aminos is sweeter than soy, so it thickens quickly.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Top with green onions. Serve with cauliflower rice or roasted sweet potatoes to keep it AIP.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-ginger-garlic-shrimp",
+    "title": "AIP Ginger-Garlic Shrimp Stir-Fry",
+    "cuisine": "Chinese-inspired",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "A fast, savory stir-fry with a coconut aminos sauce. No soy, seeds or nightshades.",
+    "ingredients": [
+      {
+        "name": "Shrimp",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Broccoli",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "small florets"
+      },
+      {
+        "name": "Bok Choy",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "sliced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Arrowroot Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "mixed with 1 tbsp water"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat 1 tbsp oil over high. Stir-fry the shrimp until pink and opaque, 2 minutes. Remove.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the rest of the oil, then the broccoli, carrot and mushrooms with 2 tbsp water; cook until crisp-tender, 3–4 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the bok choy, garlic and ginger and cook 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Return the shrimp, add the coconut aminos and arrowroot mix, and toss until glossy.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Season with salt, top with green onions and serve with lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-cauliflower-fried-rice",
+    "title": "AIP Cauliflower Fried Rice",
+    "cuisine": "Chinese-inspired",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "Everything you love about fried rice, made with cauliflower: no rice, eggs, soy or seed oils.",
+    "ingredients": [
+      {
+        "name": "Cauliflower",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "riced (pulsed in a food processor) or 4 cups pre-riced"
+      },
+      {
+        "name": "Ground Pork",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Bok Choy",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "chopped"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "no added sugar"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Dice the vegetables small so they cook as fast as the cauliflower.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Brown the pork in 1 tbsp oil over medium-high until cooked through (160°F / 71°C). Remove.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the remaining oil and the carrot, garlic and ginger; stir-fry 2 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the cauliflower and spread it out. Let it sit 2 minutes to brown, then toss. Cook until tender but not mushy, 5–6 minutes total.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the bok choy, pork, coconut aminos and fish sauce; toss 1–2 minutes. Season and top with green onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-chicken-teriyaki",
+    "title": "AIP Chicken Teriyaki",
+    "cuisine": "Japanese-inspired",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "A sticky, glossy teriyaki-style glaze made with coconut aminos and honey, thickened with arrowroot.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "grated"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Arrowroot Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "mixed with 1 tbsp water"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Broccoli",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "florets"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken with salt and sear in the oil over medium-high until golden, 5–6 minutes per side, and 165°F (74°C) inside.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Steam the broccoli until bright and tender, 4–5 minutes.",
+        "technique": "Steaming"
+      },
+      {
+        "instruction": "Whisk the coconut aminos, honey, ginger and garlic. Pour into the pan with the chicken.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer, turning the chicken, until reduced by half. Stir in the arrowroot mix until glossy.",
+        "technique": "Glazing"
+      },
+      {
+        "instruction": "Slice, spoon over the sauce, and serve with the broccoli and green onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-chicken-lettuce-wraps",
+    "title": "AIP Chicken Lettuce Wraps",
+    "cuisine": "Chinese-inspired",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "Savory, crunchy ground chicken with mushrooms and ginger, spooned into crisp lettuce cups.",
+    "ingredients": [
+      {
+        "name": "Ground Chicken",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Shiitake Mushrooms",
+        "quantity": 4.0,
+        "unit": "oz",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Romaine Lettuce",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "leaves separated"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Finely chop the mushrooms and carrot so the filling holds together in the lettuce.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Heat the oil over medium-high. Cook the chicken, breaking it up, until cooked through (165°F / 74°C), 5–6 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the mushrooms, carrot, garlic and ginger; cook until the mushrooms soften, 3 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir in the coconut aminos, vinegar and most of the green onions. Season with salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Spoon into lettuce leaves and top with cilantro, the rest of the green onions and a squeeze of lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-turmeric-coconut-curry",
+    "title": "AIP Turmeric Coconut Chicken Curry",
+    "cuisine": "Indian-inspired",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "Golden, gently spiced coconut curry with sweet potato and spinach, warm from ginger and turmeric rather than chili.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, cut into chunks"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "13.5 oz"
+      },
+      {
+        "name": "Chicken Bone Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "no added spices"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": null
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "peeled, 3/4-inch cubes"
+      },
+      {
+        "name": "Baby Spinach",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion in the coconut oil over medium until soft, 6 minutes. Add the garlic, ginger, turmeric and cinnamon for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the chicken and stir to coat.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the coconut milk, broth, sweet potato and salt. Simmer until the sweet potato is tender and the chicken is 165°F (74°C), about 20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the spinach and lime juice. Top with cilantro and serve with cauliflower rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-thai-basil-beef",
+    "title": "AIP Thai-Style Basil Beef",
+    "cuisine": "Thai-inspired",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "The garlicky, basil-packed flavor of pad kra pao, without chilies, soy or oyster sauce.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 5.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "no added sugar"
+      },
+      {
+        "name": "Thai Basil",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Cauliflower",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "riced, for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Sauté the riced cauliflower in a little oil until tender, 5 minutes. Set aside.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Heat the oil over high and cook the garlic and shallots for 30 seconds.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the beef and stir-fry until browned and cooked through (160°F / 71°C), 5 minutes.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the coconut aminos and fish sauce, then fold in the basil until wilted.",
+        "technique": null
+      },
+      {
+        "instruction": "Serve over the cauliflower rice with lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-ginger-scallion-cod",
+    "title": "AIP Steamed Cod with Ginger and Scallion",
+    "cuisine": "Chinese-inspired",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 12,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "Delicate steamed fish finished with sizzling oil poured over fresh ginger and green onions.",
+    "ingredients": [
+      {
+        "name": "Cod",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "fillets, about 6 oz each"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 2.0,
+        "unit": "inch",
+        "note": "julienned"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "julienned"
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the fish with salt and place on a heatproof plate. Scatter half the ginger on top.",
+        "technique": null
+      },
+      {
+        "instruction": "Steam over simmering water, covered, until the fish flakes easily (145°F / 63°C), 8–10 minutes.",
+        "technique": "Steaming"
+      },
+      {
+        "instruction": "Pour off the liquid on the plate. Top with the rest of the ginger and the green onions, and drizzle with coconut aminos.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil until shimmering and carefully pour it over the ginger and green onions so they sizzle. Top with cilantro.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-lemongrass-chicken",
+    "title": "AIP Vietnamese-Style Lemongrass Chicken",
+    "cuisine": "Vietnamese-inspired",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian",
+      "AIP"
+    ],
+    "description": "Caramelized lemongrass-honey chicken with cucumber and fresh herbs.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless"
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": 2.0,
+        "unit": "stalk",
+        "note": "tender inner part, minced"
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "no added sugar"
+      },
+      {
+        "name": "Honey",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "minced"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Mint",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "in wedges"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the lemongrass, fish sauce, honey, garlic, shallots and 1 tbsp oil. Marinate the chicken at least 30 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Grill or pan-sear over medium-high until charred and 165°F (74°C) inside, 5–6 minutes per side.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Rest 5 minutes, then slice.",
+        "technique": "Resting"
+      },
+      {
+        "instruction": "Serve with cucumber, herbs and lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-sheet-pan-chicken-sweet-potatoes",
+    "title": "AIP Herb-Roasted Chicken and Sweet Potatoes",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "tags": [
+      "AIP"
+    ],
+    "description": "One pan, crispy chicken thighs and caramelized sweet potatoes with rosemary, thyme and lemon.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "1-inch cubes"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "wedges"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "smashed"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "halved"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 425°F (220°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Toss the sweet potatoes, onion and garlic with 2 tbsp oil, half the herbs and half the salt on a sheet pan.",
+        "technique": null
+      },
+      {
+        "instruction": "Rub the chicken with the rest of the oil, herbs and salt. Nestle it skin-side up among the vegetables, with the lemon halves.",
+        "technique": null
+      },
+      {
+        "instruction": "Roast until the skin is crisp and the chicken reaches 165°F (74°C), 35–40 minutes.",
+        "technique": "Roasting"
+      },
+      {
+        "instruction": "Rest 5 minutes and squeeze the roasted lemon over everything.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "aip-mashed-sweet-potatoes",
+    "title": "AIP Mashed Sweet Potatoes",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "tags": [
+      "AIP",
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Silky mashed sweet potatoes made creamy with coconut milk, with a hint of cinnamon. Dairy-free and AIP.",
+    "ingredients": [
+      {
+        "name": "Sweet Potato",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "peeled, 2-inch chunks"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "warmed"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cover the sweet potatoes with cold salted water, bring to a boil, and cook until very tender, 15–18 minutes.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Drain well and let them steam-dry in the pot for 2 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Mash with the coconut oil, then add the warm coconut milk until creamy. Season with salt and cinnamon.",
+        "technique": "Mashing and Puréeing"
+      }
+    ]
+  },
+  {
+    "slug": "aip-balsamic-mushrooms",
+    "title": "AIP Balsamic Garlic Mushrooms",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 5,
+    "cookMinutes": 12,
+    "tags": [
+      "AIP",
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Deeply browned mushrooms glazed with balsamic and garlic. A great side for anything.",
+    "ingredients": [
+      {
+        "name": "Mushrooms",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "halved or quartered"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oil over medium-high. Add the mushrooms in a single layer and leave them alone until browned, 4–5 minutes. Stir and brown again.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the garlic and thyme for 30 seconds.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the balsamic and stir until it coats the mushrooms and the pan is nearly dry.",
+        "technique": "Deglazing"
+      },
+      {
+        "instruction": "Season with salt and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-lemon-dill-salmon-asparagus",
+    "title": "AIP Lemon-Dill Salmon with Asparagus",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "tags": [
+      "AIP"
+    ],
+    "description": "Simple sheet-pan salmon and asparagus with lemon, garlic and fresh dill.",
+    "ingredients": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "about 6 oz each"
+      },
+      {
+        "name": "Asparagus",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "trimmed"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "zested and sliced"
+      },
+      {
+        "name": "Dill",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 400°F (200°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Toss the asparagus with 1 tbsp oil and some salt on a sheet pan. Push to the sides.",
+        "technique": null
+      },
+      {
+        "instruction": "Place the salmon in the center. Mix the rest of the oil with the garlic, lemon zest, dill and salt; spread over the fish. Top with lemon slices.",
+        "technique": null
+      },
+      {
+        "instruction": "Roast until the salmon flakes easily (145°F / 63°C), 12–15 minutes.",
+        "technique": "Roasting"
+      }
+    ]
+  },
+  {
+    "slug": "aip-beef-stew",
+    "title": "AIP Hearty Beef Stew",
+    "cuisine": "American",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 150,
+    "tags": [
+      "AIP",
+      "Soup"
+    ],
+    "description": "Fall-apart beef with carrots, parsnips and herbs in a rich broth. No potatoes or tomatoes.",
+    "ingredients": [
+      {
+        "name": "Beef Stew Meat",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "1.5-inch pieces, patted dry"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "thick slices"
+      },
+      {
+        "name": "Parsnip",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "thick slices"
+      },
+      {
+        "name": "Celery",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": "no added sugar or seed spices"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Arrowroot Powder",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "mixed with 3 tbsp cold water"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the beef with salt. Brown it in batches in the oil over medium-high, 3–4 minutes per batch. Don't crowd the pot.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onion in the drippings until soft, 5 minutes. Add the garlic, then the balsamic, scraping up the browned bits.",
+        "technique": "Deglazing"
+      },
+      {
+        "instruction": "Return the beef, add the broth, bay leaves and thyme. Cover and simmer gently 1.5 hours.",
+        "technique": "Stewing"
+      },
+      {
+        "instruction": "Add the carrots, parsnips and celery and simmer until the beef is fork-tender, 45 minutes more.",
+        "technique": null
+      },
+      {
+        "instruction": "Stir in the arrowroot mix and simmer 2 minutes to thicken. Remove the bay leaves and season.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-carnitas-lettuce-tacos",
+    "title": "AIP Carnitas Lettuce Tacos",
+    "cuisine": "Mexican-inspired",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 180,
+    "tags": [
+      "AIP"
+    ],
+    "description": "Citrus-braised pork, shredded and broiled until crispy, in lettuce cups with avocado. No cumin or chili.",
+    "ingredients": [
+      {
+        "name": "Pork Shoulder",
+        "quantity": 3.0,
+        "unit": "lb",
+        "note": "2-inch chunks"
+      },
+      {
+        "name": "Orange",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced, plus wedges for serving"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 6.0,
+        "unit": "clove",
+        "note": "smashed"
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Romaine Lettuce",
+        "quantity": 1.0,
+        "unit": "head",
+        "note": "leaves separated"
+      },
+      {
+        "name": "Avocado",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "finely diced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the pork with salt and oregano.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the pork in the oil over medium-high, in batches.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Add the citrus juice, garlic, bay leaves and 1/2 cup water. Cover and cook low (or at 325°F / 165°C in the oven) until falling apart, about 2.5 hours.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Shred with two forks and spread on a sheet pan with a few spoonfuls of the cooking liquid.",
+        "technique": null
+      },
+      {
+        "instruction": "Broil until the edges crisp, 4–6 minutes.",
+        "technique": "Broiling"
+      },
+      {
+        "instruction": "Serve in lettuce with avocado, cilantro, onion and lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-breakfast-hash",
+    "title": "AIP Sweet Potato Sausage Hash",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "tags": [
+      "AIP",
+      "Breakfast"
+    ],
+    "description": "Homemade sage breakfast sausage with crispy sweet potatoes and kale. Egg-free and AIP.",
+    "ingredients": [
+      {
+        "name": "Ground Pork",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Fresh Sage",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Garlic Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Ginger",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "divided"
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "small dice"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Kale",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the pork, sage, garlic powder, ginger and 1 tsp salt. That's your sausage.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the sausage in a large skillet over medium-high until cooked through (160°F / 71°C). Remove.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Add the oil, sweet potatoes, onion and the rest of the salt. Cover and cook 5 minutes to soften.",
+        "technique": null
+      },
+      {
+        "instruction": "Uncover and cook, stirring only every few minutes, until crispy and tender, 10 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the kale and sausage and cook until the kale wilts.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-roasted-root-vegetables",
+    "title": "AIP Rosemary Roasted Root Vegetables",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "tags": [
+      "AIP",
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Sweet, caramelized carrots, parsnips and beets with rosemary.",
+    "ingredients": [
+      {
+        "name": "Carrot",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "1-inch pieces"
+      },
+      {
+        "name": "Parsnip",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "1-inch pieces"
+      },
+      {
+        "name": "Beet",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "peeled, 3/4-inch pieces"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "wedges"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 425°F (220°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Toss everything on a sheet pan in a single layer. Use two pans if crowded, so they roast instead of steam.",
+        "technique": null
+      },
+      {
+        "instruction": "Roast, turning once, until caramelized and tender, 30–35 minutes.",
+        "technique": "Roasting"
+      }
+    ]
+  },
+  {
+    "slug": "aip-chicken-vegetable-soup",
+    "title": "AIP Chicken and Vegetable Soup",
+    "cuisine": "American",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 40,
+    "tags": [
+      "AIP",
+      "Soup"
+    ],
+    "description": "Healing, simple chicken soup with bone broth, root vegetables and greens. No noodles needed.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless"
+      },
+      {
+        "name": "Chicken Bone Broth",
+        "quantity": 8.0,
+        "unit": "cup",
+        "note": "no added spices"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Celery",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Kale",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion, carrots and celery in the oil until softened, 6–8 minutes. Add the garlic for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the broth, chicken, thyme, bay leaves and salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer gently until the chicken is cooked through (165°F / 74°C), 20–25 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Shred the chicken and return it. Add the kale and simmer 5 minutes. Finish with parsley.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-guacamole",
+    "title": "AIP Guacamole",
+    "cuisine": "Mexican",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 0,
+    "tags": [
+      "AIP",
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Bright, chunky guacamole without tomato or chili, so it stays AIP.",
+    "ingredients": [
+      {
+        "name": "Avocado",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.25,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 1.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Finely dice the onion; it tames the bite.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Mash the avocados with the lime juice, leaving some chunks.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Fold in the onion, cilantro, garlic and salt. Taste and adjust.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-lemon-garlic-shrimp-zucchini",
+    "title": "AIP Lemon-Garlic Shrimp with Zucchini",
+    "cuisine": "Mediterranean",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "AIP"
+    ],
+    "description": "Fast, bright shrimp and tender zucchini in lemon-garlic olive oil.",
+    "ingredients": [
+      {
+        "name": "Shrimp",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "half-moons"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "sliced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "zested and juiced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Sauté the zucchini in 1 tbsp oil over medium-high until golden at the edges, 4 minutes. Remove.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the rest of the oil and the garlic for 30 seconds.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the shrimp in a single layer and cook until pink and opaque, about 1–2 minutes per side.",
+        "technique": null
+      },
+      {
+        "instruction": "Return the zucchini, add the lemon zest and juice, salt and parsley, and toss.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "spaghetti-bolognese",
+    "title": "Spaghetti Bolognese",
+    "cuisine": "Italian",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 90,
+    "tags": [],
+    "description": "A slow-simmered meat sauce with wine, milk and tomato. Worth the wait.",
+    "ingredients": [
+      {
+        "name": "Spaghetti",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Ground Beef",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "28 oz"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "grated, for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Finely dice the onion, carrot and celery.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Cook them in the oil over medium until soft and sweet, 10 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the beef and garlic; cook until no longer pink. Stir in the tomato paste for 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the wine and scrape up the browned bits, then simmer until mostly gone.",
+        "technique": "Deglazing"
+      },
+      {
+        "instruction": "Add the milk and simmer until absorbed, then the tomatoes, bay leaves and salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer very gently, partly covered, for 1 to 1.5 hours, stirring now and then.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Boil the spaghetti in well-salted water until al dente, toss with the sauce and serve with Parmesan.",
+        "technique": "Boiling"
+      }
+    ]
+  },
+  {
+    "slug": "classic-beef-chili",
+    "title": "Classic Beef and Bean Chili",
+    "cuisine": "American",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 60,
+    "tags": [
+      "Soup"
+    ],
+    "description": "Thick, smoky, crowd-pleasing chili with the toppings bar of your choice.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Chili Powder",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Diced Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "14 oz"
+      },
+      {
+        "name": "Tomato Sauce",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "15 oz"
+      },
+      {
+        "name": "Kidney Beans",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "drained and rinsed"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cheddar Cheese",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "shredded, for serving"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Brown the beef in a large pot over medium-high. Pour off most of the fat.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Add the onion and pepper and cook until soft, 6 minutes. Add the garlic and spices for 1 minute.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the tomatoes, tomato sauce, beans, broth and salt. Simmer uncovered, stirring now and then, until thick, 45–60 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Serve with cheddar and sour cream.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "buttermilk-pancakes",
+    "title": "Fluffy Buttermilk Pancakes",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "tags": [
+      "Breakfast",
+      "Vegetarian"
+    ],
+    "description": "Tall, tender pancakes. The trick is a lumpy batter.",
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Buttermilk",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 4.0,
+        "unit": "tbsp",
+        "note": "melted, plus more for the pan"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Whisk the flour, sugar, baking powder, baking soda and salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk the buttermilk, eggs and melted butter in another bowl.",
+        "technique": null
+      },
+      {
+        "instruction": "Fold the wet into the dry just until no dry flour remains. Lumps are good; overmixing makes tough pancakes.",
+        "technique": "Folding"
+      },
+      {
+        "instruction": "Rest the batter 5 minutes while a griddle heats over medium.",
+        "technique": null
+      },
+      {
+        "instruction": "Butter the griddle and pour 1/4 cup batter per pancake. Flip when bubbles pop on top, 2–3 minutes, then cook 1–2 minutes more.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Serve with maple syrup.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "garlic-butter-steak-bites",
+    "title": "Garlic Butter Steak Bites",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [],
+    "description": "Seared sirloin cubes basted in garlic-thyme butter. Weeknight steakhouse.",
+    "ingredients": [
+      {
+        "name": "Sirloin Steak",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "1-inch cubes, patted dry"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the steak well with salt and pepper.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil in a cast-iron skillet until smoking. Sear the steak in a single layer, in batches, 1–2 minutes per side.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Lower the heat, add the butter, garlic and thyme, return all the steak and spoon the foaming butter over it for 1 minute (medium-rare is 130–135°F / 54–57°C).",
+        "technique": "Basting"
+      },
+      {
+        "instruction": "Top with parsley and serve right away.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "baked-mac-and-cheese",
+    "title": "Baked Mac and Cheese",
+    "cuisine": "American",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 35,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Creamy, two-cheese baked macaroni with a crunchy panko top.",
+    "ingredients": [
+      {
+        "name": "Elbow Macaroni",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 5.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "warmed"
+      },
+      {
+        "name": "Sharp Cheddar",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "shredded"
+      },
+      {
+        "name": "Gruyère",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "shredded"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Panko Breadcrumbs",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 375°F (190°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Boil the macaroni 2 minutes less than the package says; it finishes in the oven. Drain.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Melt 4 tbsp butter, whisk in the flour, and cook 1 minute. Slowly whisk in the warm milk and simmer until thickened, 4–5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Off the heat, stir in the cheeses, mustard and salt until smooth. Fold in the pasta.",
+        "technique": null
+      },
+      {
+        "instruction": "Pour into a baking dish. Toss the panko with the remaining butter, melted, and sprinkle on top.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until bubbling and golden, 20–25 minutes.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "shakshuka",
+    "title": "Shakshuka",
+    "cuisine": "Middle Eastern",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 25,
+    "tags": [
+      "Vegetarian",
+      "Breakfast"
+    ],
+    "description": "Eggs gently poached in a spiced tomato and pepper sauce, with feta and herbs. Great with bread.",
+    "ingredients": [
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Crushed Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "28 oz"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Feta",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "crumbled"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion and pepper in the oil over medium until soft, 8 minutes. Add the garlic and spices for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the tomatoes and salt and simmer until thickened, 10 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Make 6 wells with a spoon and crack an egg into each.",
+        "technique": null
+      },
+      {
+        "instruction": "Cover and cook on low until the whites are set but the yolks are still runny, 5–8 minutes.",
+        "technique": "Poaching"
+      },
+      {
+        "instruction": "Top with feta and cilantro.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "black-bean-tacos",
+    "title": "Crispy Black Bean Tacos",
+    "cuisine": "Mexican",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 15,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Smoky, crispy black bean tacos with avocado and a squeeze of lime.",
+    "ingredients": [
+      {
+        "name": "Black Beans",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "drained and rinsed"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Chili Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Corn Tortillas",
+        "quantity": 8.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Avocado",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Feta",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "crumbled"
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Warm the beans with 1 tbsp oil, the garlic, cumin, chili powder, salt and 2 tbsp water, mashing about half.",
+        "technique": null
+      },
+      {
+        "instruction": "Fill each tortilla with a spoonful of beans and fold in half.",
+        "technique": null
+      },
+      {
+        "instruction": "Pan-fry the tacos in the remaining oil over medium until crisp, 2–3 minutes per side.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Open gently and add avocado, onion, cilantro and feta. Serve with lime.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "honey-mustard-salmon",
+    "title": "Honey-Mustard Baked Salmon",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "tags": [],
+    "description": "A sweet-tangy glaze that turns salmon into a 20-minute dinner.",
+    "ingredients": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "about 6 oz each"
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Honey",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 400°F (200°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Season the salmon with salt and pepper and place on a lined sheet pan.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk the mustard, honey, oil and garlic; brush over the salmon.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until the salmon flakes easily (145°F / 63°C), 12–15 minutes.",
+        "technique": "Baking"
+      },
+      {
+        "instruction": "Serve with lemon.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "smash-burgers",
+    "title": "Smash Burgers",
+    "cuisine": "American",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [],
+    "description": "Thin, lacy-edged burgers with melty cheese. A screaming-hot pan is the secret.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "80/20, divided into 8 loose balls"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "American Cheese",
+        "quantity": 8.0,
+        "unit": "slice",
+        "note": null
+      },
+      {
+        "name": "Hamburger Buns",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "toasted"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "very thinly sliced"
+      },
+      {
+        "name": "Dill Pickles",
+        "quantity": 8.0,
+        "unit": "slice",
+        "note": null
+      },
+      {
+        "name": "Ketchup",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Mustard",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat a cast-iron skillet or griddle over high for 5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Put 2 balls in the pan and immediately smash them very thin with a sturdy spatula. Season with salt and pepper.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook until the edges are deeply browned and crisp, about 2 minutes. Scrape up, flip, and top each with cheese.",
+        "technique": null
+      },
+      {
+        "instruction": "Cook 1 minute more, until 160°F (71°C). Stack two patties per bun.",
+        "technique": null
+      },
+      {
+        "instruction": "Top with onion, pickles, ketchup and mustard. Repeat.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "banana-bread",
+    "title": "Brown Butter Banana Bread",
+    "cuisine": "American",
+    "servings": 8,
+    "prepMinutes": 15,
+    "cookMinutes": 60,
+    "tags": [
+      "Vegetarian",
+      "Dessert",
+      "Breakfast"
+    ],
+    "description": "Moist, deeply flavored banana bread. The riper the bananas, the better.",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "very ripe, mashed"
+      },
+      {
+        "name": "Butter",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1 stick"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 350°F (175°C). Grease a 9x5-inch loaf pan.",
+        "technique": null
+      },
+      {
+        "instruction": "Melt the butter over medium and cook, swirling, until it smells nutty and turns golden brown, 4–5 minutes. Cool slightly.",
+        "technique": null
+      },
+      {
+        "instruction": "Mash the bananas, then whisk in the brown butter, sugar, eggs and vanilla.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Fold in the flour, baking soda, salt and cinnamon just until combined.",
+        "technique": "Folding"
+      },
+      {
+        "instruction": "Bake until a toothpick in the center comes out clean, 55–65 minutes.",
+        "technique": "Baking"
+      },
+      {
+        "instruction": "Cool 15 minutes in the pan, then on a rack.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "chocolate-chip-cookies",
+    "title": "Chewy Chocolate Chip Cookies",
+    "cuisine": "American",
+    "servings": 24,
+    "prepMinutes": 20,
+    "cookMinutes": 12,
+    "tags": [
+      "Vegetarian",
+      "Dessert"
+    ],
+    "description": "Crisp edges, chewy centers, lots of chocolate. Makes about 24.",
+    "ingredients": [
+      {
+        "name": "Butter",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "2 sticks, softened"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Baking Soda",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Chocolate Chips",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 375°F (190°C). Line baking sheets with parchment.",
+        "technique": null
+      },
+      {
+        "instruction": "Beat the butter and both sugars until light and fluffy, 3 minutes.",
+        "technique": "Creaming"
+      },
+      {
+        "instruction": "Beat in the eggs one at a time, then the vanilla.",
+        "technique": null
+      },
+      {
+        "instruction": "Fold in the flour, baking soda and salt, then the chocolate chips.",
+        "technique": "Folding"
+      },
+      {
+        "instruction": "Scoop 2-tablespoon balls 2 inches apart.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until golden at the edges but still soft in the middle, 10–12 minutes. Cool 5 minutes on the sheet.",
+        "technique": "Baking"
+      }
+    ]
+  }
+]

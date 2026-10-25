@@ -12,6 +12,8 @@ import { ShoppingListPage } from './pages/shopping-list';
 import { FridgePage } from './pages/fridge';
 import { SharedRecipePage } from './pages/shared-recipe';
 import { GroceryListPage } from './pages/grocery-list';
+import { LibraryListPage } from './pages/library-list';
+import { LibraryDetailPage } from './pages/library-detail';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
@@ -19,6 +21,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterPage },
   { path: 'techniques', component: TechniqueListPage },
   { path: 'r/:token', component: SharedRecipePage }, // public: shared recipe links
+  { path: 'library', component: LibraryListPage }, // public: built-in recipes
+  { path: 'library/:slug', component: LibraryDetailPage },
 
   { path: 'recipes', component: RecipeListPage, canActivate: [authGuard] },
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },

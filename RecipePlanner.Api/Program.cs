@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Kroger;
+using RecipePlanner.Api.Library;
 using RecipePlanner.Api.Endpoints;
 using RecipePlanner.Api.Models;
 using RecipePlanner.Api.Photos;
@@ -70,6 +71,7 @@ builder.Services.AddAppRateLimiting();
 builder.Services.AddMealIdeas(builder.Configuration);
 builder.Services.AddRecipePhotos(builder.Configuration);
 builder.Services.AddKroger(builder.Configuration);
+builder.Services.AddRecipeLibrary(builder.Environment.ContentRootPath);
 
 // Requests arrive through two proxies: Azure's ingress -> nginx -> Azure's internal ingress -> API.
 // nginx overwrites X-Forwarded-For with the client IP Azure reported, so the API can trust
@@ -123,6 +125,7 @@ app.MapSharingEndpoints();
 app.MapRecipePhotoEndpoints();
 app.MapGroceryListEndpoints();
 app.MapKrogerEndpoints();
+app.MapLibraryEndpoints();
 
 app.Run();
 

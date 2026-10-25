@@ -203,3 +203,28 @@ export interface KrogerMatch {
   options: KrogerProductOption[];
   selectedUpc: string | null;
 }
+
+export interface LibrarySummary {
+  slug: string;
+  title: string;
+  description: string;
+  cuisine: string;
+  servings: number;
+  prepMinutes: number;
+  cookMinutes: number;
+  tags: string[];
+  ingredientCount: number;
+}
+
+export interface LibraryDetail {
+  slug: string;
+  title: string;
+  description: string;
+  cuisine: string;
+  servings: number;
+  prepMinutes: number;
+  cookMinutes: number;
+  tags: string[];
+  ingredients: { name: string; quantity: number; unit: string; note: string | null; storeSection: string | null }[];
+  steps: { order: number; instruction: string; technique: string | null }[];
+}

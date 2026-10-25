@@ -246,3 +246,33 @@ nav a { margin-left: 1rem; }
 .kroger-row select { width: 100%; margin-top: 0.25rem; }
 .kroger-row.skipped { opacity: 0.5; }
 .kroger-thumb { width: 44px; height: 44px; object-fit: contain; flex: 0 0 44px; background: var(--bg); border-radius: 6px; }
+
+/* Recipe library */
+.library-filters { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0 0.75rem; }
+.library-filters input { flex: 1 1 240px; }
+.library-filters select { flex: 0 1 200px; }
+.filter-chips { margin-bottom: 1rem; }
+.chip-button {
+  border-radius: 999px; padding: 0.25rem 0.85rem; font-size: 0.85rem;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border);
+}
+.chip-button.selected { background: var(--accent); color: white; border-color: var(--accent); }
+.callout {
+  background: #f3e6df; border-left: 3px solid var(--accent); border-radius: 6px;
+  padding: 0.6rem 0.85rem; margin: 0 0 1rem;
+}
+.chip.tag-aip { background: #e3efe3; color: #2e6b34; }
+.chip.tag-vegetarian { background: #eaf1dc; color: #4f6b1f; }
+.chip.tag-quick { background: #e6eef6; color: #2c5a85; }
+.chips > .chip.small { margin-left: 0; }
+.library-step { padding: 0.25rem 0; }
+a.chip.small { text-decoration: none; }
+
+/* Phones: let the menu wrap under the brand instead of pushing the page sideways */
+@media (max-width: 640px) {
+  .topbar { flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem 1rem; }
+  nav { flex-wrap: wrap; gap: 0.35rem 1rem; }
+  nav a, nav .user { margin-left: 0; }
+  nav .user { display: none; }
+  .container { padding: 1rem; }
+}

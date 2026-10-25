@@ -1530,5 +1530,101 @@
   {
     "name": "Orange Juice",
     "storeSection": "Beverages"
+  },
+  {
+    "name": "Daikon Radish",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Thai Basil",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Kaffir Lime Leaves",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Plantain",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Coconut Aminos",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Mirin",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Shaoxing Wine",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Doubanjiang",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Chili Crisp",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Chinkiang Black Vinegar",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Kimchi",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Thai Green Curry Paste",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Nori Sheets",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Arrowroot Powder",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Cassava Flour",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Coconut Flour",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Tapioca Starch",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Short-Grain Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Rice Paper Wrappers",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Dumpling Wrappers",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Star Anise",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Sichuan Peppercorns",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Chicken Bone Broth",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Frozen Edamame",
+    "storeSection": "Frozen"
   }
 ]

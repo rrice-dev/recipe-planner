@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -190,6 +190,18 @@ getFridgeRecipe(dishName: string, ingredients: string[]) {
 
 getFridgeSuggestions(ingredients: string[]) {
   return this.http.post<FridgeResponse>('/api/fridge/suggestions', { ingredients });
+}
+
+getLibrary() {
+  return this.http.get<LibrarySummary[]>('/api/library');
+}
+
+getLibraryRecipe(slug: string) {
+  return this.http.get<LibraryDetail>(`/api/library/${encodeURIComponent(slug)}`);
+}
+
+addLibraryRecipe(slug: string) {
+  return this.http.post<{ recipeId: number }>(`/api/library/${encodeURIComponent(slug)}/add`, null);
 }
 
 }
