@@ -21,9 +21,9 @@ jobs:
     name: API build and tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.402'  # pinned: 10.0.403 is listed by Microsoft but not downloadable yet; go back to 10.0.x later
 
@@ -43,11 +43,11 @@ jobs:
       run:
         working-directory: recipe-planner-web
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: recipe-planner-web/package-lock.json
 
@@ -64,7 +64,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Build API image
         run: docker build -t recipe-planner-api ./RecipePlanner.Api
@@ -93,10 +93,10 @@ jobs:
       # Tag images with the commit, so every deploy is traceable to exact code and easy to roll back
       TAG: ${{ github.sha }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Sign in to Azure
-        uses: azure/login@v2
+        uses: azure/login@v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
