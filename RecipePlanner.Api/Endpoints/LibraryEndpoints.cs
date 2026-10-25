@@ -17,7 +17,7 @@ public static class LibraryEndpoints
         // The whole collection is small, so the page filters it in the browser.
         group.MapGet("/", (RecipeLibrary library) =>
             Results.Ok(library.All.Select(r => new LibrarySummaryResponse(
-                r.Slug, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,
+                r.Slug, r.Title, r.Description, r.Cuisine, r.Country, r.Servings, r.PrepMinutes, r.CookMinutes,
                 RecipeLibrary.TagsFor(r), r.Ingredients.Count))));
 
         group.MapGet("/{slug}", (string slug, RecipeLibrary library) =>
@@ -25,7 +25,7 @@ public static class LibraryEndpoints
             var r = library.Find(slug);
             if (r is null) return Results.NotFound();
             return Results.Ok(new LibraryDetailResponse(
-                r.Slug, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,
+                r.Slug, r.Title, r.Description, r.Cuisine, r.Country, r.Servings, r.PrepMinutes, r.CookMinutes,
                 RecipeLibrary.TagsFor(r),
                 r.Ingredients.Select(i => new LibraryIngredientResponse(
                     i.Name, i.Quantity, i.Unit, i.Note, library.SeedSections.GetValueOrDefault(i.Name))).ToList(),

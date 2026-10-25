@@ -66,6 +66,9 @@ public static partial class FridgePlanner
     [GeneratedRegex(@"^[\p{L}\p{M}\p{N} '\-.,&()/:!]+$")]
     private static partial Regex AllowedDishName();
 
+    // Shared with the world map, which accepts dish and country names under the same rules
+    public static bool IsSafeName(string value) => AllowedDishName().IsMatch(value);
+
     public static (string DishName, List<string> Ingredients, Dictionary<string, string[]> Errors) Validate(FridgeRecipeRequest request)
     {
         var (ingredients, errors) = Validate(new FridgeRequest(request.Ingredients ?? []));

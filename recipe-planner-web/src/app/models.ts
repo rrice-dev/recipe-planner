@@ -209,6 +209,7 @@ export interface LibrarySummary {
   title: string;
   description: string;
   cuisine: string;
+  country: string | null;
   servings: number;
   prepMinutes: number;
   cookMinutes: number;
@@ -227,4 +228,17 @@ export interface LibraryDetail {
   tags: string[];
   ingredients: { name: string; quantity: number; unit: string; note: string | null; storeSection: string | null }[];
   steps: { order: number; instruction: string; technique: string | null }[];
+}
+
+export interface CountryDish {
+  name: string;
+  description: string;
+  aipFriendly: boolean;
+}
+
+export interface CountryDishesResponse {
+  country: string;
+  dishes: CountryDish[];
+  aiAvailable: boolean;
+  aiNotice: string | null;
 }

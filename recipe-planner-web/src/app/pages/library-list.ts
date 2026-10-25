@@ -17,6 +17,7 @@ const FILTER_TAGS = ['All', 'Asian', 'AIP', 'Vegetarian', 'Quick', 'Soup', 'Brea
   template: `
     <div class="page-header">
       <h1>Recipe Library</h1>
+      <a routerLink="/world" class="button">🌍 World map</a>
     </div>
     <p class="muted">Browse recipes, then add any of them to your own book, where you can change them however you like.</p>
 

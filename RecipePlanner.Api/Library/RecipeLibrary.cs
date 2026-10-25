@@ -26,6 +26,9 @@ public sealed class RecipeLibrary
 
     public LibraryRecipe? Find(string slug) => _bySlug.GetValueOrDefault(slug);
 
+    public IReadOnlyList<LibraryRecipe> ForCountry(string country) =>
+        All.Where(r => string.Equals(r.Country, country, StringComparison.OrdinalIgnoreCase)).ToList();
+
     public static IReadOnlyList<string> TagsFor(LibraryRecipe r) =>
         r.PrepMinutes + r.CookMinutes <= QuickMaxMinutes ? [.. r.Tags, QuickTag] : r.Tags;
 
@@ -53,6 +56,7 @@ public record LibraryRecipe(
     string Title,
     string Description,
     string Cuisine,
+    string? Country,   // map name from world-atlas, e.g. "United States of America"; null when it isn't from one place
     int Servings,
     int PrepMinutes,
     int CookMinutes,

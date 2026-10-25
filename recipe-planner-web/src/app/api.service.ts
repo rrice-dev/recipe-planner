@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -202,6 +202,14 @@ getLibraryRecipe(slug: string) {
 
 addLibraryRecipe(slug: string) {
   return this.http.post<{ recipeId: number }>(`/api/library/${encodeURIComponent(slug)}/add`, null);
+}
+
+getCountryDishes(country: string) {
+  return this.http.post<CountryDishesResponse>('/api/world/dishes', { country });
+}
+
+getCountryRecipe(country: string, dishName: string) {
+  return this.http.post<RecipeDraft>('/api/world/recipe', { country, dishName });
 }
 
 }

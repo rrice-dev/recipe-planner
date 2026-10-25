@@ -23,6 +23,8 @@ export const routes: Routes = [
   { path: 'r/:token', component: SharedRecipePage }, // public: shared recipe links
   { path: 'library', component: LibraryListPage }, // public: built-in recipes
   { path: 'library/:slug', component: LibraryDetailPage },
+  // public; loaded on demand so the map code isn't in every page load
+  { path: 'world', loadComponent: () => import('./pages/world-map').then(m => m.WorldMapPage) },
 
   { path: 'recipes', component: RecipeListPage, canActivate: [authGuard] },
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },

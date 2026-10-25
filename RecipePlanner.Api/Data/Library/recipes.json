@@ -3,6 +3,7 @@
     "slug": "chicken-fried-rice",
     "title": "Chicken Fried Rice",
     "cuisine": "Chinese",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 15,
@@ -103,6 +104,7 @@
     "slug": "beef-and-broccoli",
     "title": "Beef and Broccoli",
     "cuisine": "Chinese",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 15,
@@ -203,6 +205,7 @@
     "slug": "kung-pao-chicken",
     "title": "Kung Pao Chicken",
     "cuisine": "Chinese (Sichuan)",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 10,
@@ -315,6 +318,7 @@
     "slug": "mapo-tofu",
     "title": "Mapo Tofu",
     "cuisine": "Chinese (Sichuan)",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 15,
@@ -421,6 +425,7 @@
     "slug": "pork-and-cabbage-dumplings",
     "title": "Pork and Cabbage Potstickers",
     "cuisine": "Chinese",
+    "country": "China",
     "servings": 6,
     "prepMinutes": 45,
     "cookMinutes": 15,
@@ -527,6 +532,7 @@
     "slug": "egg-drop-soup",
     "title": "Egg Drop Soup",
     "cuisine": "Chinese",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 5,
     "cookMinutes": 10,
@@ -602,6 +608,7 @@
     "slug": "scallion-pancakes",
     "title": "Scallion Pancakes",
     "cuisine": "Chinese",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 40,
     "cookMinutes": 15,
@@ -681,6 +688,7 @@
     "slug": "chicken-teriyaki",
     "title": "Chicken Teriyaki",
     "cuisine": "Japanese",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 20,
@@ -783,6 +791,7 @@
     "slug": "miso-glazed-salmon",
     "title": "Miso-Glazed Salmon",
     "cuisine": "Japanese",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -857,6 +866,7 @@
     "slug": "chicken-katsu",
     "title": "Chicken Katsu",
     "cuisine": "Japanese",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 15,
@@ -963,6 +973,7 @@
     "slug": "miso-soup",
     "title": "Miso Soup with Tofu and Spinach",
     "cuisine": "Japanese",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 5,
     "cookMinutes": 10,
@@ -1033,6 +1044,7 @@
     "slug": "yaki-udon",
     "title": "Yaki Udon with Chicken",
     "cuisine": "Japanese",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 15,
@@ -1135,6 +1147,7 @@
     "slug": "bibimbap",
     "title": "Bibimbap",
     "cuisine": "Korean",
+    "country": "South Korea",
     "servings": 4,
     "prepMinutes": 30,
     "cookMinutes": 25,
@@ -1265,6 +1278,7 @@
     "slug": "beef-bulgogi",
     "title": "Beef Bulgogi",
     "cuisine": "Korean",
+    "country": "South Korea",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 10,
@@ -1359,6 +1373,7 @@
     "slug": "kimchi-fried-rice",
     "title": "Kimchi Fried Rice",
     "cuisine": "Korean",
+    "country": "South Korea",
     "servings": 2,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -1443,6 +1458,7 @@
     "slug": "spicy-gochujang-pork",
     "title": "Spicy Gochujang Pork (Jeyuk Bokkeum)",
     "cuisine": "Korean",
+    "country": "South Korea",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 10,
@@ -1543,6 +1559,7 @@
     "slug": "pad-thai",
     "title": "Shrimp Pad Thai",
     "cuisine": "Thai",
+    "country": "Thailand",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 10,
@@ -1657,6 +1674,7 @@
     "slug": "thai-green-curry-chicken",
     "title": "Thai Green Curry with Chicken",
     "cuisine": "Thai",
+    "country": "Thailand",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 20,
@@ -1765,6 +1783,7 @@
     "slug": "thai-basil-chicken",
     "title": "Thai Basil Chicken (Pad Kra Pao)",
     "cuisine": "Thai",
+    "country": "Thailand",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -1873,6 +1892,7 @@
     "slug": "tom-kha-gai",
     "title": "Tom Kha Gai (Coconut Chicken Soup)",
     "cuisine": "Thai",
+    "country": "Thailand",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 20,
@@ -1967,6 +1987,7 @@
     "slug": "fresh-spring-rolls",
     "title": "Fresh Shrimp Spring Rolls",
     "cuisine": "Vietnamese",
+    "country": "Vietnam",
     "servings": 4,
     "prepMinutes": 35,
     "cookMinutes": 5,
@@ -2069,6 +2090,7 @@
     "slug": "lemongrass-pork-noodle-bowls",
     "title": "Lemongrass Pork Noodle Bowls (Bun Thit Nuong)",
     "cuisine": "Vietnamese",
+    "country": "Vietnam",
     "servings": 4,
     "prepMinutes": 30,
     "cookMinutes": 15,
@@ -2211,6 +2233,7 @@
     "slug": "chicken-pho",
     "title": "Chicken Pho",
     "cuisine": "Vietnamese",
+    "country": "Vietnam",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 45,
@@ -2344,6 +2367,7 @@
     "slug": "chicken-tikka-masala",
     "title": "Chicken Tikka Masala",
     "cuisine": "Indian",
+    "country": "India",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 35,
@@ -2470,6 +2494,7 @@
     "slug": "chana-masala",
     "title": "Chana Masala",
     "cuisine": "Indian",
+    "country": "India",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 30,
@@ -2593,6 +2618,7 @@
     "slug": "red-lentil-dal",
     "title": "Coconut Red Lentil Dal",
     "cuisine": "Indian",
+    "country": "India",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 25,
@@ -2701,6 +2727,7 @@
     "slug": "chicken-adobo",
     "title": "Chicken Adobo",
     "cuisine": "Filipino",
+    "country": "Philippines",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 45,
@@ -2791,6 +2818,7 @@
     "slug": "aip-chicken-adobo",
     "title": "AIP Chicken Adobo",
     "cuisine": "Filipino",
+    "country": "Philippines",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 45,
@@ -2876,6 +2904,7 @@
     "slug": "aip-ginger-garlic-shrimp",
     "title": "AIP Ginger-Garlic Shrimp Stir-Fry",
     "cuisine": "Chinese-inspired",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 10,
@@ -2991,6 +3020,7 @@
     "slug": "aip-cauliflower-fried-rice",
     "title": "AIP Cauliflower Fried Rice",
     "cuisine": "Chinese-inspired",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 15,
@@ -3094,6 +3124,7 @@
     "slug": "aip-chicken-teriyaki",
     "title": "AIP Chicken Teriyaki",
     "cuisine": "Japanese-inspired",
+    "country": "Japan",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 20,
@@ -3191,6 +3222,7 @@
     "slug": "aip-chicken-lettuce-wraps",
     "title": "AIP Chicken Lettuce Wraps",
     "cuisine": "Chinese-inspired",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 10,
@@ -3306,6 +3338,7 @@
     "slug": "aip-turmeric-coconut-curry",
     "title": "AIP Turmeric Coconut Chicken Curry",
     "cuisine": "Indian-inspired",
+    "country": "India",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 30,
@@ -3423,6 +3456,7 @@
     "slug": "aip-thai-basil-beef",
     "title": "AIP Thai-Style Basil Beef",
     "cuisine": "Thai-inspired",
+    "country": "Thailand",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -3514,6 +3548,7 @@
     "slug": "aip-ginger-scallion-cod",
     "title": "AIP Steamed Cod with Ginger and Scallion",
     "cuisine": "Chinese-inspired",
+    "country": "China",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 12,
@@ -3589,6 +3624,7 @@
     "slug": "aip-lemongrass-chicken",
     "title": "AIP Vietnamese-Style Lemongrass Chicken",
     "cuisine": "Vietnamese-inspired",
+    "country": "Vietnam",
     "servings": 4,
     "prepMinutes": 20,
     "cookMinutes": 15,
@@ -3688,6 +3724,7 @@
     "slug": "aip-sheet-pan-chicken-sweet-potatoes",
     "title": "AIP Herb-Roasted Chicken and Sweet Potatoes",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 40,
@@ -3778,6 +3815,7 @@
     "slug": "aip-mashed-sweet-potatoes",
     "title": "AIP Mashed Sweet Potatoes",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 20,
@@ -3838,6 +3876,7 @@
     "slug": "aip-balsamic-mushrooms",
     "title": "AIP Balsamic Garlic Mushrooms",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 5,
     "cookMinutes": 12,
@@ -3908,6 +3947,7 @@
     "slug": "aip-lemon-dill-salmon-asparagus",
     "title": "AIP Lemon-Dill Salmon with Asparagus",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 15,
@@ -3982,6 +4022,7 @@
     "slug": "aip-beef-stew",
     "title": "AIP Hearty Beef Stew",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 6,
     "prepMinutes": 20,
     "cookMinutes": 150,
@@ -4097,6 +4138,7 @@
     "slug": "aip-carnitas-lettuce-tacos",
     "title": "AIP Carnitas Lettuce Tacos",
     "cuisine": "Mexican-inspired",
+    "country": "Mexico",
     "servings": 6,
     "prepMinutes": 15,
     "cookMinutes": 180,
@@ -4209,6 +4251,7 @@
     "slug": "aip-breakfast-hash",
     "title": "AIP Sweet Potato Sausage Hash",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 20,
@@ -4300,6 +4343,7 @@
     "slug": "aip-roasted-root-vegetables",
     "title": "AIP Rosemary Roasted Root Vegetables",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 15,
     "cookMinutes": 35,
@@ -4372,6 +4416,7 @@
     "slug": "aip-chicken-vegetable-soup",
     "title": "AIP Chicken and Vegetable Soup",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 6,
     "prepMinutes": 15,
     "cookMinutes": 40,
@@ -4477,6 +4522,7 @@
     "slug": "aip-guacamole",
     "title": "AIP Guacamole",
     "cuisine": "Mexican",
+    "country": "Mexico",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 0,
@@ -4543,6 +4589,7 @@
     "slug": "aip-lemon-garlic-shrimp-zucchini",
     "title": "AIP Lemon-Garlic Shrimp with Zucchini",
     "cuisine": "Mediterranean",
+    "country": null,
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -4617,6 +4664,7 @@
     "slug": "spaghetti-bolognese",
     "title": "Spaghetti Bolognese",
     "cuisine": "Italian",
+    "country": "Italy",
     "servings": 6,
     "prepMinutes": 20,
     "cookMinutes": 90,
@@ -4743,6 +4791,7 @@
     "slug": "classic-beef-chili",
     "title": "Classic Beef and Bean Chili",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 6,
     "prepMinutes": 15,
     "cookMinutes": 60,
@@ -4859,6 +4908,7 @@
     "slug": "buttermilk-pancakes",
     "title": "Fluffy Buttermilk Pancakes",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 20,
@@ -4954,6 +5004,7 @@
     "slug": "garlic-butter-steak-bites",
     "title": "Garlic Butter Steak Bites",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -5032,6 +5083,7 @@
     "slug": "baked-mac-and-cheese",
     "title": "Baked Mac and Cheese",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 6,
     "prepMinutes": 15,
     "cookMinutes": 35,
@@ -5126,6 +5178,7 @@
     "slug": "shakshuka",
     "title": "Shakshuka",
     "cuisine": "Middle Eastern",
+    "country": "Tunisia",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 25,
@@ -5229,6 +5282,7 @@
     "slug": "black-bean-tacos",
     "title": "Crispy Black Bean Tacos",
     "cuisine": "Mexican",
+    "country": "Mexico",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 15,
@@ -5333,6 +5387,7 @@
     "slug": "honey-mustard-salmon",
     "title": "Honey-Mustard Baked Salmon",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 5,
     "cookMinutes": 15,
@@ -5415,6 +5470,7 @@
     "slug": "smash-burgers",
     "title": "Smash Burgers",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 4,
     "prepMinutes": 10,
     "cookMinutes": 10,
@@ -5503,6 +5559,7 @@
     "slug": "banana-bread",
     "title": "Brown Butter Banana Bread",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 8,
     "prepMinutes": 15,
     "cookMinutes": 60,
@@ -5599,6 +5656,7 @@
     "slug": "chocolate-chip-cookies",
     "title": "Chewy Chocolate Chip Cookies",
     "cuisine": "American",
+    "country": "United States of America",
     "servings": 24,
     "prepMinutes": 20,
     "cookMinutes": 12,
@@ -5687,6 +5745,5186 @@
       {
         "instruction": "Bake until golden at the edges but still soft in the middle, 10–12 minutes. Cool 5 minutes on the sheet.",
         "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "lomo-saltado",
+    "title": "Lomo Saltado",
+    "cuisine": "Peruvian",
+    "country": "Peru",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 20,
+    "tags": [],
+    "description": "Peru's famous stir-fry: soy-glazed beef, onions and tomatoes tossed with crispy potatoes and served with rice.",
+    "ingredients": [
+      {
+        "name": "Sirloin Steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "cut into thick strips"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ají Amarillo Paste",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "or 1 minced jalapeño"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "cut into thick wedges"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "cut into wedges"
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "cut into fries"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "divided"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice. Heat the oven to 425°F (220°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Toss the potatoes with 2 tbsp oil and the salt and roast until golden and crisp, 30–35 minutes, turning once.",
+        "technique": "Roasting"
+      },
+      {
+        "instruction": "Toss the beef with the cumin and garlic.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Heat the rest of the oil in a wok until smoking. Sear the beef in batches until browned, 1–2 minutes. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Stir-fry the onion 1 minute, add the tomatoes for 30 seconds, then the beef, soy sauce, vinegar and ají amarillo.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Toss in the potatoes and cilantro and serve right away with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "peruvian-ceviche",
+    "title": "Peruvian-Style Ceviche",
+    "cuisine": "Peruvian",
+    "country": "Peru",
+    "servings": 4,
+    "prepMinutes": 25,
+    "cookMinutes": 0,
+    "tags": [],
+    "description": "Bright, zesty fish 'cooked' in lime juice with red onion, chili and cilantro, served with sweet potato.",
+    "ingredients": [
+      {
+        "name": "Halibut",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "very fresh, skinless, cut into 1/2-inch cubes"
+      },
+      {
+        "name": "Lime",
+        "quantity": 8.0,
+        "unit": "whole",
+        "note": "juiced, about 1 cup"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "very thinly sliced"
+      },
+      {
+        "name": "Habanero",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "seeded and minced; use less for milder"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 1.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "for serving"
+      },
+      {
+        "name": "Corn on the Cob",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the sweet potato and corn until tender, then slice into rounds. Chill.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Soak the onion in ice water for 10 minutes to mellow it, then drain.",
+        "technique": null
+      },
+      {
+        "instruction": "Toss the fish with salt, garlic and habanero, then pour over the lime juice. Chill 15–20 minutes, until the fish turns opaque.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Fold in the onion and cilantro. Serve cold with the sweet potato and corn.",
+        "technique": null
+      },
+      {
+        "instruction": "Use the freshest fish you can find, keep it cold, and eat it the same day.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "feijoada",
+    "title": "Brazilian Feijoada",
+    "cuisine": "Brazilian",
+    "country": "Brazil",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 120,
+    "tags": [],
+    "description": "Brazil's national dish, simplified: black beans slow-cooked with smoky sausage and pork, served with rice and orange.",
+    "ingredients": [
+      {
+        "name": "Black Beans",
+        "quantity": 3.0,
+        "unit": "can",
+        "note": "drained and rinsed"
+      },
+      {
+        "name": "Pork Shoulder",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "1-inch pieces"
+      },
+      {
+        "name": "Kielbasa",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": "sliced"
+      },
+      {
+        "name": "Bacon",
+        "quantity": 4.0,
+        "unit": "slice",
+        "note": "chopped"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 5.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Orange",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "in slices, for serving"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the bacon in a large pot until crisp. Remove, leaving the fat.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the pork shoulder in the fat, then the kielbasa.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Add the onion and garlic and cook until soft, 5 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the beans, broth, bay leaves, bacon and salt. Cover and simmer gently until the pork is tender, 1.5–2 hours. Mash some beans to thicken.",
+        "technique": "Stewing"
+      },
+      {
+        "instruction": "Serve over rice with orange slices.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "pao-de-queijo",
+    "title": "Pão de Queijo (Cheese Bread)",
+    "cuisine": "Brazilian",
+    "country": "Brazil",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Crisp outside, chewy and cheesy inside, and naturally gluten-free. Makes about 24 bites.",
+    "ingredients": [
+      {
+        "name": "Tapioca Starch",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "finely grated"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 400°F (200°C). Line a baking sheet.",
+        "technique": null
+      },
+      {
+        "instruction": "Bring the milk, oil, 1/4 cup water and salt to a boil. Pour over the tapioca starch and stir into a sticky dough. Cool 10 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Beat in the eggs one at a time, then the cheese.",
+        "technique": null
+      },
+      {
+        "instruction": "Scoop tablespoon-size balls onto the sheet.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until puffed and golden, 20–25 minutes. Best warm.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "chimichurri-steak",
+    "title": "Grilled Steak with Chimichurri",
+    "cuisine": "Argentinian",
+    "country": "Argentina",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 10,
+    "tags": [],
+    "description": "Charred skirt steak with Argentina's bright, garlicky herb sauce.",
+    "ingredients": [
+      {
+        "name": "Skirt Steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Fresh Oregano",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Extra-Virgin Olive Oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Stir the parsley, oregano, garlic, red pepper flakes, vinegar, olive oil and a pinch of salt. Let it sit while you cook.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Season the steak with salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Grill over high heat, 3–4 minutes per side for medium-rare (130–135°F / 54–57°C).",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Rest 5 minutes, then slice thinly against the grain.",
+        "technique": "Resting"
+      },
+      {
+        "instruction": "Spoon the chimichurri over the top.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-empanadas",
+    "title": "Beef Empanadas",
+    "cuisine": "Argentinian",
+    "country": "Argentina",
+    "servings": 6,
+    "prepMinutes": 40,
+    "cookMinutes": 25,
+    "tags": [],
+    "description": "Golden hand pies filled with cumin-spiced beef, olives and egg.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "2 hard-boiled and chopped, 1 beaten for brushing"
+      },
+      {
+        "name": "Pie Crust",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "refrigerated"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Brown the beef with the onion and garlic until cooked through (160°F / 71°C). Drain the fat.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Stir in the cumin, paprika, salt, olives, green onions and chopped eggs. Cool completely.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oven to 400°F (200°C). Cut the crusts into 5-inch rounds, rerolling scraps.",
+        "technique": null
+      },
+      {
+        "instruction": "Fill each with 2 tablespoons of filling, fold, and crimp the edges with a fork. Brush with beaten egg.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until deep golden, 20–25 minutes.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "arepas-con-queso",
+    "title": "Arepas con Queso",
+    "cuisine": "Colombian",
+    "country": "Colombia",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 20,
+    "tags": [
+      "Vegetarian",
+      "Breakfast"
+    ],
+    "description": "Crisp-edged corn cakes with melty cheese inside. Great with eggs or alone.",
+    "ingredients": [
+      {
+        "name": "Masarepa",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "shredded"
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "plus more for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the masarepa and salt, then stir in 2 cups warm water. Rest 5 minutes; it should feel like soft clay.",
+        "technique": null
+      },
+      {
+        "instruction": "Knead in the cheese, then shape 8 patties about 1/2 inch thick.",
+        "technique": "Kneading"
+      },
+      {
+        "instruction": "Cook in buttered skillet over medium-low until golden and crisp, 6–8 minutes per side.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Serve warm with butter.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "ajiaco",
+    "title": "Colombian Chicken and Potato Soup (Ajiaco)",
+    "cuisine": "Colombian",
+    "country": "Colombia",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 50,
+    "tags": [
+      "Soup"
+    ],
+    "description": "Bogotá's creamy chicken soup thickened with melting potatoes, with corn, capers and cream on top.",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 8.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "half sliced thin, half in chunks"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Corn on the Cob",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "cut into thirds"
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for serving"
+      },
+      {
+        "name": "Capers",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "for serving"
+      },
+      {
+        "name": "Avocado",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced, for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Simmer the chicken, broth, onion, garlic and oregano until the chicken reaches 165°F (74°C), 20–25 minutes. Remove and shred.",
+        "technique": "Poaching"
+      },
+      {
+        "instruction": "Add both kinds of potatoes and the corn. Simmer until the thin slices melt into the broth and the chunks are tender, about 30 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Return the chicken, season with salt and stir in the cilantro.",
+        "technique": null
+      },
+      {
+        "instruction": "Serve with cream, capers and avocado on the side.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "ropa-vieja",
+    "title": "Ropa Vieja",
+    "cuisine": "Cuban",
+    "country": "Cuba",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 150,
+    "tags": [],
+    "description": "Cuba's beloved shredded beef braised with peppers, onions, olives and tomato.",
+    "ingredients": [
+      {
+        "name": "Flank Steak",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "cut into 3 pieces"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Dry White Wine",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Tomato Sauce",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "15 oz"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "halved"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the beef with salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the beef well in the oil. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onion and peppers until soft, then the garlic, cumin and oregano. Add the wine and scrape the pan.",
+        "technique": "Deglazing"
+      },
+      {
+        "instruction": "Add the tomato sauce, broth, bay leaves and beef. Cover and simmer gently until the beef shreds easily, 2–2.5 hours.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Shred the beef in the sauce with two forks, stir in the olives, and serve over rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "cuban-black-beans-rice",
+    "title": "Cuban Black Beans and Rice",
+    "cuisine": "Cuban",
+    "country": "Cuba",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Garlicky, cumin-scented black beans with a splash of vinegar, spooned over white rice.",
+    "ingredients": [
+      {
+        "name": "Black Beans",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "with their liquid"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the rice.",
+        "technique": null
+      },
+      {
+        "instruction": "Cook the onion and pepper in the oil until soft, 6 minutes. Add the garlic, cumin and oregano for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the beans, bay leaf and salt. Simmer, mashing a few beans, until thick, 15–20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the vinegar and serve over the rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "jerk-chicken",
+    "title": "Jamaican Jerk Chicken",
+    "cuisine": "Jamaican",
+    "country": "Jamaica",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "tags": [],
+    "description": "Fiery, fragrant chicken marinated in Scotch bonnet (habanero), allspice and thyme, then charred.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 3.0,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "chopped"
+      },
+      {
+        "name": "Habanero",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "seeded; use 1 for milder"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": null
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Allspice",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Nutmeg",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Blend everything except the chicken into a paste. Wear gloves when handling the habanero.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Rub the paste all over the chicken and marinate at least 4 hours, ideally overnight.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Grill over medium heat, turning often, until charred and 165°F (74°C) inside, 30–40 minutes. Or roast at 425°F (220°C) for 35–40 minutes.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Rest 5 minutes before serving.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "jamaican-rice-and-peas",
+    "title": "Jamaican Rice and Peas",
+    "cuisine": "Jamaican",
+    "country": "Jamaica",
+    "servings": 6,
+    "prepMinutes": 5,
+    "cookMinutes": 30,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Rice simmered in coconut milk with kidney beans, thyme and a whole Scotch bonnet for aroma, not heat.",
+    "ingredients": [
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "rinsed"
+      },
+      {
+        "name": "Kidney Beans",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "with their liquid"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "13.5 oz"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "whole, lightly crushed"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "smashed"
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 3.0,
+        "unit": "sprig",
+        "note": null
+      },
+      {
+        "name": "Allspice",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Habanero",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "whole, don't cut it"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Bring the beans and their liquid, coconut milk, 1 cup water, green onions, garlic, thyme, allspice and salt to a boil.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Stir in the rice and lay the whole habanero on top.",
+        "technique": null
+      },
+      {
+        "instruction": "Cover and cook on low until the rice is tender, 20–25 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Remove the habanero, green onions and thyme stems, then fluff.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "poutine",
+    "title": "Poutine",
+    "cuisine": "Canadian",
+    "country": "Canada",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "tags": [],
+    "description": "Crispy fries, squeaky cheese curds and hot, savory gravy. Québec's comfort classic.",
+    "ingredients": [
+      {
+        "name": "Potato",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "russet, cut into fries"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cheese Curds",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "room temperature"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 425°F (220°C). Soak the fries in cold water 15 minutes, then dry very well.",
+        "technique": null
+      },
+      {
+        "instruction": "Toss with oil and salt and bake on two pans until crisp, 35–40 minutes, flipping halfway.",
+        "technique": "Roasting"
+      },
+      {
+        "instruction": "Melt the butter, whisk in the flour, and cook until light brown, 3 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk in the broth, Worcestershire and pepper and simmer until thick, 5 minutes.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Pile the fries on plates, top with cheese curds, and pour over the hot gravy so the curds just start to melt.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-maple-glazed-salmon",
+    "title": "AIP Maple-Glazed Salmon",
+    "cuisine": "Canadian",
+    "country": "Canada",
+    "servings": 4,
+    "prepMinutes": 5,
+    "cookMinutes": 15,
+    "tags": [
+      "AIP"
+    ],
+    "description": "Salmon with a sticky maple, garlic and ginger glaze. Simple, fast and AIP.",
+    "ingredients": [
+      {
+        "name": "Salmon Fillet",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "about 6 oz each"
+      },
+      {
+        "name": "Maple Syrup",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Coconut Aminos",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "grated"
+      },
+      {
+        "name": "Avocado Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 400°F (200°C). Line a baking sheet.",
+        "technique": null
+      },
+      {
+        "instruction": "Whisk the maple syrup, coconut aminos, garlic and ginger.",
+        "technique": null
+      },
+      {
+        "instruction": "Brush the salmon with oil, season with salt, then spoon over half the glaze.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until it flakes easily (145°F / 63°C), 12–15 minutes.",
+        "technique": "Baking"
+      },
+      {
+        "instruction": "Simmer the rest of the glaze for 2 minutes until syrupy and spoon over. Top with green onions.",
+        "technique": "Glazing"
+      }
+    ]
+  },
+  {
+    "slug": "shepherds-pie",
+    "title": "Shepherd's Pie",
+    "cuisine": "British",
+    "country": "United Kingdom",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 45,
+    "tags": [],
+    "description": "Rich lamb and vegetable filling under a buttery, golden mashed-potato crust.",
+    "ingredients": [
+      {
+        "name": "Ground Lamb",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Frozen Peas",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "peeled, chunks"
+      },
+      {
+        "name": "Butter",
+        "quantity": 4.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the potatoes in salted water until very tender, 15–18 minutes. Drain and mash with butter and milk.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Brown the lamb in a large skillet. Pour off most of the fat. Add the onion and carrot and cook 6 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Stir in the garlic, tomato paste and flour for 1 minute, then the Worcestershire, broth, thyme and salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer until thick, 8–10 minutes, then stir in the peas.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Heat the oven to 400°F (200°C). Spread the filling in a baking dish and top with the potatoes, roughing the top with a fork.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until golden and bubbling, 20–25 minutes.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "aip-cottage-pie",
+    "title": "AIP Cottage Pie with Sweet Potato Topping",
+    "cuisine": "British",
+    "country": "United Kingdom",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 45,
+    "tags": [
+      "AIP"
+    ],
+    "description": "A cozy beef and vegetable pie topped with mashed sweet potato. No nightshades, dairy or grains.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Celery",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Mushrooms",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "no added sugar or seed spices"
+      },
+      {
+        "name": "Balsamic Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Fresh Rosemary",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": "minced"
+      },
+      {
+        "name": "Arrowroot Powder",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "mixed with 2 tbsp cold water"
+      },
+      {
+        "name": "Sweet Potato",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "peeled, chunks"
+      },
+      {
+        "name": "Coconut Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the sweet potatoes until tender, 15 minutes. Drain and mash with the coconut oil and half the salt.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Brown the beef in a large skillet, then add the onion, carrot, celery and mushrooms and cook until soft, 8 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the garlic, herbs, broth, balsamic and the rest of the salt. Simmer 5 minutes, then stir in the arrowroot until thick.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oven to 400°F (200°C). Spread the filling in a dish and top with the sweet potato.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until the edges bubble and the top browns, 20–25 minutes.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "irish-lamb-stew",
+    "title": "Irish Lamb Stew",
+    "cuisine": "Irish",
+    "country": "Ireland",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 120,
+    "tags": [
+      "Soup"
+    ],
+    "description": "Tender lamb, potatoes and carrots in a simple, savory broth. Even better the next day.",
+    "ingredients": [
+      {
+        "name": "Lamb Shoulder",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "boneless, 1.5-inch pieces"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thick slices"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "thick slices"
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "chunks"
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "leaves"
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the lamb with salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the lamb in batches in the oil.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Return the lamb with the onion, tomato paste, broth, thyme and bay leaves. Cover and simmer gently 1 hour.",
+        "technique": "Stewing"
+      },
+      {
+        "instruction": "Add the carrots and potatoes and simmer until everything is tender, 45 minutes more.",
+        "technique": null
+      },
+      {
+        "instruction": "Remove the bay leaves and finish with parsley.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "colcannon",
+    "title": "Colcannon",
+    "cuisine": "Irish",
+    "country": "Ireland",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Buttery mashed potatoes folded with tender kale and green onions.",
+    "ingredients": [
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "peeled, chunks"
+      },
+      {
+        "name": "Kale",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": "stems removed, chopped"
+      },
+      {
+        "name": "Butter",
+        "quantity": 6.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "warmed"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the potatoes in salted water until very tender, 15–18 minutes. Drain.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Melt 2 tbsp butter and sauté the kale and green onions until wilted, 4 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Mash the potatoes with 3 tbsp butter and the warm milk, then fold in the kale.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Season and serve with the last tablespoon of butter melting on top.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "coq-au-vin",
+    "title": "Coq au Vin",
+    "cuisine": "French",
+    "country": "France",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 75,
+    "tags": [],
+    "description": "Chicken braised in red wine with bacon, mushrooms and onions. Classic French comfort.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 3.0,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Bacon",
+        "quantity": 6.0,
+        "unit": "slice",
+        "note": "chopped"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "quartered"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Dry Red Wine",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Fresh Thyme",
+        "quantity": 4.0,
+        "unit": "sprig",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the bacon in a Dutch oven until crisp. Remove.",
+        "technique": null
+      },
+      {
+        "instruction": "Season the chicken and brown it skin-side down in the bacon fat until golden. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Sauté the mushrooms, onion and carrots in the butter until browned. Add the garlic, tomato paste and flour for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Pour in the wine and scrape up the browned bits, then add the broth, thyme and bay.",
+        "technique": "Deglazing"
+      },
+      {
+        "instruction": "Return the chicken and bacon. Cover and simmer gently until very tender (at least 165°F / 74°C), 45–60 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Uncover and simmer the sauce until glossy, 10 minutes. Top with parsley.",
+        "technique": "Reducing"
+      }
+    ]
+  },
+  {
+    "slug": "ratatouille",
+    "title": "Ratatouille",
+    "cuisine": "French",
+    "country": "France",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 50,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Provençal summer vegetables slowly stewed in olive oil, garlic and herbs.",
+    "ingredients": [
+      {
+        "name": "Eggplant",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "3/4-inch cubes"
+      },
+      {
+        "name": "Zucchini",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "3/4-inch cubes"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "3/4-inch pieces"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Diced Tomatoes",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "28 oz"
+      },
+      {
+        "name": "Herbes de Provence",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "divided"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Basil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "torn"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Sauté the eggplant in half the oil until browned, 8 minutes. Remove. Do the same with the zucchini, 5 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Cook the onion and peppers in the rest of the oil until soft, 8 minutes. Add the garlic and herbes de Provence.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the tomatoes, salt, eggplant and zucchini. Simmer gently, stirring now and then, until silky, 30 minutes.",
+        "technique": "Stewing"
+      },
+      {
+        "instruction": "Stir in the basil. Serve warm or at room temperature.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-chorizo-paella",
+    "title": "Chicken and Chorizo Paella",
+    "cuisine": "Spanish",
+    "country": "Spain",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 40,
+    "tags": [],
+    "description": "Saffron rice with chicken, chorizo and shrimp, finished with a crispy bottom layer (the socarrat).",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": "boneless, chunks"
+      },
+      {
+        "name": "Chorizo",
+        "quantity": 6.0,
+        "unit": "oz",
+        "note": "Spanish-style, sliced"
+      },
+      {
+        "name": "Shrimp",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Tomato",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Saffron",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": "crumbled into the broth"
+      },
+      {
+        "name": "Arborio Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "or Spanish bomba rice"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": "hot"
+      },
+      {
+        "name": "Frozen Peas",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Brown the chorizo and chicken in the oil in a wide pan. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onion and pepper until soft, then the garlic, tomato and paprika for 2 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Stir in the rice to coat, then add the hot saffron broth, salt, chicken and chorizo. Spread evenly. From here on, don't stir.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer on medium until the rice has absorbed most of the liquid, 18–20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Nestle in the shrimp and peas, cover loosely with foil, and cook until the shrimp are pink, 5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Turn the heat to high for 1–2 minutes until it crackles, to crisp the bottom. Rest 5 minutes and serve with lemon.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "gazpacho",
+    "title": "Gazpacho",
+    "cuisine": "Spanish",
+    "country": "Spain",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 0,
+    "tags": [
+      "Vegetarian",
+      "Soup"
+    ],
+    "description": "Chilled, blended summer tomato soup. No cooking needed.",
+    "ingredients": [
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "cored and chopped"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "peeled and chopped"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "chopped"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.25,
+        "unit": "whole",
+        "note": "chopped"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": null
+      },
+      {
+        "name": "Sourdough Bread",
+        "quantity": 1.0,
+        "unit": "slice",
+        "note": "crust removed, torn"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Extra-Virgin Olive Oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Blend the tomatoes, cucumber, pepper, onion, garlic, bread, vinegar and salt until very smooth.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "With the blender running, drizzle in the olive oil until creamy.",
+        "technique": "Emulsifying"
+      },
+      {
+        "instruction": "Chill at least 2 hours. Taste and adjust salt and vinegar, then serve cold with a drizzle of oil.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "caldo-verde",
+    "title": "Caldo Verde",
+    "cuisine": "Portuguese",
+    "country": "Portugal",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 30,
+    "tags": [
+      "Soup"
+    ],
+    "description": "Portugal's comforting potato and kale soup with smoky sausage.",
+    "ingredients": [
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "peeled, chunks"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 6.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Chorizo",
+        "quantity": 6.0,
+        "unit": "oz",
+        "note": "Spanish-style, sliced thin"
+      },
+      {
+        "name": "Kale",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": "very thinly sliced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion and garlic in 2 tbsp oil until soft, 5 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the potatoes, broth and salt. Simmer until very tender, 15–20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Blend the soup until smooth.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Brown the chorizo in the rest of the oil.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Add the kale to the soup and simmer 5 minutes. Serve topped with chorizo and a drizzle of its oil.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "piri-piri-chicken",
+    "title": "Piri-Piri Chicken",
+    "cuisine": "Portuguese",
+    "country": "Portugal",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 45,
+    "tags": [],
+    "description": "Spatchcocked chicken in a spicy, garlicky, lemony chili marinade, roasted until crisp.",
+    "ingredients": [
+      {
+        "name": "Whole Chicken",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "about 4 lb, backbone removed and flattened"
+      },
+      {
+        "name": "Fresno Chili",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "stemmed"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "zested and juiced"
+      },
+      {
+        "name": "Smoked Paprika",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Blend the chilies, garlic, lemon zest and juice, paprika, oregano, vinegar, oil and salt.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Rub most of the sauce over and under the chicken skin. Marinate at least 2 hours.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Heat the oven to 425°F (220°C). Lay the chicken skin-side up on a sheet pan.",
+        "technique": null
+      },
+      {
+        "instruction": "Roast until the thigh reaches 165°F (74°C), 40–50 minutes, brushing with the saved sauce near the end.",
+        "technique": "Roasting"
+      },
+      {
+        "instruction": "Rest 10 minutes before carving.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "pork-schnitzel",
+    "title": "Pork Schnitzel",
+    "cuisine": "German",
+    "country": "Germany",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "tags": [],
+    "description": "Thin, crispy breaded pork cutlets with lemon. Germany's classic.",
+    "ingredients": [
+      {
+        "name": "Pork Chops",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "boneless, pounded 1/4 inch thin"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "beaten with 1 tbsp water"
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Pound the pork thin between two sheets of plastic wrap. Season with salt.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Coat each cutlet in flour, then egg, then breadcrumbs, pressing lightly.",
+        "technique": null
+      },
+      {
+        "instruction": "Heat the oil and butter in a large skillet over medium-high. Fry until golden, swirling the pan so the crust puffs, 2–3 minutes per side (145°F / 63°C).",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Drain on a rack and serve with lemon.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "german-potato-salad",
+    "title": "Warm German Potato Salad",
+    "cuisine": "German",
+    "country": "Germany",
+    "servings": 6,
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "tags": [
+      "Side"
+    ],
+    "description": "Tangy, warm potatoes in a bacon and vinegar dressing. No mayo.",
+    "ingredients": [
+      {
+        "name": "Red Potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "halved"
+      },
+      {
+        "name": "Bacon",
+        "quantity": 6.0,
+        "unit": "slice",
+        "note": "chopped"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Chives",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Boil the potatoes in salted water until tender, 15–18 minutes. Drain and slice.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Cook the bacon until crisp. Remove, leaving 3 tbsp fat.",
+        "technique": null
+      },
+      {
+        "instruction": "Cook the onion in the fat until soft, then whisk in the vinegar, sugar, mustard and broth and simmer 2 minutes.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Gently toss the warm potatoes with the dressing, bacon and chives. Serve warm.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-souvlaki",
+    "title": "Chicken Souvlaki with Tzatziki",
+    "cuisine": "Greek",
+    "country": "Greece",
+    "servings": 4,
+    "prepMinutes": 30,
+    "cookMinutes": 15,
+    "tags": [],
+    "description": "Lemon-oregano chicken skewers with cool, garlicky yogurt sauce and warm pita.",
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "1-inch cubes"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "zested and juiced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced, divided"
+      },
+      {
+        "name": "Oregano",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Plain Greek Yogurt",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "grated and squeezed dry"
+      },
+      {
+        "name": "Dill",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Pita Bread",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Toss the chicken with the oil, lemon, 3 cloves garlic, oregano and salt. Marinate at least 30 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "For tzatziki, stir the yogurt, cucumber, dill, remaining garlic and a pinch of salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Thread onto skewers and grill over medium-high until charred and 165°F (74°C), 10–12 minutes, turning.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Warm the pitas on the grill. Serve with tzatziki, onion and tomatoes.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "greek-salad",
+    "title": "Greek Village Salad (Horiatiki)",
+    "cuisine": "Greek",
+    "country": "Greece",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "Chunky tomatoes, cucumber, onion, olives and a slab of feta. No lettuce.",
+    "ingredients": [
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thick half-moons"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Feta",
+        "quantity": 6.0,
+        "unit": "oz",
+        "note": "in one slab"
+      },
+      {
+        "name": "Oregano",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Extra-Virgin Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cut the vegetables into large, chunky pieces.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Toss with salt, vinegar and half the oil.",
+        "technique": null
+      },
+      {
+        "instruction": "Top with olives and the feta slab, sprinkle with oregano, and drizzle with the rest of the oil.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "turkish-red-lentil-soup",
+    "title": "Turkish Red Lentil Soup (Mercimek Çorbası)",
+    "cuisine": "Turkish",
+    "country": "Turkey",
+    "servings": 6,
+    "prepMinutes": 10,
+    "cookMinutes": 30,
+    "tags": [
+      "Vegetarian",
+      "Soup"
+    ],
+    "description": "Silky, golden lentil soup finished with a sizzle of paprika butter and lemon.",
+    "ingredients": [
+      {
+        "name": "Lentils",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "red, rinsed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": 6.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "in wedges"
+      },
+      {
+        "name": "Mint",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion and carrot in 1 tbsp butter until soft, 6 minutes. Stir in the tomato paste and cumin for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the lentils, broth and salt. Simmer until the lentils fall apart, 20–25 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Blend until smooth.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Melt the remaining butter with the paprika and pepper flakes until it sizzles. Drizzle over each bowl.",
+        "technique": null
+      },
+      {
+        "instruction": "Serve with lemon and mint.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "turkish-eggs",
+    "title": "Turkish Eggs (Çılbır)",
+    "cuisine": "Turkish",
+    "country": "Turkey",
+    "servings": 2,
+    "prepMinutes": 10,
+    "cookMinutes": 10,
+    "tags": [
+      "Vegetarian",
+      "Breakfast"
+    ],
+    "description": "Poached eggs on garlicky yogurt with spiced chili butter. Have bread ready.",
+    "ingredients": [
+      {
+        "name": "Plain Greek Yogurt",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "room temperature"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 1.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Distilled White Vinegar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Dill",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sourdough Bread",
+        "quantity": 1.0,
+        "unit": "slice",
+        "note": "toasted, for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Stir the yogurt with the garlic and salt and spread on two plates.",
+        "technique": null
+      },
+      {
+        "instruction": "Bring a pot of water to a bare simmer with the vinegar. Poach the eggs until the whites are set, 3–4 minutes.",
+        "technique": "Poaching"
+      },
+      {
+        "instruction": "Melt the butter until foaming and stir in the paprika and pepper flakes.",
+        "technique": null
+      },
+      {
+        "instruction": "Set the eggs on the yogurt, spoon over the butter, and scatter dill. Serve with toast.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "tabbouleh",
+    "title": "Tabbouleh",
+    "cuisine": "Lebanese",
+    "country": "Lebanon",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 0,
+    "tags": [
+      "Vegetarian",
+      "Side"
+    ],
+    "description": "A bright, herb-heavy salad: lots of parsley, a little bulgur, lemon and olive oil.",
+    "ingredients": [
+      {
+        "name": "Bulgur Wheat",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "fine"
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "very finely chopped"
+      },
+      {
+        "name": "Mint",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "finely diced"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Extra-Virgin Olive Oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Soak the bulgur in the lemon juice and 2 tbsp water for 15 minutes until tender.",
+        "technique": null
+      },
+      {
+        "instruction": "Finely chop the parsley, mint, tomatoes and cucumber. Dry herbs well first so they don't bruise.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Toss everything together with the olive oil and salt. Taste for lemon and salt.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-shawarma",
+    "title": "Chicken Shawarma Plates",
+    "cuisine": "Lebanese",
+    "country": "Lebanon",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 25,
+    "tags": [],
+    "description": "Spiced, yogurt-marinated chicken roasted until crisp at the edges, with garlicky tahini sauce.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "boneless"
+      },
+      {
+        "name": "Plain Yogurt",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced, divided"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Paprika",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Coriander",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Tahini",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Pita Bread",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the yogurt, oil, half the lemon juice, 3 cloves garlic, the spices and salt. Coat the chicken and marinate at least 1 hour.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Heat the oven to 450°F (230°C).",
+        "technique": null
+      },
+      {
+        "instruction": "Spread the chicken on a sheet pan and roast until charred at the edges and 165°F (74°C), 20–25 minutes.",
+        "technique": "Roasting"
+      },
+      {
+        "instruction": "Whisk the tahini with the rest of the lemon juice and garlic and 3–5 tbsp water until pourable.",
+        "technique": null
+      },
+      {
+        "instruction": "Rest the chicken 5 minutes, slice, and serve with pita, vegetables and tahini sauce.",
+        "technique": "Resting"
+      }
+    ]
+  },
+  {
+    "slug": "moroccan-chicken-tagine",
+    "title": "Moroccan Chicken Tagine with Olives",
+    "cuisine": "Moroccan",
+    "country": "Morocco",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 50,
+    "tags": [],
+    "description": "Chicken braised with warm spices, saffron, lemon and green olives, served over couscous.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "bone-in, skin removed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "grated"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Paprika",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Saffron",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": "crumbled"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Couscous",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken with salt and brown it in the oil. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onion until soft, then the garlic, ginger and spices for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the broth, saffron and chicken. Cover and simmer gently 30 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Add the olives and lemon slices and simmer uncovered until the chicken is tender (at least 165°F / 74°C) and the sauce thickens, 15 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Prepare the couscous per the package. Serve the tagine over it with cilantro.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "aip-moroccan-lemon-olive-chicken",
+    "title": "AIP Moroccan-Style Lemon and Olive Chicken",
+    "cuisine": "Moroccan",
+    "country": "Morocco",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 45,
+    "tags": [
+      "AIP"
+    ],
+    "description": "Fragrant with ginger, turmeric, cinnamon and lemon. All the comfort of a tagine without seed spices or nightshades.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "bone-in, skin removed"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "grated"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Cinnamon",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Chicken Bone Broth",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "no added spices"
+      },
+      {
+        "name": "Kalamata Olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken with salt and brown it in the oil. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onion until soft, then the garlic, ginger, turmeric and cinnamon for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Return the chicken with the broth. Cover and simmer gently 30 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Add the olives and lemon and simmer uncovered until the sauce thickens and the chicken reaches 165°F (74°C), 15 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Finish with the herbs. Serve with cauliflower rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "koshari",
+    "title": "Koshari",
+    "cuisine": "Egyptian",
+    "country": "Egypt",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 45,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Egypt's beloved street food: lentils, rice and pasta under a tangy spiced tomato sauce and crispy onions.",
+    "ingredients": [
+      {
+        "name": "Lentils",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "brown or green"
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Elbow Macaroni",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Chickpeas",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "drained"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Tomato Sauce",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "15 oz"
+      },
+      {
+        "name": "Ground Cumin",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Red Pepper Flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Distilled White Vinegar",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Fry the onions in the oil over medium until deep brown and crisp, 20–25 minutes. Drain, saving the oil.",
+        "technique": "Caramelizing"
+      },
+      {
+        "instruction": "Boil the lentils until just tender, 20 minutes. Drain.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Toast the rice in 2 tbsp onion oil, add 2 cups water and salt, and simmer covered 15 minutes. Fold in the lentils.",
+        "technique": null
+      },
+      {
+        "instruction": "Boil the macaroni until al dente and drain.",
+        "technique": null
+      },
+      {
+        "instruction": "Cook the garlic in 1 tbsp onion oil, add the tomato sauce, cumin, pepper flakes and vinegar, and simmer 10 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Layer rice and lentils, pasta and chickpeas, then sauce, and top with crispy onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "doro-wat",
+    "title": "Doro Wat (Ethiopian Chicken Stew)",
+    "cuisine": "Ethiopian",
+    "country": "Ethiopia",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 75,
+    "tags": [],
+    "description": "Rich, deeply spiced chicken stew built on slow-cooked onions and berbere, with hard-boiled eggs.",
+    "ingredients": [
+      {
+        "name": "Chicken Drumsticks",
+        "quantity": 3.0,
+        "unit": "lb",
+        "note": "skin removed"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "very finely chopped"
+      },
+      {
+        "name": "Butter",
+        "quantity": 6.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Berbere Spice",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lemon",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "hard-boiled and peeled"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Rub the chicken with lemon juice and salt.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Cook the onions in a dry pot over medium-low, stirring often, until soft and jammy, about 20 minutes. Then add the butter and cook 10 minutes more.",
+        "technique": "Caramelizing"
+      },
+      {
+        "instruction": "Stir in the garlic, ginger, berbere and tomato paste and cook 3 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the chicken and broth. Cover and simmer gently until tender (165°F / 74°C) and the sauce is thick, 40–45 minutes.",
+        "technique": "Stewing"
+      },
+      {
+        "instruction": "Score the eggs lightly and warm them in the sauce for 10 minutes. Serve with rice or injera.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "misir-wot",
+    "title": "Misir Wot (Spiced Red Lentils)",
+    "cuisine": "Ethiopian",
+    "country": "Ethiopia",
+    "servings": 4,
+    "prepMinutes": 10,
+    "cookMinutes": 35,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Hearty red lentils simmered with berbere, onions and garlic.",
+    "ingredients": [
+      {
+        "name": "Lentils",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "red, rinsed"
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 4.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Ginger",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": "minced"
+      },
+      {
+        "name": "Berbere Spice",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onions in the oil over medium-low until very soft and golden, 15 minutes.",
+        "technique": "Caramelizing"
+      },
+      {
+        "instruction": "Add the garlic, ginger, berbere and tomato paste and cook 2 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the lentils, broth and salt. Simmer, stirring often, until thick and creamy, 20–25 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Serve with rice or flatbread.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "jollof-rice",
+    "title": "Nigerian Jollof Rice",
+    "cuisine": "Nigerian",
+    "country": "Nigeria",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 50,
+    "tags": [],
+    "description": "West Africa's famous smoky, tomato-red rice, built on a blended pepper base.",
+    "ingredients": [
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Habanero",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "use half for milder"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "divided"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "rinsed well"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Curry Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Dried Thyme",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Blend the tomatoes, bell pepper, habanero and 1 onion until smooth.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Slice the other onion and cook it in the oil until soft. Add the tomato paste and fry 3 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the blended base, curry powder, thyme, bay and salt. Simmer until thick and the oil rises, 15–20 minutes.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Stir in the rice and broth. Cover tightly with foil and the lid and cook on low until tender, 25–30 minutes.",
+        "technique": "Steaming"
+      },
+      {
+        "instruction": "For the smoky 'party jollof' flavor, turn the heat up for the last 2 minutes to toast the bottom. Fluff and serve.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-suya",
+    "title": "Beef Suya Skewers",
+    "cuisine": "Nigerian",
+    "country": "Nigeria",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 10,
+    "tags": [],
+    "description": "Nigerian street-food skewers coated in a spicy, nutty peanut rub and grilled.",
+    "ingredients": [
+      {
+        "name": "Sirloin Steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "very thinly sliced"
+      },
+      {
+        "name": "Peanuts",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "roasted, finely ground"
+      },
+      {
+        "name": "Paprika",
+        "quantity": 2.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Cayenne Pepper",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Ginger",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garlic Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Onion Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Red Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced, for serving"
+      },
+      {
+        "name": "Roma Tomatoes",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced, for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the ground peanuts, spices and salt. That's the suya spice (yaji).",
+        "technique": null
+      },
+      {
+        "instruction": "Toss the beef with the oil, then two-thirds of the spice. Thread onto skewers and rest 20 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Grill over high heat until charred, 2–3 minutes per side.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Sprinkle with the rest of the spice and serve with onion and tomato.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "bobotie",
+    "title": "Bobotie",
+    "cuisine": "South African",
+    "country": "South Africa",
+    "servings": 6,
+    "prepMinutes": 20,
+    "cookMinutes": 45,
+    "tags": [],
+    "description": "South Africa's curried, gently sweet baked mince under a savory custard topping.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Curry Powder",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sandwich Bread",
+        "quantity": 2.0,
+        "unit": "slice",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 1.25,
+        "unit": "cup",
+        "note": "divided"
+      },
+      {
+        "name": "Raisins",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Apple Cider Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 350°F (175°C). Soak the bread in 1/2 cup milk.",
+        "technique": null
+      },
+      {
+        "instruction": "Cook the onions in the butter until soft, then the garlic, curry powder and turmeric for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the beef and cook until no longer pink. Squeeze the bread and mix it in with the raisins, vinegar, sugar and salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Press into a baking dish. Beat the eggs with the remaining milk and pour over. Tuck in the bay leaves.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake until the custard is set and golden, 35–40 minutes.",
+        "technique": "Baking"
+      }
+    ]
+  },
+  {
+    "slug": "joojeh-kabab",
+    "title": "Joojeh Kabab (Saffron Chicken)",
+    "cuisine": "Persian",
+    "country": "Iran",
+    "servings": 4,
+    "prepMinutes": 20,
+    "cookMinutes": 15,
+    "tags": [],
+    "description": "Iran's golden saffron-and-lemon chicken kebabs, tender from a yogurt marinade.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.0,
+        "unit": "lb",
+        "note": "boneless, 1.5-inch pieces"
+      },
+      {
+        "name": "Saffron",
+        "quantity": 1.0,
+        "unit": "pinch",
+        "note": "ground and steeped in 3 tbsp hot water"
+      },
+      {
+        "name": "Plain Yogurt",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "melted"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Basmati Rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the saffron water, yogurt, onion, lemon juice, oil and salt. Marinate the chicken at least 4 hours.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Cook the rice.",
+        "technique": null
+      },
+      {
+        "instruction": "Thread onto skewers and grill over medium-high, turning, until charred and 165°F (74°C), 10–12 minutes.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Brush with melted butter as they come off the grill.",
+        "technique": "Basting"
+      },
+      {
+        "instruction": "Serve over rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "kuku-sabzi",
+    "title": "Kuku Sabzi (Persian Herb Frittata)",
+    "cuisine": "Persian",
+    "country": "Iran",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 30,
+    "tags": [
+      "Vegetarian",
+      "Breakfast"
+    ],
+    "description": "A bright green, herb-packed Persian frittata with walnuts. Great warm or cold.",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Cilantro",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "finely chopped"
+      },
+      {
+        "name": "Walnuts",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Dried Cranberries",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Baking Powder",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Olive Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Chop all the herbs very finely. It should look like more green than egg.",
+        "technique": "Knife Skills: Dicing and Mincing"
+      },
+      {
+        "instruction": "Beat the eggs with the turmeric, baking powder and salt, then fold in the herbs, walnuts and cranberries.",
+        "technique": "Folding"
+      },
+      {
+        "instruction": "Heat the oil in a 10-inch nonstick skillet over medium-low. Pour in the mixture and smooth the top.",
+        "technique": null
+      },
+      {
+        "instruction": "Cover and cook until the bottom is set and browned, 15 minutes. Then bake at 350°F (175°C) until set in the center, about 10 minutes.",
+        "technique": "Baking"
+      },
+      {
+        "instruction": "Cut into wedges.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "nasi-goreng",
+    "title": "Nasi Goreng",
+    "cuisine": "Indonesian",
+    "country": "Indonesia",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 15,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Indonesia's sweet-savory fried rice with kecap manis, shrimp and a fried egg on top.",
+    "ingredients": [
+      {
+        "name": "Long-Grain White Rice",
+        "quantity": 4.0,
+        "unit": "cup",
+        "note": "cooked and chilled"
+      },
+      {
+        "name": "Shrimp",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": "peeled and deveined"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Thai Chili",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      },
+      {
+        "name": "Kecap Manis",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Fish Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced, for serving"
+      },
+      {
+        "name": "Green Onions",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Stir-fry the shallots, garlic and chilies in 2 tbsp hot oil until fragrant, 1 minute.",
+        "technique": "Stir-Frying"
+      },
+      {
+        "instruction": "Add the shrimp and cook until pink, 2 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the rice, kecap manis, soy sauce and fish sauce. Toss over high heat until hot and lightly caramelized, 4–5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Fry the eggs in the rest of the oil until the edges are crisp.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Serve the rice topped with an egg, with cucumber and green onions.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-satay",
+    "title": "Chicken Satay with Peanut Sauce",
+    "cuisine": "Indonesian",
+    "country": "Indonesia",
+    "servings": 4,
+    "prepMinutes": 30,
+    "cookMinutes": 10,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Turmeric-and-coconut marinated chicken skewers with a rich peanut dipping sauce.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "boneless, thin strips"
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "13.5 oz, divided"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Coriander",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "grated"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Peanut Butter",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Lime",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "juiced"
+      },
+      {
+        "name": "Sriracha",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix 1/3 cup coconut milk, turmeric, coriander, garlic, shallots, 1 tbsp soy sauce and 1 tbsp sugar. Marinate the chicken at least 30 minutes.",
+        "technique": "Marinating"
+      },
+      {
+        "instruction": "Simmer the rest of the coconut milk with the peanut butter, remaining soy sauce and sugar, lime juice and sriracha until smooth and thick, 5 minutes.",
+        "technique": null
+      },
+      {
+        "instruction": "Thread the chicken onto skewers and brush with oil.",
+        "technique": null
+      },
+      {
+        "instruction": "Grill or broil until charred and 165°F (74°C), 3–4 minutes per side.",
+        "technique": "Grilling"
+      },
+      {
+        "instruction": "Serve with the peanut sauce.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-rendang",
+    "title": "Beef Rendang",
+    "cuisine": "Malaysian",
+    "country": "Malaysia",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 180,
+    "tags": [
+      "Asian"
+    ],
+    "description": "Beef slowly simmered in coconut milk and spice paste until it's dark, dry and intensely flavorful.",
+    "ingredients": [
+      {
+        "name": "Beef Chuck Roast",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "2-inch chunks"
+      },
+      {
+        "name": "Shallot",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 6.0,
+        "unit": "clove",
+        "note": null
+      },
+      {
+        "name": "Ginger",
+        "quantity": 2.0,
+        "unit": "inch",
+        "note": null
+      },
+      {
+        "name": "Lemongrass",
+        "quantity": 2.0,
+        "unit": "stalk",
+        "note": "tender parts"
+      },
+      {
+        "name": "Thai Chili",
+        "quantity": 6.0,
+        "unit": "whole",
+        "note": "stemmed; use fewer for milder"
+      },
+      {
+        "name": "Turmeric",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Coconut Milk",
+        "quantity": 2.0,
+        "unit": "can",
+        "note": "13.5 oz each"
+      },
+      {
+        "name": "Kaffir Lime Leaves",
+        "quantity": 5.0,
+        "unit": "whole",
+        "note": "torn"
+      },
+      {
+        "name": "Shredded Coconut",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "unsweetened"
+      },
+      {
+        "name": "Brown Sugar",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Blend the shallots, garlic, ginger, lemongrass, chilies and turmeric into a paste.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Toast the coconut in a dry pan until deep golden, then grind it.",
+        "technique": "Toasting"
+      },
+      {
+        "instruction": "Fry the paste in the oil until fragrant and darker, 5 minutes. Add the beef and stir to coat.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Add the coconut milk, lime leaves, toasted coconut, sugar and salt. Simmer uncovered, stirring now and then, 2.5–3 hours, until the liquid is gone and the beef is tender and browning in its own oil.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Stir often near the end so it doesn't stick. Serve with rice.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "swedish-meatballs",
+    "title": "Swedish Meatballs",
+    "cuisine": "Swedish",
+    "country": "Sweden",
+    "servings": 6,
+    "prepMinutes": 30,
+    "cookMinutes": 25,
+    "tags": [],
+    "description": "Tender, warmly spiced meatballs in a creamy gravy, with lingonberry jam on the side.",
+    "ingredients": [
+      {
+        "name": "Ground Beef",
+        "quantity": 1.0,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Ground Pork",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": null
+      },
+      {
+        "name": "Breadcrumbs",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Whole Milk",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 0.5,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Allspice",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Ground Nutmeg",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Soy Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Lingonberry Jam",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Soak the breadcrumbs in the milk for 5 minutes. Mix in the meats, egg, onion, spices and salt with your hands.",
+        "technique": null
+      },
+      {
+        "instruction": "Roll into 1-inch balls.",
+        "technique": null
+      },
+      {
+        "instruction": "Brown the meatballs in the butter in batches, turning, until cooked through (160°F / 71°C). Remove.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Whisk the flour into the drippings and cook 1 minute. Whisk in the broth, cream and soy sauce.",
+        "technique": null
+      },
+      {
+        "instruction": "Simmer until thick, return the meatballs and heat through.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Serve with mashed potatoes and lingonberry jam.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "potato-cheese-pierogi",
+    "title": "Potato and Cheddar Pierogi",
+    "cuisine": "Polish",
+    "country": "Poland",
+    "servings": 6,
+    "prepMinutes": 60,
+    "cookMinutes": 20,
+    "tags": [
+      "Vegetarian"
+    ],
+    "description": "Tender dumplings filled with cheesy mashed potato, pan-fried in butter with onions. Makes about 36.",
+    "ingredients": [
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Eggs",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "plus more for serving"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "peeled, chunks"
+      },
+      {
+        "name": "Sharp Cheddar",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": "shredded"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Butter",
+        "quantity": 4.0,
+        "unit": "tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Mix the flour, egg, sour cream, 1/2 cup water and 1 tsp salt and knead until smooth, 5 minutes. Rest covered 30 minutes.",
+        "technique": "Kneading"
+      },
+      {
+        "instruction": "Boil the potatoes until tender, drain and mash with the cheddar and remaining salt. Cool.",
+        "technique": "Mashing and Puréeing"
+      },
+      {
+        "instruction": "Roll the dough thin, cut 3-inch rounds, fill each with a spoonful of potato, fold and pinch tightly closed.",
+        "technique": null
+      },
+      {
+        "instruction": "Boil in batches until they float, 3–4 minutes.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Cook the onion in butter until golden, add the pierogi and fry until crisp on both sides.",
+        "technique": "Pan-Frying"
+      },
+      {
+        "instruction": "Serve with sour cream.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "chicken-paprikash",
+    "title": "Chicken Paprikash",
+    "cuisine": "Hungarian",
+    "country": "Hungary",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 45,
+    "tags": [],
+    "description": "Hungary's cozy chicken in a creamy, sweet paprika sauce over buttered egg noodles.",
+    "ingredients": [
+      {
+        "name": "Chicken Thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "bone-in, skin-on"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Bell Pepper",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Paprika",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "sweet Hungarian if you can"
+      },
+      {
+        "name": "Tomato",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Chicken Broth",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Egg Noodles",
+        "quantity": 12.0,
+        "unit": "oz",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the chicken and brown it skin-side down in the butter. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the onions and pepper until soft, 8 minutes. Off the heat, stir in the garlic and paprika so it doesn't scorch.",
+        "technique": null
+      },
+      {
+        "instruction": "Add the tomato, broth and chicken. Cover and simmer until the chicken is tender (at least 165°F / 74°C), 30–35 minutes.",
+        "technique": "Braising"
+      },
+      {
+        "instruction": "Remove the chicken. Whisk the sour cream with the flour, then stir into the sauce off the heat until smooth. Return the chicken.",
+        "technique": null
+      },
+      {
+        "instruction": "Boil the noodles and serve the chicken and sauce over them.",
+        "technique": "Boiling"
+      }
+    ]
+  },
+  {
+    "slug": "ukrainian-borscht",
+    "title": "Ukrainian Borscht",
+    "cuisine": "Ukrainian",
+    "country": "Ukraine",
+    "servings": 6,
+    "prepMinutes": 25,
+    "cookMinutes": 50,
+    "tags": [
+      "Vegetarian",
+      "Soup"
+    ],
+    "description": "Ruby-red beet and cabbage soup with dill and a dollop of sour cream. Made here with vegetable broth.",
+    "ingredients": [
+      {
+        "name": "Beet",
+        "quantity": 3.0,
+        "unit": "whole",
+        "note": "peeled and grated"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "grated"
+      },
+      {
+        "name": "Tomato Paste",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Vegetable Broth",
+        "quantity": 8.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Yukon Gold Potatoes",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": "diced"
+      },
+      {
+        "name": "Green Cabbage",
+        "quantity": 3.0,
+        "unit": "cup",
+        "note": "shredded"
+      },
+      {
+        "name": "Kidney Beans",
+        "quantity": 1.0,
+        "unit": "can",
+        "note": "drained"
+      },
+      {
+        "name": "Red Wine Vinegar",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Bay Leaves",
+        "quantity": 2.0,
+        "unit": "whole",
+        "note": null
+      },
+      {
+        "name": "Garlic",
+        "quantity": 3.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "Vegetable Oil",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Dill",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped"
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for serving"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Cook the onion and carrot in the oil until soft. Add the beets, tomato paste and vinegar and cook 10 minutes.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Boil the broth with the potatoes and bay leaves for 10 minutes.",
+        "technique": "Boiling"
+      },
+      {
+        "instruction": "Add the cabbage, beans and beet mixture and simmer until the cabbage is tender, 15–20 minutes.",
+        "technique": "Simmering"
+      },
+      {
+        "instruction": "Stir in the garlic and dill and rest 10 minutes. Serve with sour cream.",
+        "technique": null
+      }
+    ]
+  },
+  {
+    "slug": "beef-stroganoff",
+    "title": "Beef Stroganoff",
+    "cuisine": "Russian",
+    "country": "Russia",
+    "servings": 4,
+    "prepMinutes": 15,
+    "cookMinutes": 25,
+    "tags": [],
+    "description": "Seared beef strips and mushrooms in a tangy sour-cream sauce over egg noodles.",
+    "ingredients": [
+      {
+        "name": "Sirloin Steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "thin strips"
+      },
+      {
+        "name": "Kosher Salt",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Butter",
+        "quantity": 3.0,
+        "unit": "tbsp",
+        "note": "divided"
+      },
+      {
+        "name": "Cremini Mushrooms",
+        "quantity": 8.0,
+        "unit": "oz",
+        "note": "sliced"
+      },
+      {
+        "name": "Yellow Onion",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "thinly sliced"
+      },
+      {
+        "name": "Garlic",
+        "quantity": 2.0,
+        "unit": "clove",
+        "note": "minced"
+      },
+      {
+        "name": "All-Purpose Flour",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Beef Broth",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Dijon Mustard",
+        "quantity": 1.0,
+        "unit": "tbsp",
+        "note": null
+      },
+      {
+        "name": "Worcestershire Sauce",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Sour Cream",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Egg Noodles",
+        "quantity": 12.0,
+        "unit": "oz",
+        "note": null
+      },
+      {
+        "name": "Flat-Leaf Parsley",
+        "quantity": 2.0,
+        "unit": "tbsp",
+        "note": "chopped"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Season the beef with salt.",
+        "technique": null
+      },
+      {
+        "instruction": "Sear the beef in 1 tbsp butter in batches, 1 minute per side. Remove.",
+        "technique": "Searing"
+      },
+      {
+        "instruction": "Cook the mushrooms and onion in the remaining butter until browned, 8 minutes. Add the garlic and flour for 1 minute.",
+        "technique": "Sautéing"
+      },
+      {
+        "instruction": "Whisk in the broth, mustard and Worcestershire and simmer until thick, 3–4 minutes.",
+        "technique": "Reducing"
+      },
+      {
+        "instruction": "Off the heat, stir in the sour cream, then the beef and its juices.",
+        "technique": null
+      },
+      {
+        "instruction": "Serve over boiled egg noodles with parsley.",
+        "technique": "Boiling"
+      }
+    ]
+  },
+  {
+    "slug": "pavlova",
+    "title": "Pavlova with Berries",
+    "cuisine": "Australian",
+    "country": "Australia",
+    "servings": 8,
+    "prepMinutes": 25,
+    "cookMinutes": 75,
+    "tags": [
+      "Vegetarian",
+      "Dessert"
+    ],
+    "description": "A crisp, marshmallowy meringue topped with whipped cream and fresh berries.",
+    "ingredients": [
+      {
+        "name": "Eggs",
+        "quantity": 4.0,
+        "unit": "whole",
+        "note": "whites only, room temperature"
+      },
+      {
+        "name": "Granulated Sugar",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Cornstarch",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Distilled White Vinegar",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": 1.0,
+        "unit": "tsp",
+        "note": null
+      },
+      {
+        "name": "Heavy Cream",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Strawberries",
+        "quantity": 2.0,
+        "unit": "cup",
+        "note": "sliced"
+      },
+      {
+        "name": "Blueberries",
+        "quantity": 1.0,
+        "unit": "cup",
+        "note": null
+      },
+      {
+        "name": "Kiwi",
+        "quantity": 1.0,
+        "unit": "whole",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "instruction": "Heat the oven to 250°F (120°C). Draw a 9-inch circle on parchment and flip it onto a baking sheet.",
+        "technique": null
+      },
+      {
+        "instruction": "Beat the egg whites to soft peaks, then add the sugar a spoonful at a time and beat until thick, glossy and stiff, 8–10 minutes.",
+        "technique": "Whipping"
+      },
+      {
+        "instruction": "Fold in the cornstarch, vinegar and vanilla.",
+        "technique": "Folding"
+      },
+      {
+        "instruction": "Spread inside the circle, making the edges a little higher than the center.",
+        "technique": null
+      },
+      {
+        "instruction": "Bake 75 minutes, then turn off the oven and let it cool inside with the door closed.",
+        "technique": "Baking"
+      },
+      {
+        "instruction": "Just before serving, whip the cream to soft peaks, spread on top and pile on the fruit.",
+        "technique": "Whipping"
       }
     ]
   }

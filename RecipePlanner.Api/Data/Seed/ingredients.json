@@ -1626,5 +1626,41 @@
   {
     "name": "Frozen Edamame",
     "storeSection": "Frozen"
+  },
+  {
+    "name": "Ají Amarillo Paste",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Kecap Manis",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Lingonberry Jam",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Masarepa",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Bulgur Wheat",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Cheese Curds",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Lamb Shoulder",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Saffron",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Berbere Spice",
+    "storeSection": "Spices"
   }
 ]

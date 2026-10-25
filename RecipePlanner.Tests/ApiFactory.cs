@@ -22,6 +22,7 @@ public class ApiFactory : WebApplicationFactory<Program>
     public IRecipeDraftGenerator? RecipeDrafts { get; init; }
     public IPhotoStore? Photos { get; init; }
     public FakeKroger? Kroger { get; init; }
+    public ICountryDishGenerator? CountryDishes { get; init; }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -59,6 +60,12 @@ public class ApiFactory : WebApplicationFactory<Program>
             {
                 services.RemoveAll<IRecipeDraftGenerator>();
                 services.AddSingleton(RecipeDrafts);
+            }
+
+            if (CountryDishes is not null)
+            {
+                services.RemoveAll<ICountryDishGenerator>();
+                services.AddSingleton(CountryDishes);
             }
 
             if (Scanner is not null)

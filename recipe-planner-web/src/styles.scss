@@ -276,3 +276,29 @@ a.chip.small { text-decoration: none; }
   nav .user { display: none; }
   .container { padding: 1rem; }
 }
+
+/* World map */
+.map-wrap { position: relative; margin-bottom: 1rem; }
+.world-map {
+  display: block; width: 100%; height: auto; background: #eef3f6; border: 1px solid var(--border);
+  border-radius: 10px; touch-action: pan-y; user-select: none; cursor: pointer;
+}
+.world-map.zoomed { touch-action: none; cursor: grab; }
+.world-map .ocean { fill: #eef3f6; }
+.world-map .country { fill: #ddd6cf; stroke: #fff; stroke-width: 0.6; transition: fill 0.15s; }
+.world-map .country.has-recipes { fill: #e2a88d; }
+.world-map .country:hover { fill: #c9b9ab; }
+.world-map .country.has-recipes:hover { fill: #d0835f; }
+.world-map .country.selected, .world-map .country.selected:hover { fill: var(--accent); }
+.world-map .country.inert { fill: #e9e5e1; cursor: default; }
+.map-controls { position: absolute; top: 0.5rem; right: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.map-controls button { width: 2.2rem; height: 2.2rem; padding: 0; font-size: 1.1rem; line-height: 1; background: var(--surface); }
+.map-legend { display: flex; align-items: center; gap: 0.4rem; }
+.swatch { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 3px; background: #e2a88d; }
+.check-label { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+.check-label input { width: auto; }
+.country-panel h3 { margin: 1.25rem 0 0.5rem; font-size: 1rem; }
+.country-panel .card strong { display: inline-block; margin-bottom: 0.25rem; }
+.country-panel .card button { margin-top: 0.5rem; }
+.country-panel .card .chip.small { margin-left: 0.4rem; }
+.page-header .button { white-space: nowrap; }

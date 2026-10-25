@@ -43,6 +43,17 @@ public static class AiServiceCollectionExtensions
                 ? new DisabledIngredientScanner()
                 : sp.GetRequiredService<AnthropicIngredientScanner>());
 
+        services.AddHttpClient<AnthropicCountryDishGenerator>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.anthropic.com/");
+            client.Timeout = TimeSpan.FromSeconds(30);
+        });
+
+        services.AddScoped<ICountryDishGenerator>(sp =>
+            string.IsNullOrWhiteSpace(sp.GetRequiredService<IOptions<AnthropicOptions>>().Value.ApiKey)
+                ? new DisabledCountryDishGenerator()
+                : sp.GetRequiredService<AnthropicCountryDishGenerator>());
+
         return services;
     }
 }
