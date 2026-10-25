@@ -6,6 +6,7 @@ using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Endpoints;
 using RecipePlanner.Api.Models;
+using RecipePlanner.Api.Photos;
 using RecipePlanner.Api.Security;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,13 +67,15 @@ builder.Services.ConfigureApplicationCookie(o =>
 
 builder.Services.AddAppRateLimiting();
 builder.Services.AddMealIdeas(builder.Configuration);
+builder.Services.AddRecipePhotos(builder.Configuration);
 
 // Requests arrive through two proxies: Azure's ingress -> nginx -> Azure's internal ingress -> API.
 // nginx overwrites X-Forwarded-For with the client IP Azure reported, so the API can trust
 // up to two hops. Without this, every user would share nginx's IP and one rate-limit bucket.
 builder.Services.Configure<ForwardedHeadersOptions>(o =>
 {
-    o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    // Host too, so share previews can build full https://<your site>/... picture addresses
+    o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
     o.ForwardLimit = 2;
     // The API has internal-only ingress, so only our own proxies can reach it
     o.KnownIPNetworks.Clear();
@@ -115,6 +118,7 @@ app.MapIngredientEndpoints();
 app.MapMealPlanEndpoints();
 app.MapFridgeEndpoints();
 app.MapSharingEndpoints();
+app.MapRecipePhotoEndpoints();
 
 app.Run();
 

@@ -8,10 +8,10 @@ public static class PhotoProcessor
 {
     public const int MaxUploadBytes = 5 * 1024 * 1024;   // The page shrinks photos first, so real uploads are far smaller
     public const int MaxSourcePixels = 40_000_000;        // Refuse "decompression bombs": tiny files that expand to huge images
-    public const int MaxOutputEdge = 1024;                // Image size is what you pay for, so keep it small
-    private const int JpegQuality = 80;
+    public const int MaxOutputEdge = 1024;                // For the AI: image size is what you pay for, so keep it small
+    public const int DefaultJpegQuality = 80;
 
-    public static PhotoResult Process(byte[] bytes)
+    public static PhotoResult Process(byte[] bytes, int maxEdge = MaxOutputEdge, int jpegQuality = DefaultJpegQuality)
     {
         if (bytes.Length == 0) return PhotoResult.Fail("The photo was empty.");
         if (bytes.Length > MaxUploadBytes) return PhotoResult.Fail("The photo is too large.");
@@ -32,12 +32,12 @@ public static class PhotoProcessor
         if (decoded is null) return PhotoResult.Fail("The photo couldn't be read.");
 
         using var upright = ApplyOrientation(decoded, codec.EncodedOrigin);
-        using var resized = Shrink(upright);
+        using var resized = Shrink(upright, maxEdge);
 
         // Re-encoding from raw pixels writes a brand-new file. Nothing from the original survives:
         // no EXIF data (including the GPS location phones add), and no hidden or malformed bytes.
         using var image = SKImage.FromBitmap(resized);
-        using var jpeg = image.Encode(SKEncodedImageFormat.Jpeg, JpegQuality);
+        using var jpeg = image.Encode(SKEncodedImageFormat.Jpeg, jpegQuality);
         return PhotoResult.Ok(jpeg.ToArray(), resized.Width, resized.Height);
     }
 
@@ -75,10 +75,10 @@ public static class PhotoProcessor
         return result;
     }
 
-    private static SKBitmap Shrink(SKBitmap source)
+    private static SKBitmap Shrink(SKBitmap source, int maxEdge)
     {
         var longEdge = Math.Max(source.Width, source.Height);
-        var scale = Math.Min(1.0, (double)MaxOutputEdge / longEdge);
+        var scale = Math.Min(1.0, (double)maxEdge / longEdge);
         var info = new SKImageInfo(
             Math.Max(1, (int)Math.Round(source.Width * scale)),
             Math.Max(1, (int)Math.Round(source.Height * scale)));

@@ -5,6 +5,8 @@ import { firstValueFrom, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
 import { StarRating } from '../star-rating';
 import { shareTargets } from '../share-links';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -21,6 +23,22 @@ import { shareTargets } from '../share-links';
       </p>
       @if (r.description) {
         <p>{{ r.description }}</p>
+      }
+
+      @if (photoVersion(); as v) {
+        <img class="recipe-photo" [src]="'/api/recipes/' + r.id + '/photo?v=' + v" [alt]="'Photo of ' + r.title" />
+      }
+      <div class="row photo-actions">
+        <label class="button" [class.disabled]="uploading()">
+          {{ uploading() ? 'Uploading…' : (photoVersion() ? 'Change photo' : '📷 Add a photo') }}
+          <input type="file" accept="image/*" hidden (change)="uploadPhoto(r.id, $event)" [disabled]="uploading()" />
+        </label>
+        @if (photoVersion()) {
+          <button type="button" class="link" (click)="removePhoto(r.id)" [disabled]="uploading()">Remove photo</button>
+        }
+      </div>
+      @if (photoError()) {
+        <p class="error">{{ photoError() }}</p>
       }
 
       @if (social(); as s) {
@@ -120,6 +138,9 @@ export class RecipeDetailPage {
   // A local copy of the sharing/rating info that updates instantly when you click
   social = linkedSignal(() => this.recipe()?.social ?? null);
   busy = signal(false);
+  photoVersion = linkedSignal(() => this.recipe()?.photoVersion ?? null);
+  uploading = signal(false);
+  photoError = signal<string | null>(null);
   error = signal<string | null>(null);
   copied = signal(false);
   readonly canNativeShare = typeof navigator !== 'undefined' && 'share' in navigator;
@@ -130,6 +151,47 @@ export class RecipeDetailPage {
     return token ? `${location.origin}/s/${token}` : '';
   });
   targets = computed(() => shareTargets(this.link(), this.recipe()?.title ?? 'Recipe'));
+
+  async uploadPhoto(id: number, event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+
+    this.uploading.set(true);
+    this.photoError.set(null);
+    try {
+      // Shrink in the browser first: much faster on mobile data, and the GPS location is dropped
+      // before the photo ever leaves the phone. The server still re-checks and re-encodes it.
+      const photo = await shrinkPhoto(file, 1600, 0.88);
+      const { photoVersion } = await firstValueFrom(this.api.uploadRecipePhoto(id, photo));
+      this.photoVersion.set(photoVersion);
+    } catch (e) {
+      const status = e instanceof HttpErrorResponse ? e.status : 0;
+      this.photoError.set(
+        e instanceof PhotoReadError || status === 400 || status === 415 ? "That file couldn't be read as a photo." :
+        status === 413 ? 'That photo is too large.' :
+        status === 429 ? "You've uploaded a lot of photos this hour. Try again later." :
+        status === 503 ? 'Photo uploads are unavailable right now.' :
+        "Couldn't upload the photo. Please try again.");
+    } finally {
+      this.uploading.set(false);
+    }
+  }
+
+  async removePhoto(id: number) {
+    if (!confirm('Remove this photo?')) return;
+    this.uploading.set(true);
+    this.photoError.set(null);
+    try {
+      await firstValueFrom(this.api.removeRecipePhoto(id));
+      this.photoVersion.set(null);
+    } catch {
+      this.photoError.set("Couldn't remove the photo. Please try again.");
+    } finally {
+      this.uploading.set(false);
+    }
+  }
 
   async rate(id: number, stars: number) {
     await this.run(async () => {

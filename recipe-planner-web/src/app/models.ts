@@ -6,6 +6,7 @@ export interface RecipeSummary {
   servings: number;
   prepMinutes: number;
   cookMinutes: number;
+  photoVersion: string | null;
 }
 
 export interface TechniqueSummary {
@@ -152,4 +153,5 @@ export interface SharedRecipe {
   ingredients: { name: string; quantity: number; unit: string; note: string | null }[];
   steps: { order: number; instruction: string; techniqueName: string | null }[];
   rating: RatingSummary;
+  photoVersion: string | null;
 }

@@ -18,6 +18,10 @@ public class Recipe
     public string? ShareToken { get; set; }
     public DateTimeOffset? SharedAt { get; set; }
     public List<RecipeRating> Ratings { get; set; } = [];
+
+    // Name of the photo in storage: random, so it reveals nothing and can't be guessed
+    public string? PhotoName { get; set; }
+    public DateTimeOffset? PhotoUpdatedAt { get; set; }
 }
 
 // One rating per user per recipe. The owner's own rating is their private note;

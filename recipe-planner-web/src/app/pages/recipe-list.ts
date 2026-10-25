@@ -15,6 +15,9 @@ import { ApiService } from '../api.service';
       <div class="grid">
         @for (r of list; track r.id) {
           <a class="card" [routerLink]="['/recipes', r.id]">
+            @if (r.photoVersion) {
+              <img class="card-photo" [src]="'/api/recipes/' + r.id + '/photo?v=' + r.photoVersion" alt="" loading="lazy" />
+            }
             <h2>{{ r.title }}</h2>
             <p class="meta">
               {{ r.cuisine ?? 'Any cuisine' }} · {{ r.prepMinutes + r.cookMinutes }} min · serves {{ r.servings }}

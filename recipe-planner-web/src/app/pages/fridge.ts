@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { FridgeMealIdea, FridgeResponse, RecipeDraft } from '../models';
+import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 
 // Keep in sync with FridgePlanner on the API (the API enforces these; this is just friendlier)
 const MAX_INGREDIENTS = 25;
@@ -347,29 +348,4 @@ export class FridgePage {
       this.busy.set(false);
     }
   }
-}
-
-class PhotoReadError extends Error {}
-
-// Shrinks the photo in the browser before uploading: much faster on mobile data, and the
-// server would shrink it anyway. Drawing to a canvas also drops the photo's EXIF data
-// (including GPS location) before it ever leaves the phone. The server still re-checks everything.
-async function shrinkPhoto(file: File, maxEdge = 1024): Promise<Blob> {
-  let source: ImageBitmap;
-  try {
-    source = await createImageBitmap(file, { imageOrientation: 'from-image' });
-  } catch {
-    throw new PhotoReadError();
-  }
-
-  const scale = Math.min(1, maxEdge / Math.max(source.width, source.height));
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.max(1, Math.round(source.width * scale));
-  canvas.height = Math.max(1, Math.round(source.height * scale));
-  canvas.getContext('2d')!.drawImage(source, 0, 0, canvas.width, canvas.height);
-  source.close();
-
-  const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
-  if (!blob) throw new PhotoReadError();
-  return blob;
 }

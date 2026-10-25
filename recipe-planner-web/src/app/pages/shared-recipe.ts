@@ -36,6 +36,9 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } 
           @if (r.description) {
             <p>{{ r.description }}</p>
           }
+          @if (r.photoVersion) {
+            <img class="recipe-photo" [src]="'/api/shared/' + token() + '/photo?v=' + r.photoVersion" [alt]="'Photo of ' + r.title" />
+          }
 
           <section class="card social">
             <div class="rating-row">

@@ -31,6 +31,7 @@ server {
         # Overwrite rather than append, so client-supplied entries never reach the API
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_set_header X-Forwarded-Host $http_host;   # includes the port, e.g. localhost:8080 in docker compose
     }
 
     # Shared-recipe links (/s/<token>): served by the API so social media gets a preview card
@@ -40,6 +41,7 @@ server {
         proxy_ssl_server_name on;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_set_header X-Forwarded-Host $http_host;   # includes the port, e.g. localhost:8080 in docker compose
     }
 
     # Angular routes: unknown paths fall back to index.html

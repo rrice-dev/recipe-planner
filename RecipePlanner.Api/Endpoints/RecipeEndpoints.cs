@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Models;
+using RecipePlanner.Api.Photos;
 
 namespace RecipePlanner.Api.Endpoints;
 
@@ -62,14 +63,16 @@ public static class RecipeEndpoints
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
+        group.MapDelete("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db, IPhotoStore photos) =>
         {
             var userId = user.UserId();
             var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
+            var photo = recipe.PhotoName;
             db.Recipes.Remove(recipe);
             await db.SaveChangesAsync();
+            if (photo is not null) await photos.DeleteAsync(photo, CancellationToken.None);
             return Results.NoContent();
         });
 
@@ -223,7 +226,7 @@ public static class RecipeEndpoints
     }
 
     private static RecipeResponse ToResponse(Recipe r) =>
-        new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes);
+        new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes, RecipePhotos.Version(r));
 
     private static RecipeDetailResponse ToDetail(Recipe r) =>
         new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,
@@ -237,7 +240,8 @@ public static class RecipeEndpoints
             r.Steps.OrderBy(s => s.Order)
                 .Select(s => new StepResponse(s.Order, s.Instruction, s.TechniqueId, s.Technique?.Name))
                 .ToList(),
-            Social(r));
+            Social(r),
+            RecipePhotos.Version(r));
 
     private static RecipeSocialResponse Social(Recipe r)
     {

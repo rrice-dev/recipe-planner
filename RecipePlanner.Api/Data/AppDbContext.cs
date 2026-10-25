@@ -35,6 +35,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         b.Entity<Recipe>().HasIndex(r => r.ShareToken).IsUnique();
         b.Entity<Recipe>().Property(r => r.ShareToken).HasMaxLength(32);
 
+        b.Entity<Recipe>().Property(r => r.PhotoName).HasMaxLength(64);
+
         b.Entity<RecipeRating>().HasKey(r => new { r.RecipeId, r.UserId });
         b.Entity<RecipeRating>().ToTable(t => t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5"));
         b.Entity<RecipeRating>()

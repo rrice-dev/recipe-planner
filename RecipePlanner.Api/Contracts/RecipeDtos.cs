@@ -6,7 +6,8 @@ public record RecipeRequest(
 
 public record RecipeResponse(
     int Id, string Title, string? Description, string? Cuisine,
-    int Servings, int PrepMinutes, int CookMinutes);
+    int Servings, int PrepMinutes, int CookMinutes,
+    string? PhotoVersion = null);   // null = no photo; changes whenever the photo does, so browsers re-download it
 
 public record RecipeIngredientRequest(int IngredientId, decimal Quantity, string Unit, string? Note);
 
@@ -24,7 +25,8 @@ public record RecipeDetailResponse(
     List<TechniqueSummary> Techniques,
     List<RecipeIngredientResponse> Ingredients,
     List<StepResponse> Steps,
-    RecipeSocialResponse Social);
+    RecipeSocialResponse Social,
+    string? PhotoVersion);
 
 // Owner's view of sharing and ratings for one of their recipes
 public record RecipeSocialResponse(string? ShareToken, int? MyRating, double? CommunityAverage, int CommunityCount);
@@ -40,7 +42,8 @@ public record SharedRecipeResponse(
     List<string> Techniques,
     List<SharedIngredient> Ingredients,
     List<SharedStep> Steps,
-    RatingSummary Rating);
+    RatingSummary Rating,
+    string? PhotoVersion);
 
 public record SharedIngredient(string Name, decimal Quantity, string Unit, string? Note);
 

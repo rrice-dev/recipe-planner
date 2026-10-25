@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Data;
+using RecipePlanner.Api.Photos;
 using RecipePlanner.Api.Security;
 
 namespace RecipePlanner.Api.Endpoints;
@@ -85,9 +86,7 @@ public static class FridgeEndpoints
         .RequireAuthorization()
         .RequireRateLimiting(RateLimiting.AiRecipePolicy);
 
-        // The body is the raw image bytes (Content-Type: image/jpeg, png or webp), not a form.
-        // Browsers can't send that content type cross-site without a CORS preflight, which this API
-        // never approves, so other sites can't make a logged-in user's browser upload here.
+        // The body is the raw image bytes; see PhotoUpload for why that's safer than a form
         app.MapPost("/api/fridge/scan", async (
             HttpRequest request,
             IIngredientScanner scanner,
@@ -97,20 +96,10 @@ public static class FridgeEndpoints
             if (!scanner.IsAvailable)
                 return Results.Problem("Photo scanning isn't set up yet.", statusCode: StatusCodes.Status503ServiceUnavailable);
 
-            var contentType = request.ContentType?.Split(';')[0].Trim().ToLowerInvariant();
-            if (contentType is not ("image/jpeg" or "image/png" or "image/webp"))
-                return Results.Problem("Send the photo as image/jpeg, image/png or image/webp.",
-                    statusCode: StatusCodes.Status415UnsupportedMediaType);
+            var (bytes, uploadError) = await PhotoUpload.ReadAsync(request, ct);
+            if (uploadError is not null) return uploadError;
 
-            if (request.ContentLength > PhotoProcessor.MaxUploadBytes)
-                return Results.Problem("The photo is too large.", statusCode: StatusCodes.Status413PayloadTooLarge);
-
-            // Read at most one byte over the limit, even if Content-Length lied
-            var bytes = await ReadUpToAsync(request.Body, PhotoProcessor.MaxUploadBytes + 1, ct);
-            if (bytes.Length > PhotoProcessor.MaxUploadBytes)
-                return Results.Problem("The photo is too large.", statusCode: StatusCodes.Status413PayloadTooLarge);
-
-            var photo = PhotoProcessor.Process(bytes);
+            var photo = PhotoProcessor.Process(bytes!);
             if (!photo.Success)
                 return Results.ValidationProblem(new Dictionary<string, string[]> { ["Photo"] = [photo.Error!] });
 
@@ -129,18 +118,5 @@ public static class FridgeEndpoints
         })
         .RequireAuthorization()
         .RequireRateLimiting(RateLimiting.AiScanPolicy);
-    }
-
-    private static async Task<byte[]> ReadUpToAsync(Stream body, int maxBytes, CancellationToken ct)
-    {
-        using var buffer = new MemoryStream();
-        var chunk = new byte[81920];
-        int read;
-        while (buffer.Length < maxBytes &&
-               (read = await body.ReadAsync(chunk.AsMemory(0, (int)Math.Min(chunk.Length, maxBytes - buffer.Length)), ct)) > 0)
-        {
-            buffer.Write(chunk, 0, read);
-        }
-        return buffer.ToArray();
     }
 }

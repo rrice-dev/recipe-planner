@@ -19,6 +19,8 @@ public static partial class SharingEndpoints
     [GeneratedRegex("^[A-Za-z0-9_-]{22}$")]
     private static partial Regex TokenFormat();
 
+    public static bool IsTokenShaped(string token) => TokenFormat().IsMatch(token);
+
     public static void MapSharingEndpoints(this IEndpointRouteBuilder app)
     {
         // ---------- Owner: turn sharing on and off, and rate your own recipe ----------
@@ -94,7 +96,8 @@ public static partial class SharingEndpoints
                 new RatingSummary(
                     average, count,
                     userId is null ? null : recipe.Ratings.FirstOrDefault(r => r.UserId == userId)?.Stars,
-                    userId == recipe.OwnerId)));
+                    userId == recipe.OwnerId),
+                RecipePhotos.Version(recipe)));
         });
 
         // Rating requires an account, which keeps anonymous ballot-stuffing out
@@ -128,13 +131,17 @@ public static partial class SharingEndpoints
             http.Response.Headers["X-Robots-Tag"] = "noindex"; // shared, but not meant to show up in search engines
 
             if (recipe is null)
-                return Results.Content(Page("Recipe not found", "This recipe isn't shared anymore.", null),
+                return Results.Content(Page("Recipe not found", "This recipe isn't shared anymore.", null, null),
                     "text/html; charset=utf-8", statusCode: StatusCodes.Status404NotFound);
 
             var description = string.IsNullOrWhiteSpace(recipe.Description)
                 ? $"Serves {recipe.Servings} · {recipe.PrepMinutes + recipe.CookMinutes} min · Recipe Planner"
                 : recipe.Description;
-            return Results.Content(Page(recipe.Title, description, $"/r/{token}"), "text/html; charset=utf-8");
+            // Social sites need a full https:// address for the picture
+            var image = RecipePhotos.Version(recipe) is { } v
+                ? $"{http.Request.Scheme}://{http.Request.Host}/api/shared/{token}/photo?v={v}"
+                : null;
+            return Results.Content(Page(recipe.Title, description, $"/r/{token}", image), "text/html; charset=utf-8");
         });
     }
 
@@ -154,8 +161,14 @@ public static partial class SharingEndpoints
     }
 
     // Every value is HTML-encoded: recipe titles are user input, and this page is built as a string
-    private static string Page(string title, string description, string? redirect)
+    private static string Page(string title, string description, string? redirect, string? imageUrl)
     {
+        var image = imageUrl is null ? "" :
+            $"""
+            <meta property="og:image" content="{WebUtility.HtmlEncode(imageUrl)}">
+            <meta name="twitter:image" content="{WebUtility.HtmlEncode(imageUrl)}">
+            """;
+        var card = imageUrl is null ? "summary" : "summary_large_image";
         var t = WebUtility.HtmlEncode(Shorten(title, 100));
         var d = WebUtility.HtmlEncode(Shorten(description, 200));
         var refresh = redirect is null ? "" : $"""<meta http-equiv="refresh" content="0; url={redirect}">""";
@@ -172,7 +185,8 @@ public static partial class SharingEndpoints
             <meta property="og:site_name" content="Recipe Planner">
             <meta property="og:title" content="{t}">
             <meta property="og:description" content="{d}">
-            <meta name="twitter:card" content="summary">
+            <meta name="twitter:card" content="{card}">
+            {image}
             <meta name="twitter:title" content="{t}">
             <meta name="twitter:description" content="{d}">
             {refresh}

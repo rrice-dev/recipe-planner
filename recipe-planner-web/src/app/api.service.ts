@@ -96,6 +96,14 @@ scanPhoto(photo: Blob) {
   return this.http.post<ScanResponse>('/api/fridge/scan', photo, { headers: { 'Content-Type': 'image/jpeg' } });
 }
 
+uploadRecipePhoto(id: number, photo: Blob) {
+  return this.http.put<{ photoVersion: string }>(`/api/recipes/${id}/photo`, photo, { headers: { 'Content-Type': 'image/jpeg' } });
+}
+
+removeRecipePhoto(id: number) {
+  return this.http.delete<void>(`/api/recipes/${id}/photo`);
+}
+
 shareRecipe(id: number) {
   return this.http.post<{ shareToken: string }>(`/api/recipes/${id}/share`, null);
 }
