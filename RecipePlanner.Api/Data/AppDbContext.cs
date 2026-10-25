@@ -1,16 +1,21 @@
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Models;
 
 namespace RecipePlanner.Api.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IDataProtectionKeyContext
 {
     public DbSet<Recipe> Recipes => Set<Recipe>();
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
     public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
+
+    // The keys that encrypt login cookies. Stored here so every container uses the same keys,
+    // and logins survive restarts and scale-to-zero.
+    public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
 
     protected override void OnModelCreating(ModelBuilder b)
     {

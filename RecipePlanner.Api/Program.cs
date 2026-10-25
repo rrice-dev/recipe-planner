@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,12 @@ builder.Services.AddDbContext<AppDbContext>(o =>
     o.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
 // "Admin" policy: only users in the Admin role can change shared data
+// Login cookies are encrypted with Data Protection keys. By default those keys live inside the
+// container and vanish when it restarts, logging everyone out. Keeping them in the database fixes that.
+builder.Services.AddDataProtection()
+    .PersistKeysToDbContext<AppDbContext>()
+    .SetApplicationName("RecipePlanner");
+
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy(Roles.Admin, p => p.RequireRole(Roles.Admin));
 
