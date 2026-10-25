@@ -13,7 +13,7 @@
     "commonMistakes": "Heat too high, rushing it, not stirring often enough near the end.",
     "difficulty": 2
   },
-   {
+  {
     "name": "Roasting",
     "summary": "Use indirect, steady heat in the oven.",
     "donenessCues": "Most reliable cue of doneness is the internal temperature at the thickest part of the meat. Pull 5-10 degrees below target temperature and let rest for 10-20 minutes. The exterior should have a deeply browned, caramelized Maillard crust.",
@@ -21,31 +21,255 @@
     "difficulty": 2
   },
   {
-  "name": "Baking",
+    "name": "Baking",
     "summary": "Use indirect, steady heat in the oven.",
     "donenessCues": "Golden brown, toothpick test, edges pulling slightly away from the pan and a top that springs back when pressed.",
     "commonMistakes": "Inaccurate measuring, wrong ingredient temperatures, overmixing batter, opening the oven door too early, improper oven temperature, making uninformed substitutions.",
     "difficulty": 2
   },
   {
-  "name": "Grilling",
+    "name": "Grilling",
     "summary": "Apply intense, direct heat from above.",
     "donenessCues": "Internal temperature, juices run clear, touch test",
     "commonMistakes": "Not preheating grill, dirty grill, pressing down, cutting or poking meat too soon, opening lid too often, using too much direct heat.",
     "difficulty": 2
   },
   {
-  "name": "Broiling",
+    "name": "Broiling",
     "summary": "Apply intense, direct heat from above.",
     "donenessCues": "The most reliable visual and physical cues to determine doneness when broiling food depend entirely on the type of ingredient you are cooking. Because broiling uses intense, direct top heat, food cooks incredibly fast and can quickly move from perfectly done to burned.",
     "commonMistakes": "Leaving food alone, using the wrong cookware, using parchment paper, skipping preheating, placing food at the wrong height, broiling the wrong foods.",
     "difficulty": 2
   },
   {
-  "name": "Sautéing",
+    "name": "Sautéing",
     "summary": "Cooks food fast in a small amount of fat over medium-high heat.",
     "donenessCues": "Bright vibrant color and light brown edges, slight resistance to fork, aggressive sizzling will soften slightly, reduced in size or wilted, release easy from pan",
     "commonMistakes": "Cold pan, overcrowding pan, using wet ingredients, wrong oil, stirring too much or too little, adding garlic too early",
     "difficulty": 2
+  },
+  {
+    "name": "Boiling",
+    "summary": "Cooking food in water at a full, rolling boil (212°F / 100°C at sea level).",
+    "donenessCues": "Pasta is tender with a slight bite; vegetables are tender when pierced with a knife.",
+    "commonMistakes": "Not salting the water, overcrowding the pot so the boil stops, overcooking until mushy.",
+    "difficulty": 1
+  },
+  {
+    "name": "Simmering",
+    "summary": "Cooking in liquid kept just below a boil, with small, steady bubbles breaking the surface.",
+    "donenessCues": "Gentle bubbles around the edges; meat or beans are tender; the liquid has reduced and tastes concentrated.",
+    "commonMistakes": "Letting it boil hard, which toughens meat and clouds stock; not stirring thick sauces, so the bottom scorches.",
+    "difficulty": 1
+  },
+  {
+    "name": "Poaching",
+    "summary": "Cooking delicate foods gently in liquid well below a simmer (about 160–180°F / 70–82°C).",
+    "donenessCues": "Eggs: whites set, yolks still soft. Chicken: 165°F (74°C) inside. Fish: opaque and flakes easily, 145°F (63°C).",
+    "commonMistakes": "Liquid too hot so food toughens or eggs break apart; under-seasoned poaching liquid.",
+    "difficulty": 2
+  },
+  {
+    "name": "Steaming",
+    "summary": "Cooking food over (not in) boiling water so the steam does the work, keeping color and nutrients.",
+    "donenessCues": "Vegetables bright and just tender; fish opaque and flakes; dumplings translucent and firm.",
+    "commonMistakes": "Letting the pot boil dry, lifting the lid too often, letting water touch the food.",
+    "difficulty": 1
+  },
+  {
+    "name": "Blanching",
+    "summary": "Briefly boiling food, then plunging it into ice water to stop the cooking.",
+    "donenessCues": "Vegetables turn bright and are crisp-tender, usually 1–3 minutes; tomato and peach skins start to split.",
+    "commonMistakes": "Skipping the ice bath, cooking too many pieces at once, unsalted water.",
+    "difficulty": 1
+  },
+  {
+    "name": "Braising",
+    "summary": "Searing food, then cooking it slowly, partly covered in liquid, until very tender.",
+    "donenessCues": "Meat is fork-tender and pulls apart easily; the liquid has thickened into a rich sauce.",
+    "commonMistakes": "Skipping the sear, using too much liquid, cooking at a boil instead of a gentle simmer, rushing it.",
+    "difficulty": 3
+  },
+  {
+    "name": "Stewing",
+    "summary": "Simmering small pieces of food fully covered in liquid for a long time.",
+    "donenessCues": "Meat is tender, vegetables hold their shape but are soft, and the broth is flavorful and slightly thick.",
+    "commonMistakes": "Cutting pieces unevenly, adding delicate vegetables too early, letting it boil.",
+    "difficulty": 2
+  },
+  {
+    "name": "Pressure Cooking",
+    "summary": "Cooking in a sealed pot where trapped steam raises the temperature, cutting cooking time dramatically.",
+    "donenessCues": "Follow the recipe's time; after release, meat is fork-tender and beans or grains are soft.",
+    "commonMistakes": "Overfilling the pot, not enough liquid, opening before the pressure has fully released.",
+    "difficulty": 2
+  },
+  {
+    "name": "Sous Vide",
+    "summary": "Cooking vacuum-sealed food in a precisely heated water bath, then usually searing it to finish.",
+    "donenessCues": "Food reaches the bath temperature edge to edge; follow a time-and-temperature chart for food safety.",
+    "commonMistakes": "Too short a time for safety, bags that float or leak, skipping the final sear and getting a pale exterior.",
+    "difficulty": 3
+  },
+  {
+    "name": "Stir-Frying",
+    "summary": "Cooking small, evenly cut pieces quickly in a very hot pan or wok while tossing constantly.",
+    "donenessCues": "Vegetables are bright and crisp-tender; meat is just cooked through with browned edges.",
+    "commonMistakes": "Overcrowding the pan so food steams, a pan that isn't hot enough, adding ingredients that take different times all at once.",
+    "difficulty": 2
+  },
+  {
+    "name": "Pan-Frying",
+    "summary": "Cooking food in a moderate layer of hot fat in a skillet, turning once, for a crisp golden exterior.",
+    "donenessCues": "Golden and crisp on both sides; chicken 165°F (74°C), pork chops 145°F (63°C) inside.",
+    "commonMistakes": "Oil not hot enough so food gets greasy, flipping repeatedly, overcrowding.",
+    "difficulty": 2
+  },
+  {
+    "name": "Deep-Frying",
+    "summary": "Fully submerging food in hot oil, usually 350–375°F (175–190°C), for an even, crisp crust.",
+    "donenessCues": "Deep golden color; food floats and the bubbling slows; check meat with a thermometer.",
+    "commonMistakes": "Guessing the oil temperature, adding too much food so the oil cools, wet food that spatters. Never leave hot oil unattended.",
+    "difficulty": 4
+  },
+  {
+    "name": "Air Frying",
+    "summary": "Cooking with rapidly circulating hot air for a crisp exterior using little or no oil.",
+    "donenessCues": "Crisp and browned; shake the basket halfway; check meat with a thermometer.",
+    "commonMistakes": "Overfilling the basket, skipping a light coat of oil, not shaking or flipping.",
+    "difficulty": 1
+  },
+  {
+    "name": "Smoking",
+    "summary": "Cooking or flavoring food low and slow with smoke from smoldering wood.",
+    "donenessCues": "A pink smoke ring and a dark bark; brisket and pork shoulder probe-tender around 195–205°F (90–96°C).",
+    "commonMistakes": "Thick white smoke that makes food bitter, opening the lid too often, pulling meat before it's tender.",
+    "difficulty": 4
+  },
+  {
+    "name": "Toasting",
+    "summary": "Dry-heating nuts, seeds, spices or bread to deepen flavor and aroma.",
+    "donenessCues": "Fragrant and a shade or two darker, usually 2–5 minutes in a dry pan.",
+    "commonMistakes": "Walking away: nuts and spices go from toasted to burnt in seconds.",
+    "difficulty": 1
+  },
+  {
+    "name": "Basting",
+    "summary": "Spooning hot fat or pan juices over food as it cooks to add flavor and encourage browning.",
+    "donenessCues": "Even golden-brown color; the surface looks glossy rather than dry.",
+    "commonMistakes": "Opening the oven so often the temperature drops, basting with liquid that washes off seasoning.",
+    "difficulty": 2
+  },
+  {
+    "name": "Deglazing",
+    "summary": "Adding liquid to a hot pan to lift the browned bits (fond) stuck to the bottom into a sauce.",
+    "donenessCues": "The pan bottom is clean and the liquid has turned rich and brown.",
+    "commonMistakes": "Deglazing a pan whose bits are burnt (it makes the sauce bitter), adding liquid to a pan that isn't hot.",
+    "difficulty": 1
+  },
+  {
+    "name": "Reducing",
+    "summary": "Simmering a liquid uncovered so water evaporates, concentrating flavor and thickening it.",
+    "donenessCues": "Coats the back of a spoon; a line drawn through it with your finger holds.",
+    "commonMistakes": "Salting before reducing (it gets too salty), boiling too hard so it scorches or breaks.",
+    "difficulty": 2
+  },
+  {
+    "name": "Emulsifying",
+    "summary": "Combining two liquids that don't normally mix, like oil and vinegar, into a smooth, stable sauce.",
+    "donenessCues": "Smooth and creamy with no oil pooling or separating.",
+    "commonMistakes": "Adding the oil too fast, ingredients at very different temperatures. A broken sauce can often be rescued with a little water or a fresh yolk.",
+    "difficulty": 3
+  },
+  {
+    "name": "Tempering",
+    "summary": "Slowly warming eggs or dairy by whisking in a little hot liquid before adding them to a hot dish, so they don't curdle.",
+    "donenessCues": "The mixture is smooth with no cooked egg bits; custards coat the back of a spoon.",
+    "commonMistakes": "Pouring the hot liquid in too fast, adding the eggs straight into the hot pot.",
+    "difficulty": 3
+  },
+  {
+    "name": "Glazing",
+    "summary": "Brushing on a sugary or reduced coating near the end of cooking for a shiny, flavorful finish.",
+    "donenessCues": "Glossy and slightly sticky; caramelized but not blackened.",
+    "commonMistakes": "Adding sugary glazes too early so they burn before the food is cooked.",
+    "difficulty": 2
+  },
+  {
+    "name": "Marinating",
+    "summary": "Soaking food in a seasoned liquid, often with acid, oil and salt, to add flavor before cooking.",
+    "donenessCues": "Fish 15–30 minutes, chicken 2–12 hours, tougher meats up to 24 hours. Always marinate in the fridge.",
+    "commonMistakes": "Marinating too long in strong acid so the texture turns mushy, reusing raw-meat marinade without boiling it.",
+    "difficulty": 1
+  },
+  {
+    "name": "Brining",
+    "summary": "Soaking meat in salted water (wet brine) or salting it ahead (dry brine) so it stays juicy and is seasoned throughout.",
+    "donenessCues": "Pat dry before cooking; the meat cooks up noticeably juicier.",
+    "commonMistakes": "Too much salt or too long a soak, forgetting to rinse or dry, then salting heavily again.",
+    "difficulty": 2
+  },
+  {
+    "name": "Quick Pickling",
+    "summary": "Covering vegetables with a hot vinegar, salt and sugar brine for fast, tangy refrigerator pickles.",
+    "donenessCues": "Ready after about an hour, best after a day; keep refrigerated and use within a few weeks.",
+    "commonMistakes": "Vinegar too weak, not keeping them cold. Quick pickles are not shelf-stable.",
+    "difficulty": 1
+  },
+  {
+    "name": "Knife Skills: Dicing and Mincing",
+    "summary": "Cutting food into even cubes (dicing) or very fine pieces (mincing) so it cooks evenly.",
+    "donenessCues": "Pieces are the same size; a fine mince looks almost like a paste.",
+    "commonMistakes": "A dull knife (more dangerous than a sharp one), fingertips not tucked into a claw grip, uneven pieces.",
+    "difficulty": 2
+  },
+  {
+    "name": "Mashing and Puréeing",
+    "summary": "Breaking cooked food down into a smooth or rustic mash, by hand or in a blender.",
+    "donenessCues": "Smooth with no lumps, or as chunky as you like; fold in warm butter or cream at the end.",
+    "commonMistakes": "Under-cooking so it stays lumpy, over-blending starchy potatoes into glue, adding cold dairy.",
+    "difficulty": 1
+  },
+  {
+    "name": "Whipping",
+    "summary": "Beating air into cream or egg whites until they increase in volume.",
+    "donenessCues": "Soft peaks curl over; stiff peaks stand straight up when the whisk is lifted.",
+    "commonMistakes": "A greasy bowl or any yolk in the whites, over-whipping cream until it turns grainy or buttery.",
+    "difficulty": 2
+  },
+  {
+    "name": "Folding",
+    "summary": "Gently combining a light, airy mixture into a heavier one without knocking out the air.",
+    "donenessCues": "Just combined, with no streaks left, and the mixture still light and fluffy.",
+    "commonMistakes": "Stirring instead of folding, over-mixing until the batter deflates.",
+    "difficulty": 2
+  },
+  {
+    "name": "Creaming",
+    "summary": "Beating softened butter and sugar together until light and fluffy, the base of many cakes and cookies.",
+    "donenessCues": "Pale in color, noticeably fluffier, about 3–5 minutes with a mixer.",
+    "commonMistakes": "Butter too cold or melted, stopping too soon, adding eggs all at once.",
+    "difficulty": 2
+  },
+  {
+    "name": "Kneading",
+    "summary": "Working dough by pushing, folding and turning it to develop gluten for structure.",
+    "donenessCues": "Smooth and elastic; a small piece stretches thin enough to let light through without tearing (the windowpane test).",
+    "commonMistakes": "Adding too much flour, under-kneading so bread is dense, over-kneading in a machine.",
+    "difficulty": 3
+  },
+  {
+    "name": "Proofing",
+    "summary": "Letting shaped yeast dough rise before baking.",
+    "donenessCues": "Roughly doubled in size; a gentle poke springs back slowly and leaves a slight dent.",
+    "commonMistakes": "Over-proofing so it collapses in the oven, a spot that's too cold or too hot.",
+    "difficulty": 2
+  },
+  {
+    "name": "Resting",
+    "summary": "Letting cooked meat sit before slicing so the juices redistribute, and the temperature finishes rising.",
+    "donenessCues": "Steaks 5–10 minutes, roasts 15–20, a whole turkey 20–40; loosely tented with foil.",
+    "commonMistakes": "Cutting in right away so juices run out, wrapping tightly so a crisp crust steams soft.",
+    "difficulty": 1
   }
 ]
