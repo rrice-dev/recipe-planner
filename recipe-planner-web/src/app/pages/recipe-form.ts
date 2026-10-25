@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, input, signal } from '@angular/core';
+import { Component, computed, OnInit, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -37,8 +37,12 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
       <div class="row item" [formGroup]="row">
         <select formControlName="ingredientId" class="grow">
           <option [ngValue]="null" disabled>Choose ingredient…</option>
-          @for (ing of ingredients(); track ing.id) {
-            <option [ngValue]="ing.id">{{ ing.name }}</option>
+          @for (group of ingredientGroups(); track group.section) {
+            <optgroup [label]="group.section">
+              @for (ing of group.items; track ing.id) {
+                <option [ngValue]="ing.id">{{ ing.name }}</option>
+              }
+            </optgroup>
           }
         </select>
         <input type="number" formControlName="quantity" step="0.25" min="0" class="narrow" />
@@ -88,6 +92,21 @@ export class RecipeFormPage implements OnInit {
   id = input<string>();
 
   ingredients = signal<Ingredient[]>([]);
+
+  // Long list, so group it the way a store is laid out
+  ingredientGroups = computed(() => {
+    const order = ['Produce', 'Meat', 'Seafood', 'Dairy', 'Bakery', 'Grains & Pasta', 'Canned Goods', 'Baking',
+      'Oils & Vinegars', 'Condiments & Sauces', 'Spices', 'Nuts & Seeds', 'Frozen', 'Beverages'];
+    const groups = new Map<string, Ingredient[]>();
+    for (const ing of this.ingredients()) {
+      const section = ing.storeSection ?? 'Other';
+      groups.set(section, [...(groups.get(section) ?? []), ing]);
+    }
+    const rank = (s: string) => (order.indexOf(s) === -1 ? order.length : order.indexOf(s));
+    return [...groups.entries()]
+      .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
+      .map(([section, items]) => ({ section, items: items.sort((a, b) => a.name.localeCompare(b.name)) }));
+  });
   techniques = signal<Technique[]>([]);
   saving = signal(false);
   error = signal<string | null>(null);

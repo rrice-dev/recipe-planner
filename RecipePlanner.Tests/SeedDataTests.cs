@@ -14,7 +14,7 @@ public class SeedDataTests
     }
 
     [Fact]
-    public async Task Seed_techniques_are_valid_and_seeding_twice_adds_nothing()
+    public async Task Seed_data_is_valid_and_seeding_twice_adds_nothing()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
         await using var db = new AppDbContext(options);
@@ -23,6 +23,9 @@ public class SeedDataTests
         var techniques = await db.Techniques.ToListAsync();
 
         Assert.True(techniques.Count >= 39);
+        Assert.True(await db.Ingredients.CountAsync() >= 300);
+        Assert.Equal(await db.Ingredients.CountAsync(),
+            (await db.Ingredients.Select(i => i.Name.ToLower()).ToListAsync()).Distinct().Count());
         Assert.All(techniques, t =>
         {
             Assert.InRange(t.Difficulty, 1, 5);
@@ -34,5 +37,6 @@ public class SeedDataTests
         // Runs on every API start, so it must never duplicate anything
         await DbSeeder.SeedAsync(db, ApiContentRoot());
         Assert.Equal(techniques.Count, await db.Techniques.CountAsync());
+        Assert.True(await db.Ingredients.CountAsync() >= 300);
     }
 }

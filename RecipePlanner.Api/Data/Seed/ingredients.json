@@ -1,19 +1,1534 @@
 [
-  { "name": "Yellow Onion", "storeSection": "Produce" },
-  { "name": "Garlic", "storeSection": "Produce" },
-  { "name": "Butter", "storeSection": "Dairy" },
-  { "name": "Chicken Thighs", "storeSection": "Meat" },
-  { "name": "Sweet Potato", "storeSection": "Produce" },
-  { "name": "Mushrooms", "storeSection": "Produce" },
-  { "name": "Garlic Powder", "storeSection": "Spices" },
-  { "name": "Turmeric", "storeSection": "Spices" },
-  { "name": "Oregano", "storeSection": "Spices" },
-  { "name": "Bell Pepper", "storeSection": "Produce" },
-  { "name": "Zucchini", "storeSection": "Produce" },
-  { "name": "Basil", "storeSection": "Produce" },
-  { "name": "Butternut Squash", "storeSection": "Produce" },
-  { "name": "Ginger", "storeSection": "Produce" },
-  { "name": "Sage", "storeSection": "Spices" },
-  { "name": "Gochugaru", "storeSection": "Spices" },
-  { "name": "Sea Salt", "storeSection": "Spices" }
+  {
+    "name": "Yellow Onion",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Garlic",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Butter",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Chicken Thighs",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Sweet Potato",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Mushrooms",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Garlic Powder",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Turmeric",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Oregano",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Bell Pepper",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Zucchini",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Basil",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Butternut Squash",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Ginger",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Sage",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Gochugaru",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Sea Salt",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Red Onion",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "White Onion",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Shallot",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Green Onions",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Leek",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Carrot",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Celery",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Potato",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Red Potatoes",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Yukon Gold Potatoes",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Broccoli",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cauliflower",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Brussels Sprouts",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Green Cabbage",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Red Cabbage",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Napa Cabbage",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Bok Choy",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Spinach",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Baby Spinach",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Kale",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Arugula",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Romaine Lettuce",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Iceberg Lettuce",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Mixed Greens",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Collard Greens",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Swiss Chard",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Green Beans",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Asparagus",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Snap Peas",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Snow Peas",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Corn on the Cob",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cucumber",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Eggplant",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Yellow Squash",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Acorn Squash",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Spaghetti Squash",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Pumpkin",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Tomato",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Roma Tomatoes",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cherry Tomatoes",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Avocado",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Jalapeño",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Serrano Pepper",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Poblano Pepper",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Habanero",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fresno Chili",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Thai Chili",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Radish",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Beet",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Parsnip",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Turnip",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fennel",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Artichoke",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Okra",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Portobello Mushrooms",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Shiitake Mushrooms",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cremini Mushrooms",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Bean Sprouts",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Lemon",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Lime",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Orange",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Grapefruit",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Apple",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Banana",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Pear",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Peach",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Mango",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Pineapple",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Strawberries",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Blueberries",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Raspberries",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Blackberries",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Grapes",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Watermelon",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cantaloupe",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cranberries",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Pomegranate",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Kiwi",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Cilantro",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Flat-Leaf Parsley",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Mint",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Dill",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Chives",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fresh Thyme",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fresh Rosemary",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fresh Oregano",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Fresh Sage",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Lemongrass",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Tofu",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Tempeh",
+    "storeSection": "Produce"
+  },
+  {
+    "name": "Chicken Breast",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Whole Chicken",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Chicken Wings",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Chicken Drumsticks",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ground Chicken",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ground Turkey",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Turkey Breast",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ground Beef",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Beef Chuck Roast",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ribeye Steak",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Sirloin Steak",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Flank Steak",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Skirt Steak",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Beef Short Ribs",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Beef Stew Meat",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Brisket",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pork Chops",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pork Tenderloin",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pork Shoulder",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pork Belly",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ground Pork",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Baby Back Ribs",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Bacon",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ham",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Italian Sausage",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Chorizo",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Kielbasa",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Breakfast Sausage",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Hot Dogs",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Lamb Chops",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Ground Lamb",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Prosciutto",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pancetta",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Pepperoni",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Deli Turkey",
+    "storeSection": "Meat"
+  },
+  {
+    "name": "Salmon Fillet",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Cod",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Tilapia",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Halibut",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Tuna Steak",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Mahi-Mahi",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Catfish",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Shrimp",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Scallops",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Crab Meat",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Lobster Tail",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Mussels",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Clams",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Smoked Salmon",
+    "storeSection": "Seafood"
+  },
+  {
+    "name": "Eggs",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Whole Milk",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "2% Milk",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Heavy Cream",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Half-and-Half",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Sour Cream",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Plain Greek Yogurt",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Plain Yogurt",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Buttermilk",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Unsalted Butter",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Cream Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Cottage Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Ricotta",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Cheddar Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Sharp Cheddar",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Mozzarella",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Fresh Mozzarella",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Parmesan",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Pecorino Romano",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Monterey Jack",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Pepper Jack",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Swiss Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Provolone",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Feta",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Goat Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Blue Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Gruyère",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "American Cheese",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Mascarpone",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Oat Milk",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Almond Milk",
+    "storeSection": "Dairy"
+  },
+  {
+    "name": "Sandwich Bread",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Whole Wheat Bread",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Sourdough Bread",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Baguette",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Hamburger Buns",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Hot Dog Buns",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Flour Tortillas",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Corn Tortillas",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Pita Bread",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Naan",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "English Muffins",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Bagels",
+    "storeSection": "Bakery"
+  },
+  {
+    "name": "Long-Grain White Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Jasmine Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Basmati Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Brown Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Arborio Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Wild Rice",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Quinoa",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Couscous",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Farro",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Barley",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Rolled Oats",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Spaghetti",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Penne",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Fettuccine",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Linguine",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Rigatoni",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Elbow Macaroni",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Lasagna Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Orzo",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Egg Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Ramen Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Rice Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Udon Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Soba Noodles",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Panko Breadcrumbs",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Breadcrumbs",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Cornmeal",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Grits",
+    "storeSection": "Grains & Pasta"
+  },
+  {
+    "name": "Crushed Tomatoes",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Diced Tomatoes",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Tomato Paste",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Tomato Sauce",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "San Marzano Tomatoes",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Black Beans",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Kidney Beans",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Pinto Beans",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Cannellini Beans",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Chickpeas",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Lentils",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Refried Beans",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Coconut Milk",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Chicken Broth",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Beef Broth",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Vegetable Broth",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Canned Tuna",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Canned Corn",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Green Chiles",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Chipotle Peppers in Adobo",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Pumpkin Purée",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Evaporated Milk",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "Sweetened Condensed Milk",
+    "storeSection": "Canned Goods"
+  },
+  {
+    "name": "All-Purpose Flour",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Bread Flour",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Whole Wheat Flour",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Cornstarch",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Granulated Sugar",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Brown Sugar",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Powdered Sugar",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Baking Soda",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Baking Powder",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Active Dry Yeast",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Instant Yeast",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Vanilla Extract",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Cocoa Powder",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Chocolate Chips",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Semi-Sweet Chocolate",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Honey",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Maple Syrup",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Molasses",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Corn Syrup",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Shredded Coconut",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Gelatin",
+    "storeSection": "Baking"
+  },
+  {
+    "name": "Olive Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Extra-Virgin Olive Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Vegetable Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Canola Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Avocado Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Sesame Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Coconut Oil",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Cooking Spray",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Balsamic Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Red Wine Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "White Wine Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Apple Cider Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Rice Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Distilled White Vinegar",
+    "storeSection": "Oils & Vinegars"
+  },
+  {
+    "name": "Soy Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Low-Sodium Soy Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Fish Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Oyster Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Hoisin Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Sriracha",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Gochujang",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Worcestershire Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Hot Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Dijon Mustard",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Yellow Mustard",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Whole-Grain Mustard",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Ketchup",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Mayonnaise",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "BBQ Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Salsa",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Marinara Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Pesto",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Tahini",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Peanut Butter",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Miso Paste",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Sweet Chili Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Teriyaki Sauce",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Capers",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Kalamata Olives",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Dill Pickles",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Sun-Dried Tomatoes",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Roasted Red Peppers",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Anchovies",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Thai Red Curry Paste",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Harissa",
+    "storeSection": "Condiments & Sauces"
+  },
+  {
+    "name": "Kosher Salt",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Table Salt",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Black Pepper",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Black Peppercorns",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Paprika",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Smoked Paprika",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Chili Powder",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Cayenne Pepper",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Red Pepper Flakes",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Cumin",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Cumin Seeds",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Coriander",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Cinnamon",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Nutmeg",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Ginger",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Ground Cloves",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Allspice",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Cardamom",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Curry Powder",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Garam Masala",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Onion Powder",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Dried Thyme",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Dried Rosemary",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Dried Basil",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Bay Leaves",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Italian Seasoning",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Herbes de Provence",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Dried Dill",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Fennel Seeds",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Mustard Seeds",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Celery Seed",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Five-Spice Powder",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Za'atar",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Old Bay Seasoning",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Cajun Seasoning",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Taco Seasoning",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Everything Bagel Seasoning",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Sesame Seeds",
+    "storeSection": "Spices"
+  },
+  {
+    "name": "Almonds",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Sliced Almonds",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Walnuts",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Pecans",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Cashews",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Peanuts",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Pistachios",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Pine Nuts",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Sunflower Seeds",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Pumpkin Seeds",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Chia Seeds",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Flaxseed",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Raisins",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Dried Cranberries",
+    "storeSection": "Nuts & Seeds"
+  },
+  {
+    "name": "Frozen Peas",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Corn",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Spinach",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Broccoli",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Mixed Vegetables",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Berries",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Shrimp",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Puff Pastry",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Pie Crust",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Frozen Hash Browns",
+    "storeSection": "Frozen"
+  },
+  {
+    "name": "Dry White Wine",
+    "storeSection": "Beverages"
+  },
+  {
+    "name": "Dry Red Wine",
+    "storeSection": "Beverages"
+  },
+  {
+    "name": "Beer",
+    "storeSection": "Beverages"
+  },
+  {
+    "name": "Coffee",
+    "storeSection": "Beverages"
+  },
+  {
+    "name": "Orange Juice",
+    "storeSection": "Beverages"
+  }
 ]
