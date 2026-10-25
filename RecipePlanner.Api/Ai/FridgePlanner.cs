@@ -49,6 +49,15 @@ public static partial class FridgePlanner
         return (cleaned, errors);
     }
 
+    // Scanned names go through the same rules as typed ones; anything that wouldn't pass is dropped
+    public static List<string> CleanScannedIngredients(IEnumerable<string> raw) =>
+        raw.Select(i => (i ?? "").Trim())
+            .Where(i => i.Length > 0 && i.Length <= MaxIngredientLength && AllowedIngredient().IsMatch(i))
+            .Select(i => i.ToLowerInvariant())
+            .Distinct()
+            .Take(MaxIngredients)
+            .ToList();
+
     // ---------- Your own recipes (no AI involved) ----------
 
     public static List<FridgeRecipeMatch> MatchRecipes(IEnumerable<Recipe> recipes, IReadOnlyList<string> onHand) =>

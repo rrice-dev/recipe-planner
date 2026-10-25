@@ -23,7 +23,14 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
         <input class="grow" name="ingredient" [(ngModel)]="draft" placeholder="e.g. chicken thighs, then press Enter"
                [attr.maxlength]="maxLength" autocomplete="off" />
         <button type="submit">Add</button>
+        <label class="button" [class.disabled]="scanning()">
+          {{ scanning() ? 'Scanning…' : '📷 Scan a photo' }}
+          <input type="file" accept="image/*" hidden (change)="scan($event)" [disabled]="scanning()" />
+        </label>
       </div>
+      @if (scanNote()) {
+        <p class="muted small-text">{{ scanNote() }}</p>
+      }
       @if (inputError()) {
         <p class="error">{{ inputError() }}</p>
       }
@@ -109,6 +116,8 @@ export class FridgePage {
   inputError = signal<string | null>(null);
   error = signal<string | null>(null);
   busy = signal(false);
+  scanning = signal(false);
+  scanNote = signal<string | null>(null);
   result = signal<FridgeResponse | null>(null);
 
   add() {
@@ -132,6 +141,47 @@ export class FridgePage {
     this.draft = '';
   }
 
+  async scan(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = ''; // so picking the same photo again still triggers a scan
+    if (!file) return;
+
+    this.inputError.set(null);
+    this.scanNote.set(null);
+    this.scanning.set(true);
+    try {
+      const photo = await shrinkPhoto(file);
+      const { ingredients } = await firstValueFrom(this.api.scanPhoto(photo));
+
+      const merged = [...this.ingredients()];
+      let added = 0;
+      for (const item of ingredients) {
+        if (merged.length >= MAX_INGREDIENTS) break;
+        if (!merged.some(m => m.toLowerCase() === item.toLowerCase())) {
+          merged.push(item);
+          added++;
+        }
+      }
+      this.ingredients.set(merged);
+      // The AI's list is a draft: the user reviews it before anything else happens
+      this.scanNote.set(added
+        ? `Found ${added} item${added === 1 ? '' : 's'}. Remove anything that's wrong and add what it missed.`
+        : "Couldn't spot any new food in that photo. Try a closer, well-lit shot.");
+    } catch (e) {
+      const status = e instanceof HttpErrorResponse ? e.status : 0;
+      this.inputError.set(
+        status === 429 ? "You've used your photo scans for this hour. Try again later." :
+        status === 413 ? 'That photo is too large.' :
+        status === 400 || status === 415 ? "That file couldn't be read as a photo." :
+        status === 503 ? 'Photo scanning is unavailable right now.' :
+        e instanceof PhotoReadError ? "That file couldn't be read as a photo." :
+        'Something went wrong scanning the photo. Please try again.');
+    } finally {
+      this.scanning.set(false);
+    }
+  }
+
   remove(item: string) {
     this.ingredients.update(list => list.filter(i => i !== item));
   }
@@ -151,4 +201,29 @@ export class FridgePage {
       this.busy.set(false);
     }
   }
+}
+
+class PhotoReadError extends Error {}
+
+// Shrinks the photo in the browser before uploading: much faster on mobile data, and the
+// server would shrink it anyway. Drawing to a canvas also drops the photo's EXIF data
+// (including GPS location) before it ever leaves the phone. The server still re-checks everything.
+async function shrinkPhoto(file: File, maxEdge = 1024): Promise<Blob> {
+  let source: ImageBitmap;
+  try {
+    source = await createImageBitmap(file, { imageOrientation: 'from-image' });
+  } catch {
+    throw new PhotoReadError();
+  }
+
+  const scale = Math.min(1, maxEdge / Math.max(source.width, source.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(source.width * scale));
+  canvas.height = Math.max(1, Math.round(source.height * scale));
+  canvas.getContext('2d')!.drawImage(source, 0, 0, canvas.width, canvas.height);
+  source.close();
+
+  const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
+  if (!blob) throw new PhotoReadError();
+  return blob;
 }

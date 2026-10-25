@@ -18,6 +18,10 @@ public static class RateLimiting
     public const int AiPermitLimit = 10;
     public static readonly TimeSpan AiWindow = TimeSpan.FromHours(1);
 
+    // Photo scans get their own allowance, so scanning doesn't use up meal suggestions
+    public const string AiScanPolicy = "ai-scan";
+    public const int AiScanPermitLimit = 10;
+
     // Only POSTs to these paths count against the strict limit.
     // /manage/info is left out because the web app calls it on every page load.
     private static readonly HashSet<string> SensitiveAuthPaths = new(StringComparer.OrdinalIgnoreCase)
@@ -46,6 +50,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = AiPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(AiScanPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = AiScanPermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

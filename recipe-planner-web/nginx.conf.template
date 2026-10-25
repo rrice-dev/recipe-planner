@@ -22,6 +22,8 @@ server {
 
     # Forward API calls to the API container
     location /api/ {
+        # nginx's default 1 MB limit; photos are shrunk in the browser, and the API enforces its own 5 MB cap
+        client_max_body_size 6m;
         proxy_pass ${API_UPSTREAM};
         # Azure routes by hostname, so this must name the API app
         proxy_set_header Host ${API_HOST};

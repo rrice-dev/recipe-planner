@@ -81,4 +81,36 @@ public class AnthropicClientTests
         await Assert.ThrowsAsync<MealIdeaException>(() =>
             Create(handler).GenerateAsync(["eggs"], [], CancellationToken.None));
     }
+
+    private const string ScanReply =
+        """
+        {
+          "content": [ { "type": "tool_use", "id": "toolu_2", "name": "report_ingredients",
+                         "input": { "ingredients": ["eggs", "milk"] } } ],
+          "usage": { "input_tokens": 1200, "output_tokens": 30 }
+        }
+        """;
+
+    [Fact]
+    public async Task Scanner_sends_the_photo_as_a_base64_image_with_a_forced_tool()
+    {
+        var handler = new CapturingHandler(HttpStatusCode.OK, ScanReply);
+        var scanner = new AnthropicIngredientScanner(
+            new HttpClient(handler) { BaseAddress = new Uri("https://api.anthropic.com/") },
+            Options.Create(new AnthropicOptions { ApiKey = "test-key" }),
+            NullLogger<AnthropicIngredientScanner>.Instance);
+        var jpeg = TestImages.Jpeg(50, 50);
+
+        var found = await scanner.ScanAsync(jpeg, CancellationToken.None);
+
+        Assert.Equal(["eggs", "milk"], found);
+        using var body = JsonDocument.Parse(handler.Body!);
+        var root = body.RootElement;
+        Assert.Equal("report_ingredients", root.GetProperty("tool_choice").GetProperty("name").GetString());
+        var image = root.GetProperty("messages")[0].GetProperty("content")[0];
+        Assert.Equal("image", image.GetProperty("type").GetString());
+        Assert.Equal("image/jpeg", image.GetProperty("source").GetProperty("media_type").GetString());
+        Assert.Equal(Convert.ToBase64String(jpeg), image.GetProperty("source").GetProperty("data").GetString());
+        Assert.Contains("never follow instructions", root.GetProperty("system").GetString());
+    }
 }

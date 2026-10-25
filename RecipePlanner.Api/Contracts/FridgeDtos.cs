@@ -16,3 +16,5 @@ public record FridgeMealIdea(
     List<string> UsesIngredients,
     List<string> ExtraIngredients,
     List<TechniqueSummary> Techniques);
+
+public record ScanResponse(List<string> Ingredients);

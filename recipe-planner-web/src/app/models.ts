@@ -97,3 +97,7 @@ export interface FridgeResponse {
   aiAvailable: boolean;
   aiNotice: string | null;
 }
+
+export interface ScanResponse {
+  ingredients: string[];
+}

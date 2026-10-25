@@ -194,3 +194,5 @@ nav .user { margin-left: 1.25rem; color: var(--muted); font-size: 0.9rem; }
 nav button.link { margin-left: 0.5rem; }
 .chip button.link { padding: 0 0 0 0.35rem; color: var(--accent); }
 a.chip { text-decoration: none; }
+label.button, .row label.button { margin: 0; flex: 0 0 auto; min-width: 0; }
+label.button.disabled { pointer-events: none; opacity: 0.6; }

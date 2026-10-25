@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FridgeResponse, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { FridgeResponse, ScanResponse, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -89,6 +89,11 @@ setMealPlanEntries(id: number, entries: { day: string; recipeId: number; serving
 
 getShoppingList(id: number) {
   return this.http.get<ShoppingList>(`/api/mealplans/${id}/shopping-list`);
+}
+
+scanPhoto(photo: Blob) {
+  // Raw image bytes, not a form upload; the API checks the type and contents itself
+  return this.http.post<ScanResponse>('/api/fridge/scan', photo, { headers: { 'Content-Type': 'image/jpeg' } });
 }
 
 getFridgeSuggestions(ingredients: string[]) {

@@ -16,6 +16,7 @@ public class ApiFactory : WebApplicationFactory<Program>
 
     // Set this to a fake to test the AI feature without calling a real provider
     public IMealIdeaGenerator? MealIdeas { get; init; }
+    public IIngredientScanner? Scanner { get; init; }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -30,6 +31,12 @@ public class ApiFactory : WebApplicationFactory<Program>
             {
                 services.RemoveAll<IMealIdeaGenerator>();
                 services.AddSingleton(MealIdeas);
+            }
+
+            if (Scanner is not null)
+            {
+                services.RemoveAll<IIngredientScanner>();
+                services.AddSingleton(Scanner);
             }
         });
     }
