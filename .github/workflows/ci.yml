@@ -21,7 +21,7 @@ jobs:
     name: API build and tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-dotnet@v5
         with:
@@ -43,7 +43,7 @@ jobs:
       run:
         working-directory: recipe-planner-web
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v5
         with:
@@ -64,7 +64,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Build API image
         run: docker build -t recipe-planner-api ./RecipePlanner.Api
@@ -93,7 +93,7 @@ jobs:
       # Tag images with the commit, so every deploy is traceable to exact code and easy to roll back
       TAG: ${{ github.sha }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Sign in to Azure
         uses: azure/login@v2
