@@ -13,7 +13,8 @@ permissions:
 # If you push twice quickly, cancel the older run
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Only cancel superseded pull request runs. Never cancel a run on main, which could stop a deploy halfway.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   api:
@@ -56,9 +57,11 @@ jobs:
       - name: Build
         run: npx ng build --configuration production
 
+  # On pull requests, prove both images still build. On main, the deploy job builds them for real.
   docker:
     name: Docker images
     needs: [api, web]
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -68,3 +71,60 @@ jobs:
 
       - name: Build web image
         run: docker build -t recipe-planner-web ./recipe-planner-web
+
+  # Every push to main that passes the tests is deployed. Signs in to Azure with a short-lived token
+  # (OpenID Connect), so no Azure password or key is stored in GitHub.
+  deploy:
+    name: Deploy to Azure
+    needs: [api, web]
+    # Skipped until the Azure sign-in is set up (the AZURE_CLIENT_ID repository variable exists)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.AZURE_CLIENT_ID != ''
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write # lets this job request the sign-in token; nothing else gets it
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false # two quick merges deploy one after the other, never at the same time
+    env:
+      RG: recipe-planner-rg
+      ACR: recipeplanner516
+      # Tag images with the commit, so every deploy is traceable to exact code and easy to roll back
+      TAG: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Sign in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Sign in to the container registry
+        run: az acr login --name "$ACR"
+
+      - name: Build and push the API image
+        run: docker buildx build --platform linux/amd64 -t "$ACR.azurecr.io/recipe-api:$TAG" --push ./RecipePlanner.Api
+
+      - name: Build and push the web image
+        run: docker buildx build --platform linux/amd64 -t "$ACR.azurecr.io/recipe-web:$TAG" --push ./recipe-planner-web
+
+      # API first: it runs any database migrations, and the new web app may call new API endpoints
+      - name: Deploy the API
+        run: az containerapp update --name recipe-api --resource-group "$RG" --image "$ACR.azurecr.io/recipe-api:$TAG" --output none
+
+      - name: Deploy the web app
+        run: az containerapp update --name recipe-web --resource-group "$RG" --image "$ACR.azurecr.io/recipe-web:$TAG" --output none
+
+      # Fail loudly (and email you) if the live site doesn't answer. Both apps may be starting from zero.
+      - name: Check the live site
+        run: |
+          url="https://$(az containerapp show --name recipe-web --resource-group "$RG" --query properties.configuration.ingress.fqdn -o tsv)"
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$url/api/library" || true)
+            if [ "$code" = "200" ]; then echo "Live site is up: $url"; exit 0; fi
+            echo "Attempt $i: got $code, waiting..."; sleep 15
+          done
+          echo "The live site didn't respond with 200 after 5 minutes"; exit 1

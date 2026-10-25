@@ -49,6 +49,27 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
+    # index.html must never be cached. It names the current build's script files, so a stale copy keeps
+    # loading the old app after a deploy (the "close and reopen the tab" problem). "no-cache" still lets the
+    # browser keep a copy, it just checks with the server first, which is a tiny request.
+    # The fallback above lands here too. Note: a location that adds headers drops the server-level ones,
+    # so the security headers are repeated.
+    location = /index.html {
+        add_header Cache-Control "no-cache" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    }
+
+    # Angular puts a content hash in built file names (main-AB12CD34.js), so a new build always gets new
+    # names. These can safely be cached for a year, which makes repeat visits faster.
+    location ~* "^/[a-z0-9-]+-[A-Z0-9]{8}\.(js|css)$" {
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    }
+
     # Security headers
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-Frame-Options "DENY" always;
