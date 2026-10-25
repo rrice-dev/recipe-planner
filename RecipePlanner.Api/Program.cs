@@ -119,6 +119,7 @@ app.MapMealPlanEndpoints();
 app.MapFridgeEndpoints();
 app.MapSharingEndpoints();
 app.MapRecipePhotoEndpoints();
+app.MapGroceryListEndpoints();
 
 app.Run();
 

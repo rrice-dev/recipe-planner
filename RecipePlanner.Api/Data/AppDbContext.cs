@@ -12,6 +12,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
     public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
+    public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
 
     // The keys that encrypt login cookies. Stored here so every container uses the same keys,
     // and logins survive restarts and scale-to-zero.
@@ -47,6 +48,20 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasOne<AppUser>().WithMany()
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        b.Entity<GroceryItem>().Property(g => g.Name).HasMaxLength(100);
+        b.Entity<GroceryItem>().Property(g => g.Unit).HasMaxLength(20);
+        b.Entity<GroceryItem>().Property(g => g.Sources).HasMaxLength(200);
+        b.Entity<GroceryItem>().Property(g => g.Quantity).HasPrecision(10, 2);
+        b.Entity<GroceryItem>().HasIndex(g => g.OwnerId);
+        b.Entity<GroceryItem>()
+            .HasOne<AppUser>().WithMany()
+            .HasForeignKey(g => g.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
+        b.Entity<GroceryItem>()
+            .HasOne(g => g.Ingredient).WithMany()
+            .HasForeignKey(g => g.IngredientId)
+            .OnDelete(DeleteBehavior.SetNull);   // deleting a shared ingredient keeps the line as free text
 
         b.Entity<MealPlan>()
             .HasOne<AppUser>().WithMany()

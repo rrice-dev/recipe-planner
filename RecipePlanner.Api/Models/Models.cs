@@ -91,3 +91,19 @@ public class MealPlanEntry
     public Recipe Recipe { get; set; } = null!;
     public int Servings { get; set; }
 }
+// One line on a user's shopping list. Linked to an ingredient when it matches one,
+// or free text (like "paper towels") when it doesn't.
+public class GroceryItem
+{
+    public int Id { get; set; }
+    public string OwnerId { get; set; } = null!;
+    public int? IngredientId { get; set; }
+    public Ingredient? Ingredient { get; set; }
+    public required string Name { get; set; }
+    public decimal? Quantity { get; set; }
+    public string? Unit { get; set; }
+    public string? StoreSection { get; set; }
+    public bool Checked { get; set; }
+    public string? Sources { get; set; }      // e.g. "Lemon Herb Chicken, Week of Oct 26"
+    public DateTimeOffset AddedAt { get; set; }
+}

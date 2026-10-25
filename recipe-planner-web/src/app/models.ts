@@ -155,3 +155,20 @@ export interface SharedRecipe {
   rating: RatingSummary;
   photoVersion: string | null;
 }
+
+export interface GroceryItem {
+  id: number;
+  name: string;
+  quantity: number | null;
+  unit: string | null;
+  storeSection: string | null;
+  checked: boolean;
+  sources: string | null;
+}
+
+export interface GroceryAdd {
+  name: string;
+  quantity: number | null;
+  unit: string | null;
+  source: string | null;
+}

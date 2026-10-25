@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { groupBySection } from '../store-sections';
 import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
 
 @Component({
@@ -94,19 +95,7 @@ export class RecipeFormPage implements OnInit {
   ingredients = signal<Ingredient[]>([]);
 
   // Long list, so group it the way a store is laid out
-  ingredientGroups = computed(() => {
-    const order = ['Produce', 'Meat', 'Seafood', 'Dairy', 'Bakery', 'Grains & Pasta', 'Canned Goods', 'Baking',
-      'Oils & Vinegars', 'Condiments & Sauces', 'Spices', 'Nuts & Seeds', 'Frozen', 'Beverages'];
-    const groups = new Map<string, Ingredient[]>();
-    for (const ing of this.ingredients()) {
-      const section = ing.storeSection ?? 'Other';
-      groups.set(section, [...(groups.get(section) ?? []), ing]);
-    }
-    const rank = (s: string) => (order.indexOf(s) === -1 ? order.length : order.indexOf(s));
-    return [...groups.entries()]
-      .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
-      .map(([section, items]) => ({ section, items: items.sort((a, b) => a.name.localeCompare(b.name)) }));
-  });
+  ingredientGroups = computed(() => groupBySection(this.ingredients(), (a, b) => a.name.localeCompare(b.name)));
   techniques = signal<Technique[]>([]);
   saving = signal(false);
   error = signal<string | null>(null);

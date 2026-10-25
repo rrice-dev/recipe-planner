@@ -12,8 +12,14 @@ import { ShoppingList, ShoppingListItem } from '../models';
     @if (list(); as l) {
       <div class="page-header">
         <h1>Shopping list: {{ l.name }}</h1>
-        <button class="no-print" (click)="print()">Print</button>
+        <div class="row no-print">
+          <button class="primary" (click)="addAll()" [disabled]="adding()">{{ adding() ? 'Adding…' : '🛒 Add all to my shopping list' }}</button>
+          <button (click)="print()">Print</button>
+        </div>
       </div>
+      @if (note()) {
+        <p class="muted small-text no-print">{{ note() }} <a routerLink="/shopping-list">View list</a></p>
+      }
 
       @for (group of groups(); track group.section) {
         <section class="card shop-section">
@@ -40,6 +46,21 @@ export class ShoppingListPage implements OnInit {
   id = input.required<string>();
   list = signal<ShoppingList | null>(null);
   checked = signal(new Set<string>());
+  adding = signal(false);
+  note = signal<string | null>(null);
+
+  async addAll() {
+    this.adding.set(true);
+    this.note.set(null);
+    try {
+      await firstValueFrom(this.api.addMealPlanToGroceryList(Number(this.id())));
+      this.note.set('Added everything from this plan.');
+    } catch {
+      this.note.set("Couldn't add to your list.");
+    } finally {
+      this.adding.set(false);
+    }
+  }
 
   groups = computed(() => {
     const l = this.list();

@@ -41,6 +41,19 @@ import { PhotoReadError, shrinkPhoto } from '../photo-utils';
         <p class="error">{{ photoError() }}</p>
       }
 
+      <div class="row add-to-list">
+        <label class="inline-label">Servings
+          <input type="number" class="tiny" min="1" max="100" [value]="listServings() ?? r.servings"
+                 (input)="listServings.set(+$any($event.target).value || null)" />
+        </label>
+        <button type="button" (click)="addToList(r.id, r.servings)" [disabled]="adding() || !r.ingredients.length">
+          {{ adding() ? 'Adding…' : '🛒 Add to shopping list' }}
+        </button>
+        @if (listNote()) {
+          <span class="muted small-text">{{ listNote() }} <a routerLink="/shopping-list">View list</a></span>
+        }
+      </div>
+
       @if (social(); as s) {
         <section class="card social">
           <div class="rating-row">
@@ -141,6 +154,9 @@ export class RecipeDetailPage {
   photoVersion = linkedSignal(() => this.recipe()?.photoVersion ?? null);
   uploading = signal(false);
   photoError = signal<string | null>(null);
+  listServings = signal<number | null>(null);
+  adding = signal(false);
+  listNote = signal<string | null>(null);
   error = signal<string | null>(null);
   copied = signal(false);
   readonly canNativeShare = typeof navigator !== 'undefined' && 'share' in navigator;
@@ -151,6 +167,20 @@ export class RecipeDetailPage {
     return token ? `${location.origin}/s/${token}` : '';
   });
   targets = computed(() => shareTargets(this.link(), this.recipe()?.title ?? 'Recipe'));
+
+  async addToList(id: number, recipeServings: number) {
+    this.adding.set(true);
+    this.listNote.set(null);
+    try {
+      const servings = Math.min(100, Math.max(1, this.listServings() ?? recipeServings));
+      await firstValueFrom(this.api.addRecipeToGroceryList(id, servings));
+      this.listNote.set(`Added ingredients for ${servings} serving${servings === 1 ? '' : 's'}.`);
+    } catch {
+      this.listNote.set("Couldn't add to your list.");
+    } finally {
+      this.adding.set(false);
+    }
+  }
 
   async uploadPhoto(id: number, event: Event) {
     const input = event.target as HTMLInputElement;

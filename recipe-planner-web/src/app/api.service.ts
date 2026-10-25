@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FridgeResponse, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { FridgeResponse, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -94,6 +94,34 @@ getShoppingList(id: number) {
 scanPhoto(photo: Blob) {
   // Raw image bytes, not a form upload; the API checks the type and contents itself
   return this.http.post<ScanResponse>('/api/fridge/scan', photo, { headers: { 'Content-Type': 'image/jpeg' } });
+}
+
+getGroceryList() {
+  return this.http.get<GroceryItem[]>('/api/shopping-list');
+}
+
+addGroceryItems(items: GroceryAdd[]) {
+  return this.http.post<GroceryItem[]>('/api/shopping-list/items', items);
+}
+
+addRecipeToGroceryList(recipeId: number, servings: number | null) {
+  return this.http.post<GroceryItem[]>(`/api/shopping-list/from-recipe/${recipeId}`, { servings });
+}
+
+addMealPlanToGroceryList(planId: number) {
+  return this.http.post<GroceryItem[]>(`/api/shopping-list/from-meal-plan/${planId}`, null);
+}
+
+updateGroceryItem(id: number, changes: { checked?: boolean; quantity?: number }) {
+  return this.http.patch<void>(`/api/shopping-list/items/${id}`, changes);
+}
+
+removeGroceryItem(id: number) {
+  return this.http.delete<void>(`/api/shopping-list/items/${id}`);
+}
+
+clearGroceryList(checkedOnly: boolean) {
+  return this.http.delete<void>('/api/shopping-list', { params: { checkedOnly } });
 }
 
 uploadRecipePhoto(id: number, photo: Blob) {

@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
-import { FridgeMealIdea, FridgeResponse, RecipeDraft } from '../models';
+import { FridgeMealIdea, FridgeResponse, GroceryAdd, RecipeDraft } from '../models';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 
 // Keep in sync with FridgePlanner on the API (the API enforces these; this is just friendlier)
@@ -56,19 +56,23 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
     }
 
     @if (result(); as r) {
+      @if (listNote()) {
+        <p class="list-note">{{ listNote() }} <a routerLink="/shopping-list">View shopping list</a></p>
+      }
       <h2>From your recipes</h2>
       @if (r.fromYourRecipes.length) {
         <div class="grid">
           @for (m of r.fromYourRecipes; track m.recipeId) {
-            <a class="card" [routerLink]="['/recipes', m.recipeId]">
-              <h2>{{ m.title }}</h2>
+            <article class="card">
+              <h2><a class="plain" [routerLink]="['/recipes', m.recipeId]">{{ m.title }}</a></h2>
               <p class="small-text"><strong>You have:</strong> {{ m.have.join(', ') }}</p>
               @if (m.missing.length) {
                 <p class="small-text muted"><strong>Still need:</strong> {{ m.missing.join(', ') }}</p>
+                <button type="button" (click)="addMissing(m.title, m.missing)" [disabled]="listBusy()">🛒 Add missing to list</button>
               } @else {
                 <p class="small-text"><span class="chip small">Ready to cook</span></p>
               }
-            </a>
+            </article>
           }
         </div>
       } @else {
@@ -149,6 +153,9 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
               <button type="button" class="primary" (click)="saveRecipe(d)" [disabled]="saving()">
                 {{ saving() ? 'Saving…' : 'Save to my recipes' }}
               </button>
+              @if (needed(d).length) {
+                <button type="button" (click)="addDraftNeeds(d)" [disabled]="listBusy()">🛒 Add what I need to list</button>
+              }
             </div>
             @if (saveError()) {
               <p class="error">{{ saveError() }}</p>
@@ -186,6 +193,33 @@ export class FridgePage {
     return name ? this.recipeCache.get(name) ?? null : null;
   }
   scanNote = signal<string | null>(null);
+  listBusy = signal(false);
+  listNote = signal<string | null>(null);
+
+  needed(d: RecipeDraft) {
+    return d.ingredients.filter(i => !i.onHand);
+  }
+
+  async addMissing(title: string, missing: string[]) {
+    await this.addToList(missing.map(name => ({ name, quantity: null, unit: null, source: title })));
+  }
+
+  async addDraftNeeds(d: RecipeDraft) {
+    await this.addToList(this.needed(d).map(i => ({ name: i.name, quantity: i.quantity, unit: i.unit, source: d.title })));
+  }
+
+  private async addToList(items: GroceryAdd[]) {
+    this.listBusy.set(true);
+    this.listNote.set(null);
+    try {
+      await firstValueFrom(this.api.addGroceryItems(items));
+      this.listNote.set(`Added ${items.length} item${items.length === 1 ? '' : 's'} to your shopping list.`);
+    } catch {
+      this.listNote.set("Couldn't add to your shopping list. Please try again.");
+    } finally {
+      this.listBusy.set(false);
+    }
+  }
   result = signal<FridgeResponse | null>(null);
 
   add() {

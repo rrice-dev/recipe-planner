@@ -226,3 +226,15 @@ button.star:focus-visible { outline: 2px solid var(--accent); border-radius: 4px
 .recipe-photo { display: block; width: 100%; max-height: 480px; object-fit: cover; border-radius: 10px; margin: 0.75rem 0; background: var(--border); }
 .photo-actions { margin-bottom: 0.5rem; }
 .card-photo { display: block; width: calc(100% + 2.5rem); margin: -1rem -1.25rem 0.75rem; height: 160px; object-fit: cover; border-radius: 10px 10px 0 0; }
+
+.shop-item label { display: flex; gap: 0.6rem; align-items: baseline; cursor: pointer; flex-wrap: wrap; }
+.shop-item .sources { font-size: 0.8rem; }
+.add-to-list { margin: 0.25rem 0 0.75rem; }
+.inline-label { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500; flex: 0 0 auto !important; min-width: 0 !important; }
+.list-note { background: #eef6ee; border: 1px solid #cfe5cf; border-radius: 8px; padding: 0.5rem 0.75rem; }
+.list-note a, .add-to-list a { color: var(--accent); }
+nav { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.35rem; }
+nav a, nav .user, nav button.link { white-space: nowrap; }
+nav a { margin-left: 1rem; }
+.topbar { gap: 1rem; }
+.brand { white-space: nowrap; }
