@@ -10,12 +10,12 @@ internal static class AnthropicToolCaller
     public static async Task<JsonElement> CallAsync(
         HttpClient http, AnthropicOptions opts, ILogger logger,
         string systemPrompt, object userContent, string toolName, string toolDescription, object toolSchema,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken, int? maxTokens = null)
     {
         var body = new
         {
             model = opts.Model,
-            max_tokens = opts.MaxTokens,
+            max_tokens = maxTokens ?? opts.MaxTokens,
             system = systemPrompt,
             messages = new[] { new { role = "user", content = userContent } },
             tools = new[] { new { name = toolName, description = toolDescription, input_schema = toolSchema } },

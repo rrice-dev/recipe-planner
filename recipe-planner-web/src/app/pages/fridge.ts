@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
-import { FridgeResponse } from '../models';
+import { FridgeMealIdea, FridgeResponse, RecipeDraft } from '../models';
 
 // Keep in sync with FridgePlanner on the API (the API enforces these; this is just friendlier)
 const MAX_INGREDIENTS = 25;
@@ -97,9 +97,64 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
                   }
                 </div>
               }
+              <div class="actions small-actions">
+                <button type="button" (click)="openRecipe(idea)" [disabled]="loadingRecipe() === idea.name">
+                  {{ loadingRecipe() === idea.name ? 'Writing recipe…' : (openIdea() === idea.name ? 'Showing below ↓' : 'See full recipe') }}
+                </button>
+              </div>
             </article>
           }
         </div>
+
+        @if (recipeError()) {
+          <p class="error">{{ recipeError() }}</p>
+        }
+
+        @if (openRecipeDraft(); as d) {
+          <article class="card recipe-draft" id="recipe-draft">
+            <div class="page-header">
+              <h2>{{ d.title }}</h2>
+              <button type="button" class="link" (click)="closeRecipe()" aria-label="Close recipe">Close ×</button>
+            </div>
+            @if (d.description) {
+              <p>{{ d.description }}</p>
+            }
+            <p class="meta">Serves {{ d.servings }} · Prep {{ d.prepMinutes }} min · Cook {{ d.cookMinutes }} min</p>
+
+            <h3>Ingredients</h3>
+            <ul class="draft-ingredients">
+              @for (i of d.ingredients; track i.name) {
+                <li [class.need]="!i.onHand">
+                  <span class="have-mark" [attr.aria-label]="i.onHand ? 'You have this' : 'You need this'">{{ i.onHand ? '✓' : '+' }}</span>
+                  <span>{{ i.quantity }} {{ i.unit }} {{ i.name }}@if (i.note) {<span class="muted">, {{ i.note }}</span>}</span>
+                </li>
+              }
+            </ul>
+            <p class="muted small-text">✓ you have it · + you'd need to get it</p>
+
+            <h3>Steps</h3>
+            <ol class="draft-steps">
+              @for (step of d.steps; track $index) {
+                <li>
+                  {{ step.instruction }}
+                  @if (step.techniqueName) {
+                    <a class="chip small" routerLink="/techniques">{{ step.techniqueName }}</a>
+                  }
+                </li>
+              }
+            </ol>
+
+            <div class="actions">
+              <button type="button" class="primary" (click)="saveRecipe(d)" [disabled]="saving()">
+                {{ saving() ? 'Saving…' : 'Save to my recipes' }}
+              </button>
+            </div>
+            @if (saveError()) {
+              <p class="error">{{ saveError() }}</p>
+            }
+            <p class="muted small-text">This recipe is AI-generated. Check cooking times and use a thermometer for meat, poultry and eggs.</p>
+          </article>
+        }
         <p class="muted small-text">Ideas are AI-generated. Use your judgment on food safety and cooking times.</p>
       } @else if (r.aiAvailable && !r.aiNotice) {
         <p class="muted">No new ideas this time. Try adding a few more ingredients.</p>
@@ -117,6 +172,18 @@ export class FridgePage {
   error = signal<string | null>(null);
   busy = signal(false);
   scanning = signal(false);
+  loadingRecipe = signal<string | null>(null);
+  openIdea = signal<string | null>(null);
+  recipeError = signal<string | null>(null);
+  saving = signal(false);
+  saveError = signal<string | null>(null);
+  private recipeCache = new Map<string, RecipeDraft>(); // opening the same idea twice doesn't cost a second AI call
+  private router = inject(Router);
+
+  openRecipeDraft() {
+    const name = this.openIdea();
+    return name ? this.recipeCache.get(name) ?? null : null;
+  }
   scanNote = signal<string | null>(null);
   result = signal<FridgeResponse | null>(null);
 
@@ -139,6 +206,85 @@ export class FridgePage {
 
     this.ingredients.set(merged);
     this.draft = '';
+  }
+
+  async openRecipe(idea: FridgeMealIdea) {
+    this.recipeError.set(null);
+    this.saveError.set(null);
+    if (!this.recipeCache.has(idea.name)) {
+      this.loadingRecipe.set(idea.name);
+      try {
+        const draft = await firstValueFrom(this.api.getFridgeRecipe(idea.name, this.ingredients()));
+        this.recipeCache.set(idea.name, draft);
+      } catch (e) {
+        const status = e instanceof HttpErrorResponse ? e.status : 0;
+        this.recipeError.set(
+          status === 429 ? "You've opened a lot of recipes this hour. Try again later." :
+          status === 400 ? "That dish name couldn't be used. Try another idea." :
+          "Couldn't write that recipe right now. Please try again.");
+        return;
+      } finally {
+        this.loadingRecipe.set(null);
+      }
+    }
+    this.openIdea.set(idea.name);
+    setTimeout(() => document.getElementById('recipe-draft')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
+
+  closeRecipe() {
+    this.openIdea.set(null);
+  }
+
+  // Saves through the same endpoints the recipe editor uses, so all their validation applies
+  async saveRecipe(draft: RecipeDraft) {
+    this.saving.set(true);
+    this.saveError.set(null);
+    try {
+      // 1. Find or create each ingredient in the shared list
+      const known = new Map((await firstValueFrom(this.api.getIngredients())).map(i => [i.name.toLowerCase(), i.id]));
+      const items: { ingredientId: number; quantity: number; unit: string; note: string | null }[] = [];
+      for (const i of draft.ingredients) {
+        let id = known.get(i.name.toLowerCase());
+        if (id === undefined) {
+          try {
+            id = (await firstValueFrom(this.api.createIngredient(i.name, null))).id;
+          } catch (e) {
+            // Someone else created it a moment ago: look it up instead
+            if (!(e instanceof HttpErrorResponse && e.status === 409)) throw e;
+            const fresh = await firstValueFrom(this.api.getIngredients());
+            id = fresh.find(f => f.name.toLowerCase() === i.name.toLowerCase())?.id;
+            if (id === undefined) throw e;
+          }
+          known.set(i.name.toLowerCase(), id);
+        }
+        if (!items.some(x => x.ingredientId === id)) {
+          items.push({ ingredientId: id, quantity: i.quantity, unit: i.unit, note: i.note });
+        }
+      }
+
+      // 2. The recipe itself, then its ingredients, steps and techniques
+      const recipe = await firstValueFrom(this.api.createRecipe({
+        title: draft.title,
+        description: draft.description || null,
+        cuisine: null,
+        servings: draft.servings,
+        prepMinutes: draft.prepMinutes,
+        cookMinutes: draft.cookMinutes
+      }));
+      await firstValueFrom(this.api.setRecipeIngredients(recipe.id, items));
+      await firstValueFrom(this.api.setRecipeSteps(recipe.id,
+        draft.steps.map(s => ({ instruction: s.instruction, techniqueId: s.techniqueId }))));
+      const techniqueIds = [...new Set(draft.steps.map(s => s.techniqueId).filter((id): id is number => id !== null))];
+      for (const id of techniqueIds) {
+        await firstValueFrom(this.api.linkTechnique(recipe.id, id));
+      }
+
+      await this.router.navigate(['/recipes', recipe.id]);
+    } catch {
+      this.saveError.set("Couldn't save the recipe. Please try again.");
+    } finally {
+      this.saving.set(false);
+    }
   }
 
   async scan(event: Event) {

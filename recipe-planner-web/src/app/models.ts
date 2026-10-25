@@ -101,3 +101,27 @@ export interface FridgeResponse {
 export interface ScanResponse {
   ingredients: string[];
 }
+
+export interface RecipeDraftIngredient {
+  name: string;
+  quantity: number;
+  unit: string;
+  note: string | null;
+  onHand: boolean;
+}
+
+export interface RecipeDraftStep {
+  instruction: string;
+  techniqueId: number | null;
+  techniqueName: string | null;
+}
+
+export interface RecipeDraft {
+  title: string;
+  description: string;
+  servings: number;
+  prepMinutes: number;
+  cookMinutes: number;
+  ingredients: RecipeDraftIngredient[];
+  steps: RecipeDraftStep[];
+}

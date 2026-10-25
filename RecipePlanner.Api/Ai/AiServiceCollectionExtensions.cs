@@ -27,6 +27,17 @@ public static class AiServiceCollectionExtensions
                 ? new DisabledMealIdeaGenerator()
                 : sp.GetRequiredService<AnthropicMealIdeaGenerator>());
 
+        services.AddHttpClient<AnthropicRecipeDraftGenerator>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.anthropic.com/");
+            client.Timeout = TimeSpan.FromSeconds(60); // Longer answers take longer to write
+        });
+
+        services.AddScoped<IRecipeDraftGenerator>(sp =>
+            string.IsNullOrWhiteSpace(sp.GetRequiredService<IOptions<AnthropicOptions>>().Value.ApiKey)
+                ? new DisabledRecipeDraftGenerator()
+                : sp.GetRequiredService<AnthropicRecipeDraftGenerator>());
+
         services.AddScoped<IIngredientScanner>(sp =>
             string.IsNullOrWhiteSpace(sp.GetRequiredService<IOptions<AnthropicOptions>>().Value.ApiKey)
                 ? new DisabledIngredientScanner()

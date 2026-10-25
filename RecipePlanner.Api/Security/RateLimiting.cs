@@ -22,6 +22,10 @@ public static class RateLimiting
     public const string AiScanPolicy = "ai-scan";
     public const int AiScanPermitLimit = 10;
 
+    // Opening a full recipe is a separate, slightly larger allowance: one search can lead to a few of these
+    public const string AiRecipePolicy = "ai-recipe";
+    public const int AiRecipePermitLimit = 20;
+
     // Only POSTs to these paths count against the strict limit.
     // /manage/info is left out because the web app calls it on every page load.
     private static readonly HashSet<string> SensitiveAuthPaths = new(StringComparer.OrdinalIgnoreCase)
@@ -58,6 +62,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = AiScanPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(AiRecipePolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = AiRecipePermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

@@ -18,3 +18,18 @@ public record FridgeMealIdea(
     List<TechniqueSummary> Techniques);
 
 public record ScanResponse(List<string> Ingredients);
+
+public record FridgeRecipeRequest(string DishName, List<string> Ingredients);
+
+public record RecipeDraftResponse(
+    string Title,
+    string Description,
+    int Servings,
+    int PrepMinutes,
+    int CookMinutes,
+    List<RecipeDraftIngredient> Ingredients,
+    List<RecipeDraftStep> Steps);
+
+public record RecipeDraftIngredient(string Name, decimal Quantity, string Unit, string? Note, bool OnHand);
+
+public record RecipeDraftStep(string Instruction, int? TechniqueId, string? TechniqueName);

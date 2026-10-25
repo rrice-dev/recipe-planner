@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Contracts;
@@ -49,6 +50,40 @@ public static class FridgeEndpoints
         })
         .RequireAuthorization()
         .RequireRateLimiting(RateLimiting.AiPolicy);
+
+        // Full recipe for one AI idea: ingredients with amounts, and steps linked to real techniques
+        app.MapPost("/api/fridge/recipe", async (
+            FridgeRecipeRequest request,
+            AppDbContext db,
+            IRecipeDraftGenerator generator,
+            ILoggerFactory loggerFactory,
+            CancellationToken ct) =>
+        {
+            if (!generator.IsAvailable)
+                return Results.Problem("AI recipes aren't set up yet.", statusCode: StatusCodes.Status503ServiceUnavailable);
+
+            var (dish, onHand, errors) = FridgePlanner.Validate(request);
+            if (errors.Count > 0) return Results.ValidationProblem(errors);
+
+            var techniques = await db.Techniques.AsNoTracking().OrderBy(t => t.Name).ToListAsync(ct);
+            try
+            {
+                var raw = await generator.GenerateAsync(dish, onHand, techniques.Select(t => t.Name).ToList(), ct);
+                var recipe = FridgePlanner.CleanRecipe(raw, onHand, techniques);
+                return recipe is null
+                    ? Results.Problem("The AI didn't return a usable recipe. Try again.", statusCode: StatusCodes.Status502BadGateway)
+                    : Results.Ok(recipe);
+            }
+            catch (Exception ex) when (ex is MealIdeaException or HttpRequestException or JsonException or TaskCanceledException
+                                       && !ct.IsCancellationRequested)
+            {
+                loggerFactory.CreateLogger("FridgeEndpoints").LogWarning(ex, "Recipe generation failed");
+                return Results.Problem("AI recipes are unavailable right now. Try again in a minute.",
+                    statusCode: StatusCodes.Status503ServiceUnavailable);
+            }
+        })
+        .RequireAuthorization()
+        .RequireRateLimiting(RateLimiting.AiRecipePolicy);
 
         // The body is the raw image bytes (Content-Type: image/jpeg, png or webp), not a form.
         // Browsers can't send that content type cross-site without a CORS preflight, which this API

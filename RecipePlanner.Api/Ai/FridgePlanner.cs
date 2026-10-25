@@ -58,6 +58,83 @@ public static partial class FridgePlanner
             .Take(MaxIngredients)
             .ToList();
 
+    // ---------- Full recipe for one idea ----------
+
+    public const int MaxDishNameLength = 80;
+
+    // Dish names come back from the browser, so they're user input even though the AI suggested them
+    [GeneratedRegex(@"^[\p{L}\p{M}\p{N} '\-.,&()/:!]+$")]
+    private static partial Regex AllowedDishName();
+
+    public static (string DishName, List<string> Ingredients, Dictionary<string, string[]> Errors) Validate(FridgeRecipeRequest request)
+    {
+        var (ingredients, errors) = Validate(new FridgeRequest(request.Ingredients ?? []));
+        var dish = (request.DishName ?? "").Trim();
+
+        if (dish.Length == 0)
+            errors["DishName"] = ["Dish name is required."];
+        else if (dish.Length > MaxDishNameLength)
+            errors["DishName"] = [$"Dish name must be {MaxDishNameLength} characters or fewer."];
+        else if (!AllowedDishName().IsMatch(dish))
+            errors["DishName"] = ["Dish name can only contain letters, numbers, spaces and basic punctuation."];
+
+        return (dish, ingredients, errors);
+    }
+
+    private const int MaxRecipeIngredients = 30;
+    private const int MaxSteps = 25;
+    private const int MaxInstructionLength = 600;
+    private const int MaxUnitLength = 20;
+    private const int MaxNoteLength = 80;
+    private const decimal MaxQuantity = 10_000m;
+
+    public static RecipeDraftResponse? CleanRecipe(RawRecipe? raw, IReadOnlyList<string> onHand, IReadOnlyList<Technique> techniques)
+    {
+        if (raw is null || string.IsNullOrWhiteSpace(raw.Title)) return null;
+        var byName = techniques.ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
+
+        var ingredients = (raw.Ingredients ?? [])
+            .Where(i => !string.IsNullOrWhiteSpace(i.Name) && i.Quantity is > 0 and <= MaxQuantity)
+            .DistinctBy(i => i.Name!.Trim(), StringComparer.OrdinalIgnoreCase)  // the recipe editor needs unique ingredients
+            .Take(MaxRecipeIngredients)
+            .Select(i =>
+            {
+                var name = Truncate(i.Name!, MaxListItemLength);
+                return new RecipeDraftIngredient(
+                    name,
+                    Math.Round(i.Quantity!.Value, 2),
+                    string.IsNullOrWhiteSpace(i.Unit) ? "whole" : Truncate(i.Unit, MaxUnitLength),
+                    string.IsNullOrWhiteSpace(i.Note) ? null : Truncate(i.Note, MaxNoteLength),
+                    onHand.Any(h => SameIngredient(name, h)));
+            })
+            .ToList();
+
+        var steps = (raw.Steps ?? [])
+            .Where(s => !string.IsNullOrWhiteSpace(s.Instruction))
+            .Take(MaxSteps)
+            .Select(s =>
+            {
+                // Only link techniques that really exist; an invented name is simply left off
+                var technique = string.IsNullOrWhiteSpace(s.Technique) ? null : byName.GetValueOrDefault(s.Technique.Trim());
+                return new RecipeDraftStep(Truncate(s.Instruction!, MaxInstructionLength), technique?.Id, technique?.Name);
+            })
+            .ToList();
+
+        if (ingredients.Count == 0 || steps.Count == 0) return null;
+
+        return new RecipeDraftResponse(
+            Truncate(raw.Title, MaxIdeaNameLength),
+            Truncate(raw.Description ?? "", MaxDescriptionLength),
+            WholeNumber(raw.Servings, fallback: 2, min: 1, max: 20),
+            WholeNumber(raw.PrepMinutes, fallback: 0, min: 0, max: 1440),
+            WholeNumber(raw.CookMinutes, fallback: 0, min: 0, max: 1440),
+            ingredients,
+            steps);
+    }
+
+    private static int WholeNumber(decimal? value, int fallback, int min, int max) =>
+        value is null ? fallback : (int)Math.Clamp(Math.Round(value.Value), min, max);
+
     // ---------- Your own recipes (no AI involved) ----------
 
     public static List<FridgeRecipeMatch> MatchRecipes(IEnumerable<Recipe> recipes, IReadOnlyList<string> onHand) =>
