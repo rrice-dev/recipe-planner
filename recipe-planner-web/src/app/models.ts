@@ -30,10 +30,18 @@ export interface RecipeStep {
   techniqueName: string | null;
 }
 
+export interface RecipeSocial {
+  shareToken: string | null;
+  myRating: number | null;
+  communityAverage: number | null;
+  communityCount: number;
+}
+
 export interface RecipeDetail extends RecipeSummary {
   techniques: TechniqueSummary[];
   ingredients: RecipeIngredient[];
   steps: RecipeStep[];
+  social: RecipeSocial;
 }
 
 export interface Technique {
@@ -124,4 +132,24 @@ export interface RecipeDraft {
   cookMinutes: number;
   ingredients: RecipeDraftIngredient[];
   steps: RecipeDraftStep[];
+}
+
+export interface RatingSummary {
+  average: number | null;
+  count: number;
+  myRating: number | null;
+  isOwner: boolean;
+}
+
+export interface SharedRecipe {
+  title: string;
+  description: string | null;
+  cuisine: string | null;
+  servings: number;
+  prepMinutes: number;
+  cookMinutes: number;
+  techniques: string[];
+  ingredients: { name: string; quantity: number; unit: string; note: string | null }[];
+  steps: { order: number; instruction: string; techniqueName: string | null }[];
+  rating: RatingSummary;
 }

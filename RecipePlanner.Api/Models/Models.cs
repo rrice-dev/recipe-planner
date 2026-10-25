@@ -13,6 +13,21 @@ public class Recipe
     public List<Step> Steps { get; set; } = [];
     public List<Technique> Techniques { get; set; } = [];
     public string OwnerId { get; set; } = null!;
+
+    // Set when the owner shares the recipe. A long random token, never the ID, so links can't be guessed.
+    public string? ShareToken { get; set; }
+    public DateTimeOffset? SharedAt { get; set; }
+    public List<RecipeRating> Ratings { get; set; } = [];
+}
+
+// One rating per user per recipe. The owner's own rating is their private note;
+// everyone else's ratings (made through a share link) make up the community average.
+public class RecipeRating
+{
+    public int RecipeId { get; set; }
+    public string UserId { get; set; } = null!;
+    public int Stars { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
 }
 
 public class Ingredient

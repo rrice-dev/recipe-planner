@@ -10,6 +10,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
+    public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -24,6 +25,20 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         b.Entity<Recipe>()
             .HasOne<AppUser>().WithMany()
             .HasForeignKey(r => r.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        b.Entity<Recipe>().HasIndex(r => r.ShareToken).IsUnique();
+        b.Entity<Recipe>().Property(r => r.ShareToken).HasMaxLength(32);
+
+        b.Entity<RecipeRating>().HasKey(r => new { r.RecipeId, r.UserId });
+        b.Entity<RecipeRating>().ToTable(t => t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5"));
+        b.Entity<RecipeRating>()
+            .HasOne<Recipe>().WithMany(r => r.Ratings)
+            .HasForeignKey(r => r.RecipeId)
+            .OnDelete(DeleteBehavior.Cascade);
+        b.Entity<RecipeRating>()
+            .HasOne<AppUser>().WithMany()
+            .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
         b.Entity<MealPlan>()

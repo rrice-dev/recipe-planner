@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FridgeResponse, RecipeDraft, ScanResponse, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { FridgeResponse, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -94,6 +94,34 @@ getShoppingList(id: number) {
 scanPhoto(photo: Blob) {
   // Raw image bytes, not a form upload; the API checks the type and contents itself
   return this.http.post<ScanResponse>('/api/fridge/scan', photo, { headers: { 'Content-Type': 'image/jpeg' } });
+}
+
+shareRecipe(id: number) {
+  return this.http.post<{ shareToken: string }>(`/api/recipes/${id}/share`, null);
+}
+
+unshareRecipe(id: number) {
+  return this.http.delete<void>(`/api/recipes/${id}/share`);
+}
+
+rateMyRecipe(id: number, stars: number) {
+  return this.http.put<void>(`/api/recipes/${id}/rating`, { stars });
+}
+
+clearMyRecipeRating(id: number) {
+  return this.http.delete<void>(`/api/recipes/${id}/rating`);
+}
+
+getSharedRecipe(token: string) {
+  return this.http.get<SharedRecipe>(`/api/shared/${encodeURIComponent(token)}`);
+}
+
+rateSharedRecipe(token: string, stars: number) {
+  return this.http.put<void>(`/api/shared/${encodeURIComponent(token)}/rating`, { stars });
+}
+
+clearSharedRating(token: string) {
+  return this.http.delete<void>(`/api/shared/${encodeURIComponent(token)}/rating`);
 }
 
 getFridgeRecipe(dishName: string, ingredients: string[]) {

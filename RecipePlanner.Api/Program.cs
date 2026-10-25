@@ -107,6 +107,7 @@ app.MapTechniqueEndpoints();
 app.MapIngredientEndpoints();
 app.MapMealPlanEndpoints();
 app.MapFridgeEndpoints();
+app.MapSharingEndpoints();
 
 app.Run();
 

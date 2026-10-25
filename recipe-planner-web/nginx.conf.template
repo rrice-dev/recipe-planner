@@ -33,6 +33,15 @@ server {
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
     }
 
+    # Shared-recipe links (/s/<token>): served by the API so social media gets a preview card
+    location /s/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_set_header Host ${API_HOST};
+        proxy_ssl_server_name on;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $forwarded_proto;
+    }
+
     # Angular routes: unknown paths fall back to index.html
     location / {
         try_files $uri $uri/ /index.html;

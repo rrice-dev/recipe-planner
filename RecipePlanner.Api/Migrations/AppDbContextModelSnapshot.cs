@@ -323,6 +323,13 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<int>("Servings")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ShareToken")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
+
+                    b.Property<DateTimeOffset?>("SharedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
@@ -330,6 +337,9 @@ namespace RecipePlanner.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OwnerId");
+
+                    b.HasIndex("ShareToken")
+                        .IsUnique();
 
                     b.ToTable("Recipes");
                 });
@@ -358,6 +368,30 @@ namespace RecipePlanner.Api.Migrations
                     b.HasIndex("IngredientId");
 
                     b.ToTable("RecipeIngredient");
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeRating", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Stars")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("RecipeId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RecipeRatings", t =>
+                        {
+                            t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5");
+                        });
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Models.Step", b =>
@@ -543,6 +577,21 @@ namespace RecipePlanner.Api.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeRating", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.Recipe", null)
+                        .WithMany("Ratings")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipePlanner.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Models.Step", b =>
                 {
                     b.HasOne("RecipePlanner.Api.Models.Recipe", null)
@@ -581,6 +630,8 @@ namespace RecipePlanner.Api.Migrations
             modelBuilder.Entity("RecipePlanner.Api.Models.Recipe", b =>
                 {
                     b.Navigation("Ingredients");
+
+                    b.Navigation("Ratings");
 
                     b.Navigation("Steps");
                 });

@@ -23,4 +23,25 @@ public record RecipeDetailResponse(
     int Servings, int PrepMinutes, int CookMinutes,
     List<TechniqueSummary> Techniques,
     List<RecipeIngredientResponse> Ingredients,
-    List<StepResponse> Steps);
+    List<StepResponse> Steps,
+    RecipeSocialResponse Social);
+
+// Owner's view of sharing and ratings for one of their recipes
+public record RecipeSocialResponse(string? ShareToken, int? MyRating, double? CommunityAverage, int CommunityCount);
+
+public record RatingRequest(int Stars);
+
+public record RatingSummary(double? Average, int Count, int? MyRating, bool IsOwner);
+
+// What anyone with the link sees. No IDs, no owner details.
+public record SharedRecipeResponse(
+    string Title, string? Description, string? Cuisine,
+    int Servings, int PrepMinutes, int CookMinutes,
+    List<string> Techniques,
+    List<SharedIngredient> Ingredients,
+    List<SharedStep> Steps,
+    RatingSummary Rating);
+
+public record SharedIngredient(string Name, decimal Quantity, string Unit, string? Note);
+
+public record SharedStep(int Order, string Instruction, string? TechniqueName);

@@ -10,12 +10,14 @@ import { MealPlanListPage } from './pages/meal-plan-list';
 import { MealPlanDetailPage } from './pages/meal-plan-detail';
 import { ShoppingListPage } from './pages/shopping-list';
 import { FridgePage } from './pages/fridge';
+import { SharedRecipePage } from './pages/shared-recipe';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'login', component: LoginPage },
   { path: 'register', component: RegisterPage },
   { path: 'techniques', component: TechniqueListPage },
+  { path: 'r/:token', component: SharedRecipePage }, // public: shared recipe links
 
   { path: 'recipes', component: RecipeListPage, canActivate: [authGuard] },
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },

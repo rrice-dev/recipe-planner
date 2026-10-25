@@ -29,6 +29,7 @@ public static class RecipeEndpoints
                 .Include(r => r.Techniques)
                 .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
                 .Include(r => r.Steps).ThenInclude(s => s.Technique)
+                .Include(r => r.Ratings)
                 .AsSplitQuery()
                 .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe));
@@ -235,5 +236,16 @@ public static class RecipeEndpoints
                 .ToList(),
             r.Steps.OrderBy(s => s.Order)
                 .Select(s => new StepResponse(s.Order, s.Instruction, s.TechniqueId, s.Technique?.Name))
-                .ToList());
+                .ToList(),
+            Social(r));
+
+    private static RecipeSocialResponse Social(Recipe r)
+    {
+        var (average, count) = Ratings.Community(r.Ratings, r.OwnerId);
+        return new RecipeSocialResponse(
+            r.ShareToken,
+            r.Ratings.FirstOrDefault(x => x.UserId == r.OwnerId)?.Stars,
+            average,
+            count);
+    }
 }

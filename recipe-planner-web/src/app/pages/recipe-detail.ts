@@ -1,12 +1,14 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { firstValueFrom, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { StarRating } from '../star-rating';
+import { shareTargets } from '../share-links';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, StarRating],
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
@@ -19,6 +21,54 @@ import { ApiService } from '../api.service';
       </p>
       @if (r.description) {
         <p>{{ r.description }}</p>
+      }
+
+      @if (social(); as s) {
+        <section class="card social">
+          <div class="rating-row">
+            <span><strong>Your rating</strong> <span class="muted small-text note">(only you see this)</span></span>
+            <app-star-rating [value]="s.myRating" [disabled]="busy()" label="Your rating" (rate)="rate(r.id, $event)" />
+            @if (s.myRating) {
+              <button type="button" class="link" (click)="clearRating(r.id)" [disabled]="busy()">Clear</button>
+            }
+          </div>
+          @if (s.shareToken) {
+            <div class="rating-row">
+              <strong>Community</strong>
+              @if (s.communityCount) {
+                <app-star-rating [value]="s.communityAverage" [readonly]="true" label="Community rating" />
+                <span class="muted">{{ s.communityAverage }} from {{ s.communityCount }} {{ s.communityCount === 1 ? 'rating' : 'ratings' }}</span>
+              } @else {
+                <span class="muted">No ratings yet</span>
+              }
+            </div>
+          }
+
+          <div class="share">
+            @if (s.shareToken) {
+              <p class="small-text"><strong>Shared.</strong> Anyone with this link can view the recipe. Logged-in users can rate it.</p>
+              <div class="row">
+                <input class="grow" readonly [value]="link()" aria-label="Share link" (focus)="$any($event.target).select()" />
+                <button type="button" (click)="copy()">{{ copied() ? 'Copied ✓' : 'Copy link' }}</button>
+                @if (canNativeShare) {
+                  <button type="button" (click)="nativeShare(r.title)">Share…</button>
+                }
+              </div>
+              <div class="share-targets">
+                @for (target of targets(); track target.name) {
+                  <a class="button" [href]="target.url" target="_blank" rel="noopener noreferrer">{{ target.name }}</a>
+                }
+              </div>
+              <button type="button" class="link" (click)="unshare(r.id)" [disabled]="busy()">Stop sharing</button>
+            } @else {
+              <p class="small-text muted">This recipe is private. Sharing creates a link you can post anywhere; you can turn it off at any time.</p>
+              <button type="button" class="primary" (click)="share(r.id)" [disabled]="busy()">Share this recipe</button>
+            }
+          </div>
+          @if (error()) {
+            <p class="error">{{ error() }}</p>
+          }
+        </section>
       }
 
       @if (r.techniques.length) {
@@ -66,4 +116,78 @@ export class RecipeDetailPage {
   private api = inject(ApiService);
   id = input.required<string>();
   recipe = toSignal(toObservable(this.id).pipe(switchMap(id => this.api.getRecipe(Number(id)))));
+
+  // A local copy of the sharing/rating info that updates instantly when you click
+  social = linkedSignal(() => this.recipe()?.social ?? null);
+  busy = signal(false);
+  error = signal<string | null>(null);
+  copied = signal(false);
+  readonly canNativeShare = typeof navigator !== 'undefined' && 'share' in navigator;
+
+  // The /s/ link shows a preview card on social media, then forwards to the recipe page
+  link = computed(() => {
+    const token = this.social()?.shareToken;
+    return token ? `${location.origin}/s/${token}` : '';
+  });
+  targets = computed(() => shareTargets(this.link(), this.recipe()?.title ?? 'Recipe'));
+
+  async rate(id: number, stars: number) {
+    await this.run(async () => {
+      await firstValueFrom(this.api.rateMyRecipe(id, stars));
+      this.social.update(s => s && { ...s, myRating: stars });
+    });
+  }
+
+  async clearRating(id: number) {
+    await this.run(async () => {
+      await firstValueFrom(this.api.clearMyRecipeRating(id));
+      this.social.update(s => s && { ...s, myRating: null });
+    });
+  }
+
+  async share(id: number) {
+    await this.run(async () => {
+      const { shareToken } = await firstValueFrom(this.api.shareRecipe(id));
+      this.social.update(s => s && { ...s, shareToken });
+    });
+  }
+
+  async unshare(id: number) {
+    if (!confirm('Stop sharing? The current link will stop working for everyone. Sharing again later creates a new link.')) return;
+    await this.run(async () => {
+      await firstValueFrom(this.api.unshareRecipe(id));
+      this.social.update(s => s && { ...s, shareToken: null });
+    });
+  }
+
+  async copy() {
+    try {
+      await navigator.clipboard.writeText(this.link());
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    } catch {
+      this.error.set('Copying failed. Select the link and copy it manually.');
+    }
+  }
+
+  // On phones this opens the system share sheet: Messages, Instagram, WhatsApp, and so on
+  async nativeShare(title: string) {
+    try {
+      await navigator.share({ title, text: `${title}: a recipe I want to share`, url: this.link() });
+    } catch {
+      // The user closed the share sheet; nothing to do
+    }
+  }
+
+  private async run(action: () => Promise<void>) {
+    this.busy.set(true);
+    this.error.set(null);
+    try {
+      await action();
+    } catch {
+      this.error.set('Something went wrong. Please try again.');
+    } finally {
+      this.busy.set(false);
+    }
+  }
 }
