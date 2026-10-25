@@ -30,6 +30,10 @@ public static class RateLimiting
     public const string PhotoUploadPolicy = "photo-upload";
     public const int PhotoUploadPermitLimit = 30;
 
+    // Kroger calls: store search, product matching and cart sends
+    public const string KrogerPolicy = "kroger";
+    public const int KrogerPermitLimit = 30;
+
     // Only POSTs to these paths count against the strict limit.
     // /manage/info is left out because the web app calls it on every page load.
     private static readonly HashSet<string> SensitiveAuthPaths = new(StringComparer.OrdinalIgnoreCase)
@@ -82,6 +86,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = PhotoUploadPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(KrogerPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = KrogerPermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

@@ -310,6 +310,64 @@ namespace RecipePlanner.Api.Migrations
                     b.ToTable("Ingredients");
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Models.KrogerConnection", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("AccessTokenExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("ConnectedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("EncryptedAccessToken")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EncryptedRefreshToken")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LocationId")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("LocationName")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("KrogerConnections");
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.KrogerProductChoice", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ItemKey")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Upc")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("UserId", "ItemKey");
+
+                    b.ToTable("KrogerProductChoices");
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Models.MealPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -613,6 +671,24 @@ namespace RecipePlanner.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Ingredient");
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.KrogerConnection", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.KrogerProductChoice", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Models.MealPlan", b =>

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FridgeResponse, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -94,6 +94,30 @@ getShoppingList(id: number) {
 scanPhoto(photo: Blob) {
   // Raw image bytes, not a form upload; the API checks the type and contents itself
   return this.http.post<ScanResponse>('/api/fridge/scan', photo, { headers: { 'Content-Type': 'image/jpeg' } });
+}
+
+getKrogerStatus() {
+  return this.http.get<KrogerStatus>('/api/kroger/status');
+}
+
+findKrogerStores(zip: string) {
+  return this.http.get<KrogerLocation[]>('/api/kroger/locations', { params: { zip } });
+}
+
+setKrogerStore(locationId: string, name: string) {
+  return this.http.put<void>('/api/kroger/store', { locationId, name });
+}
+
+matchKrogerProducts() {
+  return this.http.post<KrogerMatch[]>('/api/kroger/match', null);
+}
+
+sendToKrogerCart(modality: 'PICKUP' | 'DELIVERY', items: { groceryItemId: number; upc: string; description: string; quantity: number }[]) {
+  return this.http.post<{ added: number }>('/api/kroger/cart', { modality, items, markChecked: true });
+}
+
+disconnectKroger() {
+  return this.http.delete<void>('/api/kroger/connection');
 }
 
 getGroceryList() {

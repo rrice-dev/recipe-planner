@@ -4,10 +4,12 @@ import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { GroceryItem, Ingredient } from '../models';
 import { formatQuantity, groupBySection } from '../store-sections';
+import { KrogerPanel } from '../kroger-panel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-grocery-list',
-  imports: [FormsModule],
+  imports: [FormsModule, KrogerPanel],
   template: `
     <div class="page-header">
       <h1>Shopping list</h1>
@@ -41,6 +43,8 @@ import { formatQuantity, groupBySection } from '../store-sections';
     @if (error()) {
       <p class="error">{{ error() }}</p>
     }
+
+    <app-kroger-panel [hasItems]="items().length > checkedCount()" [krogerResult]="krogerResult" (sent)="reload()" />
 
     @if (loaded()) {
       @for (group of groups(); track group.section) {
@@ -79,6 +83,7 @@ import { formatQuantity, groupBySection } from '../store-sections';
 })
 export class GroceryListPage implements OnInit {
   private api = inject(ApiService);
+  readonly krogerResult = inject(ActivatedRoute).snapshot.queryParamMap.get('kroger');
 
   items = signal<GroceryItem[]>([]);
   known = signal<Ingredient[]>([]);
@@ -106,6 +111,10 @@ export class GroceryListPage implements OnInit {
       this.known.set(known);
     });
     this.loaded.set(true);
+  }
+
+  async reload() {
+    this.items.set(await firstValueFrom(this.api.getGroceryList()));
   }
 
   qty(item: GroceryItem) {

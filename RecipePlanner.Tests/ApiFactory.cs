@@ -21,6 +21,7 @@ public class ApiFactory : WebApplicationFactory<Program>
     public IIngredientScanner? Scanner { get; init; }
     public IRecipeDraftGenerator? RecipeDrafts { get; init; }
     public IPhotoStore? Photos { get; init; }
+    public FakeKroger? Kroger { get; init; }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -35,6 +36,17 @@ public class ApiFactory : WebApplicationFactory<Program>
             {
                 services.RemoveAll<IMealIdeaGenerator>();
                 services.AddSingleton(MealIdeas);
+            }
+
+            if (Kroger is not null)
+            {
+                services.Configure<RecipePlanner.Api.Kroger.KrogerOptions>(o =>
+                {
+                    o.ClientId = "test-client";
+                    o.ClientSecret = "test-secret";
+                    o.RedirectUri = "https://localhost/api/kroger/callback";
+                });
+                services.AddHttpClient<RecipePlanner.Api.Kroger.KrogerClient>().ConfigurePrimaryHttpMessageHandler(() => Kroger);
             }
 
             if (Photos is not null)

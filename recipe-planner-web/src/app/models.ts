@@ -172,3 +172,34 @@ export interface GroceryAdd {
   unit: string | null;
   source: string | null;
 }
+
+export interface KrogerStatus {
+  available: boolean;
+  connected: boolean;
+  locationId: string | null;
+  locationName: string | null;
+}
+
+export interface KrogerLocation {
+  locationId: string;
+  name: string;
+  address: string;
+}
+
+export interface KrogerProductOption {
+  upc: string;
+  description: string;
+  brand: string | null;
+  size: string | null;
+  price: number | null;
+  promoPrice: number | null;
+  imageUrl: string | null;
+}
+
+export interface KrogerMatch {
+  groceryItemId: number;
+  name: string;
+  amount: string | null;
+  options: KrogerProductOption[];
+  selectedUpc: string | null;
+}

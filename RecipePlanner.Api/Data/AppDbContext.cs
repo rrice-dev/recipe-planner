@@ -13,6 +13,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
     public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
     public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
+    public DbSet<KrogerConnection> KrogerConnections => Set<KrogerConnection>();
+    public DbSet<KrogerProductChoice> KrogerProductChoices => Set<KrogerProductChoice>();
 
     // The keys that encrypt login cookies. Stored here so every container uses the same keys,
     // and logins survive restarts and scale-to-zero.
@@ -62,6 +64,23 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasOne(g => g.Ingredient).WithMany()
             .HasForeignKey(g => g.IngredientId)
             .OnDelete(DeleteBehavior.SetNull);   // deleting a shared ingredient keeps the line as free text
+
+        b.Entity<KrogerConnection>().HasKey(k => k.UserId);
+        b.Entity<KrogerConnection>().Property(k => k.LocationId).HasMaxLength(20);
+        b.Entity<KrogerConnection>().Property(k => k.LocationName).HasMaxLength(200);
+        b.Entity<KrogerConnection>()
+            .HasOne<AppUser>().WithMany()
+            .HasForeignKey(k => k.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        b.Entity<KrogerProductChoice>().HasKey(k => new { k.UserId, k.ItemKey });
+        b.Entity<KrogerProductChoice>().Property(k => k.ItemKey).HasMaxLength(100);
+        b.Entity<KrogerProductChoice>().Property(k => k.Upc).HasMaxLength(20);
+        b.Entity<KrogerProductChoice>().Property(k => k.Description).HasMaxLength(200);
+        b.Entity<KrogerProductChoice>()
+            .HasOne<AppUser>().WithMany()
+            .HasForeignKey(k => k.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         b.Entity<MealPlan>()
             .HasOne<AppUser>().WithMany()

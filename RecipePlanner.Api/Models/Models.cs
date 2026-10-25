@@ -107,3 +107,26 @@ public class GroceryItem
     public string? Sources { get; set; }      // e.g. "Lemon Herb Chicken, Week of Oct 26"
     public DateTimeOffset AddedAt { get; set; }
 }
+
+// A user's link to their Kroger account. Tokens are encrypted before they're saved.
+public class KrogerConnection
+{
+    public string UserId { get; set; } = null!;
+    public required string EncryptedRefreshToken { get; set; }
+    public string? EncryptedAccessToken { get; set; }
+    public DateTimeOffset? AccessTokenExpiresAt { get; set; }
+    public string? LocationId { get; set; }
+    public string? LocationName { get; set; }
+    public DateTimeOffset ConnectedAt { get; set; }
+}
+
+// Remembers which Kroger product a user picked for an item ("Butter" -> their usual brand),
+// so next time it's preselected
+public class KrogerProductChoice
+{
+    public string UserId { get; set; } = null!;
+    public string ItemKey { get; set; } = null!;    // lowercased item name
+    public required string Upc { get; set; }
+    public required string Description { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
+}

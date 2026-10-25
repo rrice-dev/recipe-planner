@@ -238,3 +238,11 @@ nav a, nav .user, nav button.link { white-space: nowrap; }
 nav a { margin-left: 1rem; }
 .topbar { gap: 1rem; }
 .brand { white-space: nowrap; }
+
+.kroger { margin-bottom: 1rem; border-color: #c9d6ef; }
+.kroger h2 { margin: 0; }
+.store-option { display: flex; gap: 0.6rem; align-items: baseline; padding: 0.35rem 0; cursor: pointer; }
+.kroger-row { display: flex; gap: 0.75rem; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+.kroger-row select { width: 100%; margin-top: 0.25rem; }
+.kroger-row.skipped { opacity: 0.5; }
+.kroger-thumb { width: 44px; height: 44px; object-fit: contain; flex: 0 0 44px; background: var(--bg); border-radius: 6px; }
