@@ -65,6 +65,6 @@ describe('App', () => {
 
   it('shows the full menu and a logout button when signed in', async () => {
     const links = await render('robert@example.com');
-    expect(links).toEqual(['Recipes', 'Meal plans', 'What can I make?', 'Shopping list', 'Browse', 'Techniques', 'Settings', 'Log out']);
+    expect(links).toEqual(['Recipes', 'Meal plans', 'What can I make?', 'Shopping list', 'Kitchen', 'Browse', 'Techniques', 'Settings', 'Log out']);
   });
 });

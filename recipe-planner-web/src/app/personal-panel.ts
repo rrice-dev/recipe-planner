@@ -4,11 +4,13 @@ import { firstValueFrom } from 'rxjs';
 import { ApiService } from './api.service';
 import { Collection, RecipePersonal } from './models';
 import { toIsoDate } from './date-utils';
+import { SaveLeftovers } from './save-leftovers';
 
 // Favorite, "I cooked this", private notes and collections for one of your recipes.
 // Only you ever see any of it, even when the recipe is shared.
 @Component({
   selector: 'app-personal-panel',
+  imports: [SaveLeftovers],
   template: `
     <section class="card personal" style="margin-top: 0">
       <div class="row">
@@ -24,6 +26,11 @@ import { toIsoDate } from './date-utils';
           </div>
         </details>
       </div>
+
+      <details class="other-day">
+        <summary class="small-text">Save leftovers</summary>
+        <app-save-leftovers [recipeId]="recipeId()" />
+      </details>
 
       @if (state().cooked.length) {
         <p class="small-text">Cooked {{ state().cooked.length === 1 ? 'once' : state().cooked.length + ' times' }}:</p>

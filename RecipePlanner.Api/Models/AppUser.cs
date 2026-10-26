@@ -17,6 +17,12 @@ public class AppUser : IdentityUser
 
     /// <summary>"us" (cups, ounces, °F) or "metric" (ml, grams)</summary>
     public string Units { get; set; } = UserSettings.UsUnits;
+
+    // Optional daily nutrition targets, for comparing a planned week. Null = no target.
+    public int? CalorieTarget { get; set; }
+    public int? ProteinTarget { get; set; }
+    public int? CarbsTarget { get; set; }
+    public int? FatTarget { get; set; }
 }
 
 public static class UserSettings
@@ -28,4 +34,5 @@ public static class UserSettings
     public const string UsUnits = "us";
     public static readonly string[] UnitSystems = [UsUnits, "metric"];
     public const int MaxServings = 100;
+    public const int MinCalorieTarget = 500, MaxCalorieTarget = 10_000, MaxGramTarget = 1_000;
 }

@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { SettingsService } from '../settings.service';
 import { FoundTime, findTimes, formatClock } from '../cook-timers';
 import { formatMeasure, scaleQuantity } from '../scaling';
+import { SaveLeftovers } from '../save-leftovers';
 import { ServingsStepper } from '../servings-stepper';
 import { toIsoDate } from '../date-utils';
 
@@ -28,7 +29,7 @@ interface Timer {
 // Full-screen, one step at a time. Big type, timers found in the steps, and the screen stays on.
 @Component({
   selector: 'app-cook-mode',
-  imports: [RouterLink, ServingsStepper],
+  imports: [RouterLink, ServingsStepper, SaveLeftovers],
   host: { '(document:keydown)': 'onKey($event)' },
   template: `
     <div class="cook" role="dialog" aria-modal="true" [attr.aria-label]="'Cooking ' + (recipe()?.title ?? '')">
@@ -73,6 +74,11 @@ interface Timer {
                 </div>
               }
             </div>
+            @if (id() && index() === r.steps.length - 1) {
+              <div class="cook-leftovers">
+                <app-save-leftovers [recipeId]="+id()!" [defaultPortions]="(servings() ?? r.servings) - 1" prompt="Any leftovers? Portions" />
+              </div>
+            }
           } @else {
             <p class="cook-instruction">This recipe has no steps yet.</p>
           }
@@ -238,7 +244,7 @@ export class CookModePage implements OnInit {
   private swipeFrom: { x: number; y: number } | null = null;
   swipeStart(e: PointerEvent) { this.swipeFrom = { x: e.clientX, y: e.clientY }; }
   swipeEnd(e: PointerEvent) {
-    if (!this.swipeFrom || (e.target as HTMLElement).closest('button')) return;
+    if (!this.swipeFrom || (e.target as HTMLElement).closest('button, input, select, label')) return;
     const dx = e.clientX - this.swipeFrom.x, dy = e.clientY - this.swipeFrom.y;
     this.swipeFrom = null;
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) this.go(dx < 0 ? 1 : -1);

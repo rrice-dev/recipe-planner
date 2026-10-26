@@ -6,15 +6,16 @@ import { ApiService } from '../api.service';
 import { PrepSession } from '../models';
 import { SettingsService } from '../settings.service';
 import { formatMeasure } from '../scaling';
-import { parseDate } from '../date-utils';
+import { parseDate, toIsoDate } from '../date-utils';
 import { totalTime } from '../library-utils';
+import { SaveLeftovers } from '../save-leftovers';
 
 const APPROACH_LABEL = { CookAhead: 'Cook today', PrepAheadCookFresh: 'Prep today, cook that night', Freeze: 'Cook today and freeze' } as const;
 
 // One session to get the week ready: what to cook, what to start first, what to chop once.
 @Component({
   selector: 'app-prep-day',
-  imports: [RouterLink],
+  imports: [RouterLink, SaveLeftovers],
   template: `
     <a [routerLink]="['/meal-plans', planId()]" class="back no-print">← Meal plan</a>
     @if (session(); as s) {
@@ -35,6 +36,12 @@ const APPROACH_LABEL = { CookAhead: 'Cook today', PrepAheadCookFresh: 'Prep toda
             <div class="dish">
               <strong><a [routerLink]="['/recipes', m.recipeId]" class="plain">{{ m.title }}</a></strong>
               <span class="source-mark">{{ m.reason }}</span>
+              @if (m.approach !== 'PrepAheadCookFresh' && s.prepDay <= today) {
+                <div class="no-print">
+                  <app-save-leftovers [recipeId]="m.recipeId" [defaultPortions]="m.servings" [madeOn]="s.prepDay"
+                                      [defaultLocation]="m.approach === 'Freeze' ? 'freezer' : 'fridge'" prompt="Cooked it? Portions" />
+                </div>
+              }
             </div>
             <span class="chip small approach">{{ label(m.approach) }}</span>
           </li>
@@ -99,6 +106,7 @@ export class PrepDayPage implements OnInit {
   error = signal<string | null>(null);
   done = signal(new Set<string>());
   time = totalTime;
+  readonly today = toIsoDate(new Date());
 
   planId = computed(() => Number(this.id()));
   total = computed(() => {

@@ -100,6 +100,7 @@ export interface ShoppingListItem {
   quantity: number;
   unit: string;
   storeSection: string | null;
+  inPantry: boolean;
 }
 
 export interface ShoppingList {
@@ -291,4 +292,38 @@ export interface PrepSession {
   startFirst: { recipeId: number; title: string; minutes: number; firstStep: string }[];
   chopOnce: { ingredient: string; prep: string; quantity: number; unit: string; storeSection: string | null; forRecipes: string[] }[];
   marinate: string[];
+}
+
+export interface GroceryAddResult {
+  items: GroceryItem[];
+  skippedPantry: string[];
+}
+
+export interface PantryItem {
+  id: number;
+  name: string;
+}
+
+export type LeftoverLocation = 'fridge' | 'freezer';
+
+export interface Leftover {
+  id: number;
+  name: string;
+  recipeId: number | null;
+  portions: number;
+  location: LeftoverLocation;
+  madeOn: string;
+  useBy: string;
+}
+
+export interface Nutrients { calories: number; protein: number; carbs: number; fat: number; fiber: number; sugar: number; sodiumMg: number }
+
+export interface NutritionTargets { calories: number | null; protein: number | null; carbs: number | null; fat: number | null }
+
+export interface PlanNutrition {
+  available: boolean;
+  days: { day: string; meals: { recipeId: number; title: string; perServing: Nutrients | null; complete: boolean }[]; total: Nutrients }[];
+  dailyAverage: Nutrients | null;
+  targets: NutritionTargets;
+  complete: boolean;
 }

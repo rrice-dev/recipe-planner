@@ -8,6 +8,6 @@ public record MealPlanEntryResponse(DateOnly Day, int RecipeId, string RecipeTit
 
 public record MealPlanResponse(int Id, string Name, DateOnly WeekStart, List<MealPlanEntryResponse> Entries);
 
-public record ShoppingListItem(string Ingredient, decimal Quantity, string Unit, string? StoreSection);
+public record ShoppingListItem(string Ingredient, decimal Quantity, string Unit, string? StoreSection, bool InPantry = false);
 
 public record ShoppingListResponse(int MealPlanId, string Name, List<ShoppingListItem> Items);

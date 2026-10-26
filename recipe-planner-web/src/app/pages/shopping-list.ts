@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { ShoppingList, ShoppingListItem } from '../models';
+import { pantryNote } from '../kitchen';
 
 @Component({
   selector: 'app-shopping-list',
@@ -35,6 +36,19 @@ import { ShoppingList, ShoppingListItem } from '../models';
       } @empty {
         <p class="muted">Nothing to buy yet. Add recipes with ingredients to this plan.</p>
       }
+
+      @if (inPantry().length) {
+        <section class="card shop-section pantry-section">
+          <h2>Already in your pantry</h2>
+          <p class="small-text muted">Left off when you add this plan to your shopping list. <a routerLink="/kitchen" class="no-print">Edit pantry</a></p>
+          @for (item of inPantry(); track key(item)) {
+            <div class="shop-item in-pantry">
+              <span class="qty">{{ item.quantity }} {{ item.unit }}</span>
+              <span>{{ item.ingredient }}</span>
+            </div>
+          }
+        </section>
+      }
     } @else {
       <p class="muted">Loading…</p>
     }
@@ -53,8 +67,8 @@ export class ShoppingListPage implements OnInit {
     this.adding.set(true);
     this.note.set(null);
     try {
-      await firstValueFrom(this.api.addMealPlanToGroceryList(Number(this.id())));
-      this.note.set('Added everything from this plan.');
+      const result = await firstValueFrom(this.api.addMealPlanToGroceryList(Number(this.id())));
+      this.note.set('Added everything from this plan.' + pantryNote(result.skippedPantry));
     } catch {
       this.note.set("Couldn't add to your list.");
     } finally {
@@ -62,11 +76,13 @@ export class ShoppingListPage implements OnInit {
     }
   }
 
+  inPantry = computed(() => this.list()?.items.filter(i => i.inPantry) ?? []);
+
   groups = computed(() => {
     const l = this.list();
     if (!l) return [];
     const map = new Map<string, ShoppingListItem[]>();
-    for (const item of l.items) {
+    for (const item of l.items.filter(i => !i.inPantry)) {
       const section = item.storeSection ?? 'Other';
       map.set(section, [...(map.get(section) ?? []), item]);
     }

@@ -35,6 +35,7 @@ export const routes: Routes = [
   { path: 'recipes/:id/edit', component: RecipeFormPage, canActivate: [authGuard] },
   { path: 'fridge', component: FridgePage, canActivate: [authGuard] },
   { path: 'shopping-list', component: GroceryListPage, canActivate: [authGuard] },
+  { path: 'kitchen', loadComponent: () => import('./pages/kitchen').then(m => m.KitchenPage), canActivate: [authGuard] },
   { path: 'settings', loadComponent: () => import('./pages/settings').then(m => m.SettingsPage), canActivate: [authGuard] },
   { path: 'plan-week', loadComponent: () => import('./pages/plan-week').then(m => m.PlanWeekPage), canActivate: [authGuard] },
   // Cook mode works for your recipes and library recipes; it's full screen, so it loads on demand

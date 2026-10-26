@@ -139,6 +139,7 @@ app.MapPersonalEndpoints();
 app.MapImportEndpoints();
 app.MapNutritionEndpoints();
 app.MapPasswordResetEndpoints();
+app.MapKitchenEndpoints();
 
 app.Run();
 

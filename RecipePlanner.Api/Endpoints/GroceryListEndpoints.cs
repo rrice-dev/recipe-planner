@@ -55,7 +55,8 @@ public static class GroceryListEndpoints
         });
 
         // Everything a recipe needs, scaled to the servings you're making
-        group.MapPost("/from-recipe/{id:int}", async (int id, GroceryFromRecipeRequest? request, ClaimsPrincipal user, AppDbContext db) =>
+        // Pantry staples are left off unless includePantry=true
+        group.MapPost("/from-recipe/{id:int}", async (int id, GroceryFromRecipeRequest? request, bool? includePantry, ClaimsPrincipal user, AppDbContext db) =>
         {
             var userId = user.UserId();
             var recipe = await db.Recipes.AsNoTracking()
@@ -71,11 +72,11 @@ public static class GroceryListEndpoints
             var lines = recipe.Ingredients.Select(ri => new Line(
                 ri.IngredientId, ri.Ingredient.Name, ri.Ingredient.StoreSection,
                 Math.Round(ri.Quantity * scale, 2), ri.Unit, recipe.Title)).ToList();
-            return await AddAndList(db, userId, lines);
+            return await AddWithoutPantry(db, userId, lines, includePantry == true);
         });
 
         // Every recipe in a meal plan, each scaled to its planned servings
-        group.MapPost("/from-meal-plan/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
+        group.MapPost("/from-meal-plan/{id:int}", async (int id, bool? includePantry, ClaimsPrincipal user, AppDbContext db) =>
         {
             var userId = user.UserId();
             var plan = await db.MealPlans.AsNoTracking()
@@ -88,7 +89,7 @@ public static class GroceryListEndpoints
             var lines = plan.Entries.SelectMany(e => e.Recipe.Ingredients.Select(ri => new Line(
                 ri.IngredientId, ri.Ingredient.Name, ri.Ingredient.StoreSection,
                 Math.Round(ri.Quantity * e.Servings / Math.Max(e.Recipe.Servings, 1), 2), ri.Unit, plan.Name))).ToList();
-            return await AddAndList(db, userId, lines);
+            return await AddWithoutPantry(db, userId, lines, includePantry == true);
         });
 
         group.MapPatch("/items/{id:int}", async (int id, GroceryUpdateRequest request, ClaimsPrincipal user, AppDbContext db) =>
@@ -151,6 +152,23 @@ public static class GroceryListEndpoints
             "each" or "ea" or "whole" or "pieces" or "piece" => "whole",
             _ => u
         };
+    }
+
+    // Leaves off what's in the pantry, and says which ones, so nothing disappears without a word
+    private static async Task<IResult> AddWithoutPantry(AppDbContext db, string userId, List<Line> lines, bool includePantry)
+    {
+        var skipped = new List<string>();
+        if (!includePantry)
+        {
+            var pantry = await KitchenEndpoints.PantryKeys(db, userId);
+            skipped = lines.Where(l => pantry.Contains(Kitchen.KitchenRules.Key(l.Name)))
+                .Select(l => l.Name).Distinct(StringComparer.OrdinalIgnoreCase).Order().ToList();
+            lines = lines.Where(l => !pantry.Contains(Kitchen.KitchenRules.Key(l.Name))).ToList();
+        }
+        var result = await AddAndList(db, userId, lines);
+        return result is Microsoft.AspNetCore.Http.HttpResults.Ok<List<GroceryItemResponse>> ok
+            ? Results.Ok(new GroceryAddResult(ok.Value!, skipped))
+            : result;
     }
 
     private static async Task<IResult> AddAndList(AppDbContext db, string userId, List<Line> lines)
