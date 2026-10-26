@@ -25,10 +25,19 @@ public class ApiFactory : WebApplicationFactory<Program>
     public ICountryDishGenerator? CountryDishes { get; init; }
     public RecipePlanner.Api.Import.IPageFetcher? Pages { get; init; }
     public IRecipeExtractor? Extractor { get; init; }
+    public FakeEmail? Email { get; init; }
+    public RecipePlanner.Api.Nutrition.IFoodSource? Foods { get; init; }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Testing");
+        if (Email is not null)
+        {
+            // Configured so the reset feature turns on; the transport is swapped for a fake below
+            builder.UseSetting("Email:ConnectionString", "endpoint=https://test.communication.azure.com/;accesskey=dGVzdA==");
+            builder.UseSetting("Email:From", "DoNotReply@test.azurecomm.net");
+            builder.UseSetting("Email:AppBaseUrl", FakeEmail.SiteUrl);
+        }
         builder.ConfigureTestServices(services =>
         {
             services.RemoveAll<DbContextOptions<AppDbContext>>();
@@ -62,6 +71,18 @@ public class ApiFactory : WebApplicationFactory<Program>
             {
                 services.RemoveAll<IRecipeDraftGenerator>();
                 services.AddSingleton(RecipeDrafts);
+            }
+
+            if (Email is not null)
+            {
+                services.RemoveAll<RecipePlanner.Api.Email.IEmailTransport>();
+                services.AddSingleton<RecipePlanner.Api.Email.IEmailTransport>(Email);
+            }
+
+            if (Foods is not null)
+            {
+                services.RemoveAll<RecipePlanner.Api.Nutrition.IFoodSource>();
+                services.AddScoped(_ => Foods);
             }
 
             if (Pages is not null)

@@ -35,6 +35,10 @@ public static class RateLimiting
     public const string ImportPolicy = "import";
     public const int ImportPermitLimit = 20;
 
+    // Nutrition can trigger USDA lookups for new ingredient names
+    public const string NutritionPolicy = "nutrition";
+    public const int NutritionPermitLimit = 60;
+
     public const string KrogerPolicy = "kroger";
     public const int KrogerPermitLimit = 30;
 
@@ -48,7 +52,9 @@ public static class RateLimiting
         "/api/auth/resetPassword",
         "/api/auth/resendConfirmationEmail",
         "/api/auth/manage/info",   // changing your password checks the old one
-        "/api/account/delete"      // also checks the password
+        "/api/account/delete",     // also checks the password
+        "/api/account/forgot-password",
+        "/api/account/reset-password"
     };
 
     public static IServiceCollection AddAppRateLimiting(this IServiceCollection services) =>
@@ -100,6 +106,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = ImportPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(NutritionPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = NutritionPermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

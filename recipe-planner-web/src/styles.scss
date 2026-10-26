@@ -516,3 +516,10 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
   .prep-list li { break-inside: avoid; }
   .plan-day { border: none; padding: 0.25rem 0; }
 }
+
+/* Nutrition */
+.nutrition { margin: 1.25rem 0; }
+.nutrition h2 { margin-top: 0; }
+.nutrition-facts { gap: 0.5rem 1.5rem; }
+.nutrition details { margin-top: 0.5rem; }
+.nutrition summary { cursor: pointer; color: var(--accent); font-weight: 700; }

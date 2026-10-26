@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Ai;
 using RecipePlanner.Api.Data;
+using RecipePlanner.Api.Email;
+using RecipePlanner.Api.Nutrition;
 using RecipePlanner.Api.Kroger;
 using RecipePlanner.Api.Library;
 using RecipePlanner.Api.Endpoints;
@@ -71,6 +73,8 @@ builder.Services.AddAppRateLimiting();
 builder.Services.AddMealIdeas(builder.Configuration);
 builder.Services.AddRecipePhotos(builder.Configuration);
 builder.Services.AddKroger(builder.Configuration);
+builder.Services.AddAppEmail(builder.Configuration);
+builder.Services.AddNutrition(builder.Configuration);
 builder.Services.AddRecipeLibrary(builder.Environment.ContentRootPath);
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton(TimeProvider.System);
@@ -133,6 +137,8 @@ app.MapWorldEndpoints();
 app.MapSettingsEndpoints();
 app.MapPersonalEndpoints();
 app.MapImportEndpoints();
+app.MapNutritionEndpoints();
+app.MapPasswordResetEndpoints();
 
 app.Run();
 
