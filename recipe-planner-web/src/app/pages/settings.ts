@@ -1,3 +1,4 @@
+import { BudgetSettingsSection } from '../budget-settings';
 import { NutritionTargetsSection } from '../nutrition-targets';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +11,7 @@ import { ServingsStepper } from '../servings-stepper';
 
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule, ServingsStepper, NutritionTargetsSection],
+  imports: [FormsModule, ServingsStepper, NutritionTargetsSection, BudgetSettingsSection],
   template: `
     <div class="settings">
       <h1>Settings</h1>
@@ -61,6 +62,7 @@ import { ServingsStepper } from '../servings-stepper';
       @if (saveNote()) { <p [class]="saveFailed() ? 'error' : 'saved-note'" role="status">{{ saveNote() }}</p> }
 
       <app-nutrition-targets />
+      <app-budget-settings />
 
       <section class="card">
         <h2>Password</h2>

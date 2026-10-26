@@ -7,6 +7,7 @@ public static class KrogerServiceCollectionExtensions
         services.Configure<KrogerOptions>(configuration.GetSection("Kroger"));
         services.AddSingleton<KrogerAppTokenCache>();
         services.AddScoped<KrogerTokens>();
+        services.AddScoped<PriceService>();
         var baseUrl = configuration["Kroger:BaseUrl"] ?? new KrogerOptions().BaseUrl;
         services.AddHttpClient<KrogerClient>(client =>
         {

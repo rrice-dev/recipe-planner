@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { PlanCost, RecipeCost, NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -308,5 +308,21 @@ getNutritionTargets() {
 
 saveNutritionTargets(targets: NutritionTargets) {
   return this.http.put<NutritionTargets>('/api/settings/nutrition-targets', targets);
+}
+
+getRecipeCost(recipeId: number, servings: number | null) {
+  return this.http.get<RecipeCost>(`/api/recipes/${recipeId}/cost`, { params: servings ? { servings } : {} });
+}
+
+getPlanCost(planId: number) {
+  return this.http.get<PlanCost>(`/api/mealplans/${planId}/cost`);
+}
+
+getBudget() {
+  return this.http.get<{ weeklyBudget: number | null }>('/api/settings/budget');
+}
+
+saveBudget(weeklyBudget: number | null) {
+  return this.http.put<{ weeklyBudget: number | null }>('/api/settings/budget', { weeklyBudget });
 }
 }

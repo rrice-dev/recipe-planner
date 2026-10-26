@@ -34,7 +34,7 @@ public class KrogerTests
     }
 
     // Runs the whole connect flow and returns a cookie-handling client for that user
-    private static async Task<HttpClient> Connected(ApiFactory factory, FakeKroger kroger)
+    internal static async Task<HttpClient> Connected(ApiFactory factory, FakeKroger kroger)
     {
         var email = $"k{Guid.NewGuid():N}@test.local";
         var session = await LoginCookie(factory, email);

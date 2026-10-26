@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { MealPlan, RecipeSummary } from '../models';
 import { formatWeek, weekDays } from '../date-utils';
 import { PlanNutritionPanel } from '../plan-nutrition';
+import { CostPanel } from '../cost-panel';
 
 interface EntryDraft {
   day: string;
@@ -14,7 +15,7 @@ interface EntryDraft {
 
 @Component({
   selector: 'app-meal-plan-detail',
-  imports: [RouterLink, PlanNutritionPanel],
+  imports: [RouterLink, PlanNutritionPanel, CostPanel],
   template: `
     <a routerLink="/meal-plans" class="back">← All meal plans</a>
     @if (plan(); as p) {
@@ -69,7 +70,10 @@ interface EntryDraft {
         }
       </div>
 
-      <app-plan-nutrition [planId]="p.id" [version]="savedVersion()" />
+      @defer (on viewport) {
+        <app-plan-nutrition [planId]="p.id" [version]="savedVersion()" />
+        @if (!dirty()) { <app-cost-panel [planId]="p.id" /> }
+      } @placeholder { <div></div> }
     } @else {
       <p class="muted">Loading…</p>
     }

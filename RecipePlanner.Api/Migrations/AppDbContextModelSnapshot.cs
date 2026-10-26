@@ -246,6 +246,39 @@ namespace RecipePlanner.Api.Migrations
                     b.ToTable("PantryItems");
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Kroger.IngredientPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTimeOffset>("FetchedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("LocationId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("NameKey")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("ProductsJson")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId", "NameKey")
+                        .IsUnique();
+
+                    b.ToTable("IngredientPrices");
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -332,6 +365,10 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
+
+                    b.Property<decimal?>("WeeklyBudget")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.HasKey("Id");
 

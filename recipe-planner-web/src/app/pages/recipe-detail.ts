@@ -12,11 +12,12 @@ import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
 import { NutritionPanel } from '../nutrition-panel';
+import { CostPanel } from '../cost-panel';
 import { PersonalPanel } from '../personal-panel';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel],
+  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel, CostPanel],
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
@@ -138,6 +139,7 @@ import { PersonalPanel } from '../personal-panel';
       }
 
       <app-nutrition-panel [url]="'/api/recipes/' + r.id + '/nutrition'" />
+      @defer (on viewport) { <app-cost-panel [recipeId]="r.id" [servings]="servings() ?? r.servings" /> } @placeholder { <div></div> }
 
       <h2>Steps</h2>
       @if (r.steps.length) {
