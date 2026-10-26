@@ -10,6 +10,7 @@ using RecipePlanner.Api.Kroger;
 using RecipePlanner.Api.Library;
 using RecipePlanner.Api.Endpoints;
 using RecipePlanner.Api.Models;
+using RecipePlanner.Api.Monitoring;
 using RecipePlanner.Api.Photos;
 using RecipePlanner.Api.Security;
 
@@ -94,6 +95,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(o =>
 });
 
 builder.Services.AddOpenApi();
+builder.AddAppMonitoring();
 
 var app = builder.Build();
 
@@ -122,6 +124,7 @@ app.UseAuthentication();
 app.UseRateLimiter(); // After authentication, so limits can be per user
 app.UseAuthorization();
 
+app.MapAppHealth();
 app.MapAuthEndpoints();
 app.MapRecipeEndpoints();
 app.MapTechniqueEndpoints();
