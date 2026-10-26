@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { MealPlan, RecipeSummary } from '../models';
 import { formatWeek, weekDays } from '../date-utils';
+import { PlanNutritionPanel } from '../plan-nutrition';
 
 interface EntryDraft {
   day: string;
@@ -13,7 +14,7 @@ interface EntryDraft {
 
 @Component({
   selector: 'app-meal-plan-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, PlanNutritionPanel],
   template: `
     <a routerLink="/meal-plans" class="back">← All meal plans</a>
     @if (plan(); as p) {
@@ -67,6 +68,8 @@ interface EntryDraft {
           </section>
         }
       </div>
+
+      <app-plan-nutrition [planId]="p.id" [version]="savedVersion()" />
     } @else {
       <p class="muted">Loading…</p>
     }
@@ -124,6 +127,8 @@ export class MealPlanDetailPage implements OnInit {
     this.dirty.set(true);
   }
 
+  savedVersion = signal(0);
+
   async save() {
     const p = this.plan();
     if (!p) return;
@@ -132,8 +137,9 @@ export class MealPlanDetailPage implements OnInit {
     try {
       await firstValueFrom(this.api.setMealPlanEntries(p.id, this.entries()));
       this.dirty.set(false);
+      this.savedVersion.update(v => v + 1);
     } catch {
-      this.error.set('Could not save the plan. Check the API terminal for details.');
+      this.error.set("Couldn't save the plan. Please try again.");
     } finally {
       this.saving.set(false);
     }

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -296,5 +296,17 @@ eatLeftover(id: number, portions = 1) {
 
 removeLeftover(id: number) {
   return this.http.delete<void>(`/api/leftovers/${id}`);
+}
+
+getPlanNutrition(planId: number) {
+  return this.http.get<PlanNutrition>(`/api/mealplans/${planId}/nutrition`);
+}
+
+getNutritionTargets() {
+  return this.http.get<NutritionTargets>('/api/settings/nutrition-targets');
+}
+
+saveNutritionTargets(targets: NutritionTargets) {
+  return this.http.put<NutritionTargets>('/api/settings/nutrition-targets', targets);
 }
 }

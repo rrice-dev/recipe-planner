@@ -545,3 +545,25 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 .save-leftovers input[type="number"] { width: 4.5rem; }
 .cook-leftovers { margin-top: 1.5rem; }
 .kitchen-section { margin-bottom: 1.25rem; }
+
+/* Meal plan nutrition */
+.plan-nutrition { margin-top: 1.5rem; }
+.table-scroll { overflow-x: auto; }
+.nutrition-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.nutrition-table th, .nutrition-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+.nutrition-table th[scope="row"], .nutrition-table thead th:first-child { text-align: left; white-space: normal; }
+.nutrition-table thead th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.nutrition-table .meals { display: block; font-weight: 400; }
+.nutrition-table tfoot th, .nutrition-table tfoot td { border-bottom: 0; border-top: 2px solid var(--border-strong); font-weight: 700; }
+.meters { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 0.75rem; }
+.meter-label { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.9rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+.meter-track { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.meter-track span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.targets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 0.75rem; }
+.targets-grid label { display: grid; gap: 0.3rem; font-weight: 700; }
+.with-unit { display: flex; align-items: center; gap: 0.4rem; font-weight: 400; }
+.with-unit input { width: 100%; min-width: 0; }
+.nutrition-table th[scope="row"] { min-width: 8.5rem; }
+@media (max-width: 600px) {
+  .nutrition-table th, .nutrition-table td { padding: 0.45rem 0.35rem; font-size: 0.9rem; }
+}

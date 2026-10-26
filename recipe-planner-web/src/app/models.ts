@@ -315,3 +315,15 @@ export interface Leftover {
   madeOn: string;
   useBy: string;
 }
+
+export interface Nutrients { calories: number; protein: number; carbs: number; fat: number; fiber: number; sugar: number; sodiumMg: number }
+
+export interface NutritionTargets { calories: number | null; protein: number | null; carbs: number | null; fat: number | null }
+
+export interface PlanNutrition {
+  available: boolean;
+  days: { day: string; meals: { recipeId: number; title: string; perServing: Nutrients | null; complete: boolean }[]; total: Nutrients }[];
+  dailyAverage: Nutrients | null;
+  targets: NutritionTargets;
+  complete: boolean;
+}

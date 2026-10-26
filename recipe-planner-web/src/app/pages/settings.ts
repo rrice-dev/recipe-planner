@@ -1,3 +1,4 @@
+import { NutritionTargetsSection } from '../nutrition-targets';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { ServingsStepper } from '../servings-stepper';
 
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule, ServingsStepper],
+  imports: [FormsModule, ServingsStepper, NutritionTargetsSection],
   template: `
     <div class="settings">
       <h1>Settings</h1>
@@ -58,6 +59,8 @@ import { ServingsStepper } from '../servings-stepper';
                               (valueChange)="update({ defaultServings: $event })" />
       </section>
       @if (saveNote()) { <p [class]="saveFailed() ? 'error' : 'saved-note'" role="status">{{ saveNote() }}</p> }
+
+      <app-nutrition-targets />
 
       <section class="card">
         <h2>Password</h2>
