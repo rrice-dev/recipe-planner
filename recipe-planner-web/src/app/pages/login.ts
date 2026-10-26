@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { FeaturesService } from '../features.service';
 import { safeReturnUrl } from '../safe-url';
 
 @Component({
@@ -25,11 +26,16 @@ import { safeReturnUrl } from '../safe-url';
           {{ busy() ? 'Logging in…' : 'Log in' }}
         </button>
       </form>
+      @if (features.features().passwordReset) {
+        <p class="small-text"><a routerLink="/forgot-password">Forgot your password?</a></p>
+      }
       <p class="muted">No account? <a routerLink="/register">Create one</a></p>
     </div>
   `
 })
 export class LoginPage {
+  features = inject(FeaturesService);
+  private loadFeatures = this.features.ensureLoaded();
   deleted = inject(ActivatedRoute).snapshot.queryParamMap.has('deleted');
   private auth = inject(AuthService);
   private router = inject(Router);

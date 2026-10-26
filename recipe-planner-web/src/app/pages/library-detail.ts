@@ -10,12 +10,13 @@ import { LibraryDetail } from '../models';
 import { totalTime } from '../library-utils';
 import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
+import { NutritionPanel } from '../nutrition-panel';
 
 type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail } | { status: 'missing' } | { status: 'error' };
 
 @Component({
   selector: 'app-library-detail',
-  imports: [RouterLink, ServingsStepper],
+  imports: [RouterLink, ServingsStepper, NutritionPanel],
   template: `
     <a routerLink="/library" class="back">← Recipe Library</a>
     @switch (state().status) {
@@ -83,6 +84,8 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
               </li>
             }
           </ul>
+
+          <app-nutrition-panel [url]="'/api/library/' + r.slug + '/nutrition'" />
 
           <h2>Steps</h2>
           <ol>

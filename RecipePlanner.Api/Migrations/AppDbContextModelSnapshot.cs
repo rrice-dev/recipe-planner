@@ -675,6 +675,36 @@ namespace RecipePlanner.Api.Migrations
                     b.ToTable("Techniques");
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Nutrition.IngredientNutrition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FactsJson")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("FdcId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTimeOffset>("FetchedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NameKey")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NameKey")
+                        .IsUnique();
+
+                    b.ToTable("IngredientNutrition");
+                });
+
             modelBuilder.Entity("RecipeRecipeCollection", b =>
                 {
                     b.Property<int>("CollectionsId")

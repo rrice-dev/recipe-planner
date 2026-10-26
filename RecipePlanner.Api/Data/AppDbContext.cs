@@ -20,6 +20,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
     public DbSet<CookLogEntry> CookLog => Set<CookLogEntry>();
+    public DbSet<RecipePlanner.Api.Nutrition.IngredientNutrition> IngredientNutrition => Set<RecipePlanner.Api.Nutrition.IngredientNutrition>();
     public DbSet<RecipeCollection> RecipeCollections => Set<RecipeCollection>();
     public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
     public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
@@ -64,6 +65,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasForeignKey(c => c.RecipeId)
             .OnDelete(DeleteBehavior.Cascade);
         b.Entity<CookLogEntry>().HasIndex(c => new { c.RecipeId, c.CookedOn });
+
+        b.Entity<RecipePlanner.Api.Nutrition.IngredientNutrition>().Property(n => n.NameKey).HasMaxLength(100);
+        b.Entity<RecipePlanner.Api.Nutrition.IngredientNutrition>().HasIndex(n => n.NameKey).IsUnique();
 
         b.Entity<RecipeCollection>().Property(c => c.Name).HasMaxLength(RecipeLimits.MaxCollectionNameLength);
         b.Entity<RecipeCollection>().HasIndex(c => new { c.OwnerId, c.Name }).IsUnique();

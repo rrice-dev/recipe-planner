@@ -10,11 +10,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
+import { NutritionPanel } from '../nutrition-panel';
 import { PersonalPanel } from '../personal-panel';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel],
+  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel],
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
@@ -134,6 +135,8 @@ import { PersonalPanel } from '../personal-panel';
       } @else {
         <p class="muted">No ingredients added yet.</p>
       }
+
+      <app-nutrition-panel [url]="'/api/recipes/' + r.id + '/nutrition'" />
 
       <h2>Steps</h2>
       @if (r.steps.length) {
