@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { firstValueFrom, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { pantryNote } from '../kitchen';
 import { SettingsService } from '../settings.service';
 import { StarRating } from '../star-rating';
 import { shareTargets } from '../share-links';
@@ -203,8 +204,8 @@ export class RecipeDetailPage {
     this.listNote.set(null);
     try {
       const servings = this.servings() ?? recipeServings;
-      await firstValueFrom(this.api.addRecipeToGroceryList(id, servings));
-      this.listNote.set(`Added ingredients for ${servings} serving${servings === 1 ? '' : 's'}.`);
+      const result = await firstValueFrom(this.api.addRecipeToGroceryList(id, servings));
+      this.listNote.set(`Added ingredients for ${servings} serving${servings === 1 ? '' : 's'}.` + pantryNote(result.skippedPantry));
     } catch {
       this.listNote.set("Couldn't add to your list.");
     } finally {

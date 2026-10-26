@@ -26,6 +26,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
     public DbSet<KrogerConnection> KrogerConnections => Set<KrogerConnection>();
     public DbSet<KrogerProductChoice> KrogerProductChoices => Set<KrogerProductChoice>();
+    public DbSet<RecipePlanner.Api.Kitchen.PantryItem> PantryItems => Set<RecipePlanner.Api.Kitchen.PantryItem>();
+    public DbSet<RecipePlanner.Api.Kitchen.Leftover> Leftovers => Set<RecipePlanner.Api.Kitchen.Leftover>();
 
     // The keys that encrypt login cookies. Stored here so every container uses the same keys,
     // and logins survive restarts and scale-to-zero.
@@ -120,6 +122,24 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasOne<AppUser>().WithMany()
             .HasForeignKey(k => k.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        b.Entity<RecipePlanner.Api.Kitchen.PantryItem>(e =>
+        {
+            e.Property(p => p.Name).HasMaxLength(RecipePlanner.Api.Kitchen.KitchenRules.MaxNameLength);
+            e.Property(p => p.NameKey).HasMaxLength(RecipePlanner.Api.Kitchen.KitchenRules.MaxNameLength);
+            e.HasIndex(p => new { p.OwnerId, p.NameKey }).IsUnique();
+            e.HasOne<AppUser>().WithMany().HasForeignKey(p => p.OwnerId).OnDelete(DeleteBehavior.Cascade);
+        });
+
+        b.Entity<RecipePlanner.Api.Kitchen.Leftover>(e =>
+        {
+            e.Property(l => l.Name).HasMaxLength(RecipePlanner.Api.Kitchen.KitchenRules.MaxNameLength);
+            e.Property(l => l.Location).HasMaxLength(10);
+            e.HasIndex(l => l.OwnerId);
+            e.HasOne<AppUser>().WithMany().HasForeignKey(l => l.OwnerId).OnDelete(DeleteBehavior.Cascade);
+            // Deleting the recipe keeps the leftovers; they're still in your fridge
+            e.HasOne<Recipe>().WithMany().HasForeignKey(l => l.RecipeId).OnDelete(DeleteBehavior.SetNull);
+        });
 
         b.Entity<MealPlan>()
             .HasOne<AppUser>().WithMany()

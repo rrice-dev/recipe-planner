@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -130,11 +130,11 @@ addGroceryItems(items: GroceryAdd[]) {
 }
 
 addRecipeToGroceryList(recipeId: number, servings: number | null) {
-  return this.http.post<GroceryItem[]>(`/api/shopping-list/from-recipe/${recipeId}`, { servings });
+  return this.http.post<GroceryAddResult>(`/api/shopping-list/from-recipe/${recipeId}`, { servings });
 }
 
 addMealPlanToGroceryList(planId: number) {
-  return this.http.post<GroceryItem[]>(`/api/shopping-list/from-meal-plan/${planId}`, null);
+  return this.http.post<GroceryAddResult>(`/api/shopping-list/from-meal-plan/${planId}`, null);
 }
 
 updateGroceryItem(id: number, changes: { checked?: boolean; quantity?: number }) {
@@ -265,4 +265,36 @@ getPrepSession(planId: number, prepDay: string | null) {
   return this.http.get<PrepSession>(`/api/mealplans/${planId}/prep`, { params: prepDay ? { prepDay } : {} });
 }
 
+
+getPantry() {
+  return this.http.get<PantryItem[]>('/api/pantry');
+}
+
+addToPantry(names: string[]) {
+  return this.http.post<PantryItem[]>('/api/pantry', { names });
+}
+
+removeFromPantry(id: number) {
+  return this.http.delete<void>(`/api/pantry/${id}`);
+}
+
+getLeftovers() {
+  return this.http.get<Leftover[]>('/api/leftovers');
+}
+
+addLeftover(leftover: { name: string | null; recipeId: number | null; portions: number; location: LeftoverLocation; madeOn: string | null }) {
+  return this.http.post<Leftover>('/api/leftovers', leftover);
+}
+
+updateLeftover(id: number, changes: { portions?: number; location?: LeftoverLocation; on?: string }) {
+  return this.http.patch<Leftover>(`/api/leftovers/${id}`, changes);
+}
+
+eatLeftover(id: number, portions = 1) {
+  return this.http.post<Leftover | null>(`/api/leftovers/${id}/eat`, { portions });
+}
+
+removeLeftover(id: number) {
+  return this.http.delete<void>(`/api/leftovers/${id}`);
+}
 }

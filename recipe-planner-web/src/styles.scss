@@ -523,3 +523,25 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 .nutrition-facts { gap: 0.5rem 1.5rem; }
 .nutrition details { margin-top: 0.5rem; }
 .nutrition summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+
+/* Kitchen: leftovers and pantry */
+.shop-item.in-pantry { color: var(--muted); cursor: default; }
+.leftover {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem;
+  padding: 0.7rem 0 0.7rem 0.75rem; border-left: 4px solid var(--border-strong); margin-bottom: 0.4rem;
+}
+.leftover[data-level="soon"] { border-left-color: var(--saffron); }
+.leftover[data-level="today"] { border-left-color: var(--saffron); background: var(--saffron-soft); }
+.leftover[data-level="past"] { border-left-color: var(--danger); background: var(--danger-soft); }
+.leftover[data-level="today"] .freshness, .leftover[data-level="past"] .freshness { font-weight: 700; }
+.leftover[data-level="past"] .freshness { color: var(--danger); }
+.leftover .chip.small { vertical-align: 2px; }
+.leftover-actions { gap: 0.4rem; margin: 0; }
+.add-leftover { margin-top: 0.75rem; }
+.add-leftover summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.add-leftover .row { margin-top: 0.6rem; align-items: end; }
+.pantry-chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 0.75rem; }
+.save-leftovers { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.save-leftovers input[type="number"] { width: 4.5rem; }
+.cook-leftovers { margin-top: 1.5rem; }
+.kitchen-section { margin-bottom: 1.25rem; }

@@ -213,6 +213,7 @@ public static class MealPlanEndpoints
                 .FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
             if (plan is null) return Results.NotFound();
 
+            var pantry = await KitchenEndpoints.PantryKeys(db, userId);
             var items = plan.Entries
                 .SelectMany(e => e.Recipe.Ingredients.Select(ri => new
                 {
@@ -223,7 +224,8 @@ public static class MealPlanEndpoints
                 }))
                 .GroupBy(x => new { x.Name, x.Unit, x.StoreSection })
                 .Select(g => new ShoppingListItem(
-                    g.Key.Name, Math.Round(g.Sum(x => x.Quantity), 2), g.Key.Unit, g.Key.StoreSection))
+                    g.Key.Name, Math.Round(g.Sum(x => x.Quantity), 2), g.Key.Unit, g.Key.StoreSection,
+                    pantry.Contains(Kitchen.KitchenRules.Key(g.Key.Name))))
                 .OrderBy(i => i.StoreSection ?? "~")
                 .ThenBy(i => i.Ingredient)
                 .ToList();
