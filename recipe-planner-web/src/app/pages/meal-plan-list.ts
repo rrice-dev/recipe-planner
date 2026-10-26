@@ -37,6 +37,7 @@ import { formatWeek, nextMonday } from '../date-utils';
               <p class="meta">{{ formatWeek(p.weekStart) }}, {{ p.entries.length }} {{ p.entries.length === 1 ? 'meal' : 'meals' }}</p>
             </a>
             <div class="row">
+              <a [routerLink]="['/meal-plans', p.id, 'prep']" class="button">Prep day</a>
               <a [routerLink]="['/meal-plans', p.id, 'shopping-list']" class="button">Shopping list</a>
               <button class="link" (click)="remove(p)">Delete</button>
             </div>

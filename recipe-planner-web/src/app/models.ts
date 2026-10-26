@@ -282,3 +282,13 @@ export interface PlanSuggestResponse {
   matching: number;
   diet: string | null;
 }
+
+export interface PrepSession {
+  mealPlanId: number;
+  name: string;
+  prepDay: string;
+  meals: { day: string; recipeId: number; title: string; servings: number; approach: 'CookAhead' | 'PrepAheadCookFresh' | 'Freeze'; reason: string }[];
+  startFirst: { recipeId: number; title: string; minutes: number; firstStep: string }[];
+  chopOnce: { ingredient: string; prep: string; quantity: number; unit: string; storeSection: string | null; forRecipes: string[] }[];
+  marinate: string[];
+}

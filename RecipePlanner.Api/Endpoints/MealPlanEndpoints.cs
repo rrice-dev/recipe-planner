@@ -177,6 +177,30 @@ public static class MealPlanEndpoints
             return Results.NoContent();
         });
 
+        // Prep day: one session to batch-cook or prep the week. ?prepDay=2026-11-01 (defaults to the day before the week starts)
+        group.MapGet("/{id:int}/prep", async (int id, DateOnly? prepDay, ClaimsPrincipal user, AppDbContext db) =>
+        {
+            var userId = user.UserId();
+            var plan = await db.MealPlans.AsNoTracking()
+                .Include(p => p.Entries).ThenInclude(e => e.Recipe).ThenInclude(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
+                .Include(p => p.Entries).ThenInclude(e => e.Recipe).ThenInclude(r => r.Steps).ThenInclude(s => s.Technique)
+                .Include(p => p.Entries).ThenInclude(e => e.Recipe).ThenInclude(r => r.Techniques)
+                .AsSplitQuery()
+                .FirstOrDefaultAsync(p => p.Id == id && p.OwnerId == userId);
+            if (plan is null) return Results.NotFound();
+
+            var day = prepDay ?? plan.WeekStart.AddDays(-1);
+            if (day > plan.WeekStart.AddDays(6) || day < plan.WeekStart.AddDays(-7))
+                return Results.ValidationProblem(new Dictionary<string, string[]> { ["PrepDay"] = ["Pick a prep day close to the planned week."] });
+
+            var session = PrepPlanner.Build(plan.Entries.Select(e => new PrepPlanner.PlannedMeal(e.Day, e.Recipe, e.Servings)).ToList(), day);
+            return Results.Ok(new PrepSessionResponse(plan.Id, plan.Name, session.PrepDay,
+                session.Meals.Select(m => new PrepMealResponse(m.Day, m.RecipeId, m.Title, m.Servings, m.Approach.ToString(), m.Reason)).ToList(),
+                session.StartFirst.Select(l => new LongCookResponse(l.RecipeId, l.Title, l.Minutes, l.FirstStep)).ToList(),
+                session.ChopOnce.Select(c => new PrepItemResponse(c.Ingredient, c.Prep, c.Quantity, c.Unit, c.Section, c.ForRecipes)).ToList(),
+                session.Marinate));
+        });
+
         group.MapGet("/{id:int}/shopping-list", async (int id, ClaimsPrincipal user, AppDbContext db) =>
         {
             var userId = user.UserId();

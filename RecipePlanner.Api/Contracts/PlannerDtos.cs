@@ -17,3 +17,12 @@ public record PlanSuggestResponse(List<PlanCandidate> Suggestions, int Matching,
 public record PlanPick(DateOnly Day, string Key, int Servings);
 
 public record CreatePlanRequest(string Name, DateOnly WeekStart, List<PlanPick> Picks);
+
+public record PrepMealResponse(DateOnly Day, int RecipeId, string Title, int Servings, string Approach, string Reason);
+
+public record PrepItemResponse(string Ingredient, string Prep, decimal Quantity, string Unit, string? StoreSection, List<string> ForRecipes);
+
+public record LongCookResponse(int RecipeId, string Title, int Minutes, string FirstStep);
+
+public record PrepSessionResponse(int MealPlanId, string Name, DateOnly PrepDay,
+    List<PrepMealResponse> Meals, List<LongCookResponse> StartFirst, List<PrepItemResponse> ChopOnce, List<string> Marinate);

@@ -41,6 +41,7 @@ export const routes: Routes = [
   { path: 'meal-plans', component: MealPlanListPage, canActivate: [authGuard] },
   { path: 'meal-plans/:id', component: MealPlanDetailPage, canActivate: [authGuard] },
   { path: 'meal-plans/:id/shopping-list', component: ShoppingListPage, canActivate: [authGuard] },
+  { path: 'meal-plans/:id/prep', loadComponent: () => import('./pages/prep-day').then(m => m.PrepDayPage), canActivate: [authGuard] },
 
   { path: '**', redirectTo: 'recipes' }
 ];

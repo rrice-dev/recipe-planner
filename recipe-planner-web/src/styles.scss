@@ -500,3 +500,19 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 }
 .status-bar.update { background: var(--accent-soft); }
 .status-bar button { padding: 0.3rem 0.8rem; font-size: 0.88rem; }
+
+/* Prep day */
+.prep-list { list-style: none; padding: 0; margin: 0.5rem 0 1rem; }
+.prep-list li { padding: 0.45rem 0; border-bottom: 1px solid var(--border); }
+.prep-list label { display: flex; gap: 0.7rem; align-items: flex-start; cursor: pointer; }
+.prep-list input { margin-top: 0.25rem; flex: 0 0 auto; }
+.prep-list li:has(input:checked) span { color: var(--muted); text-decoration: line-through; }
+.prep-meal .approach { white-space: nowrap; }
+.prep-meal[data-approach="CookAhead"] .approach { background: var(--accent-soft); color: var(--accent); }
+.prep-meal[data-approach="Freeze"] .approach { background: var(--tag-quick-bg); color: var(--tag-quick-ink); }
+.prep-meal[data-approach="PrepAheadCookFresh"] .approach { background: var(--saffron-soft); color: var(--text); }
+@media (max-width: 560px) { .prep-meal .approach { display: none; } }
+@media print {
+  .prep-list li { break-inside: avoid; }
+  .plan-day { border: none; padding: 0.25rem 0; }
+}

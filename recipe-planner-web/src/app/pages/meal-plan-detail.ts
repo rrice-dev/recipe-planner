@@ -26,6 +26,7 @@ interface EntryDraft {
           <button class="primary" (click)="save()" [disabled]="saving() || !dirty()">
             {{ saving() ? 'Saving…' : dirty() ? 'Save changes' : 'Saved' }}
           </button>
+          <a [routerLink]="['/meal-plans', p.id, 'prep']" class="button primary">Prep day</a>
           <a [routerLink]="['/meal-plans', p.id, 'shopping-list']" class="button"
              [class.disabled]="dirty()">Shopping list</a>
         </div>
