@@ -55,8 +55,11 @@ public sealed class AcsEmailDelivery : IEmailDelivery
     private readonly EmailClient _client;
     private readonly string _from;
 
-    public AcsEmailDelivery(IOptions<EmailOptions> options)
+    private readonly ILogger<AcsEmailDelivery> _logger;
+
+    public AcsEmailDelivery(IOptions<EmailOptions> options, ILogger<AcsEmailDelivery> logger)
     {
+        _logger = logger;
         var clientOptions = new EmailClientOptions();
         clientOptions.Retry.MaxRetries = 2;
         clientOptions.Retry.NetworkTimeout = TimeSpan.FromSeconds(15);
@@ -64,9 +67,15 @@ public sealed class AcsEmailDelivery : IEmailDelivery
         _from = options.Value.From!;
     }
 
-    public Task DeliverAsync(QueuedEmail email, CancellationToken ct) =>
-        _client.SendAsync(WaitUntil.Started, new EmailMessage(_from, email.To,
+    // This runs in the background, so it can wait for Azure's final answer. That answer is logged (with
+    // Azure's operation id, never the address) so a missing email can be traced: "Succeeded" means Azure
+    // handed it to the recipient's mail server, so a missing email is then a spam-filter problem.
+    public async Task DeliverAsync(QueuedEmail email, CancellationToken ct)
+    {
+        var operation = await _client.SendAsync(WaitUntil.Completed, new EmailMessage(_from, email.To,
             new EmailContent(email.Subject) { Html = email.Html, PlainText = email.Text }), ct);
+        _logger.LogInformation("Email {OperationId} finished with status {Status}", operation.Id, operation.Value.Status);
+    }
 }
 
 public sealed class EmailSendingService(Channel<QueuedEmail> queue, IEmailDelivery delivery, ILogger<EmailSendingService> logger) : BackgroundService

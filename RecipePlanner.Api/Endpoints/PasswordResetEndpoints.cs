@@ -20,7 +20,7 @@ public static class PasswordResetEndpoints
     {
         // Both paths are on the strict login rate limit (RateLimiting.SensitiveAuthPaths)
         app.MapPost("/api/account/forgot-password", async (ForgotPasswordRequest request, UserManager<AppUser> users,
-            IEmailSender<AppUser> sender, IOptions<EmailOptions> email) =>
+            IEmailSender<AppUser> sender, IOptions<EmailOptions> email, ILogger<ForgotPasswordRequest> logger) =>
         {
             if (!email.Value.IsConfigured) return Results.NotFound();
             var user = string.IsNullOrWhiteSpace(request.Email) ? null : await users.FindByEmailAsync(request.Email.Trim());
@@ -28,6 +28,12 @@ public static class PasswordResetEndpoints
             {
                 var token = await users.GeneratePasswordResetTokenAsync(user);
                 await sender.SendPasswordResetCodeAsync(user, user.Email, WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token)));
+                logger.LogInformation("Password reset email queued for user {UserId}", user.Id);
+            }
+            else
+            {
+                // Only in the server log, never in the response; no address is logged
+                logger.LogInformation("Password reset asked for an address with no account");
             }
             // The same answer either way, so this can't be used to find out who has an account
             return Results.Ok();
