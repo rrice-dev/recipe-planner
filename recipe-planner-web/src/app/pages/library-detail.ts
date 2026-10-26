@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, linkedSignal, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -6,13 +6,15 @@ import { catchError, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 import { LibraryDetail } from '../models';
-import { friendlyQuantity, friendlyUnit, totalTime } from '../library-utils';
+import { totalTime } from '../library-utils';
+import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { ServingsStepper } from '../servings-stepper';
 
 type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail } | { status: 'missing' } | { status: 'error' };
 
 @Component({
   selector: 'app-library-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, ServingsStepper],
   template: `
     <a routerLink="/library" class="back">← Recipe Library</a>
     @switch (state().status) {
@@ -62,10 +64,11 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
           }
 
           <h2>Ingredients</h2>
+          <app-servings-stepper [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
           <ul>
             @for (i of r.ingredients; track i.name) {
               <li>
-                {{ qty(i.quantity) }} {{ unit(i.unit) }} {{ i.name }}
+                {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
                 @if (i.note) { <span class="muted">({{ i.note }})</span> }
               </li>
             }
@@ -91,8 +94,8 @@ export class LibraryDetailPage {
   auth = inject(AuthService);
   slug = input.required<string>();
   time = totalTime;
-  qty = friendlyQuantity;
-  unit = friendlyUnit;
+  amount = formatAmount;
+  unit = formatUnit;
 
   state = toSignal(
     toObservable(this.slug).pipe(
@@ -103,6 +106,12 @@ export class LibraryDetailPage {
     { initialValue: { status: 'loading' } as LoadState });
 
   recipe = () => { const s = this.state(); return s.status === 'ok' ? s.recipe : null; };
+  // Starts at the recipe's own servings; resets when you open a different recipe
+  servings = linkedSignal<LoadState, number | null>({ source: this.state, computation: () => null });
+
+  scale(quantity: number, base: number) {
+    return scaleQuantity(quantity, base, this.servings() ?? base);
+  }
   busy = signal(false);
   error = signal<string | null>(null);
   addedId = signal<number | null>(null);

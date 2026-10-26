@@ -37,7 +37,7 @@ jobs:
         run: dotnet test --no-build -c Release --verbosity normal
 
   web:
-    name: Angular build
+    name: Angular build and tests
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -56,6 +56,9 @@ jobs:
 
       - name: Build
         run: npx ng build --configuration production
+
+      - name: Test
+        run: npx ng test --watch=false
 
   # On pull requests, prove both images still build. On main, the deploy job builds them for real.
   docker:

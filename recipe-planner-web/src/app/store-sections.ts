@@ -20,8 +20,3 @@ export function groupBySection<T extends { storeSection: string | null }>(
     .sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b))
     .map(([section, list]) => ({ section, items: [...list].sort(sortItems) }));
 }
-
-// 2.00 -> "2", 1.50 -> "1.5"
-export function formatQuantity(q: number | null): string {
-  return q === null ? '' : String(Number(q.toFixed(2)));
-}

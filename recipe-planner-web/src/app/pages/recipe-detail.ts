@@ -7,10 +7,12 @@ import { StarRating } from '../star-rating';
 import { shareTargets } from '../share-links';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
+import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { ServingsStepper } from '../servings-stepper';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink, StarRating],
+  imports: [RouterLink, StarRating, ServingsStepper],
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
@@ -41,18 +43,6 @@ import { PhotoReadError, shrinkPhoto } from '../photo-utils';
         <p class="error">{{ photoError() }}</p>
       }
 
-      <div class="row add-to-list">
-        <label class="inline-label">Servings
-          <input type="number" class="tiny" min="1" max="100" [value]="listServings() ?? r.servings"
-                 (input)="listServings.set(+$any($event.target).value || null)" />
-        </label>
-        <button type="button" (click)="addToList(r.id, r.servings)" [disabled]="adding() || !r.ingredients.length">
-          {{ adding() ? 'Adding…' : '🛒 Add to shopping list' }}
-        </button>
-        @if (listNote()) {
-          <span class="muted small-text">{{ listNote() }} <a routerLink="/shopping-list">View list</a></span>
-        }
-      </div>
 
       @if (social(); as s) {
         <section class="card social">
@@ -113,10 +103,19 @@ import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 
       <h2>Ingredients</h2>
       @if (r.ingredients.length) {
+        <app-servings-stepper [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
+        <div class="row add-to-list">
+          <button type="button" (click)="addToList(r.id, r.servings)" [disabled]="adding()">
+            {{ adding() ? 'Adding…' : '🛒 Add to shopping list' }}
+          </button>
+          @if (listNote()) {
+            <span class="muted small-text">{{ listNote() }} <a routerLink="/shopping-list">View list</a></span>
+          }
+        </div>
         <ul>
           @for (i of r.ingredients; track i.ingredientId) {
             <li>
-              {{ i.quantity }} {{ i.unit }} {{ i.name }}
+              {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
               @if (i.note) { <span class="muted">({{ i.note }})</span> }
             </li>
           }
@@ -154,7 +153,14 @@ export class RecipeDetailPage {
   photoVersion = linkedSignal(() => this.recipe()?.photoVersion ?? null);
   uploading = signal(false);
   photoError = signal<string | null>(null);
-  listServings = signal<number | null>(null);
+  // null = the recipe's own servings. Resets when you open a different recipe.
+  servings = linkedSignal<unknown, number | null>({ source: this.recipe, computation: () => null });
+  amount = formatAmount;
+  unit = formatUnit;
+
+  scale(quantity: number, base: number) {
+    return scaleQuantity(quantity, base, this.servings() ?? base);
+  }
   adding = signal(false);
   listNote = signal<string | null>(null);
   error = signal<string | null>(null);
@@ -172,7 +178,7 @@ export class RecipeDetailPage {
     this.adding.set(true);
     this.listNote.set(null);
     try {
-      const servings = Math.min(100, Math.max(1, this.listServings() ?? recipeServings));
+      const servings = this.servings() ?? recipeServings;
       await firstValueFrom(this.api.addRecipeToGroceryList(id, servings));
       this.listNote.set(`Added ingredients for ${servings} serving${servings === 1 ? '' : 's'}.`);
     } catch {

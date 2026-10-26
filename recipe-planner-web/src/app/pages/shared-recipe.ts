@@ -7,13 +7,15 @@ import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 import { SharedRecipe } from '../models';
 import { StarRating } from '../star-rating';
+import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { ServingsStepper } from '../servings-stepper';
 
 type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } | { status: 'missing' } | { status: 'error' };
 
 // Public page for a shared link: no login needed to read it
 @Component({
   selector: 'app-shared-recipe',
-  imports: [RouterLink, StarRating],
+  imports: [RouterLink, StarRating, ServingsStepper],
   template: `
     @switch (state().status) {
       @case ('loading') {
@@ -79,10 +81,13 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } 
           }
 
           <h2>Ingredients</h2>
+          @if (r.ingredients.length) {
+            <app-servings-stepper [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
+          }
           <ul>
             @for (i of r.ingredients; track i.name) {
               <li>
-                {{ i.quantity }} {{ i.unit }} {{ i.name }}
+                {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
                 @if (i.note) { <span class="muted">({{ i.note }})</span> }
               </li>
             } @empty {
@@ -121,6 +126,13 @@ export class SharedRecipePage {
 
   recipe = linkedSignal(() => { const s = this.state(); return s.status === 'ok' ? s.recipe : null; });
   busy = signal(false);
+  servings = linkedSignal<LoadState, number | null>({ source: this.state, computation: () => null });
+  amount = formatAmount;
+  unit = formatUnit;
+
+  scale(quantity: number, base: number) {
+    return scaleQuantity(quantity, base, this.servings() ?? base);
+  }
   error = signal<string | null>(null);
 
   constructor() {

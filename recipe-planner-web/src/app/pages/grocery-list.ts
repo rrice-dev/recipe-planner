@@ -3,7 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { GroceryItem, Ingredient } from '../models';
-import { formatQuantity, groupBySection } from '../store-sections';
+import { groupBySection } from '../store-sections';
+import { formatAmount, formatUnit } from '../scaling';
 import { KrogerPanel } from '../kroger-panel';
 import { ActivatedRoute } from '@angular/router';
 
@@ -118,7 +119,8 @@ export class GroceryListPage implements OnInit {
   }
 
   qty(item: GroceryItem) {
-    return [formatQuantity(item.quantity), item.unit === 'whole' ? '' : item.unit ?? ''].filter(Boolean).join(' ');
+    if (item.quantity === null) return item.unit && item.unit !== 'whole' ? item.unit : '';
+    return [formatAmount(item.quantity, item.unit ?? ''), formatUnit(item.unit ?? '')].filter(Boolean).join(' ');
   }
 
   async addTyped() {
