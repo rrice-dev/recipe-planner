@@ -11,7 +11,8 @@ import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 import { DraftSaver } from '../draft-saver';
 import { CountryDish, LibrarySummary, RecipeDraft } from '../models';
-import { totalTime, friendlyQuantity, friendlyUnit } from '../library-utils';
+import { totalTime } from '../library-utils';
+import { formatAmount, formatUnit } from '../scaling';
 import { EXTRA_PLACES, NOT_SELECTABLE, displayName } from '../world-names';
 
 const WIDTH = 960;
@@ -133,7 +134,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
             <h3>Ingredients</h3>
             <ul>
               @for (i of r.ingredients; track i.name) {
-                <li>{{ qty(i.quantity) }} {{ unit(i.unit) }} {{ i.name }}@if (i.note) {<span class="muted">, {{ i.note }}</span>}</li>
+                <li>{{ amount(i.quantity, i.unit) }} {{ unit(i.unit) }} {{ i.name }}@if (i.note) {<span class="muted">, {{ i.note }}</span>}</li>
               }
             </ul>
             <h3>Steps</h3>
@@ -168,8 +169,8 @@ export class WorldMapPage {
   readonly WIDTH = WIDTH;
   readonly HEIGHT = HEIGHT;
   time = totalTime;
-  qty = friendlyQuantity;
-  unit = friendlyUnit;
+  amount = formatAmount;
+  unit = formatUnit;
   label = displayName;
 
   svg = viewChild<ElementRef<SVGSVGElement>>('svg');
