@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Collection, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -259,6 +259,10 @@ setRecipeCollections(recipeId: number, collectionIds: number[]) {
 
 importRecipe(url: string) {
   return this.http.post<{ recipe: RecipeDraft; sourceUrl: string; method: 'structured' | 'ai' }>('/api/import', { url });
+}
+
+getPrepSession(planId: number, prepDay: string | null) {
+  return this.http.get<PrepSession>(`/api/mealplans/${planId}/prep`, { params: prepDay ? { prepDay } : {} });
 }
 
 }
