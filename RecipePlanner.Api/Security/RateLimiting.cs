@@ -31,6 +31,10 @@ public static class RateLimiting
     public const int PhotoUploadPermitLimit = 30;
 
     // Kroger calls: store search, product matching and cart sends
+    // Importing fetches other websites (and may call the AI), so keep it to a sensible pace
+    public const string ImportPolicy = "import";
+    public const int ImportPermitLimit = 20;
+
     public const string KrogerPolicy = "kroger";
     public const int KrogerPermitLimit = 30;
 
@@ -88,6 +92,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = PhotoUploadPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(ImportPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = ImportPermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

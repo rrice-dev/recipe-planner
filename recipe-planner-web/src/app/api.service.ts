@@ -9,6 +9,7 @@ export interface RecipeRequest {
   servings: number;
   prepMinutes: number;
   cookMinutes: number;
+  sourceUrl?: string | null;
 }
 
 export interface RecipeIngredientRequest {
@@ -254,6 +255,10 @@ deleteCollection(id: number) {
 
 setRecipeCollections(recipeId: number, collectionIds: number[]) {
   return this.http.put<void>(`/api/recipes/${recipeId}/collections`, collectionIds);
+}
+
+importRecipe(url: string) {
+  return this.http.post<{ recipe: RecipeDraft; sourceUrl: string; method: 'structured' | 'ai' }>('/api/import', { url });
 }
 
 }

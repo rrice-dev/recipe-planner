@@ -54,6 +54,17 @@ public static class AiServiceCollectionExtensions
                 ? new DisabledCountryDishGenerator()
                 : sp.GetRequiredService<AnthropicCountryDishGenerator>());
 
+        services.AddHttpClient<AnthropicRecipeExtractor>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.anthropic.com/");
+            client.Timeout = TimeSpan.FromSeconds(60);
+        });
+
+        services.AddScoped<IRecipeExtractor>(sp =>
+            string.IsNullOrWhiteSpace(sp.GetRequiredService<IOptions<AnthropicOptions>>().Value.ApiKey)
+                ? new DisabledRecipeExtractor()
+                : sp.GetRequiredService<AnthropicRecipeExtractor>());
+
         return services;
     }
 }

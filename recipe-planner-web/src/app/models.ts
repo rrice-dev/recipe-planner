@@ -51,6 +51,7 @@ export interface RecipeDetail extends RecipeSummary {
   steps: RecipeStep[];
   social: RecipeSocial;
   personal: RecipePersonal | null;
+  sourceUrl?: string | null;
 }
 
 export interface RecipePersonal {

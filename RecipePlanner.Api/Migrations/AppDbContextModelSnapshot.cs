@@ -519,6 +519,10 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<DateTimeOffset?>("SharedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("SourceUrl")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");

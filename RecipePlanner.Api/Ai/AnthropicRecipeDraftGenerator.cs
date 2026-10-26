@@ -30,7 +30,7 @@ public class AnthropicRecipeDraftGenerator(HttpClient http, IOptions<AnthropicOp
         - Always answer by calling the write_recipe tool.
         """;
 
-    private static readonly object ToolSchema = new
+    internal static readonly object ToolSchema = new
     {
         type = "object",
         properties = new

@@ -10,6 +10,7 @@ public static class RecipeLimits
     public const int MaxNotesLength = 4000;
     public const int MaxCollectionNameLength = 60;
     public const int MaxCollectionsPerUser = 50;
+    public const int MaxSourceUrlLength = 2000;
 }
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IDataProtectionKeyContext
@@ -49,6 +50,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
         b.Entity<Recipe>().Property(r => r.PhotoName).HasMaxLength(64);
         b.Entity<Recipe>().Property(r => r.LibrarySlug).HasMaxLength(80);
+        b.Entity<Recipe>().Property(r => r.SourceUrl).HasMaxLength(RecipeLimits.MaxSourceUrlLength);
         b.Entity<Recipe>().HasIndex(r => new { r.OwnerId, r.LibrarySlug });
 
         b.Entity<AppUser>().Property(u => u.Theme).HasMaxLength(10).HasDefaultValue(UserSettings.SystemTheme);
