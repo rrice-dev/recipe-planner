@@ -11,7 +11,7 @@ export class DraftSaver {
   private api = inject(ApiService);
 
   /** Returns the new recipe's id */
-  async save(draft: RecipeDraft, cuisine: string | null = null): Promise<number> {
+  async save(draft: RecipeDraft, cuisine: string | null = null, sourceUrl: string | null = null): Promise<number> {
     // 1. Find or create each ingredient in the shared list
     const known = new Map((await firstValueFrom(this.api.getIngredients())).map(i => [i.name.toLowerCase(), i.id]));
     const items: { ingredientId: number; quantity: number; unit: string; note: string | null }[] = [];
@@ -41,7 +41,8 @@ export class DraftSaver {
       cuisine,
       servings: draft.servings,
       prepMinutes: draft.prepMinutes,
-      cookMinutes: draft.cookMinutes
+      cookMinutes: draft.cookMinutes,
+      sourceUrl
     }));
     await firstValueFrom(this.api.setRecipeIngredients(recipe.id, items));
     await firstValueFrom(this.api.setRecipeSteps(recipe.id,

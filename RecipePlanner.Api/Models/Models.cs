@@ -17,6 +17,9 @@ public class Recipe
     // Set when the recipe was copied from the built-in library, so planning a week can reuse the copy
     public string? LibrarySlug { get; set; }
 
+    // The web page a recipe was imported from, so it can credit and link the original
+    public string? SourceUrl { get; set; }
+
     // Set when the owner shares the recipe. A long random token, never the ID, so links can't be guessed.
     public string? ShareToken { get; set; }
     public DateTimeOffset? SharedAt { get; set; }

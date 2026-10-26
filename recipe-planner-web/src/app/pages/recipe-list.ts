@@ -21,7 +21,10 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
   template: `
     <div class="page-header">
       <h1>Recipes</h1>
-      <a routerLink="/recipes/new" class="button primary">New recipe</a>
+      <div class="row" style="margin: 0">
+        <a routerLink="/recipes/import" class="button">Import from a link</a>
+        <a routerLink="/recipes/new" class="button primary">New recipe</a>
+      </div>
     </div>
 
     @if (recipes(); as all) {

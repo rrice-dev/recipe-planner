@@ -2,7 +2,8 @@ namespace RecipePlanner.Api.Contracts;
 
 public record RecipeRequest(
     string Title, string? Description, string? Cuisine,
-    int Servings, int PrepMinutes, int CookMinutes);
+    int Servings, int PrepMinutes, int CookMinutes,
+    string? SourceUrl = null);   // for imported recipes: the page it came from
 
 public record RecipeResponse(
     int Id, string Title, string? Description, string? Cuisine,
@@ -34,7 +35,8 @@ public record RecipeDetailResponse(
     List<StepResponse> Steps,
     RecipeSocialResponse Social,
     string? PhotoVersion,
-    RecipePersonalResponse? Personal = null);
+    RecipePersonalResponse? Personal = null,
+    string? SourceUrl = null);
 
 // Only the owner sees this: favorite, private notes, when you've cooked it, and its collections
 public record RecipePersonalResponse(bool IsFavorite, string? Notes, List<CookLogResponse> Cooked, List<int> CollectionIds);
@@ -71,3 +73,7 @@ public record SharedRecipeResponse(
 public record SharedIngredient(string Name, decimal Quantity, string Unit, string? Note);
 
 public record SharedStep(int Order, string Instruction, string? TechniqueName);
+public record ImportRequest(string Url);
+
+/// <param name="Method">"structured" when read from the page's recipe data, "ai" when the AI read the page text</param>
+public record ImportResponse(RecipeDraftResponse Recipe, string SourceUrl, string Method);

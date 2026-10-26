@@ -28,6 +28,7 @@ export const routes: Routes = [
 
   { path: 'recipes', component: RecipeListPage, canActivate: [authGuard] },
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },
+  { path: 'recipes/import', loadComponent: () => import('./pages/import-recipe').then(m => m.ImportRecipePage), canActivate: [authGuard] },
   { path: 'recipes/:id', component: RecipeDetailPage, canActivate: [authGuard] },
   { path: 'recipes/:id/edit', component: RecipeFormPage, canActivate: [authGuard] },
   { path: 'fridge', component: FridgePage, canActivate: [authGuard] },

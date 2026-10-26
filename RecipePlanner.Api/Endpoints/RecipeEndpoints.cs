@@ -40,7 +40,7 @@ public static class RecipeEndpoints
                 .Include(r => r.Collections)
                 .AsSplitQuery()
                 .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
-            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe) with { Personal = Personal(recipe) });
+            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe) with { Personal = Personal(recipe), SourceUrl = recipe.SourceUrl });
         });
 
         group.MapPost("/", async (RecipeRequest request, ClaimsPrincipal user, AppDbContext db) =>
@@ -216,6 +216,8 @@ public static class RecipeEndpoints
         recipe.Servings = request.Servings;
         recipe.PrepMinutes = request.PrepMinutes;
         recipe.CookMinutes = request.CookMinutes;
+        // Only set by imports; editing a recipe later (which doesn't send it) keeps the original source
+        if (!string.IsNullOrWhiteSpace(request.SourceUrl)) recipe.SourceUrl = request.SourceUrl.Trim();
     }
 
     private static Dictionary<string, string[]> Validate(RecipeRequest r)
@@ -229,6 +231,12 @@ public static class RecipeEndpoints
             errors["Servings"] = ["Servings must be at least 1."];
         if (r.PrepMinutes < 0 || r.CookMinutes < 0)
             errors["Time"] = ["Times cannot be negative."];
+        // Shown as a link, so only ever an ordinary web address (never javascript: or data:)
+        if (!string.IsNullOrWhiteSpace(r.SourceUrl)
+            && (r.SourceUrl.Length > RecipeLimits.MaxSourceUrlLength
+                || !Uri.TryCreate(r.SourceUrl.Trim(), UriKind.Absolute, out var source)
+                || source.Scheme is not ("https" or "http")))
+            errors["SourceUrl"] = ["Source must be a web address starting with https:// or http://."];
         return errors;
     }
 

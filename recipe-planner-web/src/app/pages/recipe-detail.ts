@@ -34,6 +34,9 @@ import { PersonalPanel } from '../personal-panel';
       @if (r.description) {
         <p>{{ r.description }}</p>
       }
+      @if (r.sourceUrl) {
+        <p class="small-text muted">Imported from <a [href]="r.sourceUrl" target="_blank" rel="noopener noreferrer nofollow">{{ sourceHost(r.sourceUrl) }}</a></p>
+      }
 
       @if (photoVersion(); as v) {
         <img class="recipe-photo" [src]="'/api/recipes/' + r.id + '/photo?v=' + v" [alt]="'Photo of ' + r.title" />
@@ -171,6 +174,10 @@ export class RecipeDetailPage {
   private unitSystem = inject(SettingsService).settings;
   // Amounts in your chosen units (Settings → Units)
   measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
+
+  sourceHost(url: string) {
+    try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return 'the original site'; }
+  }
 
   scale(quantity: number, base: number) {
     return scaleQuantity(quantity, base, this.servings() ?? base);
