@@ -42,7 +42,9 @@ public static class RateLimiting
         "/api/auth/register",
         "/api/auth/forgotPassword",
         "/api/auth/resetPassword",
-        "/api/auth/resendConfirmationEmail"
+        "/api/auth/resendConfirmationEmail",
+        "/api/auth/manage/info",   // changing your password checks the old one
+        "/api/account/delete"      // also checks the password
     };
 
     public static IServiceCollection AddAppRateLimiting(this IServiceCollection services) =>

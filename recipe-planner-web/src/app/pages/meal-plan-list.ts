@@ -10,10 +10,14 @@ import { formatWeek, nextMonday } from '../date-utils';
   selector: 'app-meal-plan-list',
   imports: [FormsModule, RouterLink],
   template: `
-    <h1>Meal Plans</h1>
+    <div class="page-header">
+      <h1>Meal plans</h1>
+      <a routerLink="/plan-week" class="button primary">Plan my week</a>
+    </div>
+    <p class="muted">Let us suggest a week of dinners, or build one yourself below.</p>
 
     <div class="card create">
-      <h2>Plan a new week</h2>
+      <h2>Start an empty week</h2>
       <div class="row">
         <input [(ngModel)]="name" placeholder="Name, e.g. Batch cook week" class="grow" />
         <input type="date" [(ngModel)]="weekStart" />
@@ -30,7 +34,7 @@ import { formatWeek, nextMonday } from '../date-utils';
           <div class="card">
             <a [routerLink]="['/meal-plans', p.id]" class="plain">
               <h2>{{ p.name }}</h2>
-              <p class="meta">{{ formatWeek(p.weekStart) }} · {{ p.entries.length }} meal(s)</p>
+              <p class="meta">{{ formatWeek(p.weekStart) }}, {{ p.entries.length }} {{ p.entries.length === 1 ? 'meal' : 'meals' }}</p>
             </a>
             <div class="row">
               <a [routerLink]="['/meal-plans', p.id, 'shopping-list']" class="button">Shopping list</a>

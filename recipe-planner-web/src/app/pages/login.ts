@@ -10,6 +10,7 @@ import { safeReturnUrl } from '../safe-url';
   template: `
     <div class="auth card">
       <h1>Log in</h1>
+      @if (deleted) { <p class="list-note" role="status">Your account and everything in it has been deleted.</p> }
       <form (ngSubmit)="submit()">
         <label>Email
           <input type="email" name="email" [(ngModel)]="email" autocomplete="username" required />
@@ -29,6 +30,7 @@ import { safeReturnUrl } from '../safe-url';
   `
 })
 export class LoginPage {
+  deleted = inject(ActivatedRoute).snapshot.queryParamMap.has('deleted');
   private auth = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);

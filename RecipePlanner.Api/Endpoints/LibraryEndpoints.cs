@@ -39,45 +39,53 @@ public static class LibraryEndpoints
             var source = library.Find(slug);
             if (source is null) return Results.NotFound();
 
-            var ingredients = await FindOrCreateIngredientsAsync(db, library, source);
-
-            var techniqueNames = source.Steps.Where(s => s.Technique is not null)
-                .Select(s => s.Technique!.ToLower()).Distinct().ToList();
-            var techniques = (await db.Techniques
-                    .Where(t => techniqueNames.Contains(t.Name.ToLower()))
-                    .ToListAsync())
-                .ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
-
-            var recipe = new Recipe
-            {
-                Title = source.Title,
-                Description = source.Description,
-                Cuisine = source.Cuisine,
-                Servings = source.Servings,
-                PrepMinutes = source.PrepMinutes,
-                CookMinutes = source.CookMinutes,
-                OwnerId = user.UserId(),
-                Ingredients = source.Ingredients.Select(i => new RecipeIngredient
-                {
-                    Ingredient = ingredients[i.Name],
-                    Quantity = i.Quantity,
-                    Unit = i.Unit,
-                    Note = i.Note
-                }).ToList(),
-                Steps = source.Steps.Select((s, n) => new Step
-                {
-                    Order = n + 1,
-                    Instruction = s.Instruction,
-                    Technique = s.Technique is not null ? techniques.GetValueOrDefault(s.Technique) : null
-                }).ToList(),
-                // A technique the database doesn't know is left off rather than failing the copy
-                Techniques = techniques.Values.ToList()
-            };
-
-            db.Recipes.Add(recipe);
+            var recipe = await CopyAsync(db, library, source, user.UserId());
             await db.SaveChangesAsync();
             return Results.Created($"/api/recipes/{recipe.Id}", new LibraryAddResponse(recipe.Id));
         }).RequireAuthorization();
+    }
+
+    /// <summary>Builds the user's own copy of a library recipe and adds it to the context (the caller saves).</summary>
+    public static async Task<Recipe> CopyAsync(AppDbContext db, RecipeLibrary library, LibraryRecipe source, string userId)
+    {
+        var ingredients = await FindOrCreateIngredientsAsync(db, library, source);
+
+        var techniqueNames = source.Steps.Where(s => s.Technique is not null)
+            .Select(s => s.Technique!.ToLower()).Distinct().ToList();
+        var techniques = (await db.Techniques
+                .Where(t => techniqueNames.Contains(t.Name.ToLower()))
+                .ToListAsync())
+            .ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
+
+        var recipe = new Recipe
+        {
+            Title = source.Title,
+            Description = source.Description,
+            Cuisine = source.Cuisine,
+            Servings = source.Servings,
+            PrepMinutes = source.PrepMinutes,
+            CookMinutes = source.CookMinutes,
+            OwnerId = userId,
+            LibrarySlug = source.Slug,
+            Ingredients = source.Ingredients.Select(i => new RecipeIngredient
+            {
+                Ingredient = ingredients[i.Name],
+                Quantity = i.Quantity,
+                Unit = i.Unit,
+                Note = i.Note
+            }).ToList(),
+            Steps = source.Steps.Select((s, n) => new Step
+            {
+                Order = n + 1,
+                Instruction = s.Instruction,
+                Technique = s.Technique is not null ? techniques.GetValueOrDefault(s.Technique) : null
+            }).ToList(),
+            // A technique the database doesn't know is left off rather than failing the copy
+            Techniques = techniques.Values.ToList()
+        };
+
+        db.Recipes.Add(recipe);
+        return recipe;
     }
 
     private static async Task<Dictionary<string, Ingredient>> FindOrCreateIngredientsAsync(
@@ -86,6 +94,10 @@ public static class LibraryEndpoints
         var wanted = source.Ingredients.Select(i => i.Name.ToLower()).Distinct().ToList();
         var found = (await db.Ingredients.Where(i => wanted.Contains(i.Name.ToLower())).ToListAsync())
             .ToDictionary(i => i.Name, StringComparer.OrdinalIgnoreCase);
+        // Ingredients created earlier in this same save (copying several recipes at once) aren't in
+        // the database yet, so look in the context too, or the same name would be added twice
+        foreach (var pending in db.Ingredients.Local)
+            found.TryAdd(pending.Name, pending);
 
         // Normally every name is already seeded; this covers a database that was seeded before
         // an ingredient was added to the seed file

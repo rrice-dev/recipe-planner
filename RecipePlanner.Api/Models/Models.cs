@@ -14,6 +14,9 @@ public class Recipe
     public List<Technique> Techniques { get; set; } = [];
     public string OwnerId { get; set; } = null!;
 
+    // Set when the recipe was copied from the built-in library, so planning a week can reuse the copy
+    public string? LibrarySlug { get; set; }
+
     // Set when the owner shares the recipe. A long random token, never the ID, so links can't be guessed.
     public string? ShareToken { get; set; }
     public DateTimeOffset? SharedAt { get; set; }

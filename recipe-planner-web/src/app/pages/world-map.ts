@@ -1,4 +1,4 @@
-import { Component, ElementRef, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, computed, inject, linkedSignal, signal, viewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -10,6 +10,7 @@ import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 import { DraftSaver } from '../draft-saver';
+import { SettingsService } from '../settings.service';
 import { CountryDish, LibrarySummary, RecipeDraft } from '../models';
 import { totalTime } from '../library-utils';
 import { formatAmount, formatUnit } from '../scaling';
@@ -83,7 +84,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
               @for (r of recipes; track r.slug) {
                 <a class="card" [routerLink]="['/library', r.slug]">
                   <strong>{{ r.title }}</strong>
-                  <p class="meta small-text">{{ time(r.prepMinutes + r.cookMinutes) }} · Serves {{ r.servings }}</p>
+                  <p class="meta small-text">{{ time(r.prepMinutes + r.cookMinutes) }}, serves {{ r.servings }}</p>
                   <p class="small-text">{{ r.description }}</p>
                   <div class="chips">
                     @for (t of r.tags; track t) { <span class="chip small tag-{{ t.toLowerCase() }}">{{ t }}</span> }
@@ -176,7 +177,9 @@ export class WorldMapPage {
   svg = viewChild<ElementRef<SVGSVGElement>>('svg');
   mapFailed = signal(false);
   search = signal('');
-  aipOnly = signal(false);
+  // On for AIP in Settings (once they load); the checkbox overrides it
+  private userSettings = inject(SettingsService).settings;
+  aipOnly = linkedSignal(() => this.userSettings().diet === 'AIP');
   selected = signal<string | null>(null);
   view = signal<ViewBox>({ x: 0, y: 0, w: WIDTH, h: HEIGHT });
 

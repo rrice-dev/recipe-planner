@@ -242,3 +242,21 @@ export interface CountryDishesResponse {
   aiAvailable: boolean;
   aiNotice: string | null;
 }
+
+export interface PlanCandidate {
+  key: string;            // "lib:slug" or "mine:id"
+  title: string;
+  cuisine: string | null;
+  totalMinutes: number;
+  tags: string[];
+  fromLibrary: boolean;
+  recipeId: number | null;
+  slug: string | null;
+  photoVersion: string | null;
+}
+
+export interface PlanSuggestResponse {
+  suggestions: PlanCandidate[];
+  matching: number;
+  diet: string | null;
+}
