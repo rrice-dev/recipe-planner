@@ -25,6 +25,29 @@ public class Recipe
     // Name of the photo in storage: random, so it reveals nothing and can't be guessed
     public string? PhotoName { get; set; }
     public DateTimeOffset? PhotoUpdatedAt { get; set; }
+
+    // Personal: only the owner ever sees these (never on share links)
+    public bool IsFavorite { get; set; }
+    public string? Notes { get; set; }
+    public List<CookLogEntry> CookLog { get; set; } = [];
+    public List<RecipeCollection> Collections { get; set; } = [];
+}
+
+// One "I cooked this" entry
+public class CookLogEntry
+{
+    public int Id { get; set; }
+    public int RecipeId { get; set; }
+    public DateOnly CookedOn { get; set; }
+}
+
+// A user's folder of recipes, e.g. "Weeknight" or "Batch cook". A recipe can be in several.
+public class RecipeCollection
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public string OwnerId { get; set; } = null!;
+    public List<Recipe> Recipes { get; set; } = [];
 }
 
 // One rating per user per recipe. The owner's own rating is their private note;

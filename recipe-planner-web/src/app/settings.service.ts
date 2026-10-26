@@ -5,14 +5,16 @@ import { AuthService } from './auth.service';
 
 export type Theme = 'system' | 'light' | 'dark';
 export type Diet = 'AIP' | 'Vegetarian' | null;
+export type Units = 'us' | 'metric';
 
 export interface Settings {
   theme: Theme;
   diet: Diet;
   defaultServings: number;
+  units: Units;
 }
 
-export const DEFAULT_SETTINGS: Settings = { theme: 'system', diet: null, defaultServings: 4 };
+export const DEFAULT_SETTINGS: Settings = { theme: 'system', diet: null, defaultServings: 4, units: 'us' };
 
 // The theme is also remembered in this browser, so the page opens in the right colors
 // before the settings request finishes (and on the login page). index.html reads it first.

@@ -4,7 +4,8 @@ import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { GroceryItem, Ingredient } from '../models';
 import { groupBySection } from '../store-sections';
-import { formatAmount, formatUnit } from '../scaling';
+import { formatMeasure } from '../scaling';
+import { SettingsService } from '../settings.service';
 import { KrogerPanel } from '../kroger-panel';
 import { ActivatedRoute } from '@angular/router';
 
@@ -118,9 +119,11 @@ export class GroceryListPage implements OnInit {
     this.items.set(await firstValueFrom(this.api.getGroceryList()));
   }
 
+  private unitSystem = inject(SettingsService).settings;
+
   qty(item: GroceryItem) {
     if (item.quantity === null) return item.unit && item.unit !== 'whole' ? item.unit : '';
-    return [formatAmount(item.quantity, item.unit ?? ''), formatUnit(item.unit ?? '')].filter(Boolean).join(' ');
+    return formatMeasure(item.quantity, item.unit ?? '', this.unitSystem().units);
   }
 
   async addTyped() {

@@ -4,10 +4,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { catchError, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { AuthService } from '../auth.service';
 import { LibraryDetail } from '../models';
 import { totalTime } from '../library-utils';
-import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
 
 type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail } | { status: 'missing' } | { status: 'error' };
@@ -77,7 +78,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
           <ul>
             @for (i of r.ingredients; track i.name) {
               <li>
-                {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
+                {{ measure(scale(i.quantity, r.servings), i.unit) }} {{ i.name }}
                 @if (i.note) { <span class="muted">({{ i.note }})</span> }
               </li>
             }
@@ -103,8 +104,9 @@ export class LibraryDetailPage {
   auth = inject(AuthService);
   slug = input.required<string>();
   time = totalTime;
-  amount = formatAmount;
-  unit = formatUnit;
+  private unitSystem = inject(SettingsService).settings;
+  // Amounts in your chosen units (Settings → Units)
+  measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
 
   state = toSignal(
     toObservable(this.slug).pipe(

@@ -3,16 +3,18 @@ import { RouterLink } from '@angular/router';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { firstValueFrom, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { StarRating } from '../star-rating';
 import { shareTargets } from '../share-links';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
-import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
+import { PersonalPanel } from '../personal-panel';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink, StarRating, ServingsStepper],
+  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel],
   template: `
     <a routerLink="/recipes" class="back">← All recipes</a>
     @if (recipe(); as r) {
@@ -121,7 +123,7 @@ import { ServingsStepper } from '../servings-stepper';
         <ul>
           @for (i of r.ingredients; track i.ingredientId) {
             <li>
-              {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
+              {{ measure(scale(i.quantity, r.servings), i.unit) }} {{ i.name }}
               @if (i.note) { <span class="muted">({{ i.note }})</span> }
             </li>
           }
@@ -143,6 +145,11 @@ import { ServingsStepper } from '../servings-stepper';
       } @else {
         <p class="muted">No steps added yet.</p>
       }
+
+      @if (r.personal; as mine) {
+        <h2>My notes and history</h2>
+        <app-personal-panel [recipeId]="r.id" [personal]="mine" />
+      }
     } @else {
       <p class="muted">Loading…</p>
     }
@@ -161,8 +168,9 @@ export class RecipeDetailPage {
   photoError = signal<string | null>(null);
   // null = the recipe's own servings. Resets when you open a different recipe.
   servings = linkedSignal<unknown, number | null>({ source: this.recipe, computation: () => null });
-  amount = formatAmount;
-  unit = formatUnit;
+  private unitSystem = inject(SettingsService).settings;
+  // Amounts in your chosen units (Settings → Units)
+  measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
 
   scale(quantity: number, base: number) {
     return scaleQuantity(quantity, base, this.servings() ?? base);

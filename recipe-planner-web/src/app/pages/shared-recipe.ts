@@ -4,10 +4,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { catchError, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { AuthService } from '../auth.service';
 import { SharedRecipe } from '../models';
 import { StarRating } from '../star-rating';
-import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
 
 type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } | { status: 'missing' } | { status: 'error' };
@@ -90,7 +91,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } 
           <ul>
             @for (i of r.ingredients; track i.name) {
               <li>
-                {{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}
+                {{ measure(scale(i.quantity, r.servings), i.unit) }} {{ i.name }}
                 @if (i.note) { <span class="muted">({{ i.note }})</span> }
               </li>
             } @empty {
@@ -130,8 +131,9 @@ export class SharedRecipePage {
   recipe = linkedSignal(() => { const s = this.state(); return s.status === 'ok' ? s.recipe : null; });
   busy = signal(false);
   servings = linkedSignal<LoadState, number | null>({ source: this.state, computation: () => null });
-  amount = formatAmount;
-  unit = formatUnit;
+  private unitSystem = inject(SettingsService).settings;
+  // Amounts in your chosen units (Settings → Units)
+  measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
 
   scale(quantity: number, base: number) {
     return scaleQuantity(quantity, base, this.servings() ?? base);

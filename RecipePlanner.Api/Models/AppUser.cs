@@ -14,6 +14,9 @@ public class AppUser : IdentityUser
 
     /// <summary>Starting servings for new recipes and planned meals</summary>
     public int DefaultServings { get; set; } = UserSettings.DefaultServingsValue;
+
+    /// <summary>"us" (cups, ounces, °F) or "metric" (ml, grams)</summary>
+    public string Units { get; set; } = UserSettings.UsUnits;
 }
 
 public static class UserSettings
@@ -22,5 +25,7 @@ public static class UserSettings
     public static readonly string[] Themes = [SystemTheme, "light", "dark"];
     public static readonly string[] Diets = [Library.Diet.Aip, Library.Diet.Vegetarian];
     public const int DefaultServingsValue = 4;
+    public const string UsUnits = "us";
+    public static readonly string[] UnitSystems = [UsUnits, "metric"];
     public const int MaxServings = 100;
 }

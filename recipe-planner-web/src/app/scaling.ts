@@ -57,3 +57,44 @@ export function formatAmount(quantity: number, unit: string): string {
 export function formatUnit(unit: string): string {
   return unit === 'whole' ? '' : unit;
 }
+
+// ---------- US / metric ----------
+
+export type UnitSystem = 'us' | 'metric';
+
+// Everything converts through milliliters (volume) or grams (weight)
+const TO_ML: Record<string, number> = { tsp: 4.92892, tbsp: 14.7868, cup: 236.588, fl_oz: 29.5735, 'fl oz': 29.5735, ml: 1, l: 1000 };
+const TO_G: Record<string, number> = { oz: 28.3495, lb: 453.592, g: 1, kg: 1000 };
+const US_UNITS = new Set(['tsp', 'tbsp', 'cup', 'fl_oz', 'fl oz', 'oz', 'lb']);
+const METRIC_UNITS = new Set(['ml', 'l', 'g', 'kg']);
+
+/** Converts an amount to the chosen system. Units that aren't measures (clove, can, pinch, whole) stay as they are. */
+export function convertMeasure(quantity: number, unit: string, system: UnitSystem): { quantity: number; unit: string } {
+  const u = unit.toLowerCase();
+  if (system === 'metric' && US_UNITS.has(u)) {
+    if (u in TO_ML) {
+      const ml = quantity * TO_ML[u];
+      return ml >= 1000 ? { quantity: ml / 1000, unit: 'l' } : { quantity: ml, unit: 'ml' };
+    }
+    const g = quantity * TO_G[u];
+    return g >= 1000 ? { quantity: g / 1000, unit: 'kg' } : { quantity: g, unit: 'g' };
+  }
+  if (system === 'us' && METRIC_UNITS.has(u)) {
+    if (u in TO_ML) {
+      const ml = quantity * TO_ML[u];
+      // Pick the spoon or cup a US cook would reach for
+      if (ml < TO_ML['tbsp']) return { quantity: ml / TO_ML['tsp'], unit: 'tsp' };
+      if (ml < TO_ML['cup'] / 4) return { quantity: ml / TO_ML['tbsp'], unit: 'tbsp' };
+      return { quantity: ml / TO_ML['cup'], unit: 'cup' };
+    }
+    const g = quantity * TO_G[u];
+    return g >= TO_G['lb'] ? { quantity: g / TO_G['lb'], unit: 'lb' } : { quantity: g / TO_G['oz'], unit: 'oz' };
+  }
+  return { quantity, unit };
+}
+
+/** "1⅓ cup", "315 ml", "2 Eggs"-style (no unit for "whole") */
+export function formatMeasure(quantity: number, unit: string, system: UnitSystem = 'us'): string {
+  const c = convertMeasure(quantity, unit, system);
+  return [formatAmount(c.quantity, c.unit), formatUnit(c.unit)].filter(Boolean).join(' ');
+}

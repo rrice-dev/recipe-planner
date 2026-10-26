@@ -7,6 +7,13 @@ export interface RecipeSummary {
   prepMinutes: number;
   cookMinutes: number;
   photoVersion: string | null;
+  // Only on the list endpoint, for searching and filtering your book
+  isFavorite?: boolean;
+  timesCooked?: number;
+  lastCooked?: string | null;
+  collectionIds?: number[];
+  ingredientNames?: string[];
+  dietTags?: string[];
 }
 
 export interface TechniqueSummary {
@@ -43,6 +50,20 @@ export interface RecipeDetail extends RecipeSummary {
   ingredients: RecipeIngredient[];
   steps: RecipeStep[];
   social: RecipeSocial;
+  personal: RecipePersonal | null;
+}
+
+export interface RecipePersonal {
+  isFavorite: boolean;
+  notes: string | null;
+  cooked: { id: number; cookedOn: string }[];
+  collectionIds: number[];
+}
+
+export interface Collection {
+  id: number;
+  name: string;
+  recipeCount: number;
 }
 
 export interface Technique {

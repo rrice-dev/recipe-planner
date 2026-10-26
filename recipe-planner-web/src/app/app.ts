@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from './auth.service';
 import { SettingsService } from './settings.service';
+import { OfflineService } from './offline.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class App {
   // Created here so your theme and settings load as soon as the app starts
   private settings = inject(SettingsService);
   menuOpen = signal(false);
+  offline = inject(OfflineService);
 
   constructor() {
     this.auth.ensureLoaded();

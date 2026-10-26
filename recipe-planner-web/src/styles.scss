@@ -471,3 +471,32 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 .form label.check-label { flex-direction: row; align-items: center; }
 .form label .small-text, .settings label.field .small-text { font-weight: 400; }
 .page-header { margin-bottom: 1rem; }
+
+/* Recipe book */
+.recipe-card { position: relative; }
+.fav-toggle {
+  position: absolute; top: 0.55rem; right: 0.55rem; width: 2.3rem; height: 2.3rem; padding: 0;
+  border-radius: 999px; font-size: 1.25rem; line-height: 1;
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border-color: var(--border);
+  color: var(--muted);
+}
+.fav-toggle.on { color: var(--saffron); }
+.cooked-note { color: var(--accent); font-weight: 700; }
+.personal { margin: 1rem 0 1.5rem; }
+.personal .row { margin-bottom: 0.75rem; }
+.personal h3 { margin-top: 0.5rem; }
+.history { list-style: none; padding: 0; margin: 0.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.history .chip { display: inline-flex; align-items: center; gap: 0.15rem; }
+.notes-box { width: 100%; min-height: 5.5rem; resize: vertical; }
+.collection-picks { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0.25rem 0 0.5rem; }
+.other-day summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+.other-day[open] { flex-basis: 100%; }
+
+/* Offline and update notices */
+.status-bar {
+  margin: 0; max-width: none; padding: 0.5rem 1.5rem; font-size: 0.92rem; font-weight: 700;
+  background: var(--saffron-soft); color: var(--text); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+}
+.status-bar.update { background: var(--accent-soft); }
+.status-bar button { padding: 0.3rem 0.8rem; font-size: 0.88rem; }

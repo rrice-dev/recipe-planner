@@ -5,12 +5,21 @@ using RecipePlanner.Api.Models;
 
 namespace RecipePlanner.Api.Data;
 
+public static class RecipeLimits
+{
+    public const int MaxNotesLength = 4000;
+    public const int MaxCollectionNameLength = 60;
+    public const int MaxCollectionsPerUser = 50;
+}
+
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IDataProtectionKeyContext
 {
     public DbSet<Recipe> Recipes => Set<Recipe>();
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
+    public DbSet<CookLogEntry> CookLog => Set<CookLogEntry>();
+    public DbSet<RecipeCollection> RecipeCollections => Set<RecipeCollection>();
     public DbSet<RecipeRating> RecipeRatings => Set<RecipeRating>();
     public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
     public DbSet<KrogerConnection> KrogerConnections => Set<KrogerConnection>();
@@ -45,6 +54,24 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         b.Entity<AppUser>().Property(u => u.Theme).HasMaxLength(10).HasDefaultValue(UserSettings.SystemTheme);
         b.Entity<AppUser>().Property(u => u.Diet).HasMaxLength(20);
         b.Entity<AppUser>().Property(u => u.DefaultServings).HasDefaultValue(UserSettings.DefaultServingsValue);
+        b.Entity<AppUser>().Property(u => u.Units).HasMaxLength(10).HasDefaultValue(UserSettings.UsUnits);
+
+        b.Entity<Recipe>().Property(r => r.Notes).HasMaxLength(RecipeLimits.MaxNotesLength);
+        b.Entity<CookLogEntry>()
+            .HasOne<Recipe>().WithMany(r => r.CookLog)
+            .HasForeignKey(c => c.RecipeId)
+            .OnDelete(DeleteBehavior.Cascade);
+        b.Entity<CookLogEntry>().HasIndex(c => new { c.RecipeId, c.CookedOn });
+
+        b.Entity<RecipeCollection>().Property(c => c.Name).HasMaxLength(RecipeLimits.MaxCollectionNameLength);
+        b.Entity<RecipeCollection>().HasIndex(c => new { c.OwnerId, c.Name }).IsUnique();
+        b.Entity<RecipeCollection>()
+            .HasOne<AppUser>().WithMany()
+            .HasForeignKey(c => c.OwnerId)
+            .OnDelete(DeleteBehavior.Cascade);
+        // Deleting a collection or a recipe only removes the link between them, never the other side
+        b.Entity<RecipeCollection>().HasMany(c => c.Recipes).WithMany(r => r.Collections)
+            .UsingEntity(j => j.ToTable("RecipeCollectionItems"));
 
         b.Entity<RecipeRating>().HasKey(r => new { r.RecipeId, r.UserId });
         b.Entity<RecipeRating>().ToTable(t => t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5"));
