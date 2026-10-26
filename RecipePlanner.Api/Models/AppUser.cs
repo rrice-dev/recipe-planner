@@ -23,6 +23,9 @@ public class AppUser : IdentityUser
     public int? ProteinTarget { get; set; }
     public int? CarbsTarget { get; set; }
     public int? FatTarget { get; set; }
+
+    /// <summary>Optional weekly grocery budget, for comparing a meal plan's estimated cost</summary>
+    public decimal? WeeklyBudget { get; set; }
 }
 
 public static class UserSettings

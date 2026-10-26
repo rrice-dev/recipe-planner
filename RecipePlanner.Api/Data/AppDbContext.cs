@@ -26,6 +26,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<GroceryItem> GroceryItems => Set<GroceryItem>();
     public DbSet<KrogerConnection> KrogerConnections => Set<KrogerConnection>();
     public DbSet<KrogerProductChoice> KrogerProductChoices => Set<KrogerProductChoice>();
+    public DbSet<RecipePlanner.Api.Kroger.IngredientPrice> IngredientPrices => Set<RecipePlanner.Api.Kroger.IngredientPrice>();
     public DbSet<RecipePlanner.Api.Kitchen.PantryItem> PantryItems => Set<RecipePlanner.Api.Kitchen.PantryItem>();
     public DbSet<RecipePlanner.Api.Kitchen.Leftover> Leftovers => Set<RecipePlanner.Api.Kitchen.Leftover>();
 
@@ -122,6 +123,14 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasOne<AppUser>().WithMany()
             .HasForeignKey(k => k.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        b.Entity<RecipePlanner.Api.Kroger.IngredientPrice>(e =>
+        {
+            e.Property(p => p.LocationId).HasMaxLength(20);
+            e.Property(p => p.NameKey).HasMaxLength(100);
+            e.HasIndex(p => new { p.LocationId, p.NameKey }).IsUnique();
+        });
+        b.Entity<AppUser>().Property(u => u.WeeklyBudget).HasPrecision(10, 2);
 
         b.Entity<RecipePlanner.Api.Kitchen.PantryItem>(e =>
         {

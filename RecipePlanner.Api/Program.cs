@@ -140,6 +140,7 @@ app.MapImportEndpoints();
 app.MapNutritionEndpoints();
 app.MapPasswordResetEndpoints();
 app.MapKitchenEndpoints();
+app.MapCostEndpoints();
 
 app.Run();
 

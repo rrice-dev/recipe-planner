@@ -327,3 +327,27 @@ export interface PlanNutrition {
   targets: NutritionTargets;
   complete: boolean;
 }
+
+export type CostStatus = 'ok' | 'unavailable' | 'no-store';
+
+export interface CostLine { ingredient: string; product: string | null; size: string | null; packagePrice: number | null; cost: number | null; approximate: boolean }
+
+export interface RecipeCost {
+  status: CostStatus;
+  storeName: string | null;
+  servings: number;
+  total: number | null;
+  perServing: number | null;
+  counted: number;
+  totalIngredients: number;
+  lines: CostLine[];
+}
+
+export interface PlanCost {
+  status: CostStatus;
+  storeName: string | null;
+  meals: { day: string; recipeId: number; title: string; servings: number; cost: number | null; perServing: number | null; complete: boolean }[];
+  total: number | null;
+  budget: number | null;
+  complete: boolean;
+}
