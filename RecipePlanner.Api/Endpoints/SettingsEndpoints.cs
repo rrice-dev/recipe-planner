@@ -30,6 +30,8 @@ public static class SettingsEndpoints
                 errors["Diet"] = [$"Diet must be empty or one of: {string.Join(", ", UserSettings.Diets)}."];
             if (request.DefaultServings is < 1 or > UserSettings.MaxServings)
                 errors["DefaultServings"] = [$"Default servings must be between 1 and {UserSettings.MaxServings}."];
+            if (request.Units is not null && !UserSettings.UnitSystems.Contains(request.Units))
+                errors["Units"] = [$"Units must be one of: {string.Join(", ", UserSettings.UnitSystems)}."];
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
             var me = await users.GetUserAsync(user);
@@ -37,6 +39,7 @@ public static class SettingsEndpoints
             me.Theme = request.Theme;
             me.Diet = request.Diet;
             me.DefaultServings = request.DefaultServings;
+            if (request.Units is not null) me.Units = request.Units;
             await users.UpdateAsync(me);
             return Results.Ok(ToResponse(me));
         });
@@ -79,5 +82,5 @@ public static class SettingsEndpoints
         .RequireAuthorization(); // also on the strict login rate limit (see RateLimiting.SensitiveAuthPaths)
     }
 
-    private static SettingsResponse ToResponse(AppUser u) => new(u.Theme, u.Diet, u.DefaultServings);
+    private static SettingsResponse ToResponse(AppUser u) => new(u.Theme, u.Diet, u.DefaultServings, u.Units);
 }

@@ -237,6 +237,13 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Units")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasDefaultValue("us");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -251,6 +258,27 @@ namespace RecipePlanner.Api.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.CookLogEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateOnly>("CookedOn")
+                        .HasColumnType("date");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId", "CookedOn");
+
+                    b.ToTable("CookLog");
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Models.GroceryItem", b =>
@@ -456,9 +484,16 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsFavorite")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("LibrarySlug")
                         .HasMaxLength(80)
                         .HasColumnType("character varying(80)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
 
                     b.Property<string>("OwnerId")
                         .IsRequired()
@@ -496,6 +531,31 @@ namespace RecipePlanner.Api.Migrations
                     b.HasIndex("OwnerId", "LibrarySlug");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("RecipeCollections");
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Models.RecipeIngredient", b =>
@@ -611,6 +671,21 @@ namespace RecipePlanner.Api.Migrations
                     b.ToTable("Techniques");
                 });
 
+            modelBuilder.Entity("RecipeRecipeCollection", b =>
+                {
+                    b.Property<int>("CollectionsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CollectionsId", "RecipesId");
+
+                    b.HasIndex("RecipesId");
+
+                    b.ToTable("RecipeCollectionItems", (string)null);
+                });
+
             modelBuilder.Entity("RecipeTechnique", b =>
                 {
                     b.Property<int>("RecipesId")
@@ -673,6 +748,15 @@ namespace RecipePlanner.Api.Migrations
                     b.HasOne("RecipePlanner.Api.Models.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.CookLogEntry", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.Recipe", null)
+                        .WithMany("CookLog")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -746,6 +830,15 @@ namespace RecipePlanner.Api.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeCollection", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Models.RecipeIngredient", b =>
                 {
                     b.HasOne("RecipePlanner.Api.Models.Ingredient", "Ingredient")
@@ -795,6 +888,21 @@ namespace RecipePlanner.Api.Migrations
                     b.Navigation("Technique");
                 });
 
+            modelBuilder.Entity("RecipeRecipeCollection", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.RecipeCollection", null)
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipePlanner.Api.Models.Recipe", null)
+                        .WithMany()
+                        .HasForeignKey("RecipesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RecipeTechnique", b =>
                 {
                     b.HasOne("RecipePlanner.Api.Models.Recipe", null)
@@ -817,6 +925,8 @@ namespace RecipePlanner.Api.Migrations
 
             modelBuilder.Entity("RecipePlanner.Api.Models.Recipe", b =>
                 {
+                    b.Navigation("CookLog");
+
                     b.Navigation("Ingredients");
 
                     b.Navigation("Ratings");

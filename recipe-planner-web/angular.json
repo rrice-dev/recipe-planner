@@ -34,7 +34,8 @@
               "@fontsource/atkinson-hyperlegible-next/400.css",
               "@fontsource/atkinson-hyperlegible-next/700.css",
               "src/styles.scss"
-            ]
+            ],
+            "serviceWorker": "ngsw-config.json"
           },
           "configurations": {
             "production": {

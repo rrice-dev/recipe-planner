@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": { "files": ["/favicon.ico", "/index.html", "/manifest.webmanifest", "/*.css", "/*.js"] }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": { "files": ["/**/*.(svg|png|jpg|webp|woff|woff2)", "/world-110m.json"] }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "recipes",
+      "urls": ["/api/auth/manage/info", "/api/recipes", "/api/recipes/*", "/api/library", "/api/library/*", "/api/shopping-list", "/api/mealplans", "/api/mealplans/*", "/api/settings", "/api/techniques"],
+      "cacheConfig": { "strategy": "freshness", "maxSize": 300, "maxAge": "30d", "timeout": "4s" }
+    },
+    {
+      "name": "photos",
+      "urls": ["/api/recipes/*/photo"],
+      "cacheConfig": { "strategy": "performance", "maxSize": 150, "maxAge": "30d" }
+    }
+  ],
+  "navigationUrls": [
+    "/**",
+    "!/**/*.*",
+    "!/**/*__*",
+    "!/**/*__*/**",
+    "!/api/**",
+    "!/s/**"
+  ]
+}

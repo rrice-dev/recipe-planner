@@ -41,6 +41,17 @@ import { ServingsStepper } from '../servings-stepper';
       </section>
 
       <section class="card">
+        <h2>Units</h2>
+        <p class="small-text muted">Ingredient amounts and your shopping list show in these units. Recipes themselves aren't changed.</p>
+        <label class="field">Measurements
+          <select [value]="current().units" (change)="update({ units: $any($event.target).value })">
+            <option value="us">US (cups, tablespoons, ounces, pounds)</option>
+            <option value="metric">Metric (milliliters, grams)</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="card">
         <h2>Servings</h2>
         <p class="small-text muted">New recipes and planned meals start at this many servings.</p>
         <app-servings-stepper [value]="current().defaultServings" [base]="current().defaultServings"
@@ -158,7 +169,7 @@ export class SettingsPage {
     this.deleteError.set(null);
     try {
       await firstValueFrom(this.http.post('/api/account/delete', { password: this.deletePassword }));
-      await this.auth.refresh(); // the server signed us out
+      this.auth.clear(); // the server signed us out; also wipes cached recipes
       await this.router.navigate(['/login'], { queryParams: { deleted: 1 } });
     } catch (e) {
       const status = e instanceof HttpErrorResponse ? e.status : 0;

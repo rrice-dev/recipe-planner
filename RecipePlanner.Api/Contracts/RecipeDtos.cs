@@ -7,7 +7,14 @@ public record RecipeRequest(
 public record RecipeResponse(
     int Id, string Title, string? Description, string? Cuisine,
     int Servings, int PrepMinutes, int CookMinutes,
-    string? PhotoVersion = null);   // null = no photo; changes whenever the photo does, so browsers re-download it
+    string? PhotoVersion = null,    // null = no photo; changes whenever the photo does, so browsers re-download it
+    // For searching and filtering your book (filled in on the list endpoint)
+    bool IsFavorite = false,
+    int TimesCooked = 0,
+    DateOnly? LastCooked = null,
+    List<int>? CollectionIds = null,
+    List<string>? IngredientNames = null,
+    List<string>? DietTags = null);
 
 public record RecipeIngredientRequest(int IngredientId, decimal Quantity, string Unit, string? Note);
 
@@ -26,7 +33,23 @@ public record RecipeDetailResponse(
     List<RecipeIngredientResponse> Ingredients,
     List<StepResponse> Steps,
     RecipeSocialResponse Social,
-    string? PhotoVersion);
+    string? PhotoVersion,
+    RecipePersonalResponse? Personal = null);
+
+// Only the owner sees this: favorite, private notes, when you've cooked it, and its collections
+public record RecipePersonalResponse(bool IsFavorite, string? Notes, List<CookLogResponse> Cooked, List<int> CollectionIds);
+
+public record CookLogResponse(int Id, DateOnly CookedOn);
+
+public record FavoriteRequest(bool IsFavorite);
+
+public record NotesRequest(string? Notes);
+
+public record CookedRequest(DateOnly? CookedOn);
+
+public record CollectionRequest(string Name);
+
+public record CollectionResponse(int Id, string Name, int RecipeCount);
 
 // Owner's view of sharing and ratings for one of their recipes
 public record RecipeSocialResponse(string? ShareToken, int? MyRating, double? CommunityAverage, int CommunityCount);

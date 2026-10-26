@@ -2,9 +2,11 @@ import { Component, DestroyRef, OnInit, computed, inject, input, signal } from '
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { FoundTime, findTimes, formatClock } from '../cook-timers';
-import { formatAmount, formatUnit, scaleQuantity } from '../scaling';
+import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
+import { toIsoDate } from '../date-utils';
 
 interface CookRecipe {
   title: string;
@@ -81,7 +83,11 @@ interface Timer {
           @if (index() < r.steps.length - 1) {
             <button type="button" class="primary" (click)="go(1)">Next step</button>
           } @else {
-            <a [routerLink]="r.backLink" class="button primary">Done cooking</a>
+            @if (id()) {
+              <button type="button" class="primary" (click)="finish()" [disabled]="finishing()">{{ finishing() ? 'Saving…' : 'Done, mark as cooked' }}</button>
+            } @else {
+              <a [routerLink]="r.backLink" class="button primary">Done cooking</a>
+            }
           }
         </div>
 
@@ -97,7 +103,7 @@ interface Timer {
               @for (i of r.ingredients; track i.name; let n = $index) {
                 <li [class.got]="got().has(n)">
                   <label><input type="checkbox" [checked]="got().has(n)" (change)="toggleGot(n)" />
-                    <span>{{ amount(scale(i.quantity, r.servings), i.unit) }} {{ unit(i.unit) }} {{ i.name }}@if (i.note) {<span style="color: #97A59E">, {{ i.note }}</span>}</span>
+                    <span>{{ measure(scale(i.quantity, r.servings), i.unit) }} {{ i.name }}@if (i.note) {<span style="color: #97A59E">, {{ i.note }}</span>}</span>
                   </label>
                 </li>
               }
@@ -121,8 +127,9 @@ export class CookModePage implements OnInit {
 
   readonly CIRC = 2 * Math.PI * 16;
   clock = formatClock;
-  amount = formatAmount;
-  unit = formatUnit;
+  private unitSystem = inject(SettingsService).settings;
+  // Amounts in your chosen units (Settings → Units)
+  measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
 
   recipe = signal<CookRecipe | null>(null);
   failed = signal(false);
@@ -133,6 +140,7 @@ export class CookModePage implements OnInit {
   timers = signal<Timer[]>([]);
   now = signal(Date.now());
   wakeLockActive = signal(false);
+  finishing = signal(false);
 
   step = computed(() => this.recipe()?.steps[this.index()] ?? null);
   stepTimes = computed(() => findTimes(this.step()?.instruction ?? ''));
@@ -192,6 +200,19 @@ export class CookModePage implements OnInit {
       }
     } catch {
       this.wakeLockActive.set(false); // not supported, or denied (e.g. low battery mode)
+    }
+  }
+
+  // Logs today in your cooking history, then goes back to the recipe
+  async finish() {
+    this.finishing.set(true);
+    try {
+      await firstValueFrom(this.api.markCooked(Number(this.id()), toIsoDate(new Date())));
+    } catch {
+      // Not worth blocking on: the recipe page has an "I cooked this" button too
+    } finally {
+      this.finishing.set(false);
+      await this.router.navigate(this.recipe()?.backLink ?? ['/recipes']);
     }
   }
 

@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Data;
+using RecipePlanner.Api.Library;
 using RecipePlanner.Api.Models;
 using RecipePlanner.Api.Photos;
 
@@ -18,9 +19,13 @@ public static class RecipeEndpoints
             var userId = user.UserId();
             var recipes = await db.Recipes.AsNoTracking()
                 .Where(r => r.OwnerId == userId)
+                .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
+                .Include(r => r.CookLog)
+                .Include(r => r.Collections)
+                .AsSplitQuery()
                 .OrderBy(r => r.Title)
                 .ToListAsync();
-            return Results.Ok(recipes.Select(ToResponse));
+            return Results.Ok(recipes.Select(ToListItem));
         });
 
         group.MapGet("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db) =>
@@ -31,9 +36,11 @@ public static class RecipeEndpoints
                 .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
                 .Include(r => r.Steps).ThenInclude(s => s.Technique)
                 .Include(r => r.Ratings)
+                .Include(r => r.CookLog)
+                .Include(r => r.Collections)
                 .AsSplitQuery()
                 .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
-            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe));
+            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe) with { Personal = Personal(recipe) });
         });
 
         group.MapPost("/", async (RecipeRequest request, ClaimsPrincipal user, AppDbContext db) =>
@@ -227,6 +234,26 @@ public static class RecipeEndpoints
 
     private static RecipeResponse ToResponse(Recipe r) =>
         new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes, RecipePhotos.Version(r));
+
+    private static RecipeResponse ToListItem(Recipe r)
+    {
+        var ingredients = r.Ingredients.Select(i => (i.Ingredient.Name, i.Ingredient.StoreSection)).ToList();
+        var diets = ingredients.Count == 0 ? [] : new[] { Diet.Aip, Diet.Vegetarian }.Where(d => Diet.Fits(d, ingredients)).ToList();
+        return ToResponse(r) with
+        {
+            IsFavorite = r.IsFavorite,
+            TimesCooked = r.CookLog.Count,
+            LastCooked = r.CookLog.Count == 0 ? null : r.CookLog.Max(c => c.CookedOn),
+            CollectionIds = r.Collections.Select(c => c.Id).Order().ToList(),
+            IngredientNames = ingredients.Select(i => i.Name).Order().ToList(),
+            DietTags = diets
+        };
+    }
+
+    private static RecipePersonalResponse Personal(Recipe r) => new(
+        r.IsFavorite, r.Notes,
+        r.CookLog.OrderByDescending(c => c.CookedOn).ThenByDescending(c => c.Id).Select(c => new CookLogResponse(c.Id, c.CookedOn)).ToList(),
+        r.Collections.Select(c => c.Id).Order().ToList());
 
     private static RecipeDetailResponse ToDetail(Recipe r) =>
         new(r.Id, r.Title, r.Description, r.Cuisine, r.Servings, r.PrepMinutes, r.CookMinutes,

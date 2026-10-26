@@ -61,6 +61,15 @@ server {
         add_header Referrer-Policy "strict-origin-when-cross-origin" always;
     }
 
+    # The service worker and its manifest decide when the installed app updates, so the browser must always
+    # check them with the server (same idea as index.html above)
+    location ~ ^/(ngsw-worker\.js|ngsw\.json|safety-worker\.js|worker-basic\.min\.js|manifest\.webmanifest)$ {
+        add_header Cache-Control "no-cache" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    }
+
     # Angular puts a content hash in built file names (main-AB12CD34.js), so a new build always gets new
     # names. These can safely be cached for a year, which makes repeat visits faster.
     location ~* "^/[a-z0-9-]+-[A-Z0-9]{8}\.(js|css)$" {

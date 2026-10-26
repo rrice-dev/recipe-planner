@@ -1,4 +1,4 @@
-import { clampServings, formatAmount, formatUnit, scaleQuantity } from './scaling';
+import { clampServings, formatAmount, formatMeasure, formatUnit, scaleQuantity } from './scaling';
 
 describe('scaleQuantity', () => {
   it('scales up and down in proportion', () => {
@@ -66,5 +66,30 @@ describe('formatUnit', () => {
   it('hides "whole" but keeps real units', () => {
     expect(formatUnit('whole')).toBe('');
     expect(formatUnit('cup')).toBe('cup');
+  });
+});
+
+describe('convertMeasure and formatMeasure', () => {
+  it('converts US measures to metric for metric users', () => {
+    expect(formatMeasure(1, 'cup', 'metric')).toBe('237 ml');
+    expect(formatMeasure(2, 'tbsp', 'metric')).toBe('30 ml');
+    expect(formatMeasure(1, 'lb', 'metric')).toBe('454 g');
+    expect(formatMeasure(3, 'lb', 'metric')).toBe('1.36 kg');
+    expect(formatMeasure(8, 'cup', 'metric')).toBe('1.89 l');
+  });
+
+  it('converts metric to the spoon or cup a US cook would use', () => {
+    expect(formatMeasure(5, 'ml', 'us')).toBe('1 tsp');
+    expect(formatMeasure(30, 'ml', 'us')).toBe('2 tbsp');
+    expect(formatMeasure(250, 'ml', 'us')).toBe('1 cup');
+    expect(formatMeasure(200, 'g', 'us')).toBe('7 oz');
+    expect(formatMeasure(1, 'kg', 'us')).toBe('2¼ lb');
+  });
+
+  it('leaves counts and already-matching units alone', () => {
+    expect(formatMeasure(3, 'clove', 'metric')).toBe('3 clove');
+    expect(formatMeasure(2, 'whole', 'metric')).toBe('2');
+    expect(formatMeasure(1.5, 'cup', 'us')).toBe('1½ cup');
+    expect(formatMeasure(400, 'g', 'metric')).toBe('400 g');
   });
 });

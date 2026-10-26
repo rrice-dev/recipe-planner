@@ -1,6 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { clearCachedPersonalData } from './offline.service';
 
 interface UserInfo {
   email: string;
@@ -56,5 +57,6 @@ export class AuthService {
   clear() {
     this.email.set(null);
     this.loading = Promise.resolve();
+    void clearCachedPersonalData();
   }
 }

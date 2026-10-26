@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { Collection, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -218,6 +218,42 @@ suggestMeals(body: { count: number; diet: string | null; tag: string | null; cui
 
 savePlannedWeek(name: string, weekStart: string, picks: { day: string; key: string; servings: number }[]) {
   return this.http.post<MealPlan>('/api/mealplans/plan', { name, weekStart, picks });
+}
+
+setFavorite(recipeId: number, isFavorite: boolean) {
+  return this.http.put<void>(`/api/recipes/${recipeId}/favorite`, { isFavorite });
+}
+
+setNotes(recipeId: number, notes: string | null) {
+  return this.http.put<void>(`/api/recipes/${recipeId}/notes`, { notes });
+}
+
+markCooked(recipeId: number, cookedOn: string | null = null) {
+  return this.http.post<{ id: number; cookedOn: string }>(`/api/recipes/${recipeId}/cooked`, { cookedOn });
+}
+
+removeCooked(recipeId: number, entryId: number) {
+  return this.http.delete<void>(`/api/recipes/${recipeId}/cooked/${entryId}`);
+}
+
+getCollections() {
+  return this.http.get<Collection[]>('/api/collections');
+}
+
+createCollection(name: string) {
+  return this.http.post<Collection>('/api/collections', { name });
+}
+
+renameCollection(id: number, name: string) {
+  return this.http.put<void>(`/api/collections/${id}`, { name });
+}
+
+deleteCollection(id: number) {
+  return this.http.delete<void>(`/api/collections/${id}`);
+}
+
+setRecipeCollections(recipeId: number, collectionIds: number[]) {
+  return this.http.put<void>(`/api/recipes/${recipeId}/collections`, collectionIds);
 }
 
 }

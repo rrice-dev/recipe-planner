@@ -73,6 +73,7 @@ builder.Services.AddRecipePhotos(builder.Configuration);
 builder.Services.AddKroger(builder.Configuration);
 builder.Services.AddRecipeLibrary(builder.Environment.ContentRootPath);
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton(TimeProvider.System);
 
 // Requests arrive through two proxies: Azure's ingress -> nginx -> Azure's internal ingress -> API.
 // nginx overwrites X-Forwarded-For with the client IP Azure reported, so the API can trust
@@ -129,6 +130,7 @@ app.MapKrogerEndpoints();
 app.MapLibraryEndpoints();
 app.MapWorldEndpoints();
 app.MapSettingsEndpoints();
+app.MapPersonalEndpoints();
 
 app.Run();
 

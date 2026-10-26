@@ -28,6 +28,13 @@
   </nav>
 </header>
 
+@if (!offline.online()) {
+  <p class="status-bar" role="status">You're offline. Recipes you've opened before still work; changes need a connection.</p>
+}
+@if (offline.updateReady()) {
+  <p class="status-bar update" role="status">A new version of Recipe Planner is ready. <button type="button" (click)="offline.reload()">Reload</button></p>
+}
+
 <main class="container">
   <router-outlet />
 </main>
