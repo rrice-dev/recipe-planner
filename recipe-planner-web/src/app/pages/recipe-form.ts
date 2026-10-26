@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { groupBySection } from '../store-sections';
 import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
 
@@ -86,6 +87,7 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
   `
 })
 export class RecipeFormPage implements OnInit {
+  private settingsService = inject(SettingsService);
   private api = inject(ApiService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
@@ -104,6 +106,7 @@ export class RecipeFormPage implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(200)]],
     description: [''],
     cuisine: [''],
+    // New recipes start at your default servings from Settings
     servings: [4, [Validators.required, Validators.min(1)]],
     prepMinutes: [0, [Validators.required, Validators.min(0)]],
     cookMinutes: [0, [Validators.required, Validators.min(0)]]
@@ -133,7 +136,12 @@ export class RecipeFormPage implements OnInit {
     this.techniques.set(await firstValueFrom(this.api.getTechniques()));
 
     const id = this.id();
-    if (!id) return;
+    if (!id) {
+      // New recipes start at your default servings from Settings
+      const s = await this.settingsService.ensureLoaded();
+      if (this.form.pristine) this.form.patchValue({ servings: s.defaultServings });
+      return;
+    }
 
     const r = await firstValueFrom(this.api.getRecipe(Number(id)));
     this.form.patchValue({

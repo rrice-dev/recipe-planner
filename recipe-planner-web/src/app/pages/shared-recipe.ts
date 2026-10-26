@@ -32,9 +32,12 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: SharedRecipe } 
         @if (recipe(); as r) {
           <p class="muted small-text">Shared recipe</p>
           <h1>{{ r.title }}</h1>
-          <p class="meta">
-            {{ r.cuisine ?? 'Any cuisine' }} · Prep {{ r.prepMinutes }} min · Cook {{ r.cookMinutes }} min · Serves {{ r.servings }}
-          </p>
+          <dl class="facts">
+            @if (r.cuisine) { <div><dt>Cuisine</dt><dd>{{ r.cuisine }}</dd></div> }
+            <div><dt>Prep</dt><dd>{{ r.prepMinutes }} min</dd></div>
+            <div><dt>Cook</dt><dd>{{ r.cookMinutes }} min</dd></div>
+            <div><dt>Serves</dt><dd>{{ r.servings }}</dd></div>
+          </dl>
           @if (r.description) {
             <p>{{ r.description }}</p>
           }

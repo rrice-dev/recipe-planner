@@ -128,6 +128,7 @@ app.MapGroceryListEndpoints();
 app.MapKrogerEndpoints();
 app.MapLibraryEndpoints();
 app.MapWorldEndpoints();
+app.MapSettingsEndpoints();
 
 app.Run();
 

@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
   template: `
     <div class="page-header">
   <h1>Recipes</h1>
-  <a routerLink="/recipes/new" class="button primary">+ New recipe</a>
+  <a routerLink="/recipes/new" class="button primary">New recipe</a>
 </div>
     @if (recipes(); as list) {
       <div class="grid">
@@ -17,17 +17,20 @@ import { ApiService } from '../api.service';
           <a class="card" [routerLink]="['/recipes', r.id]">
             @if (r.photoVersion) {
               <img class="card-photo" [src]="'/api/recipes/' + r.id + '/photo?v=' + r.photoVersion" alt="" loading="lazy" />
+            } @else {
+              <div class="card-band" aria-hidden="true"></div>
             }
             <h2>{{ r.title }}</h2>
-            <p class="meta">
-              {{ r.cuisine ?? 'Any cuisine' }} · {{ r.prepMinutes + r.cookMinutes }} min · serves {{ r.servings }}
-            </p>
+            <p class="meta small-text">{{ r.prepMinutes + r.cookMinutes }} min, serves {{ r.servings }}@if (r.cuisine) {, {{ r.cuisine }}}</p>
             @if (r.description) {
               <p>{{ r.description }}</p>
             }
           </a>
         } @empty {
-          <p class="muted">No recipes yet.</p>
+          <div class="card">
+            <h2>No recipes yet</h2>
+            <p>Add one from the <a routerLink="/library">recipe library</a>, or write your own.</p>
+          </div>
         }
       </div>
     } @else {

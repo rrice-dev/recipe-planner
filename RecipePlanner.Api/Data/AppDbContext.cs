@@ -39,6 +39,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         b.Entity<Recipe>().Property(r => r.ShareToken).HasMaxLength(32);
 
         b.Entity<Recipe>().Property(r => r.PhotoName).HasMaxLength(64);
+        b.Entity<Recipe>().Property(r => r.LibrarySlug).HasMaxLength(80);
+        b.Entity<Recipe>().HasIndex(r => new { r.OwnerId, r.LibrarySlug });
+
+        b.Entity<AppUser>().Property(u => u.Theme).HasMaxLength(10).HasDefaultValue(UserSettings.SystemTheme);
+        b.Entity<AppUser>().Property(u => u.Diet).HasMaxLength(20);
+        b.Entity<AppUser>().Property(u => u.DefaultServings).HasDefaultValue(UserSettings.DefaultServingsValue);
 
         b.Entity<RecipeRating>().HasKey(r => new { r.RecipeId, r.UserId });
         b.Entity<RecipeRating>().ToTable(t => t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5"));

@@ -76,76 +76,61 @@ public class LibraryDataTests
         }
     }
 
-    // The AIP elimination phase removes grains, legumes, dairy, eggs, nuts, seeds (including seed-based
-    // spices), nightshades, refined sugar, seed oils, coffee and alcohol.
-    private static readonly string[] AipForbiddenSections = ["Grains & Pasta", "Bakery", "Dairy", "Nuts & Seeds", "Beverages"];
-
-    private static readonly string[] AipForbiddenWords =
-    [
-        // Grains, legumes and soy
-        "rice", "flour", "noodle", "pasta", "bread", "panko", "corn", "oat", "wheat", "barley", "quinoa",
-        "bean", "lentil", "chickpea", "pea", "edamame", "tofu", "soy", "miso", "tamari", "peanut", "hoisin", "oyster sauce",
-        // Dairy and eggs
-        "egg", "butter", "milk", "cream", "cheese", "yogurt", "ghee",
-        // Nightshades
-        "tomato", "potato", "pepper", "chili", "chile", "eggplant", "paprika", "cayenne", "gochu", "sriracha",
-        "curry", "doubanjiang", "kimchi", "salsa", "ketchup",
-        // Seeds and seed spices
-        "sesame", "cumin", "coriander", "fennel", "mustard", "nutmeg", "cardamom", "allspice", "star anise",
-        "caraway", "chia", "flax", "poppy", "garam masala", "chili powder",
-        // Sugar, seed oils, alcohol, coffee
-        "sugar", "vegetable oil", "canola", "corn syrup", "wine", "mirin", "shaoxing", "beer", "coffee",
-        "worcestershire", "rice vinegar"
-    ];
-
-    // Whole-word match, with "peas"/"beans"/"noodles" style plurals
-    private static bool Mentions(string ingredient, string word) =>
-        System.Text.RegularExpressions.Regex.IsMatch(ingredient, $@"\b{System.Text.RegularExpressions.Regex.Escape(word)}(e?s)?\b",
-            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
-    // Allowed on AIP even though a forbidden word appears in the name
-    private static readonly string[] AipAllowedExceptions =
-        ["Coconut Flour", "Cassava Flour", "Arrowroot Powder", "Tapioca Starch", "Coconut Milk", "Sweet Potato", "Cauliflower"];
-
+    // The rules live in the app (Library/Diet.cs) so the week planner checks your own recipes the same way
     [Fact]
     public void AIP_recipes_contain_nothing_off_the_elimination_list()
     {
-        foreach (var r in Library.All.Where(r => r.Tags.Contains("AIP")))
+        foreach (var r in Library.All.Where(r => r.Tags.Contains(Diet.Aip)))
         foreach (var i in r.Ingredients)
-        {
-            Assert.DoesNotContain(Library.SeedSections[i.Name] ?? "", AipForbiddenSections);
-            if (AipAllowedExceptions.Contains(i.Name, StringComparer.OrdinalIgnoreCase)) continue;
-            foreach (var word in AipForbiddenWords)
-                Assert.False(Mentions(i.Name, word), $"{r.Slug}: '{i.Name}' is not AIP ({word})");
-        }
+            Assert.True(Diet.FitsAip(i.Name, Library.SeedSections[i.Name]), $"{r.Slug}: '{i.Name}' is not AIP");
     }
 
-    [Fact]
-    public void AIP_check_catches_the_common_mistakes()
+    [Theory]
+    [InlineData("Black Pepper", "Spices")]
+    [InlineData("Bell Pepper", "Produce")]
+    [InlineData("Soy Sauce", "Condiments & Sauces")]
+    [InlineData("Sesame Oil", "Oils & Vinegars")]
+    [InlineData("Eggs", "Dairy")]
+    [InlineData("Long-Grain White Rice", "Grains & Pasta")]
+    [InlineData("Frozen Peas", "Frozen")]
+    [InlineData("Smoked Paprika", "Spices")]
+    [InlineData("Brown Sugar", "Baking")]
+    [InlineData("Ground Cumin", "Spices")]
+    [InlineData("Vegetable Oil", "Oils & Vinegars")]
+    [InlineData("Rice Vinegar", "Oils & Vinegars")]
+    [InlineData("Berbere Spice", "Spices")]
+    [InlineData("Kecap Manis", "Condiments & Sauces")]
+    public void AIP_check_catches_the_common_mistakes(string name, string section)
     {
-        // Guards the guard: make sure the word list really flags these
-        string[] offenders = ["Black Pepper", "Bell Pepper", "Soy Sauce", "Sesame Oil", "Eggs", "Long-Grain White Rice",
-            "Frozen Peas", "Smoked Paprika", "Brown Sugar", "Ground Cumin", "Butter", "Vegetable Oil", "Rice Vinegar"];
-        foreach (var name in offenders)
-            Assert.True(AipForbiddenWords.Any(w => Mentions(name, w)), $"'{name}' should be flagged");
+        // Guards the guard: make sure the rules really flag these
+        Assert.False(Diet.FitsAip(name, section));
+        Assert.False(Diet.FitsAip(name, null)); // even when the store section is unknown (a user's own ingredient)
     }
 
-    private static readonly string[] AnimalWords =
-        ["chicken", "beef", "pork", "bacon", "fish", "oyster", "anchov", "shrimp", "bone broth", "gelatin", "lard"];
+    [Theory]
+    [InlineData("Coconut Flour")]
+    [InlineData("Sweet Potato")]
+    [InlineData("Cauliflower")]
+    [InlineData("Coconut Aminos")]
+    [InlineData("Chicken Thighs")]
+    public void AIP_check_allows_the_usual_swaps(string name) => Assert.True(Diet.FitsAip(name, null));
 
     [Fact]
     public void Vegetarian_recipes_have_no_meat_or_fish()
     {
-        foreach (var r in Library.All.Where(r => r.Tags.Contains("Vegetarian")))
+        foreach (var r in Library.All.Where(r => r.Tags.Contains(Diet.Vegetarian)))
         foreach (var i in r.Ingredients)
-        {
-            var section = Library.SeedSections[i.Name];
-            Assert.NotEqual("Meat", section);
-            Assert.NotEqual("Seafood", section);
-            foreach (var word in AnimalWords)
-                Assert.DoesNotContain(word, i.Name, StringComparison.OrdinalIgnoreCase);
-        }
+            Assert.True(Diet.FitsVegetarian(i.Name, Library.SeedSections[i.Name]), $"{r.Slug}: '{i.Name}' is not vegetarian");
     }
+
+    [Theory]
+    [InlineData("Chicken Bone Broth", false)]
+    [InlineData("Anchovies", false)]
+    [InlineData("Smoked Salmon", false)]
+    [InlineData("Champagne Vinegar", true)]
+    [InlineData("Coconut Milk", true)]
+    public void Vegetarian_check_uses_whole_words(string name, bool vegetarian) =>
+        Assert.Equal(vegetarian, Diet.FitsVegetarian(name, null));
 
     [Fact]
     public void Quick_tag_is_computed_from_total_time()

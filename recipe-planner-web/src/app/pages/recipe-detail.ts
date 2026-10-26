@@ -20,9 +20,15 @@ import { ServingsStepper } from '../servings-stepper';
   <h1>{{ r.title }}</h1>
   <a [routerLink]="['/recipes', r.id, 'edit']" class="button">Edit</a>
 </div>
-      <p class="meta">
-        {{ r.cuisine ?? 'Any cuisine' }} · Prep {{ r.prepMinutes }} min · Cook {{ r.cookMinutes }} min · Serves {{ r.servings }}
-      </p>
+      <dl class="facts">
+        @if (r.cuisine) { <div><dt>Cuisine</dt><dd>{{ r.cuisine }}</dd></div> }
+        <div><dt>Prep</dt><dd>{{ r.prepMinutes }} min</dd></div>
+        <div><dt>Cook</dt><dd>{{ r.cookMinutes }} min</dd></div>
+        <div><dt>Serves</dt><dd>{{ r.servings }}</dd></div>
+      </dl>
+      @if (r.steps.length) {
+        <a [routerLink]="['/recipes', r.id, 'cook']" class="button primary cook-cta">Start cooking</a>
+      }
       @if (r.description) {
         <p>{{ r.description }}</p>
       }

@@ -27,9 +27,12 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
       @case ('ok') {
         @if (recipe(); as r) {
           <h1>{{ r.title }}</h1>
-          <p class="meta">
-            {{ r.cuisine }} · Prep {{ time(r.prepMinutes) }} · Cook {{ time(r.cookMinutes) }} · Serves {{ r.servings }}
-          </p>
+          <dl class="facts">
+            <div><dt>Cuisine</dt><dd>{{ r.cuisine }}</dd></div>
+            <div><dt>Prep</dt><dd>{{ time(r.prepMinutes) }}</dd></div>
+            <div><dt>Cook</dt><dd>{{ time(r.cookMinutes) }}</dd></div>
+            <div><dt>Serves</dt><dd>{{ r.servings }}</dd></div>
+          </dl>
           <div class="chips">
             @for (t of r.tags; track t) {
               <span class="chip small tag-{{ t.toLowerCase() }}">{{ t }}</span>
@@ -42,12 +45,18 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
               @if (addedId(); as id) {
                 <p class="small-text">Added to your recipes. <a [routerLink]="['/recipes', id]">Open your copy</a></p>
               } @else {
-                <button type="button" class="primary" (click)="add(r.slug)" [disabled]="busy()">
-                  {{ busy() ? 'Adding…' : 'Add to my recipes' }}
-                </button>
+                <div class="row">
+                  <button type="button" class="primary" (click)="add(r.slug)" [disabled]="busy()">
+                    {{ busy() ? 'Adding…' : 'Add to my recipes' }}
+                  </button>
+                  <a [routerLink]="['/library', r.slug, 'cook']" class="button">Start cooking</a>
+                </div>
                 <p class="muted small-text">You get your own copy to edit, rate, share and add to meal plans.</p>
               }
             } @else {
+              <div class="row">
+                <a [routerLink]="['/library', r.slug, 'cook']" class="button primary">Start cooking</a>
+              </div>
               <p class="small-text">
                 <a [routerLink]="['/login']" [queryParams]="{ returnUrl: '/library/' + r.slug }">Log in</a>
                 to add this to your recipes.

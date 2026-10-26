@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -210,6 +210,14 @@ getCountryDishes(country: string) {
 
 getCountryRecipe(country: string, dishName: string) {
   return this.http.post<RecipeDraft>('/api/world/recipe', { country, dishName });
+}
+
+suggestMeals(body: { count: number; diet: string | null; tag: string | null; cuisine: string | null; source: string; exclude: string[]; useMyDiet: boolean }) {
+  return this.http.post<PlanSuggestResponse>('/api/mealplans/suggest', body);
+}
+
+savePlannedWeek(name: string, weekStart: string, picks: { day: string; key: string; servings: number }[]) {
+  return this.http.post<MealPlan>('/api/mealplans/plan', { name, weekStart, picks });
 }
 
 }

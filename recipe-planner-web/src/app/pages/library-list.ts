@@ -1,8 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, map, of } from 'rxjs';
 import { ApiService } from '../api.service';
+import { SettingsService } from '../settings.service';
 import { LibrarySummary } from '../models';
 import { cuisineFamily, totalTime } from '../library-utils';
 
@@ -55,7 +56,7 @@ const FILTER_TAGS = ['All', 'Asian', 'AIP', 'Vegetarian', 'Quick', 'Soup', 'Brea
           @for (r of filtered(); track r.slug) {
             <a class="card" [routerLink]="['/library', r.slug]">
               <h2>{{ r.title }}</h2>
-              <p class="meta small-text">{{ r.cuisine }} · {{ time(r.prepMinutes + r.cookMinutes) }} · Serves {{ r.servings }}</p>
+              <p class="meta small-text">{{ time(r.prepMinutes + r.cookMinutes) }}, serves {{ r.servings }}, {{ r.cuisine }}</p>
               <p class="small-text">{{ r.description }}</p>
               <div class="chips">
                 @for (t of r.tags; track t) {
@@ -77,7 +78,9 @@ export class LibraryListPage {
   time = totalTime;
 
   search = signal('');
-  tag = signal('All');
+  // Starts on your diet from Settings (once they load); picking a tag yourself overrides it
+  private settings = inject(SettingsService).settings;
+  tag = linkedSignal<string>(() => this.settings().diet ?? 'All');
   cuisine = signal('');
 
   state = toSignal(

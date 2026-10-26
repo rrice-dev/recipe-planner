@@ -17,7 +17,7 @@ namespace RecipePlanner.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "10.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -185,6 +185,15 @@ namespace RecipePlanner.Api.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
+                    b.Property<int>("DefaultServings")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(4);
+
+                    b.Property<string>("Diet")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -217,6 +226,13 @@ namespace RecipePlanner.Api.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
+
+                    b.Property<string>("Theme")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)")
+                        .HasDefaultValue("system");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
@@ -440,6 +456,10 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<string>("LibrarySlug")
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)");
+
                     b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("text");
@@ -470,10 +490,10 @@ namespace RecipePlanner.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.HasIndex("ShareToken")
                         .IsUnique();
+
+                    b.HasIndex("OwnerId", "LibrarySlug");
 
                     b.ToTable("Recipes");
                 });
