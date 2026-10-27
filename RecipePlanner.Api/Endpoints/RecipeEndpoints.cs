@@ -38,9 +38,15 @@ public static class RecipeEndpoints
                 .Include(r => r.Ratings)
                 .Include(r => r.CookLog)
                 .Include(r => r.Collections)
+                .Include(r => r.SourcePages)
                 .AsSplitQuery()
                 .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
-            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe) with { Personal = Personal(recipe), SourceUrl = recipe.SourceUrl });
+            return recipe is null ? Results.NotFound() : Results.Ok(ToDetail(recipe) with
+            {
+                Personal = Personal(recipe),
+                SourceUrl = recipe.SourceUrl,
+                SourcePages = SourcePages.ToResponse(recipe.SourcePages)
+            });
         });
 
         group.MapPost("/", async (RecipeRequest request, ClaimsPrincipal user, AppDbContext db) =>
@@ -73,13 +79,14 @@ public static class RecipeEndpoints
         group.MapDelete("/{id:int}", async (int id, ClaimsPrincipal user, AppDbContext db, IPhotoStore photos) =>
         {
             var userId = user.UserId();
-            var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
+            var recipe = await db.Recipes.Include(r => r.SourcePages).FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
-            var photo = recipe.PhotoName;
+            // Photos live outside the database, so remove them once the recipe is gone
+            var files = recipe.SourcePages.Select(p => p.PhotoName).Append(recipe.PhotoName).OfType<string>().ToList();
             db.Recipes.Remove(recipe);
             await db.SaveChangesAsync();
-            if (photo is not null) await photos.DeleteAsync(photo, CancellationToken.None);
+            foreach (var file in files) await photos.DeleteAsync(file, CancellationToken.None);
             return Results.NoContent();
         });
 
@@ -218,6 +225,11 @@ public static class RecipeEndpoints
         recipe.CookMinutes = request.CookMinutes;
         // Only set by imports; editing a recipe later (which doesn't send it) keeps the original source
         if (!string.IsNullOrWhiteSpace(request.SourceUrl)) recipe.SourceUrl = request.SourceUrl.Trim();
+        if (request.FromCookbook is { } fromCookbook)
+        {
+            recipe.FromCookbook = fromCookbook;
+            if (fromCookbook) { recipe.ShareToken = null; recipe.SharedAt = null; }
+        }
     }
 
     private static Dictionary<string, string[]> Validate(RecipeRequest r)
@@ -285,6 +297,7 @@ public static class RecipeEndpoints
             r.ShareToken,
             r.Ratings.FirstOrDefault(x => x.UserId == r.OwnerId)?.Stars,
             average,
-            count);
+            count,
+            r.FromCookbook);
     }
 }

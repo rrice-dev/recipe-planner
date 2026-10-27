@@ -16,6 +16,7 @@ public static class RecipeLimits
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IDataProtectionKeyContext
 {
     public DbSet<Recipe> Recipes => Set<Recipe>();
+    public DbSet<RecipeSourcePage> RecipeSourcePages => Set<RecipeSourcePage>();
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Technique> Techniques => Set<Technique>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
@@ -53,6 +54,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         b.Entity<Recipe>().Property(r => r.ShareToken).HasMaxLength(32);
 
         b.Entity<Recipe>().Property(r => r.PhotoName).HasMaxLength(64);
+        b.Entity<RecipeSourcePage>(e =>
+        {
+            e.Property(p => p.PhotoName).HasMaxLength(64);
+            e.HasOne<Recipe>().WithMany(r => r.SourcePages).HasForeignKey(p => p.RecipeId).OnDelete(DeleteBehavior.Cascade);
+            e.HasIndex(p => new { p.RecipeId, p.Position });
+        });
         b.Entity<Recipe>().Property(r => r.LibrarySlug).HasMaxLength(80);
         b.Entity<Recipe>().Property(r => r.SourceUrl).HasMaxLength(RecipeLimits.MaxSourceUrlLength);
         b.Entity<Recipe>().HasIndex(r => new { r.OwnerId, r.LibrarySlug });

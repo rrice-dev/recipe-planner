@@ -606,6 +606,9 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<bool>("FromCookbook")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsFavorite")
                         .HasColumnType("boolean");
 
@@ -732,6 +735,32 @@ namespace RecipePlanner.Api.Migrations
                         {
                             t.HasCheckConstraint("CK_RecipeRatings_Stars", "\"Stars\" BETWEEN 1 AND 5");
                         });
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeSourcePage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PhotoName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId", "Position");
+
+                    b.ToTable("RecipeSourcePages");
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Models.Step", b =>
@@ -1052,6 +1081,15 @@ namespace RecipePlanner.Api.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Models.RecipeSourcePage", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.Recipe", null)
+                        .WithMany("SourcePages")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Models.Step", b =>
                 {
                     b.HasOne("RecipePlanner.Api.Models.Recipe", null)
@@ -1109,6 +1147,8 @@ namespace RecipePlanner.Api.Migrations
                     b.Navigation("Ingredients");
 
                     b.Navigation("Ratings");
+
+                    b.Navigation("SourcePages");
 
                     b.Navigation("Steps");
                 });

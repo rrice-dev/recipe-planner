@@ -8,7 +8,7 @@ import { SettingsService } from '../settings.service';
 import { StarRating } from '../star-rating';
 import { shareTargets } from '../share-links';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PhotoReadError, shrinkPhoto } from '../photo-utils';
+import { MAX_PAGES, PhotoReadError, shrinkPhoto } from '../photo-utils';
 import { formatMeasure, scaleQuantity } from '../scaling';
 import { ServingsStepper } from '../servings-stepper';
 import { NutritionPanel } from '../nutrition-panel';
@@ -57,6 +57,33 @@ import { PersonalPanel } from '../personal-panel';
         <p class="error">{{ photoError() }}</p>
       }
 
+      @if (sourcePages().length) {
+        <section class="original-pages">
+          <h2>Original {{ sourcePages().length === 1 ? 'page' : 'pages' }} <span class="muted small-text note">(only you see these)</span></h2>
+          <ul class="page-thumbs">
+            @for (p of sourcePages(); track p.id; let i = $index) {
+              <li>
+                <a [href]="pageUrl(r.id, p.id)" target="_blank" rel="noopener" [attr.aria-label]="'Open page ' + (i + 1) + ' full size'">
+                  <img [src]="pageUrl(r.id, p.id)" [alt]="'Original page ' + (i + 1) + ' of ' + r.title" loading="lazy" />
+                </a>
+                <button type="button" class="link small-text" (click)="removePage(r.id, p.id)" [disabled]="pageBusy()">Remove</button>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+      @if (sourcePages().length < maxPages) {
+        <div class="row photo-actions">
+          <label class="button" [class.disabled]="pageBusy()">
+            {{ pageBusy() ? 'Uploading…' : (sourcePages().length ? 'Add another original page' : '📄 Keep a photo of the original recipe') }}
+            <input type="file" accept="image/*" hidden (change)="addPage(r.id, $event)" [disabled]="pageBusy()" />
+          </label>
+        </div>
+      }
+      @if (pageError()) {
+        <p class="error">{{ pageError() }}</p>
+      }
+
 
       @if (social(); as s) {
         <section class="card social">
@@ -95,10 +122,16 @@ import { PersonalPanel } from '../personal-panel';
                 }
               </div>
               <button type="button" class="link" (click)="unshare(r.id)" [disabled]="busy()">Stop sharing</button>
+            } @else if (s.fromCookbook) {
+              <p class="small-text muted">This recipe is copied from a published cookbook, so it stays private.</p>
             } @else {
               <p class="small-text muted">This recipe is private. Sharing creates a link you can post anywhere; you can turn it off at any time.</p>
               <button type="button" class="primary" (click)="share(r.id)" [disabled]="busy()">Share this recipe</button>
             }
+            <label class="check small-text">
+              <input type="checkbox" [checked]="!!s.fromCookbook" (change)="setCookbook(r.id, $any($event.target))" [disabled]="busy()" />
+              Copied from a published cookbook or magazine (can't be shared)
+            </label>
           </div>
           @if (error()) {
             <p class="error">{{ error() }}</p>
@@ -162,6 +195,13 @@ import { PersonalPanel } from '../personal-panel';
     } @else {
       <p class="muted">Loading…</p>
     }
+  `,
+  styles: `
+    .page-thumbs { list-style: none; padding: 0; margin: 0 0 0.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .page-thumbs li { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+    .page-thumbs img { display: block; width: 120px; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); }
+    .check { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 0.75rem; }
+    .check input { margin-top: 0.2rem; }
   `
 })
 export class RecipeDetailPage {
@@ -175,6 +215,11 @@ export class RecipeDetailPage {
   photoVersion = linkedSignal(() => this.recipe()?.photoVersion ?? null);
   uploading = signal(false);
   photoError = signal<string | null>(null);
+  readonly maxPages = MAX_PAGES;
+  sourcePages = linkedSignal(() => this.recipe()?.sourcePages ?? []);
+  pageBusy = signal(false);
+  pageError = signal<string | null>(null);
+  pageUrl = (recipeId: number, pageId: number) => `/api/recipes/${recipeId}/source-pages/${pageId}`;
   // null = the recipe's own servings. Resets when you open a different recipe.
   servings = linkedSignal<unknown, number | null>({ source: this.recipe, computation: () => null });
   private unitSystem = inject(SettingsService).settings;
@@ -254,6 +299,58 @@ export class RecipeDetailPage {
     } finally {
       this.uploading.set(false);
     }
+  }
+
+  async addPage(id: number, event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+
+    this.pageBusy.set(true);
+    this.pageError.set(null);
+    try {
+      const page = await firstValueFrom(this.api.addSourcePage(id, await shrinkPhoto(file, 2000, 0.88)));
+      this.sourcePages.update(p => [...p, page]);
+    } catch (e) {
+      const status = e instanceof HttpErrorResponse ? e.status : 0;
+      this.pageError.set(
+        e instanceof PhotoReadError || status === 415 ? "That file couldn't be read as a photo." :
+        status === 400 ? `A recipe can keep up to ${MAX_PAGES} original pages.` :
+        status === 429 ? "You've uploaded a lot of photos this hour. Try again later." :
+        status === 503 ? 'Photo uploads are unavailable right now.' :
+        "Couldn't save the photo. Please try again.");
+    } finally {
+      this.pageBusy.set(false);
+    }
+  }
+
+  async removePage(id: number, pageId: number) {
+    if (!confirm('Remove this photo of the original? The typed-up recipe stays.')) return;
+    this.pageBusy.set(true);
+    this.pageError.set(null);
+    try {
+      await firstValueFrom(this.api.removeSourcePage(id, pageId));
+      this.sourcePages.update(p => p.filter(x => x.id !== pageId));
+    } catch {
+      this.pageError.set("Couldn't remove the photo. Please try again.");
+    } finally {
+      this.pageBusy.set(false);
+    }
+  }
+
+  async setCookbook(id: number, box: HTMLInputElement) {
+    const on = box.checked;
+    if (on && this.social()?.shareToken
+        && !confirm('Recipes from a published cookbook stay private, so this turns off the share link. Continue?')) {
+      box.checked = false;
+      return;
+    }
+    await this.run(async () => {
+      await firstValueFrom(this.api.setFromCookbook(id, on));
+      this.social.update(s => s && { ...s, fromCookbook: on, shareToken: on ? null : s.shareToken });
+    });
+    if (this.error()) box.checked = !on;
   }
 
   async rate(id: number, stars: number) {

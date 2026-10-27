@@ -3,7 +3,8 @@ namespace RecipePlanner.Api.Contracts;
 public record RecipeRequest(
     string Title, string? Description, string? Cuisine,
     int Servings, int PrepMinutes, int CookMinutes,
-    string? SourceUrl = null);   // for imported recipes: the page it came from
+    string? SourceUrl = null,    // for imported recipes: the page it came from
+    bool? FromCookbook = null);  // null = leave as it is (the editor doesn't send it)
 
 public record RecipeResponse(
     int Id, string Title, string? Description, string? Cuisine,
@@ -36,7 +37,10 @@ public record RecipeDetailResponse(
     RecipeSocialResponse Social,
     string? PhotoVersion,
     RecipePersonalResponse? Personal = null,
-    string? SourceUrl = null);
+    string? SourceUrl = null,
+    List<SourcePageResponse>? SourcePages = null);   // owner only: photos of the original page or card
+
+public record SourcePageResponse(int Id, int Position);
 
 // Only the owner sees this: favorite, private notes, when you've cooked it, and its collections
 public record RecipePersonalResponse(bool IsFavorite, string? Notes, List<CookLogResponse> Cooked, List<int> CollectionIds);
@@ -54,7 +58,9 @@ public record CollectionRequest(string Name);
 public record CollectionResponse(int Id, string Name, int RecipeCount);
 
 // Owner's view of sharing and ratings for one of their recipes
-public record RecipeSocialResponse(string? ShareToken, int? MyRating, double? CommunityAverage, int CommunityCount);
+public record RecipeSocialResponse(string? ShareToken, int? MyRating, double? CommunityAverage, int CommunityCount, bool FromCookbook = false);
+
+public record CookbookRequest(bool FromCookbook);
 
 public record RatingRequest(int Stars);
 
@@ -77,3 +83,11 @@ public record ImportRequest(string Url);
 
 /// <param name="Method">"structured" when read from the page's recipe data, "ai" when the AI read the page text</param>
 public record ImportResponse(RecipeDraftResponse Recipe, string SourceUrl, string Method);
+
+/// <summary>Photos of one recipe, in page order, each a base64-encoded JPEG, PNG or WebP.</summary>
+public record ReadPhotosRequest(List<string>? Photos);
+
+public record ReadTextRequest(string? Text);
+
+/// <param name="Unclear">Spots the AI couldn't read with confidence or had to guess, to check before saving</param>
+public record ReadRecipeResponse(RecipeDraftResponse Recipe, List<string> Unclear);

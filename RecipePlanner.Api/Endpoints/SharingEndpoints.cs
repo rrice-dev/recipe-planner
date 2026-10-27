@@ -31,6 +31,9 @@ public static partial class SharingEndpoints
         {
             var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == user.UserId());
             if (recipe is null) return Results.NotFound();
+            if (recipe.FromCookbook)
+                return Results.Problem("This recipe is marked as copied from a published cookbook, so it stays private.",
+                    statusCode: StatusCodes.Status409Conflict);
 
             if (recipe.ShareToken is null) // sharing an already-shared recipe keeps the same link
             {
@@ -49,6 +52,23 @@ public static partial class SharingEndpoints
             // The old link stops working immediately. Sharing again creates a brand-new link.
             recipe.ShareToken = null;
             recipe.SharedAt = null;
+            await db.SaveChangesAsync();
+            return Results.NoContent();
+        });
+
+        // Copied from a published cookbook: fine for your own cooking, but not for posting publicly.
+        // Turning it on also turns sharing off, so any existing link stops working.
+        mine.MapPut("/cookbook", async (int id, CookbookRequest request, ClaimsPrincipal user, AppDbContext db) =>
+        {
+            var recipe = await db.Recipes.FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == user.UserId());
+            if (recipe is null) return Results.NotFound();
+
+            recipe.FromCookbook = request.FromCookbook;
+            if (request.FromCookbook)
+            {
+                recipe.ShareToken = null;
+                recipe.SharedAt = null;
+            }
             await db.SaveChangesAsync();
             return Results.NoContent();
         });

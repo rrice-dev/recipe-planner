@@ -25,6 +25,7 @@ public class ApiFactory : WebApplicationFactory<Program>
     public ICountryDishGenerator? CountryDishes { get; init; }
     public RecipePlanner.Api.Import.IPageFetcher? Pages { get; init; }
     public IRecipeExtractor? Extractor { get; init; }
+    public IRecipeReader? Reader { get; init; }
     public FakeEmail? Email { get; init; }
     public RecipePlanner.Api.Nutrition.IFoodSource? Foods { get; init; }
 
@@ -95,6 +96,12 @@ public class ApiFactory : WebApplicationFactory<Program>
             {
                 services.RemoveAll<IRecipeExtractor>();
                 services.AddSingleton(Extractor);
+            }
+
+            if (Reader is not null)
+            {
+                services.RemoveAll<IRecipeReader>();
+                services.AddSingleton(Reader);
             }
 
             if (CountryDishes is not null)

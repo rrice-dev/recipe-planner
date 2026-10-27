@@ -65,6 +65,9 @@ public static class SettingsEndpoints
             // along with the user.
             var photoNames = await db.Recipes.Where(r => r.OwnerId == me.Id && r.PhotoName != null)
                 .Select(r => r.PhotoName!).ToListAsync();
+            photoNames.AddRange(await db.RecipeSourcePages
+                .Where(p => db.Recipes.Any(r => r.Id == p.RecipeId && r.OwnerId == me.Id))
+                .Select(p => p.PhotoName).ToListAsync());
             var log = loggerFactory.CreateLogger("SettingsEndpoints");
             foreach (var name in photoNames)
             {

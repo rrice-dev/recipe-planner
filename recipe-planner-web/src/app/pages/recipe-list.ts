@@ -22,7 +22,8 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
     <div class="page-header">
       <h1>Recipes</h1>
       <div class="row" style="margin: 0">
-        <a routerLink="/recipes/import" class="button">Import from a link</a>
+        <a routerLink="/recipes/import" class="button">Import</a>
+        <a routerLink="/recipes/import" [queryParams]="{ mode: 'photo' }" class="button">📷 Scan a recipe</a>
         <a routerLink="/recipes/new" class="button primary">New recipe</a>
       </div>
     </div>
