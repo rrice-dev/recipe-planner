@@ -22,3 +22,10 @@ public record PlanDayNutrition(DateOnly Day, List<PlanMealNutrition> Meals, Nutr
 
 /// <param name="DailyAverage">Average over the days that have meals</param>
 public record PlanNutritionResponse(bool Available, List<PlanDayNutrition> Days, NutrientsResponse? DailyAverage, NutritionTargets Targets, bool Complete);
+
+/// <param name="Calories">One serving; null when none of its ingredients could be counted</param>
+/// <param name="Complete">False when some ingredients couldn't be counted, so the number is low</param>
+public record RecipeCalories(int RecipeId, int? Calories, bool Complete);
+
+/// <param name="Pending">Some ingredients haven't been looked up yet; ask again to finish them</param>
+public record RecipeCaloriesResponse(bool Available, bool Pending, List<RecipeCalories> Recipes);

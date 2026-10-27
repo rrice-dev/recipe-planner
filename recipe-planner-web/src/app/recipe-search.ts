@@ -1,15 +1,19 @@
-import { RecipeSummary } from './models';
+import { RecipeCalories, RecipeSummary } from './models';
 
 // Searching and filtering your recipe book. Kept separate from the page so it's easy to test.
 
 export type RecipeFilter = 'all' | 'favorites' | 'AIP' | 'Vegetarian' | 'quick' | 'untried';
-export type RecipeSort = 'title' | 'recent' | 'most' | 'quickest';
+export type RecipeSort = 'title' | 'recent' | 'most' | 'quickest' | 'calories';
 
 export interface RecipeQuery {
   text: string;
   filter: RecipeFilter;
   collectionId: number | null;
   sort: RecipeSort;
+  /** Calories per serving, at most. Recipes without an estimate are left out while this is set. */
+  maxCalories?: number | null;
+  /** Estimates by recipe id, from the calories endpoint */
+  calories?: ReadonlyMap<number, RecipeCalories>;
 }
 
 /** Every word must appear somewhere: title, description, cuisine or an ingredient */
@@ -30,9 +34,19 @@ function matchesFilter(r: RecipeSummary, filter: RecipeFilter): boolean {
   }
 }
 
+function caloriesOf(r: RecipeSummary, q: RecipeQuery): number | null {
+  return q.calories?.get(r.id)?.calories ?? null;
+}
+
+function matchesCalories(r: RecipeSummary, q: RecipeQuery): boolean {
+  if (q.maxCalories == null) return true;
+  const cal = caloriesOf(r, q);
+  return cal !== null && cal <= q.maxCalories;
+}
+
 export function searchRecipes(recipes: RecipeSummary[], q: RecipeQuery): RecipeSummary[] {
   const found = recipes.filter(r =>
-    matchesText(r, q.text) && matchesFilter(r, q.filter)
+    matchesText(r, q.text) && matchesFilter(r, q.filter) && matchesCalories(r, q)
     && (q.collectionId === null || (r.collectionIds ?? []).includes(q.collectionId)));
 
   const byTitle = (a: RecipeSummary, b: RecipeSummary) => a.title.localeCompare(b.title);
@@ -42,6 +56,13 @@ export function searchRecipes(recipes: RecipeSummary[], q: RecipeQuery): RecipeS
     recent: (a, b) => (b.lastCooked ?? '').localeCompare(a.lastCooked ?? '') || byTitle(a, b),
     most: (a, b) => (b.timesCooked ?? 0) - (a.timesCooked ?? 0) || byTitle(a, b),
     quickest: (a, b) => (a.prepMinutes + a.cookMinutes) - (b.prepMinutes + b.cookMinutes) || byTitle(a, b),
+    // Recipes without an estimate go last
+    calories: (a, b) => (caloriesOf(a, q) ?? Infinity) - (caloriesOf(b, q) ?? Infinity) || byTitle(a, b),
   };
   return [...found].sort(sorters[q.sort]);
+}
+
+/** How many recipes a calorie limit hides only because they have no estimate */
+export function countWithoutEstimate(recipes: RecipeSummary[], calories: ReadonlyMap<number, RecipeCalories>): number {
+  return recipes.filter(r => calories.get(r.id)?.calories == null).length;
 }

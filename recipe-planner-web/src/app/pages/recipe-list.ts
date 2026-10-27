@@ -2,8 +2,9 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
-import { Collection, RecipeSummary } from '../models';
-import { RecipeFilter, RecipeSort, searchRecipes } from '../recipe-search';
+import { Collection, RecipeCalories, RecipeSummary } from '../models';
+import { RecipeFilter, RecipeSort, countWithoutEstimate, searchRecipes } from '../recipe-search';
+import { FeaturesService } from '../features.service';
 import { totalTime } from '../library-utils';
 
 const FILTERS: { value: RecipeFilter; label: string }[] = [
@@ -42,7 +43,16 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
             <option value="recent">Recently cooked</option>
             <option value="most">Most cooked</option>
             <option value="quickest">Quickest</option>
+            @if (nutrition()) { <option value="calories">Fewest calories</option> }
           </select>
+          @if (nutrition()) {
+            <label class="calorie-limit">
+              <span class="muted small-text">Max calories / serving</span>
+              <input type="number" inputmode="numeric" min="0" step="50" placeholder="Any"
+                     aria-label="Maximum calories per serving" [value]="maxCalories() ?? ''"
+                     (input)="setMaxCalories($any($event.target).value)" />
+            </label>
+          }
         </div>
         <div class="chips filter-chips" role="group" aria-label="Filter">
           @for (f of filters; track f.value) {
@@ -50,7 +60,13 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
                     (click)="filter.set(f.value)">{{ f.label }}</button>
           }
         </div>
-        <p class="muted small-text">{{ shown().length }} of {{ all.length }} recipes</p>
+        <p class="muted small-text">
+          {{ shown().length }} of {{ all.length }} recipes
+          @if (maxCalories() !== null) {
+            @if (!calories()) { · estimating calories… }
+            @else if (hiddenNoEstimate()) { · {{ hiddenNoEstimate() }} without a calorie estimate hidden }
+          }
+        </p>
       }
 
       <div class="grid">
@@ -64,6 +80,11 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
               }
               <h2>{{ r.title }}</h2>
               <p class="meta small-text">{{ time(r.prepMinutes + r.cookMinutes) }}, serves {{ r.servings }}@if (r.cuisine) {, {{ r.cuisine }}}</p>
+              @if (calorieOf(r); as c) {
+                <p class="small-text calorie-note" [attr.title]="c.complete ? null : 'Some ingredients could not be counted, so it may be more'">
+                  ≈ {{ c.calories }}{{ c.complete ? '' : '+' }} cal per serving
+                </p>
+              }
               @if (r.description) { <p class="small-text">{{ r.description }}</p> }
               @if (r.timesCooked) {
                 <p class="small-text cooked-note">Cooked {{ r.timesCooked === 1 ? 'once' : r.timesCooked + ' times' }}, last {{ date(r.lastCooked!) }}</p>
@@ -92,6 +113,7 @@ const FILTERS: { value: RecipeFilter; label: string }[] = [
 })
 export class RecipeListPage {
   private api = inject(ApiService);
+  private features = inject(FeaturesService);
   filters = FILTERS;
   time = totalTime;
 
@@ -101,13 +123,50 @@ export class RecipeListPage {
   filter = signal<RecipeFilter>('all');
   collectionId = signal<number | null>(null);
   sort = signal<RecipeSort>('title');
+  maxCalories = signal<number | null>(null);
+  /** Calorie estimates by recipe id; null until loaded */
+  calories = signal<Map<number, RecipeCalories> | null>(null);
+  nutrition = computed(() => this.features.features().nutrition);
 
   shown = computed(() => searchRecipes(this.recipes() ?? [], {
-    text: this.text(), filter: this.filter(), collectionId: this.collectionId(), sort: this.sort()
+    text: this.text(), filter: this.filter(), collectionId: this.collectionId(), sort: this.sort(),
+    maxCalories: this.maxCalories(), calories: this.calories() ?? new Map(),
   }));
+
+  hiddenNoEstimate = computed(() => {
+    const cal = this.calories();
+    return cal ? countWithoutEstimate(this.recipes() ?? [], cal) : 0;
+  });
 
   constructor() {
     void this.load();
+    void this.loadCalories();
+  }
+
+  setMaxCalories(value: string) {
+    const n = Number(value);
+    this.maxCalories.set(value.trim() === '' || !Number.isFinite(n) || n < 0 ? null : Math.round(n));
+  }
+
+  calorieOf(r: RecipeSummary) {
+    const c = this.calories()?.get(r.id);
+    return c && c.calories !== null ? c : null;
+  }
+
+  // New ingredients are looked up a batch per call, so keep asking while some are pending (a few calls at most)
+  private async loadCalories() {
+    if (!(await this.features.ensureLoaded()).nutrition) return;
+    try {
+      for (let attempt = 0; attempt < 6; attempt++) {
+        const res = await firstValueFrom(this.api.getRecipeCalories());
+        if (!res.available) return;
+        this.calories.set(new Map(res.recipes.map(c => [c.recipeId, c])));
+        if (!res.pending) return;
+      }
+    } catch {
+      // Calories are a nice-to-have; the list works without them
+      this.calories.update(c => c ?? new Map());
+    }
   }
 
   private async load() {

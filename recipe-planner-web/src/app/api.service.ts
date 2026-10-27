@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReadRecipeResult, SourcePage, PlanCost, RecipeCost, NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { RecipeCaloriesResponse, ReadRecipeResult, SourcePage, PlanCost, RecipeCost, NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -322,6 +322,10 @@ removeLeftover(id: number) {
 
 getPlanNutrition(planId: number) {
   return this.http.get<PlanNutrition>(`/api/mealplans/${planId}/nutrition`);
+}
+
+getRecipeCalories() {
+  return this.http.get<RecipeCaloriesResponse>('/api/recipes/calories');
 }
 
 getNutritionTargets() {
