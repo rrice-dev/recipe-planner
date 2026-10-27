@@ -18,7 +18,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
   selector: 'app-library-detail',
   imports: [RouterLink, ServingsStepper, NutritionPanel],
   template: `
-    <a routerLink="/library" class="back">← Recipe Library</a>
+    <a routerLink="/library" class="back no-print">← Recipe Library</a>
     @switch (state().status) {
       @case ('loading') { <p class="muted">Loading…</p> }
       @case ('missing') {
@@ -28,7 +28,10 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
       @case ('error') { <p class="error">Couldn't load this recipe. Please try again.</p> }
       @case ('ok') {
         @if (recipe(); as r) {
-          <h1>{{ r.title }}</h1>
+          <div class="page-header">
+            <h1>{{ r.title }}</h1>
+            <button type="button" class="no-print" (click)="print()">🖨 Print</button>
+          </div>
           <dl class="facts">
             <div><dt>Cuisine</dt><dd>{{ r.cuisine }}</dd></div>
             <div><dt>Prep</dt><dd>{{ time(r.prepMinutes) }}</dd></div>
@@ -42,7 +45,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
           </div>
           <p>{{ r.description }}</p>
 
-          <div class="card social">
+          <div class="card social no-print">
             @if (auth.isLoggedIn()) {
               @if (addedId(); as id) {
                 <p class="small-text">Added to your recipes. <a [routerLink]="['/recipes', id]">Open your copy</a></p>
@@ -74,8 +77,10 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
             </p>
           }
 
-          <h2>Ingredients</h2>
-          <app-servings-stepper [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
+          <h2>Ingredients
+            @if (servings() !== null && servings() !== r.servings) { <span class="print-only servings-note">(for {{ servings() }} servings)</span> }
+          </h2>
+          <app-servings-stepper class="no-print" [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
           <ul>
             @for (i of r.ingredients; track i.name) {
               <li>
@@ -85,7 +90,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
             }
           </ul>
 
-          <app-nutrition-panel [url]="'/api/library/' + r.slug + '/nutrition'" />
+          <app-nutrition-panel class="no-print" [url]="'/api/library/' + r.slug + '/nutrition'" />
 
           <h2>Steps</h2>
           <ol>
@@ -103,6 +108,10 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
 })
 export class LibraryDetailPage {
   private api = inject(ApiService);
+
+  print() {
+    window.print();
+  }
   private router = inject(Router);
   auth = inject(AuthService);
   slug = input.required<string>();

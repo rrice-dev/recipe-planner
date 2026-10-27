@@ -464,10 +464,21 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 .cook-drawer li.got span { text-decoration: line-through; color: #6E7C75; }
 .cook-awake { font-size: 0.85rem; color: #97A59E; }
 
+.print-only { display: none; }
+.servings-note { font-size: 0.9rem; font-weight: 400; }
+
 @media print {
-  .topbar, .no-print { display: none; }
+  .topbar, .status-bar, .no-print { display: none !important; }
+  .print-only { display: inline; }
   body { background: white; color: black; }
   .card { border: none; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+  .chip { border: 1px solid #999; background: none; color: black; }
+  .recipe-photo { max-height: 3in; width: auto; max-width: 100%; margin: 0.5rem 0; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { break-after: avoid; margin-top: 1rem; }
+  li { break-inside: avoid; }
+  main, .container { max-width: none; padding: 0; margin: 0; }
 }
 
 /* Checkbox rows and hints inside stacked form labels */
