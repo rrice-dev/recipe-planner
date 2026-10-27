@@ -19,11 +19,14 @@ import { PersonalPanel } from '../personal-panel';
   selector: 'app-recipe-detail',
   imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel, CostPanel],
   template: `
-    <a routerLink="/recipes" class="back">← All recipes</a>
+    <a routerLink="/recipes" class="back no-print">← All recipes</a>
     @if (recipe(); as r) {
       <div class="page-header">
   <h1>{{ r.title }}</h1>
-  <a [routerLink]="['/recipes', r.id, 'edit']" class="button">Edit</a>
+  <div class="row no-print" style="margin: 0">
+    <button type="button" (click)="print()">🖨 Print</button>
+    <a [routerLink]="['/recipes', r.id, 'edit']" class="button">Edit</a>
+  </div>
 </div>
       <dl class="facts">
         @if (r.cuisine) { <div><dt>Cuisine</dt><dd>{{ r.cuisine }}</dd></div> }
@@ -32,7 +35,7 @@ import { PersonalPanel } from '../personal-panel';
         <div><dt>Serves</dt><dd>{{ r.servings }}</dd></div>
       </dl>
       @if (r.steps.length) {
-        <a [routerLink]="['/recipes', r.id, 'cook']" class="button primary cook-cta">Start cooking</a>
+        <a [routerLink]="['/recipes', r.id, 'cook']" class="button primary cook-cta no-print">Start cooking</a>
       }
       @if (r.description) {
         <p>{{ r.description }}</p>
@@ -44,7 +47,7 @@ import { PersonalPanel } from '../personal-panel';
       @if (photoVersion(); as v) {
         <img class="recipe-photo" [src]="'/api/recipes/' + r.id + '/photo?v=' + v" [alt]="'Photo of ' + r.title" />
       }
-      <div class="row photo-actions">
+      <div class="row photo-actions no-print">
         <label class="button" [class.disabled]="uploading()">
           {{ uploading() ? 'Uploading…' : (photoVersion() ? 'Change photo' : '📷 Add a photo') }}
           <input type="file" accept="image/*" hidden (change)="uploadPhoto(r.id, $event)" [disabled]="uploading()" />
@@ -54,11 +57,11 @@ import { PersonalPanel } from '../personal-panel';
         }
       </div>
       @if (photoError()) {
-        <p class="error">{{ photoError() }}</p>
+        <p class="error no-print">{{ photoError() }}</p>
       }
 
       @if (sourcePages().length) {
-        <section class="original-pages">
+        <section class="original-pages no-print">
           <h2>Original {{ sourcePages().length === 1 ? 'page' : 'pages' }} <span class="muted small-text note">(only you see these)</span></h2>
           <ul class="page-thumbs">
             @for (p of sourcePages(); track p.id; let i = $index) {
@@ -73,7 +76,7 @@ import { PersonalPanel } from '../personal-panel';
         </section>
       }
       @if (sourcePages().length < maxPages) {
-        <div class="row photo-actions">
+        <div class="row photo-actions no-print">
           <label class="button" [class.disabled]="pageBusy()">
             {{ pageBusy() ? 'Uploading…' : (sourcePages().length ? 'Add another original page' : '📄 Keep a photo of the original recipe') }}
             <input type="file" accept="image/*" hidden (change)="addPage(r.id, $event)" [disabled]="pageBusy()" />
@@ -81,12 +84,12 @@ import { PersonalPanel } from '../personal-panel';
         </div>
       }
       @if (pageError()) {
-        <p class="error">{{ pageError() }}</p>
+        <p class="error no-print">{{ pageError() }}</p>
       }
 
 
       @if (social(); as s) {
-        <section class="card social">
+        <section class="card social no-print">
           <div class="rating-row">
             <span><strong>Your rating</strong> <span class="muted small-text note">(only you see this)</span></span>
             <app-star-rating [value]="s.myRating" [disabled]="busy()" label="Your rating" (rate)="rate(r.id, $event)" />
@@ -148,10 +151,12 @@ import { PersonalPanel } from '../personal-panel';
         </div>
       }
 
-      <h2>Ingredients</h2>
+      <h2>Ingredients
+        @if (servings() !== null && servings() !== r.servings) { <span class="print-only servings-note">(for {{ servings() }} servings)</span> }
+      </h2>
       @if (r.ingredients.length) {
-        <app-servings-stepper [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
-        <div class="row add-to-list">
+        <app-servings-stepper class="no-print" [value]="servings() ?? r.servings" [base]="r.servings" (valueChange)="servings.set($event)" />
+        <div class="row add-to-list no-print">
           <button type="button" (click)="addToList(r.id, r.servings)" [disabled]="adding()">
             {{ adding() ? 'Adding…' : '🛒 Add to shopping list' }}
           </button>
@@ -171,8 +176,8 @@ import { PersonalPanel } from '../personal-panel';
         <p class="muted">No ingredients added yet.</p>
       }
 
-      <app-nutrition-panel [url]="'/api/recipes/' + r.id + '/nutrition'" />
-      @defer (on viewport) { <app-cost-panel [recipeId]="r.id" [servings]="servings() ?? r.servings" /> } @placeholder { <div></div> }
+      <app-nutrition-panel class="no-print" [url]="'/api/recipes/' + r.id + '/nutrition'" />
+      @defer (on viewport) { <app-cost-panel class="no-print" [recipeId]="r.id" [servings]="servings() ?? r.servings" /> } @placeholder { <div></div> }
 
       <h2>Steps</h2>
       @if (r.steps.length) {
@@ -189,8 +194,8 @@ import { PersonalPanel } from '../personal-panel';
       }
 
       @if (r.personal; as mine) {
-        <h2>My notes and history</h2>
-        <app-personal-panel [recipeId]="r.id" [personal]="mine" />
+        <h2 class="no-print">My notes and history</h2>
+        <app-personal-panel class="no-print" [recipeId]="r.id" [personal]="mine" />
       }
     } @else {
       <p class="muted">Loading…</p>
@@ -225,6 +230,11 @@ export class RecipeDetailPage {
   private unitSystem = inject(SettingsService).settings;
   // Amounts in your chosen units (Settings → Units)
   measure = (quantity: number, unit: string) => formatMeasure(quantity, unit, this.unitSystem().units);
+
+  // The browser's print dialog; the page's print styles hide buttons, panels and the menu
+  print() {
+    window.print();
+  }
 
   sourceHost(url: string) {
     try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return 'the original site'; }
