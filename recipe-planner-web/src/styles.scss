@@ -1,4 +1,4 @@
-/* Recipe Planner — visual system
+/* Thyme Capsule — visual system
    Kitchen herb garden: basil green for actions, saffron for "now" moments (timers, stars, today),
    cool green-tinted neutrals. Headings in Bricolage Grotesque; everything else in Atkinson Hyperlegible,
    a typeface designed to stay readable at a glance (from across the stove).
@@ -113,7 +113,7 @@ a:hover { color: var(--accent-hover); }
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-weight: 800; font-size: 1.2rem; color: var(--text); text-decoration: none; white-space: nowrap;
 }
-.brand-mark { width: 1.5rem; height: 1.5rem; flex: 0 0 auto; }
+.brand-mark { width: 1.75rem; height: 1.75rem; flex: 0 0 auto; }
 .brand:hover { color: var(--text); }
 
 nav.main-nav { display: flex; align-items: center; gap: 0.15rem; flex: 1; }

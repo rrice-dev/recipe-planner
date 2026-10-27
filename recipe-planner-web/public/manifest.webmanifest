@@ -1,6 +1,6 @@
 {
-  "name": "Recipe Planner",
-  "short_name": "Recipes",
+  "name": "Thyme Capsule",
+  "short_name": "Thyme Capsule",
   "description": "Your recipes, meal plans and shopping list, with cook mode.",
   "start_url": "/recipes",
   "scope": "/",

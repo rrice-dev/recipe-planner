@@ -55,7 +55,7 @@ describe('App', () => {
     http.expectOne('/api/auth/manage/info').flush(null, { status: 401, statusText: 'Unauthorized' });
     await fixture.whenStable();
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.brand')?.textContent).toContain('Recipe Planner');
+    expect(fixture.nativeElement.querySelector('.brand')?.textContent).toContain('Thyme Capsule');
   });
 
   it('shows only public pages and a login link when signed out', async () => {
