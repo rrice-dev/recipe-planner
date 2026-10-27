@@ -22,13 +22,18 @@ public sealed class NutritionService(AppDbContext db, IFoodSource source, TimePr
 
     public bool IsAvailable => source.IsAvailable;
 
-    public async Task<Dictionary<string, FoodFacts?>> FactsForAsync(IEnumerable<string> names, CancellationToken ct)
+    public async Task<Dictionary<string, FoodFacts?>> FactsForAsync(IEnumerable<string> names, CancellationToken ct) =>
+        (await FactsWithStatusAsync(names, ct)).Facts;
+
+    /// <summary>Like FactsForAsync, plus how many names were left for a later call because of the per-request cap</summary>
+    public async Task<(Dictionary<string, FoodFacts?> Facts, int Skipped)> FactsWithStatusAsync(IEnumerable<string> names, CancellationToken ct)
     {
         var keys = names.Select(n => n.Trim().ToLowerInvariant()).Where(n => n.Length > 0).Distinct().ToList();
         var cached = await db.IngredientNutrition.Where(x => keys.Contains(x.NameKey)).ToDictionaryAsync(x => x.NameKey, ct);
         var result = new Dictionary<string, FoodFacts?>();
         var now = clock.GetUtcNow();
         var lookups = 0;
+        var skipped = 0;
 
         foreach (var key in keys)
         {
@@ -37,7 +42,7 @@ public sealed class NutritionService(AppDbContext db, IFoodSource source, TimePr
                 result[key] = row.FactsJson is null ? null : JsonSerializer.Deserialize<FoodFacts>(row.FactsJson);
                 continue;
             }
-            if (lookups++ >= MaxLookupsPerRequest) { result[key] = null; continue; }
+            if (lookups++ >= MaxLookupsPerRequest) { result[key] = null; skipped++; continue; }
 
             FoodFacts? facts;
             try { facts = await source.FindAsync(key, ct); }
@@ -56,6 +61,6 @@ public sealed class NutritionService(AppDbContext db, IFoodSource source, TimePr
             result[key] = facts;
         }
         await db.SaveChangesAsync(ct);
-        return result;
+        return (result, skipped);
     }
 }

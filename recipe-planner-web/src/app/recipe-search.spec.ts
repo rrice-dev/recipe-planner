@@ -1,5 +1,5 @@
 import { RecipeSummary } from './models';
-import { searchRecipes } from './recipe-search';
+import { countWithoutEstimate, searchRecipes } from './recipe-search';
 
 const r = (title: string, extra: Partial<RecipeSummary> = {}): RecipeSummary => ({
   id: Math.random(), title, description: null, cuisine: null, servings: 4, prepMinutes: 10, cookMinutes: 30, photoVersion: null, ...extra,
@@ -32,5 +32,32 @@ describe('searchRecipes', () => {
     expect(searchRecipes(book, { ...q, sort: 'recent' }).map(x => x.title)).toEqual(['Chicken Adobo', 'Beef and Broccoli', 'AIP Guacamole']);
     expect(searchRecipes(book, { ...q, sort: 'most' }).map(x => x.title)).toEqual(['Beef and Broccoli', 'Chicken Adobo', 'AIP Guacamole']);
     expect(searchRecipes(book, { ...q, sort: 'quickest' })[0].title).toBe('AIP Guacamole');
+  });
+
+  describe('calories', () => {
+    const [beef, guac, adobo] = book;
+    // Beef 520 (complete), guacamole 180 (some ingredients not counted), adobo has no estimate
+    const calories = new Map([
+      [beef.id, { recipeId: beef.id, calories: 520, complete: true }],
+      [guac.id, { recipeId: guac.id, calories: 180, complete: false }],
+      [adobo.id, { recipeId: adobo.id, calories: null, complete: false }],
+    ]);
+
+    it('keeps recipes at or under the limit and leaves out ones without an estimate', () => {
+      expect(searchRecipes(book, { ...q, calories, maxCalories: 500 }).map(x => x.title)).toEqual(['AIP Guacamole']);
+      expect(searchRecipes(book, { ...q, calories, maxCalories: 520 }).map(x => x.title)).toEqual(['AIP Guacamole', 'Beef and Broccoli']);
+      expect(searchRecipes(book, { ...q, calories, maxCalories: 100 })).toEqual([]);
+      expect(countWithoutEstimate(book, calories)).toBe(1);
+    });
+
+    it('shows everything when no limit is set, even before estimates load', () => {
+      expect(searchRecipes(book, { ...q, calories, maxCalories: null }).length).toBe(3);
+      expect(searchRecipes(book, { ...q, maxCalories: null }).length).toBe(3);
+    });
+
+    it('sorts fewest calories first, with unknowns last', () => {
+      expect(searchRecipes(book, { ...q, calories, sort: 'calories' }).map(x => x.title))
+        .toEqual(['AIP Guacamole', 'Beef and Broccoli', 'Chicken Adobo']);
+    });
   });
 });

@@ -381,6 +381,9 @@ button.star:hover, button.star:focus-visible { background: none; transform: scal
 .library-filters { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0 0.75rem; }
 .library-filters input { flex: 1 1 240px; }
 .library-filters select { flex: 0 1 200px; }
+.calorie-limit { display: flex; align-items: center; gap: 0.4rem; flex: 0 1 230px; }
+.calorie-limit input { width: 6rem; flex: 0 0 auto; }
+.calorie-note { margin: 0 0 0.35rem; color: var(--muted); }
 
 .map-wrap { position: relative; margin-bottom: 1rem; }
 .world-map {

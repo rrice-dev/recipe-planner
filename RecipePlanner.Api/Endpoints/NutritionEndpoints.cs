@@ -32,6 +32,30 @@ public static class NutritionEndpoints
         .RequireAuthorization()
         .RequireRateLimiting(RateLimiting.NutritionPolicy);
 
+        // Calories per serving for every recipe in your book, for filtering the list.
+        // New ingredient names are looked up a batch at a time; Pending says to call again for the rest.
+        app.MapGet("/api/recipes/calories", async (ClaimsPrincipal user, AppDbContext db, NutritionService nutrition, CancellationToken ct) =>
+        {
+            if (!nutrition.IsAvailable) return Results.Ok(new RecipeCaloriesResponse(false, false, []));
+            var userId = user.UserId();
+            var recipes = await db.Recipes.AsNoTracking().Where(r => r.OwnerId == userId)
+                .Include(r => r.Ingredients).ThenInclude(ri => ri.Ingredient)
+                .AsSplitQuery()
+                .ToListAsync(ct);
+
+            var (facts, skipped) = await nutrition.FactsWithStatusAsync(recipes.SelectMany(r => r.Ingredients.Select(i => i.Ingredient.Name)), ct);
+            var list = recipes.Select(r =>
+            {
+                var (totals, lines) = NutritionCalculator.Calculate(r.Ingredients.Select(i =>
+                    (i.Ingredient.Name, i.Quantity, i.Unit, facts.GetValueOrDefault(i.Ingredient.Name.Trim().ToLowerInvariant()))));
+                var counted = lines.Count(l => l.Counted);
+                return new RecipeCalories(r.Id, counted == 0 ? null : PerServing(totals, r.Servings).Calories, counted > 0 && counted == lines.Count);
+            }).ToList();
+            return Results.Ok(new RecipeCaloriesResponse(true, skipped > 0, list));
+        })
+        .RequireAuthorization()
+        .RequireRateLimiting(RateLimiting.NutritionPolicy);
+
         app.MapGet("/api/library/{slug}/nutrition", async (string slug, RecipeLibrary library, NutritionService nutrition, CancellationToken ct) =>
         {
             var r = library.Find(slug);

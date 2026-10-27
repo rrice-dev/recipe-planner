@@ -334,6 +334,12 @@ export interface Nutrients { calories: number; protein: number; carbs: number; f
 
 export interface NutritionTargets { calories: number | null; protein: number | null; carbs: number | null; fat: number | null }
 
+/** One serving of a recipe in your book; calories is null when nothing could be counted */
+export interface RecipeCalories { recipeId: number; calories: number | null; complete: boolean }
+
+/** pending: some ingredients haven't been looked up yet, so ask again */
+export interface RecipeCaloriesResponse { available: boolean; pending: boolean; recipes: RecipeCalories[] }
+
 export interface PlanNutrition {
   available: boolean;
   days: { day: string; meals: { recipeId: number; title: string; perServing: Nutrients | null; complete: boolean }[]; total: Nutrients }[];
