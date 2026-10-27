@@ -1,8 +1,10 @@
-# Recipe Planner
+<p align="center"><img src="docs/logo.svg" alt="Thyme Capsule logo" width="140"></p>
 
-![CI](https://github.com/rrice-dev/recipe-planner/actions/workflows/ci.yml/badge.svg)
+# Thyme Capsule
 
-A technique-focused recipe and meal planning app.
+![CI](https://github.com/rrice-dev/thyme-capsule/actions/workflows/ci.yml/badge.svg)
+
+Recipes worth keeping. A technique-focused recipe and meal planning app that can read a photo of a cookbook page or a handwritten family recipe card and turn it into a recipe you can cook from.
 
 **Stack:** .NET 10 (ASP.NET Core, EF Core) · PostgreSQL · Angular · Docker · GitHub Actions
 

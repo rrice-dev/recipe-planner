@@ -155,7 +155,7 @@ public static partial class SharingEndpoints
                     "text/html; charset=utf-8", statusCode: StatusCodes.Status404NotFound);
 
             var description = string.IsNullOrWhiteSpace(recipe.Description)
-                ? $"Serves {recipe.Servings} · {recipe.PrepMinutes + recipe.CookMinutes} min · Recipe Planner"
+                ? $"Serves {recipe.Servings} · {recipe.PrepMinutes + recipe.CookMinutes} min · Thyme Capsule"
                 : recipe.Description;
             // Social sites need a full https:// address for the picture
             var image = RecipePhotos.Version(recipe) is { } v
@@ -202,7 +202,7 @@ public static partial class SharingEndpoints
             <title>{t}</title>
             <meta name="description" content="{d}">
             <meta property="og:type" content="article">
-            <meta property="og:site_name" content="Recipe Planner">
+            <meta property="og:site_name" content="Thyme Capsule">
             <meta property="og:title" content="{t}">
             <meta property="og:description" content="{d}">
             <meta name="twitter:card" content="{card}">

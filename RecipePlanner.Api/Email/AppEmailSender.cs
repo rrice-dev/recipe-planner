@@ -108,13 +108,13 @@ public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOpti
         var safeLink = WebUtility.HtmlEncode(link);
         var html = $"""
             <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #1D2420; max-width: 520px">
-              <p>Someone asked to reset the password for your Recipe Planner account.</p>
+              <p>Someone asked to reset the password for your Thyme Capsule account.</p>
               <p><a href="{safeLink}" style="display: inline-block; background: #2E6A4E; color: #ffffff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold">Choose a new password</a></p>
               <p>This link works for 1 hour. If you didn't ask for this, you can ignore this email; your password won't change.</p>
             </div>
             """;
-        var text = $"Someone asked to reset the password for your Recipe Planner account.\n\nChoose a new password: {link}\n\nThis link works for 1 hour. If you didn't ask for this, ignore this email; your password won't change.";
-        return transport.SendAsync(email, "Reset your Recipe Planner password", html, text);
+        var text = $"Someone asked to reset the password for your Thyme Capsule account.\n\nChoose a new password: {link}\n\nThis link works for 1 hour. If you didn't ask for this, ignore this email; your password won't change.";
+        return transport.SendAsync(email, "Reset your Thyme Capsule password", html, text);
     }
 
     public Task SendPasswordResetLinkAsync(AppUser user, string email, string resetLink) =>
