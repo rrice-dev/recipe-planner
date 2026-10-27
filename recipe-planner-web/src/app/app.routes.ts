@@ -3,7 +3,6 @@ import { authGuard } from './auth.guard';
 import { LoginPage } from './pages/login';
 import { RegisterPage } from './pages/register';
 import { RecipeListPage } from './pages/recipe-list';
-import { RecipeDetailPage } from './pages/recipe-detail';
 import { RecipeFormPage } from './pages/recipe-form';
 import { TechniqueListPage } from './pages/technique-list';
 import { MealPlanListPage } from './pages/meal-plan-list';
@@ -31,7 +30,7 @@ export const routes: Routes = [
   { path: 'recipes', component: RecipeListPage, canActivate: [authGuard] },
   { path: 'recipes/new', component: RecipeFormPage, canActivate: [authGuard] },
   { path: 'recipes/import', loadComponent: () => import('./pages/import-recipe').then(m => m.ImportRecipePage), canActivate: [authGuard] },
-  { path: 'recipes/:id', component: RecipeDetailPage, canActivate: [authGuard] },
+  { path: 'recipes/:id', loadComponent: () => import('./pages/recipe-detail').then(m => m.RecipeDetailPage), canActivate: [authGuard] },
   { path: 'recipes/:id/edit', component: RecipeFormPage, canActivate: [authGuard] },
   { path: 'fridge', component: FridgePage, canActivate: [authGuard] },
   { path: 'shopping-list', component: GroceryListPage, canActivate: [authGuard] },

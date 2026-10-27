@@ -30,6 +30,38 @@ public class AnthropicRecipeDraftGenerator(HttpClient http, IOptions<AnthropicOp
         - Always answer by calling the write_recipe tool.
         """;
 
+    internal static readonly object IngredientsSchema = new
+    {
+        type = "array",
+        items = new
+        {
+            type = "object",
+            properties = new
+            {
+                name = new { type = "string" },
+                quantity = new { type = "number" },
+                unit = new { type = "string" },
+                note = new { type = "string" }
+            },
+            required = new[] { "name", "quantity", "unit" }
+        }
+    };
+
+    internal static readonly object StepsSchema = new
+    {
+        type = "array",
+        items = new
+        {
+            type = "object",
+            properties = new
+            {
+                instruction = new { type = "string" },
+                technique = new { type = "string" }
+            },
+            required = new[] { "instruction" }
+        }
+    };
+
     internal static readonly object ToolSchema = new
     {
         type = "object",
@@ -40,36 +72,8 @@ public class AnthropicRecipeDraftGenerator(HttpClient http, IOptions<AnthropicOp
             servings = new { type = "integer" },
             prepMinutes = new { type = "integer" },
             cookMinutes = new { type = "integer" },
-            ingredients = new
-            {
-                type = "array",
-                items = new
-                {
-                    type = "object",
-                    properties = new
-                    {
-                        name = new { type = "string" },
-                        quantity = new { type = "number" },
-                        unit = new { type = "string" },
-                        note = new { type = "string" }
-                    },
-                    required = new[] { "name", "quantity", "unit" }
-                }
-            },
-            steps = new
-            {
-                type = "array",
-                items = new
-                {
-                    type = "object",
-                    properties = new
-                    {
-                        instruction = new { type = "string" },
-                        technique = new { type = "string" }
-                    },
-                    required = new[] { "instruction" }
-                }
-            }
+            ingredients = IngredientsSchema,
+            steps = StepsSchema
         },
         required = new[] { "title", "description", "servings", "prepMinutes", "cookMinutes", "ingredients", "steps" }
     };

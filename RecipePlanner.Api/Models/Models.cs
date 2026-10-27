@@ -29,11 +29,26 @@ public class Recipe
     public string? PhotoName { get; set; }
     public DateTimeOffset? PhotoUpdatedAt { get; set; }
 
+    // Photos of the original page or card the recipe was read from. Private: never on share links.
+    public List<RecipeSourcePage> SourcePages { get; set; } = [];
+
+    // Copied from a published cookbook: kept for your own cooking, so it can't be shared
+    public bool FromCookbook { get; set; }
+
     // Personal: only the owner ever sees these (never on share links)
     public bool IsFavorite { get; set; }
     public string? Notes { get; set; }
     public List<CookLogEntry> CookLog { get; set; } = [];
     public List<RecipeCollection> Collections { get; set; } = [];
+}
+
+// A photo of the original page or recipe card, kept alongside the typed-up recipe
+public class RecipeSourcePage
+{
+    public int Id { get; set; }
+    public int RecipeId { get; set; }
+    public int Position { get; set; }
+    public required string PhotoName { get; set; }   // random storage name, like recipe photos
 }
 
 // One "I cooked this" entry

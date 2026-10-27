@@ -133,6 +133,7 @@ app.MapMealPlanEndpoints();
 app.MapFridgeEndpoints();
 app.MapSharingEndpoints();
 app.MapRecipePhotoEndpoints();
+app.MapSourcePageEndpoints();
 app.MapGroceryListEndpoints();
 app.MapKrogerEndpoints();
 app.MapLibraryEndpoints();

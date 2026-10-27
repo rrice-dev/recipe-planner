@@ -35,6 +35,10 @@ public static class RateLimiting
     public const string ImportPolicy = "import";
     public const int ImportPermitLimit = 20;
 
+    // Reading a recipe from photos or pasted text: one AI call each, and photos are the priciest kind
+    public const string RecipeReadPolicy = "recipe-read";
+    public const int RecipeReadPermitLimit = 15;
+
     // Nutrition can trigger USDA lookups for new ingredient names
     public const string NutritionPolicy = "nutrition";
     public const int NutritionPermitLimit = 60;
@@ -106,6 +110,14 @@ public static class RateLimiting
                 RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
                 {
                     PermitLimit = ImportPermitLimit,
+                    Window = AiWindow,
+                    QueueLimit = 0
+                }));
+
+            o.AddPolicy(RecipeReadPolicy, context =>
+                RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
+                {
+                    PermitLimit = RecipeReadPermitLimit,
                     Window = AiWindow,
                     QueueLimit = 0
                 }));

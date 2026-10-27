@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PlanCost, RecipeCost, NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
+import { ReadRecipeResult, SourcePage, PlanCost, RecipeCost, NutritionTargets, PlanNutrition, GroceryAddResult, Leftover, LeftoverLocation, PantryItem, Collection, PrepSession, PlanSuggestResponse, CountryDishesResponse, LibraryDetail, LibrarySummary, FridgeResponse, KrogerLocation, KrogerMatch, KrogerStatus, GroceryAdd, GroceryItem, RecipeDraft, ScanResponse, SharedRecipe, Ingredient, MealPlan, RecipeDetail, RecipeSummary, ShoppingList, Technique } from './models';
 
 export interface RecipeRequest {
   title: string;
@@ -10,6 +10,7 @@ export interface RecipeRequest {
   prepMinutes: number;
   cookMinutes: number;
   sourceUrl?: string | null;
+  fromCookbook?: boolean | null;
 }
 
 export interface RecipeIngredientRequest {
@@ -259,6 +260,27 @@ setRecipeCollections(recipeId: number, collectionIds: number[]) {
 
 importRecipe(url: string) {
   return this.http.post<{ recipe: RecipeDraft; sourceUrl: string; method: 'structured' | 'ai' }>('/api/import', { url });
+}
+
+/** Photos of one recipe, in page order, as base64 JPEGs */
+readRecipePhotos(photos: string[]) {
+  return this.http.post<ReadRecipeResult>('/api/import/photos', { photos });
+}
+
+readRecipeText(text: string) {
+  return this.http.post<ReadRecipeResult>('/api/import/text', { text });
+}
+
+addSourcePage(recipeId: number, photo: Blob) {
+  return this.http.post<SourcePage>(`/api/recipes/${recipeId}/source-pages`, photo, { headers: { 'Content-Type': 'image/jpeg' } });
+}
+
+removeSourcePage(recipeId: number, pageId: number) {
+  return this.http.delete<void>(`/api/recipes/${recipeId}/source-pages/${pageId}`);
+}
+
+setFromCookbook(recipeId: number, fromCookbook: boolean) {
+  return this.http.put<void>(`/api/recipes/${recipeId}/cookbook`, { fromCookbook });
 }
 
 getPrepSession(planId: number, prepDay: string | null) {

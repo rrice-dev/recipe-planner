@@ -65,6 +65,17 @@ public static class AiServiceCollectionExtensions
                 ? new DisabledRecipeExtractor()
                 : sp.GetRequiredService<AnthropicRecipeExtractor>());
 
+        services.AddHttpClient<AnthropicRecipeReader>(client =>
+        {
+            client.BaseAddress = new Uri("https://api.anthropic.com/");
+            client.Timeout = TimeSpan.FromSeconds(90); // Several handwritten pages take a while to read
+        });
+
+        services.AddScoped<IRecipeReader>(sp =>
+            string.IsNullOrWhiteSpace(sp.GetRequiredService<IOptions<AnthropicOptions>>().Value.ApiKey)
+                ? new DisabledRecipeReader()
+                : sp.GetRequiredService<AnthropicRecipeReader>());
+
         return services;
     }
 }

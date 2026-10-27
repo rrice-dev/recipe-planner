@@ -43,6 +43,7 @@ export interface RecipeSocial {
   myRating: number | null;
   communityAverage: number | null;
   communityCount: number;
+  fromCookbook?: boolean;
 }
 
 export interface RecipeDetail extends RecipeSummary {
@@ -52,6 +53,19 @@ export interface RecipeDetail extends RecipeSummary {
   social: RecipeSocial;
   personal: RecipePersonal | null;
   sourceUrl?: string | null;
+  sourcePages?: SourcePage[] | null;
+}
+
+/** A photo of the original cookbook page or recipe card, kept privately with the recipe */
+export interface SourcePage {
+  id: number;
+  position: number;
+}
+
+export interface ReadRecipeResult {
+  recipe: RecipeDraft;
+  /** Spots the AI couldn't read with confidence or had to guess */
+  unclear: string[];
 }
 
 export interface RecipePersonal {
