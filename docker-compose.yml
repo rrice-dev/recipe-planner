@@ -1,3 +1,5 @@
+name: recipe-planner
+
 services:
   db:
     image: postgres:16-alpine
