@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { TechniqueChip } from '../technique-chip';
 import { DraftSaver } from '../draft-saver';
 import { FridgeMealIdea, FridgeResponse, GroceryAdd, RecipeDraft } from '../models';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
@@ -15,7 +16,7 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
 
 @Component({
   selector: 'app-fridge',
-  imports: [FormsModule, RouterLink],
+  imports: [TechniqueChip, FormsModule, RouterLink],
   template: `
     <h1>What can I make?</h1>
     <p class="muted">List what's in your fridge and pantry. You'll see which of your recipes fit, plus a few new ideas.</p>
@@ -99,7 +100,7 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
               @if (idea.techniques.length) {
                 <div class="chips">
                   @for (t of idea.techniques; track t.id) {
-                    <a class="chip" routerLink="/techniques">{{ t.name }}</a>
+                    <app-technique-chip [name]="t.name" />
                   }
                 </div>
               }
@@ -144,7 +145,7 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
                 <li>
                   {{ step.instruction }}
                   @if (step.techniqueName) {
-                    <a class="chip small" routerLink="/techniques">{{ step.techniqueName }}</a>
+                    <app-technique-chip [name]="step.techniqueName" [small]="true" />
                   }
                 </li>
               }

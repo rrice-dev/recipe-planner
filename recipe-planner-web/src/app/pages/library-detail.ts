@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { catchError, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { TechniqueChip } from '../technique-chip';
 import { SettingsService } from '../settings.service';
 import { AuthService } from '../auth.service';
 import { LibraryDetail } from '../models';
@@ -16,7 +17,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
 
 @Component({
   selector: 'app-library-detail',
-  imports: [RouterLink, ServingsStepper, NutritionPanel],
+  imports: [TechniqueChip, RouterLink, ServingsStepper, NutritionPanel],
   template: `
     <a routerLink="/library" class="back no-print">← Recipe Library</a>
     @switch (state().status) {
@@ -97,7 +98,7 @@ type LoadState = { status: 'loading' } | { status: 'ok'; recipe: LibraryDetail }
             @for (s of r.steps; track s.order) {
               <li class="library-step">
                 {{ s.instruction }}
-                @if (s.technique) { <a class="chip small" routerLink="/techniques">{{ s.technique }}</a> }
+                @if (s.technique) { <app-technique-chip [name]="s.technique" [small]="true" /> }
               </li>
             }
           </ol>

@@ -245,6 +245,24 @@ label.button.disabled { pointer-events: none; opacity: 0.6; }
 .chips > .chip.small { margin-left: 0; }
 a.chip { text-decoration: none; color: var(--accent); background: var(--accent-soft); }
 a.chip:hover { color: var(--accent-hover); }
+button.chip.technique-chip {
+  border: none; cursor: pointer; font-family: inherit; line-height: inherit;
+  color: var(--accent); background: var(--accent-soft);
+}
+button.chip.technique-chip:hover { color: var(--accent-hover); }
+button.chip.technique-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Technique details popout */
+.technique-dialog {
+  padding: 0; border: 1px solid var(--border); border-radius: 16px; width: min(480px, calc(100vw - 32px));
+  background: var(--surface); color: var(--text); font-weight: 400; font-size: 1rem; text-align: left;
+}
+.technique-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+.technique-dialog-body { padding: 1rem 1.25rem 1.25rem; }
+.technique-dialog-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.technique-dialog-head h2 { margin: 0.1rem 0 0.25rem; }
+.technique-dialog .close { font-size: 1.1rem; padding: 0.2rem 0.4rem; }
+.technique-dialog p { margin: 0.5rem 0; }
 .chip button.link { padding: 0 0 0 0.35rem; color: var(--accent); }
 .chip.tag-aip { background: var(--tag-aip-bg); color: var(--tag-aip-ink); }
 .chip.tag-vegetarian { background: var(--tag-veg-bg); color: var(--tag-veg-ink); }
