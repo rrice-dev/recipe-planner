@@ -8,6 +8,7 @@ import { feature } from 'topojson-client';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import { ApiService } from '../api.service';
+import { TechniqueChip } from '../technique-chip';
 import { AuthService } from '../auth.service';
 import { DraftSaver } from '../draft-saver';
 import { SettingsService } from '../settings.service';
@@ -25,7 +26,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
 
 @Component({
   selector: 'app-world-map',
-  imports: [RouterLink],
+  imports: [TechniqueChip, RouterLink],
   template: `
     <div class="page-header">
       <h1>Recipes Around the World</h1>
@@ -142,7 +143,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
             <ol class="draft-steps">
               @for (s of r.steps; track $index) {
                 <li>{{ s.instruction }}
-                  @if (s.techniqueName) { <a class="chip small" routerLink="/techniques">{{ s.techniqueName }}</a> }
+                  @if (s.techniqueName) { <app-technique-chip [name]="s.techniqueName" [small]="true" /> }
                 </li>
               }
             </ol>

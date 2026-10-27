@@ -14,10 +14,11 @@ import { ServingsStepper } from '../servings-stepper';
 import { NutritionPanel } from '../nutrition-panel';
 import { CostPanel } from '../cost-panel';
 import { PersonalPanel } from '../personal-panel';
+import { TechniqueChip } from '../technique-chip';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel, CostPanel],
+  imports: [TechniqueChip, RouterLink, StarRating, ServingsStepper, PersonalPanel, NutritionPanel, CostPanel],
   template: `
     <a routerLink="/recipes" class="back no-print">← All recipes</a>
     @if (recipe(); as r) {
@@ -146,7 +147,7 @@ import { PersonalPanel } from '../personal-panel';
         <h2>Techniques used</h2>
         <div class="chips">
           @for (t of r.techniques; track t.id) {
-            <span class="chip">{{ t.name }} · {{ t.difficulty }}/5</span>
+            <app-technique-chip [name]="t.name" [difficulty]="t.difficulty" />
           }
         </div>
       }
@@ -185,7 +186,7 @@ import { PersonalPanel } from '../personal-panel';
           @for (s of r.steps; track s.order) {
             <li>
               {{ s.instruction }}
-              @if (s.techniqueName) { <span class="chip small">{{ s.techniqueName }}</span> }
+              @if (s.techniqueName) { <app-technique-chip [name]="s.techniqueName" [small]="true" /> }
             </li>
           }
         </ol>

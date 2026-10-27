@@ -2,6 +2,7 @@ import { Component, DestroyRef, OnInit, computed, inject, input, signal } from '
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { TechniqueChip } from '../technique-chip';
 import { SettingsService } from '../settings.service';
 import { FoundTime, findTimes, formatClock } from '../cook-timers';
 import { formatMeasure, scaleQuantity } from '../scaling';
@@ -29,7 +30,7 @@ interface Timer {
 // Full-screen, one step at a time. Big type, timers found in the steps, and the screen stays on.
 @Component({
   selector: 'app-cook-mode',
-  imports: [RouterLink, ServingsStepper, SaveLeftovers],
+  imports: [TechniqueChip, RouterLink, ServingsStepper, SaveLeftovers],
   host: { '(document:keydown)': 'onKey($event)' },
   template: `
     <div class="cook" role="dialog" aria-modal="true" [attr.aria-label]="'Cooking ' + (recipe()?.title ?? '')">
@@ -48,7 +49,7 @@ interface Timer {
             <p class="cook-step-count" aria-live="polite">Step {{ index() + 1 }} of {{ r.steps.length }}</p>
             <p class="cook-instruction">{{ step()!.instruction }}</p>
             @if (step()!.technique) {
-              <div class="cook-technique"><span class="chip">{{ step()!.technique }}</span></div>
+              <div class="cook-technique"><app-technique-chip [name]="step()!.technique!" /></div>
             }
 
             <div class="cook-timers">
