@@ -5,16 +5,16 @@ namespace RecipePlanner.Api.Import;
 // The readable text of a page, for the AI fallback: no scripts, styles, menus or markup
 public static partial class PageText
 {
-    [GeneratedRegex(@"<(script|style|noscript|svg|template|iframe|nav|footer|header|form)\b[^>]*>.*?</\1\s*>", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
+    [GeneratedRegex(@"<(script|style|noscript|svg|template|iframe|nav|footer|header|form)\b[^>]*>.*?</\1\s*>", RegexOptions.IgnoreCase | RegexOptions.Singleline, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Hidden();
 
-    [GeneratedRegex(@"<!--.*?-->", RegexOptions.Singleline)]
+    [GeneratedRegex(@"<!--.*?-->", RegexOptions.Singleline, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Comments();
 
-    [GeneratedRegex(@"<\s*(br|/p|/li|/h\d|/div|/tr)\s*/?>", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"<\s*(br|/p|/li|/h\d|/div|/tr)\s*/?>", RegexOptions.IgnoreCase, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex LineBreaks();
 
-    [GeneratedRegex(@"\n\s*\n+")]
+    [GeneratedRegex(@"\n\s*\n+", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex BlankLines();
 
     public static string From(string html)
