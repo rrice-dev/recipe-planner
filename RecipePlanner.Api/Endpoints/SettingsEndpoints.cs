@@ -62,22 +62,25 @@ public static class SettingsEndpoints
 
             // Photos live in Blob storage, outside the database, so they're removed explicitly.
             // Everything else (recipes, plans, lists, ratings, Kroger link) is deleted by the database
-            // along with the user.
+            // along with the user. Note the photo names first, but delete them only once the account is
+            // gone: if deleting the account fails, it keeps its photos.
             var photoNames = await db.Recipes.Where(r => r.OwnerId == me.Id && r.PhotoName != null)
                 .Select(r => r.PhotoName!).ToListAsync();
             photoNames.AddRange(await db.RecipeSourcePages
                 .Where(p => db.Recipes.Any(r => r.Id == p.RecipeId && r.OwnerId == me.Id))
                 .Select(p => p.PhotoName).ToListAsync());
-            var log = loggerFactory.CreateLogger("SettingsEndpoints");
-            foreach (var name in photoNames)
-            {
-                try { await photos.DeleteAsync(name, CancellationToken.None); }
-                catch (Exception ex) { log.LogWarning(ex, "Couldn't delete a photo while deleting an account"); }
-            }
 
             var result = await users.DeleteAsync(me);
             if (!result.Succeeded)
                 return Results.Problem("Couldn't delete the account. Please try again.", statusCode: StatusCodes.Status500InternalServerError);
+
+            var log = loggerFactory.CreateLogger("SettingsEndpoints");
+            foreach (var name in photoNames)
+            {
+                // Nothing points at these files any more, so a failure here only leaves an orphaned file
+                try { await photos.DeleteAsync(name, CancellationToken.None); }
+                catch (Exception ex) { log.LogWarning(ex, "Couldn't delete a photo while deleting an account"); }
+            }
 
             await signIn.SignOutAsync();
             return Results.NoContent();
