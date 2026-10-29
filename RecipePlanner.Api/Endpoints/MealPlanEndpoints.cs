@@ -10,6 +10,9 @@ namespace RecipePlanner.Api.Endpoints;
 
 public static class MealPlanEndpoints
 {
+    // A week of breakfast, lunch, dinner and snacks fits easily; this just stops absurd lists
+    public const int MaxEntries = 50;
+
     public static void MapMealPlanEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/mealplans").RequireAuthorization();
@@ -158,8 +161,10 @@ public static class MealPlanEndpoints
             var weekEnd = plan.WeekStart.AddDays(6);
             if (entries.Any(e => e.Day < plan.WeekStart || e.Day > weekEnd))
                 errors["Day"] = [$"Days must fall between {plan.WeekStart} and {weekEnd}."];
-            if (entries.Any(e => e.Servings < 1))
-                errors["Servings"] = ["Servings must be at least 1."];
+            if (entries.Count > MaxEntries)
+                errors["Entries"] = [$"A plan can have up to {MaxEntries} meals."];
+            if (entries.Any(e => e.Servings is < 1 or > UserSettings.MaxServings))
+                errors["Servings"] = [$"Servings must be between 1 and {UserSettings.MaxServings}."];
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
             // Only the user's OWN recipes can go in their plan

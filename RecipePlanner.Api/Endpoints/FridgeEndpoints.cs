@@ -41,7 +41,7 @@ public static class FridgeEndpoints
                 var raw = await ideas.GenerateAsync(onHand, techniques.Select(t => t.Name).ToList(), ct);
                 return Results.Ok(new FridgeResponse(matches, FridgePlanner.CleanIdeas(raw, techniques), true, null));
             }
-            catch (Exception ex) when (ex is MealIdeaException or HttpRequestException or TaskCanceledException
+            catch (Exception ex) when (ex is MealIdeaException or HttpRequestException or JsonException or TaskCanceledException
                                        && !ct.IsCancellationRequested)
             {
                 // The AI being down shouldn't break the page: still return the recipe matches
@@ -110,7 +110,7 @@ public static class FridgeEndpoints
                 var raw = await scanner.ScanAsync(photo.Jpeg, ct);
                 return Results.Ok(new ScanResponse(FridgePlanner.CleanScannedIngredients(raw)));
             }
-            catch (Exception ex) when (ex is MealIdeaException or HttpRequestException or TaskCanceledException
+            catch (Exception ex) when (ex is MealIdeaException or HttpRequestException or JsonException or TaskCanceledException
                                        && !ct.IsCancellationRequested)
             {
                 loggerFactory.CreateLogger("FridgeEndpoints").LogWarning(ex, "Photo scan failed");
