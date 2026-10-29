@@ -235,6 +235,7 @@ public class AiDailyLimitMessageTests
         var signedIn = factory.CreateClient();
         var email = $"ai-{Guid.NewGuid():N}@test.local";
         (await signedIn.PostAsJsonAsync("/api/auth/register", new { email, password = TestAuth.Password })).EnsureSuccessStatusCode();
+        await TestAuth.ApproveAsync(factory, email);
         (await signedIn.PostAsJsonAsync("/api/auth/login?useCookies=true", new { email, password = TestAuth.Password })).EnsureSuccessStatusCode();
 
         var suggestions = await signedIn.PostAsJsonAsync("/api/fridge/suggestions", new { ingredients = new[] { "eggs" } });

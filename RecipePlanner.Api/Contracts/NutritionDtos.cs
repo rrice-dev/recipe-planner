@@ -1,6 +1,6 @@
 namespace RecipePlanner.Api.Contracts;
 
-public record FeaturesResponse(bool PasswordReset, bool Nutrition);
+public record FeaturesResponse(bool PasswordReset, bool Nutrition, bool SignUpsNeedApproval);
 
 public record NutrientsResponse(int Calories, double Protein, double Carbs, double Fat, double Fiber, double Sugar, int SodiumMg);
 

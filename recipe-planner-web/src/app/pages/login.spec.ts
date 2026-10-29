@@ -65,6 +65,14 @@ describe('LoginPage', () => {
     expect(navigated).toEqual([]);
   });
 
+  it('says the account is waiting for approval when the password was right but nobody approved it yet', async () => {
+    const fixture = setup();
+    await logIn(fixture, fail(401, { title: 'Unauthorized', detail: 'NotAllowed' }));
+
+    expect((fixture.nativeElement as HTMLElement).querySelector('.error')!.textContent).toContain('waiting for approval');
+    expect(navigated).toEqual([]);
+  });
+
   it('says to wait when there have been too many attempts', async () => {
     const fixture = setup();
     await logIn(fixture, fail(429));

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { isAwaitingApproval } from '../api-errors';
 import { FeaturesService } from '../features.service';
 import { safeReturnUrl } from '../safe-url';
 
@@ -58,8 +59,11 @@ export class LoginPage {
       // Same message for wrong email, wrong password, or locked account,
       // so attackers can't learn which emails have accounts. Too many attempts is the rate limit, which
       // applies to everyone alike, so saying so reveals nothing and stops people retyping a right password.
+      // "NotAllowed" only comes back after a correct password, for an account nobody has approved yet
       this.error.set(e instanceof HttpErrorResponse && e.status === 429
         ? 'Too many attempts. Wait a few minutes and try again.'
+        : isAwaitingApproval(e)
+        ? "Your account is waiting for approval. You'll be able to log in once it's approved."
         : 'Invalid email or password.');
     } finally {
       this.busy.set(false);

@@ -17,8 +17,19 @@ public static class TestAuth
         var register = await client.PostAsJsonAsync("/api/auth/register", new { email, password = Password });
         register.EnsureSuccessStatusCode();
 
+        await ApproveAsync(factory, email); // new accounts wait for an admin (see AccountApprovalTests)
         await LoginAsync(client, email);
         return client;
+    }
+
+    /// <summary>What an admin's "Approve" does</summary>
+    public static async Task ApproveAsync(Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory<Program> factory, string email)
+    {
+        using var scope = factory.Services.CreateScope();
+        var users = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+        var user = (await users.FindByEmailAsync(email))!;
+        user.IsApproved = true;
+        Assert.True((await users.UpdateAsync(user)).Succeeded);
     }
 
     public static async Task<HttpClient> CreateAdminClientAsync(this ApiFactory factory)
@@ -29,12 +40,14 @@ public static class TestAuth
         var register = await client.PostAsJsonAsync("/api/auth/register", new { email, password = Password });
         register.EnsureSuccessStatusCode();
 
-        // Grant the role directly, the same way the startup seeder does
+        // Grant the role directly, the same way the startup seeder does (which also approves the account)
         using (var scope = factory.Services.CreateScope())
         {
             var users = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
             var user = await users.FindByEmailAsync(email);
-            var result = await users.AddToRoleAsync(user!, Roles.Admin);
+            user!.IsApproved = true;
+            Assert.True((await users.UpdateAsync(user)).Succeeded);
+            var result = await users.AddToRoleAsync(user, Roles.Admin);
             Assert.True(result.Succeeded);
         }
 

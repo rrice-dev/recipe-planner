@@ -25,9 +25,9 @@ public class PasswordResetTests
     public async Task Features_report_what_is_set_up()
     {
         using (var off = new ApiFactory())
-            Assert.Equal(new FeaturesResponse(false, false), await off.CreateClient().GetFromJsonAsync<FeaturesResponse>("/api/features"));
+            Assert.Equal(new FeaturesResponse(false, false, true), await off.CreateClient().GetFromJsonAsync<FeaturesResponse>("/api/features"));
         using var on = new ApiFactory { Email = new FakeEmail(), Foods = new FakeFoods() };
-        Assert.Equal(new FeaturesResponse(true, true), await on.CreateClient().GetFromJsonAsync<FeaturesResponse>("/api/features"));
+        Assert.Equal(new FeaturesResponse(true, true, true), await on.CreateClient().GetFromJsonAsync<FeaturesResponse>("/api/features"));
     }
 
     [Fact]

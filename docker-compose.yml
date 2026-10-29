@@ -22,6 +22,8 @@ services:
       ConnectionStrings__Default: Host=db;Database=recipe_planner;Username=recipe;Password=${POSTGRES_PASSWORD}
       Database__MigrateOnStartup: "true"
       Database__SeedOnStartup: "true"
+      # Local only: new accounts can sign in straight away, without an admin approving them
+      Registration__RequireApproval: "false"
       # Local photo storage. This is Azurite's built-in development key, published by Microsoft
       # for the emulator; it is not a real secret and doesn't work against real Azure.
       PhotoStorage__ConnectionString: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;"

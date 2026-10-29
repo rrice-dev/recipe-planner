@@ -23,17 +23,24 @@ public static class AdminSeeder
             return;
         }
 
-        if (await userManager.IsInRoleAsync(user, Roles.Admin)) return;
-
         // Anyone can register any address, so a matching email alone proves nothing. Only an account that
         // has confirmed the address (by following the emailed link) gets the role.
         if (!user.EmailConfirmed)
         {
-            logger.LogWarning("Admin:Email matches an account that hasn't confirmed its email, so it wasn't made admin. " +
-                              "Confirm the email from that account, then restart the API.");
+            if (!await userManager.IsInRoleAsync(user, Roles.Admin))
+                logger.LogWarning("Admin:Email matches an account that hasn't confirmed its email, so it wasn't made admin. " +
+                                  "Confirm the email from that account, then restart the API.");
             return;
         }
 
+        // The admin approves everyone else, so nobody would be left to approve the admin
+        if (!user.IsApproved)
+        {
+            user.IsApproved = true;
+            await userManager.UpdateAsync(user);
+        }
+
+        if (await userManager.IsInRoleAsync(user, Roles.Admin)) return;
         await userManager.AddToRoleAsync(user, Roles.Admin);
         logger.LogInformation("Granted the Admin role to the configured admin account.");
     }

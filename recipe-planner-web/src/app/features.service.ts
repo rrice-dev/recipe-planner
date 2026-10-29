@@ -2,7 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
-export interface Features { passwordReset: boolean; nutrition: boolean; }
+export interface Features { passwordReset: boolean; nutrition: boolean; signUpsNeedApproval?: boolean; }
 
 // Optional features that depend on server setup (email, USDA key). Hidden until they're switched on.
 @Injectable({ providedIn: 'root' })

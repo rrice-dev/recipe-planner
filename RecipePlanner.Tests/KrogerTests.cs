@@ -22,6 +22,7 @@ public class KrogerTests
         var client = NoRedirects(factory);
         var creds = new { email, password = TestAuth.Password };
         (await client.PostAsJsonAsync("/api/auth/register", creds)).EnsureSuccessStatusCode();
+        await TestAuth.ApproveAsync(factory, email);
         var login = await client.PostAsJsonAsync("/api/auth/login?useCookies=true", creds);
         return login.Headers.GetValues("Set-Cookie").Single(c => c.StartsWith("rp_session=")).Split(';')[0];
     }

@@ -4,6 +4,12 @@ namespace RecipePlanner.Api.Models;
 
 public class AppUser : IdentityUser
 {
+    /// <summary>
+    /// False until an admin approves the account; until then it can't sign in (see Security/AccountApproval.cs).
+    /// Accounts that existed before approvals were added were approved by the migration.
+    /// </summary>
+    public bool IsApproved { get; set; }
+
     // ---------- Settings (one row per user, so they follow you to every device) ----------
 
     /// <summary>"system", "light" or "dark"</summary>
