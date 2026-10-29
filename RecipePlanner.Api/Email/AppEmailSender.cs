@@ -99,7 +99,7 @@ public sealed class EmailSendingService(Channel<QueuedEmail> queue, IEmailDelive
     }
 }
 
-// What Identity calls for "forgot password" (and account confirmation, which this app doesn't require)
+// What Identity calls for "forgot password" and for confirming an email address
 public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOptions> options) : IEmailSender<AppUser>
 {
     public Task SendPasswordResetCodeAsync(AppUser user, string email, string resetCode)
@@ -120,8 +120,24 @@ public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOpti
     public Task SendPasswordResetLinkAsync(AppUser user, string email, string resetLink) =>
         Task.CompletedTask; // only used by Razor Identity UI, not this app
 
-    public Task SendConfirmationLinkAsync(AppUser user, string email, string confirmationLink) =>
-        Task.CompletedTask; // email confirmation isn't required in this app
+    // Identity calls this after sign-up (and after an email change, or "resend"). Its link points at the API
+    // and is built from the request's host, so only its query (userId, code, changedEmail) is kept, and the
+    // link is rebuilt on AppBaseUrl, the same way reset links are, ending on the app's own confirm page.
+    public Task SendConfirmationLinkAsync(AppUser user, string email, string confirmationLink)
+    {
+        var query = new Uri(WebUtility.HtmlDecode(confirmationLink), UriKind.Absolute).Query;
+        var link = $"{options.Value.AppBaseUrl!.TrimEnd('/')}/confirm-email{query}";
+        var safeLink = WebUtility.HtmlEncode(link);
+        var html = $"""
+            <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #1D2420; max-width: 520px">
+              <p>Confirm this email address for your Thyme Capsule account. Confirming turns on the AI features: fridge ideas, photo scans and reading recipes from photos.</p>
+              <p><a href="{safeLink}" style="display: inline-block; background: #2E6A4E; color: #ffffff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: bold">Confirm my email</a></p>
+              <p>If you didn't sign up for Thyme Capsule, you can ignore this email.</p>
+            </div>
+            """;
+        var text = $"Confirm this email address for your Thyme Capsule account. Confirming turns on the AI features.\n\nConfirm my email: {link}\n\nIf you didn't sign up for Thyme Capsule, ignore this email.";
+        return transport.SendAsync(email, "Confirm your Thyme Capsule email", html, text);
+    }
 }
 
 public static class EmailServiceCollectionExtensions

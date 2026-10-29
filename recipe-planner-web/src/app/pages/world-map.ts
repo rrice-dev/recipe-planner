@@ -10,6 +10,7 @@ import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import { ApiService } from '../api.service';
 import { TechniqueChip } from '../technique-chip';
 import { AuthService } from '../auth.service';
+import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
 import { DraftSaver } from '../draft-saver';
 import { SettingsService } from '../settings.service';
 import { CountryDish, LibrarySummary, RecipeDraft } from '../models';
@@ -26,7 +27,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
 
 @Component({
   selector: 'app-world-map',
-  imports: [TechniqueChip, RouterLink],
+  imports: [TechniqueChip, RouterLink, ConfirmEmailNotice],
   template: `
     <div class="page-header">
       <h1>Recipes Around the World</h1>
@@ -34,6 +35,7 @@ interface ViewBox { x: number; y: number; w: number; h: number; }
     </div>
     <p class="muted">Click a country to see its recipes. Shaded countries have recipes in the library; for any country,
       you can also ask for AI suggestions.</p>
+    <app-confirm-email-notice />
 
     <div class="library-filters">
       <input type="search" list="world-countries" placeholder="Find a country" aria-label="Find a country"
@@ -289,7 +291,7 @@ export class WorldMapPage {
       this.dishVersion.update(v => v + 1);
     } catch (e) {
       const status = e instanceof HttpErrorResponse ? e.status : 0;
-      this.aiError.set(status === 429 ? "You've used your AI suggestions for this hour. Try again later." :
+      this.aiError.set(needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE : status === 429 ? "You've used your AI suggestions for this hour. Try again later." :
         "Couldn't get suggestions right now. Please try again.");
     } finally {
       this.suggesting.set(false);
@@ -305,7 +307,7 @@ export class WorldMapPage {
       setTimeout(() => document.getElementById('world-draft')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     } catch (e) {
       const status = e instanceof HttpErrorResponse ? e.status : 0;
-      this.aiError.set(status === 429 ? "You've opened a lot of AI recipes this hour. Try again later." :
+      this.aiError.set(needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE : status === 429 ? "You've opened a lot of AI recipes this hour. Try again later." :
         "Couldn't write that recipe right now. Please try again.");
     } finally {
       this.loadingDish.set(null);

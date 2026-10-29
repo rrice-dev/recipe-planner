@@ -66,6 +66,7 @@ public static class ImportEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.ImportPolicy);
 
         // Photos of a cookbook page or a handwritten card. JSON (not a form), so other sites can't post it
@@ -100,6 +101,7 @@ public static class ImportEndpoints
             return await Read(() => reader.ReadPhotosAsync(pages, ct), db, loggerFactory, "photos", ct);
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.RecipeReadPolicy);
 
         // Text pasted from anywhere: an email, a document, a site the link importer can't reach
@@ -120,6 +122,7 @@ public static class ImportEndpoints
             return await Read(() => reader.ReadTextAsync(text, ct), db, loggerFactory, "text", ct);
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.RecipeReadPolicy);
     }
 

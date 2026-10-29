@@ -45,7 +45,8 @@ public class PasswordResetTests
         request.Headers.Add("X-Forwarded-Host", "evil.example");
         Assert.Equal(HttpStatusCode.OK, (await anon.SendAsync(request)).StatusCode);
 
-        var sent = Assert.Single(mail.Sent);
+        // Sign-up also sent a confirmation email; this is about the reset one
+        var sent = Assert.Single(mail.Sent, m => m.Subject.Contains("Reset"));
         Assert.Equal(email, sent.To);
         var link = Regex.Match(sent.Text, @"https://\S+").Value;
         Assert.StartsWith(FakeEmail.SiteUrl + "/reset-password?", link);
@@ -78,7 +79,7 @@ public class PasswordResetTests
         Assert.Equal(HttpStatusCode.BadRequest, (await anon.PostAsJsonAsync("/api/account/reset-password", new { email = "nobody@test.local", code = "x", newPassword = "long enough password" })).StatusCode);
 
         await anon.PostAsJsonAsync("/api/account/forgot-password", new { email });
-        var code = System.Web.HttpUtility.ParseQueryString(new Uri(Regex.Match(mail.Sent.Single().Text, @"https://\S+").Value).Query)["code"];
+        var code = System.Web.HttpUtility.ParseQueryString(new Uri(Regex.Match(mail.Sent.Single(m => m.Subject.Contains("Reset")).Text, @"https://\S+").Value).Query)["code"];
         var weak = await anon.PostAsJsonAsync("/api/account/reset-password", new { email, code, newPassword = "short" });
         Assert.Equal(HttpStatusCode.BadRequest, weak.StatusCode);
         Assert.Contains("12", await weak.Content.ReadAsStringAsync()); // explains the length rule

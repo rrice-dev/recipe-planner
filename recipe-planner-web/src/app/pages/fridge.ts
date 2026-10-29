@@ -8,6 +8,7 @@ import { TechniqueChip } from '../technique-chip';
 import { DraftSaver } from '../draft-saver';
 import { FridgeMealIdea, FridgeResponse, GroceryAdd, RecipeDraft } from '../models';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
+import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
 
 // Keep in sync with FridgePlanner on the API (the API enforces these; this is just friendlier)
 const MAX_INGREDIENTS = 25;
@@ -16,10 +17,11 @@ const ALLOWED = /^[\p{L}\p{M}\p{N} '\-.,&()/]+$/u;
 
 @Component({
   selector: 'app-fridge',
-  imports: [TechniqueChip, FormsModule, RouterLink],
+  imports: [TechniqueChip, FormsModule, RouterLink, ConfirmEmailNotice],
   template: `
     <h1>What can I make?</h1>
     <p class="muted">List what's in your fridge and pantry. You'll see which of your recipes fit, plus a few new ideas.</p>
+    <app-confirm-email-notice />
 
     <form class="card create" (ngSubmit)="add()">
       <div class="row">
@@ -257,6 +259,7 @@ export class FridgePage {
       } catch (e) {
         const status = e instanceof HttpErrorResponse ? e.status : 0;
         this.recipeError.set(
+          needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE :
           status === 429 ? "You've opened a lot of recipes this hour. Try again later." :
           status === 400 ? "That dish name couldn't be used. Try another idea." :
           "Couldn't write that recipe right now. Please try again.");
@@ -316,6 +319,7 @@ export class FridgePage {
     } catch (e) {
       const status = e instanceof HttpErrorResponse ? e.status : 0;
       this.inputError.set(
+        needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE :
         status === 429 ? "You've used your photo scans for this hour. Try again later." :
         status === 413 ? 'That photo is too large.' :
         status === 400 || status === 415 ? "That file couldn't be read as a photo." :
@@ -339,6 +343,7 @@ export class FridgePage {
     } catch (e) {
       const status = e instanceof HttpErrorResponse ? e.status : 0;
       this.error.set(
+        needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE :
         status === 429 ? "You've used your AI suggestions for this hour. Try again later." :
         status === 400 ? 'Check your ingredients and try again.' :
         'Something went wrong. Please try again.');

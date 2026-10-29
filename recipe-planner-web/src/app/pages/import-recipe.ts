@@ -9,6 +9,7 @@ import { SettingsService } from '../settings.service';
 import { formatMeasure } from '../scaling';
 import { totalTime } from '../library-utils';
 import { MAX_PAGES, PhotoReadError, blobToDataUrl, shrinkPhoto } from '../photo-utils';
+import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
 
 type Mode = 'link' | 'photo' | 'paste';
 
@@ -18,10 +19,11 @@ interface Page { file: File; preview: string; }
 // a handwritten card, or text pasted from anywhere. You always see it before anything is saved.
 @Component({
   selector: 'app-import-recipe',
-  imports: [RouterLink],
+  imports: [RouterLink, ConfirmEmailNotice],
   template: `
     <a routerLink="/recipes" class="back">← Recipes</a>
     <h1>Import a recipe</h1>
+    <app-confirm-email-notice />
 
     <div class="row filter-chips" role="group" aria-label="Import from">
       @for (m of modes; track m.value) {
@@ -350,6 +352,7 @@ export class ImportRecipePage {
     } catch (e) {
       const err = e instanceof HttpErrorResponse ? e : null;
       this.error.set(
+        needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE :
         e instanceof PhotoReadError ? "One of those files couldn't be opened as a photo." :
         err?.status === 429 ? (kind === 'link' ? "You've imported a lot of recipes this hour. Try again later."
                                                 : "You've read a lot of recipes this hour. Try again later.") :

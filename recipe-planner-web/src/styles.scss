@@ -281,6 +281,9 @@ button.chip.technique-chip:focus-visible { outline: 2px solid var(--accent); out
   background: var(--saffron-soft); border-left: 3px solid var(--saffron); border-radius: 8px;
   padding: 0.65rem 0.9rem; margin: 0 0 1rem;
 }
+/* A button that reads as a link inside a note (e.g. "Send a new link") */
+.callout button.link { color: var(--accent); padding: 0 0.25rem; }
+.callout button.link:hover { color: var(--accent); text-decoration: underline; }
 .list-note { background: var(--accent-soft); border-radius: 10px; padding: 0.55rem 0.8rem; }
 .list-note a, .add-to-list a { color: var(--accent); }
 .note { margin-left: 0.35rem; }
