@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FeaturesService } from '../features.service';
@@ -53,10 +54,13 @@ export class LoginPage {
       await this.auth.login(this.email().trim(), this.password());
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigateByUrl(safeReturnUrl(returnUrl));
-    } catch {
+    } catch (e) {
       // Same message for wrong email, wrong password, or locked account,
-      // so attackers can't learn which emails have accounts
-      this.error.set('Invalid email or password.');
+      // so attackers can't learn which emails have accounts. Too many attempts is the rate limit, which
+      // applies to everyone alike, so saying so reveals nothing and stops people retyping a right password.
+      this.error.set(e instanceof HttpErrorResponse && e.status === 429
+        ? 'Too many attempts. Wait a few minutes and try again.'
+        : 'Invalid email or password.');
     } finally {
       this.busy.set(false);
     }
