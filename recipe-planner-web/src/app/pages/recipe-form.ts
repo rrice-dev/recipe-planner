@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
 import { SettingsService } from '../settings.service';
 import { groupBySection } from '../store-sections';
+import { apiErrorMessage } from '../api-errors';
 import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
 
 @Component({
@@ -169,8 +170,10 @@ export class RecipeFormPage implements OnInit {
     try {
       const created = await firstValueFrom(this.api.createIngredient(trimmed, null));
       this.ingredients.update(list => [...list, created].sort((a, b) => a.name.localeCompare(b.name)));
-    } catch {
-      this.error.set(`Couldn't create "${trimmed}". It may already exist.`);
+    } catch (e) {
+      this.error.set(e instanceof HttpErrorResponse && e.status === 409
+        ? `"${trimmed}" is already in the list. Choose it from the ingredient menu.`
+        : apiErrorMessage(e, `Couldn't create "${trimmed}". Please try again.`));
     }
   }
 
@@ -232,8 +235,7 @@ export class RecipeFormPage implements OnInit {
       this.router.navigate(['/recipes', recipeId]);
     } catch (e) {
       // The API explains what it refused (a limit, a duplicate); show that instead of a generic message
-      const problems = e instanceof HttpErrorResponse ? e.error?.errors as Record<string, string[]> | undefined : undefined;
-      this.error.set(problems ? Object.values(problems).flat().join(' ') : 'Something went wrong saving the recipe. Please try again.');
+      this.error.set(apiErrorMessage(e, 'Something went wrong saving the recipe. Please try again.'));
     } finally {
       this.saving.set(false);
     }

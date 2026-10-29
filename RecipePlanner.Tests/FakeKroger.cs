@@ -13,6 +13,8 @@ public class FakeKroger : HttpMessageHandler
     public int AccessTokenLifetime { get; set; } = 1800;
     public bool RejectRefresh { get; set; }
     public HttpStatusCode CartStatus { get; set; } = HttpStatusCode.NoContent;
+    /// <summary>Answer store searches with something that isn't JSON, like a broken gateway would</summary>
+    public bool GarbledLocations { get; set; }
     private int _tokenCounter;
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
@@ -34,6 +36,8 @@ public class FakeKroger : HttpMessageHandler
                 expires_in = AccessTokenLifetime
             });
         }
+        if (path == "/v1/locations" && GarbledLocations)
+            return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("<html>Bad gateway</html>", Encoding.UTF8, "application/json") };
         if (path == "/v1/locations")
             return Json(new
             {

@@ -10,6 +10,7 @@ import { formatMeasure } from '../scaling';
 import { totalTime } from '../library-utils';
 import { MAX_PAGES, PhotoReadError, blobToDataUrl, shrinkPhoto } from '../photo-utils';
 import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
+import { apiErrorMessage } from '../api-errors';
 
 type Mode = 'link' | 'photo' | 'paste';
 
@@ -306,8 +307,8 @@ export class ImportRecipePage {
         id = await this.saver.save(draft, null, from === 'link' ? this.source() : null, from !== 'link' && this.fromCookbook());
         this.savedId.set(id);
       }
-    } catch {
-      this.saveError.set("Couldn't save the recipe. Please try again.");
+    } catch (e) {
+      this.saveError.set(apiErrorMessage(e, "Couldn't save the recipe. Please try again."));
       this.saving.set(false);
       return;
     }

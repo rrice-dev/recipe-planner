@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 import { TechniqueChip } from '../technique-chip';
 import { AuthService } from '../auth.service';
 import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
+import { apiErrorMessage } from '../api-errors';
 import { DraftSaver } from '../draft-saver';
 import { SettingsService } from '../settings.service';
 import { CountryDish, LibrarySummary, RecipeDraft } from '../models';
@@ -320,8 +321,8 @@ export class WorldMapPage {
     try {
       const id = await this.saver.save(draft, displayName(country));
       await this.router.navigate(['/recipes', id]);
-    } catch {
-      this.saveError.set("Couldn't save the recipe. Please try again.");
+    } catch (e) {
+      this.saveError.set(apiErrorMessage(e, "Couldn't save the recipe. Please try again."));
     } finally {
       this.saving.set(false);
     }

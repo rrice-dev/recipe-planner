@@ -108,8 +108,7 @@ public static partial class FridgePlanner
                     name,
                     // At least 0.01: the recipe editor (and the database's 2 decimals) can't hold less
                     Math.Max(RecipeLimits.MinQuantity, Math.Round(i.Quantity!.Value, 2)),
-                    // One under the limit, because Truncate adds "…"
-                    string.IsNullOrWhiteSpace(i.Unit) ? "whole" : Truncate(i.Unit, MaxUnitLength - 1),
+                    string.IsNullOrWhiteSpace(i.Unit) ? "whole" : Fit(i.Unit, MaxUnitLength),
                     string.IsNullOrWhiteSpace(i.Note) ? null : Truncate(i.Note, MaxNoteLength),
                     onHand.Any(h => SameIngredient(name, h)));
             })
@@ -198,6 +197,13 @@ public static partial class FridgePlanner
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Take(MaxListItems)
             .ToList();
+
+    // Like Truncate, but the result, "…" included, is never longer than max (for fields with a hard limit)
+    private static string Fit(string s, int max)
+    {
+        s = s.Trim();
+        return s.Length <= max ? s : s[..(max - 1)].TrimEnd() + "…";
+    }
 
     private static string Truncate(string s, int max)
     {
