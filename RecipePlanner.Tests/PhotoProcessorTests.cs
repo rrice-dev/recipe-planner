@@ -1,3 +1,4 @@
+using SkiaSharp;
 using RecipePlanner.Api.Ai;
 using static RecipePlanner.Tests.TestImages;
 
@@ -52,6 +53,34 @@ public class PhotoProcessorTests
         };
         Assert.True(IsRed(ColorAt(result.Jpeg, x, y)));
         Assert.True(IsBlue(ColorAt(result.Jpeg, 1 - x, 1 - y)));
+    }
+
+    // Big photos decode at a fraction of their size to save memory; the result must look the same
+    [Theory]
+    [InlineData((ushort)1, false, "left")]
+    [InlineData((ushort)6, true, "top")]
+    [InlineData((ushort)8, true, "bottom")]
+    public void Large_photos_come_out_the_same_after_a_reduced_decode(ushort orientation, bool swapsSides, string redSide)
+    {
+        var result = PhotoProcessor.Process(WithExif(Jpeg(4000, 2000), orientation));
+
+        Assert.True(result.Success);
+        Assert.Equal(swapsSides ? (512, 1024) : (1024, 512), Size(result.Jpeg));
+        var (x, y) = redSide switch { "left" => (0.1f, 0.5f), "top" => (0.5f, 0.1f), _ => (0.5f, 0.9f) };
+        Assert.True(IsRed(ColorAt(result.Jpeg, x, y)));
+        Assert.True(IsBlue(ColorAt(result.Jpeg, 1 - x, 1 - y)));
+    }
+
+    [Fact]
+    public void Large_jpegs_are_decoded_at_a_reduced_size_but_never_below_the_target()
+    {
+        using var codec = SKCodec.Create(new SKMemoryStream(Jpeg(4000, 2000)));
+        var info = PhotoProcessor.DecodeInfo(codec, 1024);
+        Assert.True(info.Width < 4000, $"decoded at full width {info.Width}");
+        Assert.True(info.Width >= 1024);
+
+        using var small = SKCodec.Create(new SKMemoryStream(Jpeg(800, 600)));
+        Assert.Equal((800, 600), (PhotoProcessor.DecodeInfo(small, 1024).Width, PhotoProcessor.DecodeInfo(small, 1024).Height));
     }
 
     [Fact]

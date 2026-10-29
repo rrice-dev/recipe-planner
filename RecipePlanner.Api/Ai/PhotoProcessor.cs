@@ -28,17 +28,37 @@ public static class PhotoProcessor
         if (info.Width <= 0 || info.Height <= 0 || (long)info.Width * info.Height > MaxSourcePixels)
             return PhotoResult.Fail("The photo's dimensions are too large.");
 
-        using var decoded = SKBitmap.Decode(codec);
+        // A 40-megapixel photo is 160 MB once decoded. JPEG and WebP can decode straight to a fraction of their
+        // size (1/2, 1/4, 1/8), which uses far less memory when the result is going to be shrunk anyway.
+        using var decoded = SKBitmap.Decode(codec, DecodeInfo(codec, maxEdge));
         if (decoded is null) return PhotoResult.Fail("The photo couldn't be read.");
 
-        using var upright = ApplyOrientation(decoded, codec.EncodedOrigin);
-        using var resized = Shrink(upright, maxEdge);
+        // Most photos are already upright; only rotated ones need a second, rotated copy
+        using var rotated = codec.EncodedOrigin == SKEncodedOrigin.TopLeft ? null : ApplyOrientation(decoded, codec.EncodedOrigin);
+        using var resized = Shrink(rotated ?? decoded, maxEdge);
 
         // Re-encoding from raw pixels writes a brand-new file. Nothing from the original survives:
         // no EXIF data (including the GPS location phones add), and no hidden or malformed bytes.
         using var image = SKImage.FromBitmap(resized);
         using var jpeg = image.Encode(SKEncodedImageFormat.Jpeg, jpegQuality);
         return PhotoResult.Ok(jpeg.ToArray(), resized.Width, resized.Height);
+    }
+
+    /// <summary>The smallest size the codec can decode to that's still at least <paramref name="maxEdge"/> on the long edge</summary>
+    public static SKImageInfo DecodeInfo(SKCodec codec, int maxEdge)
+    {
+        var full = codec.Info;
+        var longEdge = Math.Max(full.Width, full.Height);
+        if (longEdge <= maxEdge) return full;
+
+        // Codecs only support some scales (JPEG: eighths) and round to them, so try them smallest first
+        // and take the first that's still big enough. PNG can't scale at all and always comes back full size.
+        for (var eighths = 1; eighths < 8; eighths++)
+        {
+            var scaled = codec.GetScaledDimensions(eighths / 8f);
+            if (Math.Max(scaled.Width, scaled.Height) >= maxEdge) return full.WithSize(scaled);
+        }
+        return full;
     }
 
     private static bool LooksLikeSupportedImage(byte[] b) =>
