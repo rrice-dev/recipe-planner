@@ -13,6 +13,12 @@ Recipes worth keeping. A technique-focused recipe and meal planning app that can
 1. Copy `.env.example` to `.env` and set a password
 2. `docker compose up --build`
 3. Open http://localhost:8080
+
+## Tests
+
+- **API:** `dotnet test`. Runs on real Postgres: with Docker running, a throwaway `postgres:16` container starts automatically. To use a server you already have, set `TEST_POSTGRES` to its connection string instead (test databases are named `rptest_*`, and old ones are dropped at the start of each run).
+- **Web:** `npx ng test --watch=false` in `recipe-planner-web`.
+
 ## Deployment notes
 
 - **Keep the API's ingress internal.** The API trusts `X-Forwarded-For`/`X-Forwarded-Host` from any sender because only the web container's nginx can reach it (see `Program.cs`). Making the API's ingress external would let clients fake their IP and dodge rate limits.
