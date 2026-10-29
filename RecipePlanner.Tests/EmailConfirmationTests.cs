@@ -3,7 +3,10 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using RecipePlanner.Api.Contracts;
+using RecipePlanner.Api.Data;
 using RecipePlanner.Api.Security;
 
 namespace RecipePlanner.Tests;
@@ -80,6 +83,10 @@ public partial class EmailConfirmationTests
         var email = $"resend-{Guid.NewGuid():N}@test.local";
         var client = await factory.CreateUserClientAsync(email);
         var before = mail.Sent.Count(m => m.To == email);
+        // Past the 15-minute wait since the sign-up email (see EmailAllowanceTests)
+        using (var scope = factory.Services.CreateScope())
+            await scope.ServiceProvider.GetRequiredService<AppDbContext>().EmailCooldowns
+                .ExecuteUpdateAsync(c => c.SetProperty(x => x.LastSentAt, x => x.LastSentAt.AddMinutes(-16)));
 
         (await factory.CreateClient().PostAsJsonAsync("/api/auth/resendConfirmationEmail", new { email })).EnsureSuccessStatusCode();
 

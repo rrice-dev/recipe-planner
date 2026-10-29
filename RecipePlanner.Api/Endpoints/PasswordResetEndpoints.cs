@@ -10,10 +10,10 @@ namespace RecipePlanner.Api.Endpoints;
 public record ForgotPasswordRequest(string Email);
 public record ResetPasswordRequest(string Email, string Code, string NewPassword);
 
-// Identity's built-in /forgotPassword and /resetPassword only work for accounts with a confirmed email,
-// and this app doesn't confirm emails at sign-up, so they'd silently do nothing. These versions send the
-// link to any registered address. That's safe: only whoever reads that inbox gets the link. A successful
-// reset proves they own the address, so it's marked confirmed.
+// Identity's built-in /forgotPassword and /resetPassword only work for accounts with a confirmed email.
+// Confirming is optional here (it's only needed for AI features), so someone who never confirmed could
+// never reset. These versions send the link to any registered address. That's safe: only whoever reads that
+// inbox gets the link. A successful reset proves they own the address, so it's marked confirmed.
 public static class PasswordResetEndpoints
 {
     public static void MapPasswordResetEndpoints(this IEndpointRouteBuilder app)
@@ -28,7 +28,8 @@ public static class PasswordResetEndpoints
             {
                 var token = await users.GeneratePasswordResetTokenAsync(user);
                 await sender.SendPasswordResetCodeAsync(user, user.Email, WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token)));
-                logger.LogInformation("Password reset email queued for user {UserId}", user.Id);
+                // The sender skips it if this account was sent one in the last 15 minutes (see EmailCooldowns)
+                logger.LogInformation("Password reset asked for user {UserId}", user.Id);
             }
             else
             {

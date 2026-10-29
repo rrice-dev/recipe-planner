@@ -54,7 +54,7 @@ public static class WorldEndpoints
             {
                 loggerFactory.CreateLogger("WorldEndpoints").LogWarning(ex, "Country dish generation failed");
                 return Results.Ok(new CountryDishesResponse(country, [], true,
-                    "AI suggestions are unavailable right now. Try again in a minute."));
+                    AiErrors.Message(ex, "AI suggestions are unavailable right now. Try again in a minute.")));
             }
         })
         .RequireAuthorization()
@@ -96,7 +96,7 @@ public static class WorldEndpoints
                                        && !ct.IsCancellationRequested)
             {
                 loggerFactory.CreateLogger("WorldEndpoints").LogWarning(ex, "Country recipe generation failed");
-                return Results.Problem("AI recipes are unavailable right now. Try again in a minute.",
+                return Results.Problem(AiErrors.Message(ex, "AI recipes are unavailable right now. Try again in a minute."),
                     statusCode: StatusCodes.Status503ServiceUnavailable);
             }
         })

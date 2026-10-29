@@ -46,7 +46,8 @@ public static class FridgeEndpoints
             {
                 // The AI being down shouldn't break the page: still return the recipe matches
                 loggerFactory.CreateLogger("FridgeEndpoints").LogWarning(ex, "Meal idea generation failed");
-                return Results.Ok(new FridgeResponse(matches, [], true, "AI suggestions are unavailable right now. Try again in a minute."));
+                return Results.Ok(new FridgeResponse(matches, [], true,
+                    AiErrors.Message(ex, "AI suggestions are unavailable right now. Try again in a minute.")));
             }
         })
         .RequireAuthorization()
@@ -80,7 +81,7 @@ public static class FridgeEndpoints
                                        && !ct.IsCancellationRequested)
             {
                 loggerFactory.CreateLogger("FridgeEndpoints").LogWarning(ex, "Recipe generation failed");
-                return Results.Problem("AI recipes are unavailable right now. Try again in a minute.",
+                return Results.Problem(AiErrors.Message(ex, "AI recipes are unavailable right now. Try again in a minute."),
                     statusCode: StatusCodes.Status503ServiceUnavailable);
             }
         })
@@ -114,7 +115,7 @@ public static class FridgeEndpoints
                                        && !ct.IsCancellationRequested)
             {
                 loggerFactory.CreateLogger("FridgeEndpoints").LogWarning(ex, "Photo scan failed");
-                return Results.Problem("Photo scanning is unavailable right now. Try again in a minute.",
+                return Results.Problem(AiErrors.Message(ex, "Photo scanning is unavailable right now. Try again in a minute."),
                     statusCode: StatusCodes.Status503ServiceUnavailable);
             }
         })

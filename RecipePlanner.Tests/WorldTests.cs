@@ -147,8 +147,8 @@ public class WorldTests
     public async Task Library_recipes_carry_their_country()
     {
         using var factory = new ApiFactory();
-        var list = await factory.CreateClient().GetFromJsonAsync<List<LibrarySummaryResponse>>("/api/library");
-        Assert.Equal("Peru", list!.Single(r => r.Slug == "lomo-saltado").Country);
+        var list = (await factory.CreateClient().GetFromJsonAsync<List<LibrarySummaryResponse>>("/api/library"))!;
+        Assert.Equal("Peru", list.Single(r => r.Slug == "lomo-saltado").Country);
         Assert.Equal("United States of America", list.Single(r => r.Slug == "smash-burgers").Country);
     }
 }

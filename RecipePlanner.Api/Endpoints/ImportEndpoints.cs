@@ -75,7 +75,7 @@ public static class ImportEndpoints
                                        && !ct.IsCancellationRequested)
             {
                 log.LogWarning(ex, "AI recipe extraction failed for {Host}", url.Host);
-                return Fail("Couldn't read a recipe from that page right now. Try again in a minute.");
+                return Fail(AiErrors.Message(ex, "Couldn't read a recipe from that page right now. Try again in a minute."));
             }
         })
         .RequireAuthorization()
@@ -151,7 +151,7 @@ public static class ImportEndpoints
                                    && !ct.IsCancellationRequested)
         {
             loggerFactory.CreateLogger("ImportEndpoints").LogWarning(ex, "Reading a recipe from {Kind} failed", kind);
-            return Results.Problem("Couldn't read the recipe right now. Try again in a minute.",
+            return Results.Problem(AiErrors.Message(ex, "Couldn't read the recipe right now. Try again in a minute."),
                 statusCode: StatusCodes.Status503ServiceUnavailable);
         }
 

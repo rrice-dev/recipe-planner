@@ -17,7 +17,7 @@ namespace RecipePlanner.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.13")
+                .HasAnnotation("ProductVersion", "10.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -189,6 +189,23 @@ namespace RecipePlanner.Api.Migrations
                     b.HasIndex("UsedAt");
 
                     b.ToTable("AiUsage");
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Email.EmailCooldown", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Kind")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTimeOffset>("LastSentAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("UserId", "Kind");
+
+                    b.ToTable("EmailCooldowns");
                 });
 
             modelBuilder.Entity("RecipePlanner.Api.Kitchen.Leftover", b =>
@@ -952,6 +969,15 @@ namespace RecipePlanner.Api.Migrations
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("RecipePlanner.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RecipePlanner.Api.Email.EmailCooldown", b =>
                 {
                     b.HasOne("RecipePlanner.Api.Models.AppUser", null)
                         .WithMany()

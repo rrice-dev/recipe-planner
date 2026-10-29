@@ -22,7 +22,7 @@ export function needsConfirmedEmail(e: unknown): boolean {
         <strong>Confirm your email to use the AI features.</strong>
         It only takes the link we email to {{ auth.email() }}.
         @if (sent()) {
-          <span role="status">A new link is on its way. Check your spam folder too.</span>
+          <span role="status">A new link is on its way, unless we sent you one in the last 15 minutes. Check your spam folder too.</span>
         } @else {
           <button type="button" class="link" (click)="resend()" [disabled]="sending()">
             {{ sending() ? 'Sending…' : 'Send a new link' }}

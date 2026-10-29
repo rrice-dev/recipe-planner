@@ -30,9 +30,9 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
 
       <div class="row">
         <label>Cuisine <input formControlName="cuisine" maxlength="60" /></label>
-        <label>Servings <input type="number" formControlName="servings" min="1" /></label>
-        <label>Prep (min) <input type="number" formControlName="prepMinutes" min="0" /></label>
-        <label>Cook (min) <input type="number" formControlName="cookMinutes" min="0" /></label>
+        <label>Servings <input type="number" formControlName="servings" min="1" max="100" /></label>
+        <label>Prep (min) <input type="number" formControlName="prepMinutes" min="0" max="10080" /></label>
+        <label>Cook (min) <input type="number" formControlName="cookMinutes" min="0" max="10080" /></label>
       </div>
     </form>
 
@@ -109,9 +109,10 @@ export class RecipeFormPage implements OnInit {
     description: [''],
     cuisine: [''],
     // New recipes start at your default servings from Settings
-    servings: [4, [Validators.required, Validators.min(1)]],
-    prepMinutes: [0, [Validators.required, Validators.min(0)]],
-    cookMinutes: [0, [Validators.required, Validators.min(0)]]
+    // Same limits as the API: servings like everywhere else in the app, and times up to a week
+    servings: [4, [Validators.required, Validators.min(1), Validators.max(100)]],
+    prepMinutes: [0, [Validators.required, Validators.min(0), Validators.max(10_080)]],
+    cookMinutes: [0, [Validators.required, Validators.min(0), Validators.max(10_080)]]
   });
 
   ingredientRows = this.fb.array([this.ingredientRow()]);
@@ -182,6 +183,11 @@ export class RecipeFormPage implements OnInit {
     this.ingredientRows.markAllAsTouched();
     this.stepRows.markAllAsTouched();
 
+    const c = this.form.controls;
+    if (c.servings.invalid || c.prepMinutes.invalid || c.cookMinutes.invalid) {
+      this.error.set('Servings must be 1 to 100, and prep and cook times 0 to 10,080 minutes (a week).');
+      return;
+    }
     if (this.form.invalid || this.ingredientRows.invalid || this.stepRows.invalid) {
       this.error.set('Please fill in all required fields: title, each ingredient with a quantity (0.01 to 10,000) and unit, and each step.');
       return;
