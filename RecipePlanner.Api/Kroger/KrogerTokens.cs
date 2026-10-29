@@ -6,7 +6,8 @@ using RecipePlanner.Api.Models;
 namespace RecipePlanner.Api.Kroger;
 
 // Kroger tokens let us change someone's cart, so they're encrypted with the app's Data Protection keys
-// before they touch the database. A database leak alone doesn't expose them.
+// before they touch the database. Those keys live in the same database, so this only protects the tokens
+// from a database leak once the keys themselves are encrypted with Key Vault (see Security/KeyEncryption.cs).
 public class KrogerTokens(IDataProtectionProvider protection, KrogerClient kroger, ILogger<KrogerTokens> logger)
 {
     private readonly IDataProtector _protector = protection.CreateProtector("RecipePlanner.Kroger.Tokens.v1");

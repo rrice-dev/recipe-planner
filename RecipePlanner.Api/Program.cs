@@ -22,9 +22,11 @@ builder.Services.AddDbContext<AppDbContext>(o =>
 // "Admin" policy: only users in the Admin role can change shared data
 // Login cookies are encrypted with Data Protection keys. By default those keys live inside the
 // container and vanish when it restarts, logging everyone out. Keeping them in the database fixes that.
+// Set up Key Vault (docs/key-encryption.md) so the keys aren't stored in plain text; see Security/KeyEncryption.cs
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<AppDbContext>()
-    .SetApplicationName("RecipePlanner");
+    .SetApplicationName("RecipePlanner")
+    .ProtectKeysIfConfigured(builder.Configuration);
 
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy(Roles.Admin, p => p.RequireRole(Roles.Admin));
@@ -115,6 +117,19 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsDevelopment() || app.Configuration.GetValue<bool>("Database:SeedOnStartup"))
         await DbSeeder.SeedAsync(db, app.Environment.ContentRootPath);
+
+    var startupLog = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
+    if (!string.IsNullOrWhiteSpace(app.Configuration[KeyEncryption.SettingName]))
+    {
+        var deleted = await KeyEncryption.DeleteUnencryptedKeysAsync(db);
+        if (deleted > 0)
+            startupLog.LogWarning("Deleted {Count} unencrypted Data Protection key(s); everyone will need to sign in again", deleted);
+    }
+    else if (app.Environment.IsProduction())
+    {
+        startupLog.LogWarning("Data Protection keys are stored unencrypted. Set {Setting} (see docs/key-encryption.md).",
+            KeyEncryption.SettingName);
+    }
 
     // Creates the Admin role and promotes the account named in Admin:Email, if set
     await AdminSeeder.EnsureAdminAsync(scope.ServiceProvider, app.Configuration["Admin:Email"]);
