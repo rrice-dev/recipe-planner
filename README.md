@@ -13,6 +13,10 @@ Recipes worth keeping. A technique-focused recipe and meal planning app that can
 1. Copy `.env.example` to `.env` and set a password
 2. `docker compose up --build`
 3. Open http://localhost:8080
+## Deployment notes
+
+- **Keep the API's ingress internal.** The API trusts `X-Forwarded-For`/`X-Forwarded-Host` from any sender because only the web container's nginx can reach it (see `Program.cs`). Making the API's ingress external would let clients fake their IP and dodge rate limits.
+
 ## Monitoring
 
 In Azure, the API reports to Application Insights, an uptime test checks `/api/health` every 5 minutes, and alerts send an email when the site is down or failing. Setup and what is (and isn't) collected: [docs/monitoring.md](docs/monitoring.md).

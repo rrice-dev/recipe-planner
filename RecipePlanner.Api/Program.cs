@@ -89,7 +89,9 @@ builder.Services.Configure<ForwardedHeadersOptions>(o =>
     // Host too, so share previews can build full https://<your site>/... picture addresses
     o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
     o.ForwardLimit = 2;
-    // The API has internal-only ingress, so only our own proxies can reach it
+    // Trusting every sender is safe ONLY because the API has internal-only ingress: nothing but our own
+    // proxies can reach it. If the API's ingress is ever made external, anyone could fake X-Forwarded-For
+    // (dodging rate limits) and X-Forwarded-Host. Then list the proxies' addresses here instead of clearing.
     o.KnownIPNetworks.Clear();
     o.KnownProxies.Clear();
 });
