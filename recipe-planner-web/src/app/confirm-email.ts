@@ -41,6 +41,8 @@ export class ConfirmEmailNotice {
   failed = signal(false);
 
   constructor() {
+    // Don't rely on another part of the app having checked who's signed in first
+    void this.auth.ensureLoaded();
     void this.features.ensureLoaded();
   }
 
