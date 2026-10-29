@@ -351,6 +351,9 @@ namespace RecipePlanner.Api.Migrations
                     b.Property<int?>("FatTarget")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 

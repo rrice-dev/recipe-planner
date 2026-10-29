@@ -48,7 +48,10 @@ builder.Services.AddIdentityApiEndpoints<AppUser>(o =>
     o.User.RequireUniqueEmail = true;
 })
 .AddRoles<IdentityRole>() // Enables roles; must come before the stores line
-.AddEntityFrameworkStores<AppDbContext>();
+.AddEntityFrameworkStores<AppDbContext>()
+.AddSignInManager<ApprovalSignInManager>(); // new accounts wait for an admin's approval
+
+builder.Services.Configure<RegistrationOptions>(builder.Configuration.GetSection("Registration"));
 
 builder.Services.ConfigureApplicationCookie(o =>
 {
@@ -143,6 +146,7 @@ app.UseAuthorization();
 
 app.MapAppHealth();
 app.MapAuthEndpoints();
+app.MapAdminEndpoints();
 app.MapRecipeEndpoints();
 app.MapTechniqueEndpoints();
 app.MapIngredientEndpoints();

@@ -1,4 +1,5 @@
 import { BudgetSettingsSection } from '../budget-settings';
+import { AccountApprovals } from '../account-approvals';
 import { NutritionTargetsSection } from '../nutrition-targets';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +12,7 @@ import { ServingsStepper } from '../servings-stepper';
 
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule, ServingsStepper, NutritionTargetsSection, BudgetSettingsSection],
+  imports: [FormsModule, ServingsStepper, NutritionTargetsSection, BudgetSettingsSection, AccountApprovals],
   template: `
     <div class="settings">
       <h1>Settings</h1>
@@ -61,6 +62,7 @@ import { ServingsStepper } from '../servings-stepper';
       </section>
       @if (saveNote()) { <p [class]="saveFailed() ? 'error' : 'saved-note'" role="status">{{ saveNote() }}</p> }
 
+      <app-account-approvals />
       <app-nutrition-targets />
       <app-budget-settings />
 

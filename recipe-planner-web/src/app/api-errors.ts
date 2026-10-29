@@ -15,3 +15,12 @@ export function apiErrorMessage(e: unknown, fallback: string): string {
   if (typeof body.message === 'string' && body.message) return body.message;
   return fallback;
 }
+
+/** True when sign-in refused an account that isn't approved yet (Identity's "NotAllowed", after a correct password).
+ *  Login asks for a text reply, so the problem body can arrive as a JSON string rather than an object. */
+export function isAwaitingApproval(e: unknown): boolean {
+  if (!(e instanceof HttpErrorResponse) || e.status !== 401) return false;
+  let body: unknown = e.error;
+  if (typeof body === 'string') { try { body = JSON.parse(body); } catch { return false; } }
+  return !!body && typeof body === 'object' && (body as { detail?: unknown }).detail === 'NotAllowed';
+}

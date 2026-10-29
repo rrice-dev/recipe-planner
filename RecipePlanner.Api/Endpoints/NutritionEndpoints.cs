@@ -17,8 +17,8 @@ public static class NutritionEndpoints
     public static void MapNutritionEndpoints(this IEndpointRouteBuilder app)
     {
         // Which optional features are set up, so the app can hide what isn't
-        app.MapGet("/api/features", (IOptions<EmailOptions> email, NutritionService nutrition) =>
-            Results.Ok(new FeaturesResponse(email.Value.IsConfigured, nutrition.IsAvailable)));
+        app.MapGet("/api/features", (IOptions<EmailOptions> email, NutritionService nutrition, IOptions<RegistrationOptions> registration) =>
+            Results.Ok(new FeaturesResponse(email.Value.IsConfigured, nutrition.IsAvailable, registration.Value.RequireApproval)));
 
         app.MapGet("/api/recipes/{id:int}/nutrition", async (int id, ClaimsPrincipal user, AppDbContext db, NutritionService nutrition, CancellationToken ct) =>
         {

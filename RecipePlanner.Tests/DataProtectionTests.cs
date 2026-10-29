@@ -20,6 +20,7 @@ public class DataProtectionTests
             var client = first.CreateClient(new WebApplicationFactoryClientOptions { HandleCookies = false });
             var credentials = new { email = "restart@test.local", password = TestAuth.Password };
             (await client.PostAsJsonAsync("/api/auth/register", credentials)).EnsureSuccessStatusCode();
+            await TestAuth.ApproveAsync(first, credentials.email);
             var login = await client.PostAsJsonAsync("/api/auth/login?useCookies=true", credentials);
             login.EnsureSuccessStatusCode();
             cookie = login.Headers.GetValues("Set-Cookie").Single(c => c.StartsWith("rp_session=")).Split(';')[0];
