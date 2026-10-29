@@ -17,6 +17,7 @@ ENV API_UPSTREAM=http://api:8080 \
 
 # The nginx image fills in ${...} placeholders in templates/ when the container starts
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+COPY security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=build /app/dist/recipe-planner-web/browser /usr/share/nginx/html
 
 EXPOSE 80
