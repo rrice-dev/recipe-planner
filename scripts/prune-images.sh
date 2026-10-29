@@ -21,7 +21,14 @@ DRY_RUN="${DRY_RUN:-}"
 
 # $1: what to print, $2: the image to delete
 delete() {
-  if [ -n "$DRY_RUN" ]; then echo "would delete $1"; else echo "deleting $1"; az acr repository delete -n "$ACR" --image "$2" --yes --output none; fi
+  if [ -n "$DRY_RUN" ]; then echo "would delete $1"; return; fi
+  echo "deleting $1"
+  local out
+  if ! out=$(az acr repository delete -n "$ACR" --image "$2" --yes --output none 2>&1); then
+    # Deleting an image's index also deletes the manifests inside it, so they can already be gone
+    if grep -q "is not found" <<<"$out"; then echo "  (already gone)"; return; fi
+    echo "$out" >&2; return 1
+  fi
 }
 
 for repo in recipe-api recipe-web; do
@@ -44,10 +51,15 @@ for repo in recipe-api recipe-web; do
   fi
 
   # Delete whole manifests (by digest), never by tag: deleting by tag would also remove any other tag,
-  # possibly a kept one, that points to the same image
-  az acr manifest list-metadata -r "$ACR" -n "$repo" --query "[].[digest, join(' ', tags || \`[]\`)]" -o tsv |
-  while IFS=$'\t' read -r digest tags; do
-    case "$keep_digests" in *" $digest "*) continue ;; esac
-    delete "$repo@$digest${tags:+ (tags: $tags)}" "$repo@$digest"
+  # possibly a kept one, that points to the same image.
+  # Tagged ones first (each takes its inner manifests with it), then whatever untagged is left over.
+  for pass in tagged untagged; do
+    az acr manifest list-metadata -r "$ACR" -n "$repo" --query "[].[digest, join(' ', tags || \`[]\`)]" -o tsv |
+    while IFS=$'\t' read -r digest tags; do
+      case "$keep_digests" in *" $digest "*) continue ;; esac
+      if [ "$pass" = tagged ] && [ -z "$tags" ]; then continue; fi
+      if [ "$pass" = untagged ] && [ -n "$tags" ]; then continue; fi
+      delete "$repo@$digest${tags:+ (tags: $tags)}" "$repo@$digest"
+    done
   done
 done

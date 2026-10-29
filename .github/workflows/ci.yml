@@ -134,7 +134,8 @@ jobs:
 
       # Every deploy adds two images to the registry, and its Basic plan includes 10 GB. Keeps the newest
       # 10 of each app, plus whatever is running (see scripts/prune-images.sh). Runs only once the site
-      # is confirmed up, and a failure here doesn't fail the deploy: the site is already updated.
+      # is confirmed up. A failure here doesn't fail the deploy (the site is already updated), but it
+      # shows as a warning on the run instead of hiding behind a green check.
       - name: Delete old images
-        continue-on-error: true
-        run: ./scripts/prune-images.sh
+        run: |
+          ./scripts/prune-images.sh || echo "::warning title=Old images weren't all deleted::The site deployed fine. See the Delete old images step for why."
