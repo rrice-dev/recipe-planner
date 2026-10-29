@@ -60,7 +60,7 @@ public sealed class NutritionService(AppDbContext db, IFoodSource source, TimePr
             if (row.Id == 0) db.IngredientNutrition.Add(row);
             result[key] = facts;
         }
-        await db.SaveChangesAsync(ct);
+        await db.SaveCacheAsync(ct); // another request may have just cached the same name (see CacheSaving)
         return (result, skipped);
     }
 }

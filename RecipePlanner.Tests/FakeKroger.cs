@@ -13,13 +13,15 @@ public class FakeKroger : HttpMessageHandler
     public int AccessTokenLifetime { get; set; } = 1800;
     public bool RejectRefresh { get; set; }
     public HttpStatusCode CartStatus { get; set; } = HttpStatusCode.NoContent;
+    /// <summary>How long a product search takes, to test requests that overlap</summary>
+    public TimeSpan ProductDelay { get; set; }
     private int _tokenCounter;
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
     {
         var body = request.Content is null ? "" : await request.Content.ReadAsStringAsync(ct);
         var path = request.RequestUri!.AbsolutePath;
-        Calls.Add(new Call(request.Method.Method, path, request.RequestUri.Query, request.Headers.Authorization?.ToString(), body));
+        lock (Calls) Calls.Add(new Call(request.Method.Method, path, request.RequestUri.Query, request.Headers.Authorization?.ToString(), body));
 
         if (path == "/v1/connect/oauth2/token")
         {
@@ -45,6 +47,7 @@ public class FakeKroger : HttpMessageHandler
             });
         if (path == "/v1/products")
         {
+            if (ProductDelay > TimeSpan.Zero) await Task.Delay(ProductDelay, ct);
             var term = HttpUtility.ParseQueryString(request.RequestUri.Query)["filter.term"];
             return Json(new
             {

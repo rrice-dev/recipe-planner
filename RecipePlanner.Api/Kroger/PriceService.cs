@@ -53,7 +53,7 @@ public sealed class PriceService(AppDbContext db, KrogerClient kroger, TimeProvi
             if (cached.TryGetValue(key, out var row)) { row.ProductsJson = json; row.FetchedAt = now; }
             else db.IngredientPrices.Add(cached[key] = new IngredientPrice { LocationId = locationId, NameKey = key, ProductsJson = json, FetchedAt = now });
         }
-        await db.SaveChangesAsync(ct);
+        await db.SaveCacheAsync(ct); // another request may have just cached the same name (see CacheSaving)
 
         return keys.ToDictionary(k => k, k =>
         {
