@@ -48,7 +48,7 @@ public static class LibraryEndpoints
     /// <summary>Builds the user's own copy of a library recipe and adds it to the context (the caller saves).</summary>
     public static async Task<Recipe> CopyAsync(AppDbContext db, RecipeLibrary library, LibraryRecipe source, string userId)
     {
-        var ingredients = await FindOrCreateIngredientsAsync(db, library, source);
+        var ingredients = await FindOrCreateIngredientsAsync(db, library, source, userId);
 
         var techniqueNames = source.Steps.Where(s => s.Technique is not null)
             .Select(s => s.Technique!.ToLower()).Distinct().ToList();
@@ -89,14 +89,18 @@ public static class LibraryEndpoints
     }
 
     private static async Task<Dictionary<string, Ingredient>> FindOrCreateIngredientsAsync(
-        AppDbContext db, RecipeLibrary library, LibraryRecipe source)
+        AppDbContext db, RecipeLibrary library, LibraryRecipe source, string userId)
     {
         var wanted = source.Ingredients.Select(i => i.Name.ToLower()).Distinct().ToList();
-        var found = (await db.Ingredients.Where(i => wanted.Contains(i.Name.ToLower())).ToListAsync())
-            .ToDictionary(i => i.Name, StringComparer.OrdinalIgnoreCase);
+        // The same name can exist twice in different case, like a shared "Garlic" and your own "GARLIC".
+        // Shared ones come first, so the library recipe uses the shared spelling.
+        var found = new Dictionary<string, Ingredient>(StringComparer.OrdinalIgnoreCase);
+        var matches = await db.Ingredients.VisibleTo(userId).Where(i => wanted.Contains(i.Name.ToLower())).ToListAsync();
+        foreach (var match in matches.OrderBy(i => i.OwnerId is null ? 0 : 1).ThenBy(i => i.Id))
+            found.TryAdd(match.Name, match);
         // Ingredients created earlier in this same save (copying several recipes at once) aren't in
         // the database yet, so look in the context too, or the same name would be added twice
-        foreach (var pending in db.Ingredients.Local)
+        foreach (var pending in db.Ingredients.Local.Where(i => i.OwnerId is null))
             found.TryAdd(pending.Name, pending);
 
         // Normally every name is already seeded; this covers a database that was seeded before

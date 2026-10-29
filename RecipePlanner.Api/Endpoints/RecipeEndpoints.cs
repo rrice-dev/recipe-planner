@@ -151,7 +151,8 @@ public static class RecipeEndpoints
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
             var ids = items.Select(i => i.IngredientId).ToList();
-            var existingCount = await db.Ingredients.CountAsync(i => ids.Contains(i.Id));
+            // Shared ones or your own: someone else's private ingredient doesn't exist as far as you're concerned
+            var existingCount = await db.Ingredients.VisibleTo(userId).CountAsync(i => ids.Contains(i.Id));
             if (existingCount != ids.Count)
                 return Results.ValidationProblem(new Dictionary<string, string[]>
                     { ["IngredientId"] = ["One or more ingredients do not exist."] });

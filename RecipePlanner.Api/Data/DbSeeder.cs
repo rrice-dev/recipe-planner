@@ -31,7 +31,8 @@ public static class DbSeeder
 
         var ingredients = await Load<List<IngredientSeed>>(Path.Combine(seedDir, "ingredients.json"));
         var ingredientNames = new HashSet<string>(
-            await db.Ingredients.Select(i => i.Name).ToListAsync(), StringComparer.OrdinalIgnoreCase);
+            // Only the shared list counts: a user's own "Sumac" mustn't stop the shared one being added
+            await db.Ingredients.Where(i => i.OwnerId == null).Select(i => i.Name).ToListAsync(), StringComparer.OrdinalIgnoreCase);
         foreach (var i in ingredients)
         {
             var name = i.Name.Trim();
