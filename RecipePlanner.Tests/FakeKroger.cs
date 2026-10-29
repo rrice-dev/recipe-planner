@@ -10,11 +10,11 @@ public class FakeKroger : HttpMessageHandler
 {
     public record Call(string Method, string Path, string Query, string? Auth, string Body);
     public List<Call> Calls { get; } = [];
+    /// <summary>Answer store searches with something that isn't JSON, like a broken gateway would</summary>
+    public bool GarbledLocations { get; set; }
     public int AccessTokenLifetime { get; set; } = 1800;
     public bool RejectRefresh { get; set; }
     public HttpStatusCode CartStatus { get; set; } = HttpStatusCode.NoContent;
-    /// <summary>Answer store searches with something that isn't JSON, like a broken gateway would</summary>
-    public bool GarbledLocations { get; set; }
     private int _tokenCounter;
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
