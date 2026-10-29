@@ -12,19 +12,33 @@ public record ScrapedRecipe(
 // Most recipe sites embed a machine-readable copy of the recipe for search engines
 // (schema.org "Recipe" in a <script type="application/ld+json"> tag). Reading that is far more
 // reliable than guessing from the page layout.
+// Every regex that reads a downloaded page has a time limit. Some of them slow down sharply on hostile input
+// (thousands of unclosed tags), so without one, a single crafted page could tie up the server for hours.
+// Hitting the limit throws RegexMatchTimeoutException, which the import endpoint turns into a polite refusal.
+public static class ParseLimits
+{
+    public const int RegexTimeoutMs = 1000;
+}
+
 public static partial class RecipeJsonLd
 {
-    [GeneratedRegex(@"<script[^>]*type\s*=\s*[""']application/ld\+json[""'][^>]*>(?<json>.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
+    [GeneratedRegex(@"<script[^>]*type\s*=\s*[""']application/ld\+json[""'][^>]*>(?<json>.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex JsonLdScripts();
 
-    [GeneratedRegex(@"<[^>]+>")]
+    [GeneratedRegex(@"<[^>]+>", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Tags();
 
-    [GeneratedRegex(@"\s+")]
+    [GeneratedRegex(@"\s+", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Spaces();
 
-    [GeneratedRegex(@"\d+")]
+    [GeneratedRegex(@"\d+", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Digits();
+
+    [GeneratedRegex(@"\n+", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
+    private static partial Regex LineBreaks();
+
+    [GeneratedRegex(@"<\s*(br|/p|/li)\s*/?>", RegexOptions.IgnoreCase, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
+    private static partial Regex BreakTags();
 
     public static ScrapedRecipe? Find(string html)
     {
@@ -96,7 +110,7 @@ public static partial class RecipeJsonLd
         {
             case JsonValueKind.String:
                 // One big string: split on line breaks
-                foreach (var line in Regex.Split(Text(e.GetString() ?? "", keepLines: true), @"\n+"))
+                foreach (var line in LineBreaks().Split(Text(e.GetString() ?? "", keepLines: true)))
                     if (line.Trim().Length > 0) steps.Add(line.Trim());
                 break;
             case JsonValueKind.Array:
@@ -162,7 +176,7 @@ public static partial class RecipeJsonLd
     {
         if (string.IsNullOrEmpty(s)) return "";
         var decoded = WebUtility.HtmlDecode(WebUtility.HtmlDecode(s)); // some sites double-encode
-        if (keepLines) decoded = Regex.Replace(decoded, @"<\s*(br|/p|/li)\s*/?>", "\n", RegexOptions.IgnoreCase);
+        if (keepLines) decoded = BreakTags().Replace(decoded, "\n");
         var noTags = Tags().Replace(decoded, " ");
         return keepLines
             ? string.Join('\n', noTags.Split('\n').Select(l => Spaces().Replace(l, " ").Trim()))

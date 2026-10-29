@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using RecipePlanner.Api.Ai;
@@ -43,17 +44,29 @@ public static class ImportEndpoints
             var techniques = await db.Techniques.AsNoTracking().ToListAsync(ct);
             var byName = techniques.ToDictionary(t => t.Name, StringComparer.OrdinalIgnoreCase);
 
-            // 1. The page's own recipe data
-            if (RecipeJsonLd.Find(page.Html) is { } scraped
-                && FridgePlanner.CleanRecipe(ToRaw(scraped), [], techniques) is { } structured)
-                return Results.Ok(new ImportResponse(WithTechniques(structured, byName), page.FinalUrl.ToString(), "structured"));
-
-            // 2. Ask the AI to read the page text
-            if (!extractor.IsAvailable)
-                return Fail("Couldn't find a recipe on that page.");
+            string pageText;
             try
             {
-                var fromAi = FridgePlanner.CleanRecipe(await extractor.ExtractAsync(PageText.From(page.Html), ct), [], techniques);
+                // 1. The page's own recipe data
+                if (RecipeJsonLd.Find(page.Html) is { } scraped
+                    && FridgePlanner.CleanRecipe(ToRaw(scraped), [], techniques) is { } structured)
+                    return Results.Ok(new ImportResponse(WithTechniques(structured, byName), page.FinalUrl.ToString(), "structured"));
+
+                if (!extractor.IsAvailable)
+                    return Fail("Couldn't find a recipe on that page.");
+                pageText = PageText.From(page.Html);
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                // A page built to make the parsers crawl (see ParseLimits); nothing a real recipe site does
+                log.LogWarning("Import from {Host} stopped: the page took too long to read", url.Host);
+                return Fail("That page is too complicated to read. Copy the recipe and use Paste text instead.");
+            }
+
+            // 2. Ask the AI to read the page text
+            try
+            {
+                var fromAi = FridgePlanner.CleanRecipe(await extractor.ExtractAsync(pageText, ct), [], techniques);
                 return fromAi is null
                     ? Fail("Couldn't find a recipe on that page.")
                     : Results.Ok(new ImportResponse(WithTechniques(fromAi, byName), page.FinalUrl.ToString(), "ai"));

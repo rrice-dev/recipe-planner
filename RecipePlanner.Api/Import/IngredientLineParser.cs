@@ -38,13 +38,13 @@ public static partial class IngredientLineParser
     };
 
     // "1", "1.5", "1 1/2", "1/2", "1½", "½", ranges like "2-3" or "2 to 3"
-    [GeneratedRegex(@"^\s*(?<q>(\d+\s+\d+/\d+)|(\d+/\d+)|(\d*[½⅓⅔¼¾⅕⅛⅜⅝⅞⅙])|(\d+(\.\d+)?))(\s*(-|–|to)\s*(?<q2>(\d+\s+\d+/\d+)|(\d+/\d+)|(\d*[½⅓⅔¼¾⅕⅛⅜⅝⅞⅙])|(\d+(\.\d+)?)))?\s*(?<rest>.*)$")]
+    [GeneratedRegex(@"^\s*(?<q>(\d+\s+\d+/\d+)|(\d+/\d+)|(\d*[½⅓⅔¼¾⅕⅛⅜⅝⅞⅙])|(\d+(\.\d+)?))(\s*(-|–|to)\s*(?<q2>(\d+\s+\d+/\d+)|(\d+/\d+)|(\d*[½⅓⅔¼¾⅕⅛⅜⅝⅞⅙])|(\d+(\.\d+)?)))?\s*(?<rest>.*)$", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Leading();
 
-    [GeneratedRegex(@"\(([^)]*)\)")]
+    [GeneratedRegex(@"\(([^)]*)\)", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Parenthetical();
 
-    [GeneratedRegex(@"\s+")]
+    [GeneratedRegex(@"\s+", RegexOptions.None, matchTimeoutMilliseconds: ParseLimits.RegexTimeoutMs)]
     private static partial Regex Spaces();
 
     public static ParsedIngredient Parse(string line)
