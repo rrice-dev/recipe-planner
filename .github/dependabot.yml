@@ -11,6 +11,11 @@ updates:
     directory: "/recipe-planner-web"
     schedule:
       interval: weekly
+    ignore:
+      # Angular's compiler supports one TypeScript version range at a time (22.x: >=6.0 <6.1).
+      # A new TypeScript major arrives with the Angular update that supports it, so don't offer it alone.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   - package-ecosystem: docker
     directories:
