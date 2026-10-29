@@ -38,8 +38,11 @@ public static class LibraryEndpoints
         {
             var source = library.Find(slug);
             if (source is null) return Results.NotFound();
+            var userId = user.UserId();
+            if (await db.Recipes.CountAsync(r => r.OwnerId == userId) >= AccountLimits.MaxRecipes)
+                return AccountLimits.TooManyRecipes();
 
-            var recipe = await CopyAsync(db, library, source, user.UserId());
+            var recipe = await CopyAsync(db, library, source, userId);
             await db.SaveChangesAsync();
             return Results.Created($"/api/recipes/{recipe.Id}", new LibraryAddResponse(recipe.Id));
         }).RequireAuthorization();

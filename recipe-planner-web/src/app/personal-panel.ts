@@ -2,6 +2,7 @@ import { Component, computed, inject, input, linkedSignal, signal } from '@angul
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from './api.service';
+import { apiErrorMessage } from './api-errors';
 import { Collection, RecipePersonal } from './models';
 import { toIsoDate } from './date-utils';
 import { SaveLeftovers } from './save-leftovers';
@@ -146,7 +147,7 @@ export class PersonalPanel {
       return result;
     } catch (e) {
       this.error.set(e instanceof HttpErrorResponse && e.status === 409 ? 'You already have a collection with that name.'
-        : e instanceof HttpErrorResponse && e.status === 400 ? 'Check that and try again.'
+        : e instanceof HttpErrorResponse && e.status === 400 ? apiErrorMessage(e, 'Check that and try again.')
         : "Couldn't save that. Please try again.");
       return null;
     } finally {

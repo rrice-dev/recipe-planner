@@ -44,6 +44,8 @@ public static class PersonalEndpoints
             if (day > today.AddDays(1) || day < today.AddYears(-20))
                 return Results.ValidationProblem(new Dictionary<string, string[]> { ["CookedOn"] = ["That date doesn't look right."] });
             if (await Mine(db, user, id) is null) return Results.NotFound();
+            if (await db.CookLog.CountAsync(c => c.RecipeId == id) >= AccountLimits.MaxCookLogEntries)
+                return AccountLimits.TooManyCookLogEntries();
 
             var entry = new CookLogEntry { RecipeId = id, CookedOn = day };
             db.CookLog.Add(entry);

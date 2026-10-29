@@ -58,7 +58,9 @@ export class RegisterPage {
       await this.auth.register(this.email().trim(), this.password());
       this.router.navigateByUrl('/recipes');
     } catch (e) {
-      if (e instanceof HttpErrorResponse && e.status === 400 && e.error?.errors) {
+      if (e instanceof HttpErrorResponse && e.status === 429) {
+        this.error.set('Too many attempts from your network. Try again later.');
+      } else if (e instanceof HttpErrorResponse && e.status === 400 && e.error?.errors) {
         const messages = Object.values(e.error.errors as Record<string, string[]>).flat();
         this.error.set(messages.join(' '));
       } else {

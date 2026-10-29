@@ -21,6 +21,11 @@ public static class RecipeLimits
     public const int MaxUnitLength = 20;      // shopping list units are stored in 20 characters
     public const int MaxIngredientNoteLength = 200;
 
+    // The same servings range as meal plans, shopping lists and costs, so every recipe works with all of them
+    public const int MaxServings = UserSettings.MaxServings;
+    // A week, in minutes: room for a long cure or ferment, and prep plus cook can never overflow
+    public const int MaxMinutes = 10_080;
+
     // Amounts are stored with 2 decimals (numeric(10,2)): below 0.01 rounds to 0, and the shopping list caps at 10,000
     public const decimal MinQuantity = 0.01m;
     public const decimal MaxQuantity = 10_000m;
@@ -50,6 +55,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
     // One row per AI call, for the app-wide daily limit (see Ai/AiDailyLimit.cs)
     public DbSet<RecipePlanner.Api.Ai.AiUsage> AiUsage => Set<RecipePlanner.Api.Ai.AiUsage>();
+
+    // When each account was last sent a confirmation or reset email (see Email/EmailCooldowns.cs)
+    public DbSet<RecipePlanner.Api.Email.EmailCooldown> EmailCooldowns => Set<RecipePlanner.Api.Email.EmailCooldown>();
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -178,6 +186,13 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
         });
 
         b.Entity<RecipePlanner.Api.Ai.AiUsage>().HasIndex(u => u.UsedAt);
+
+        b.Entity<RecipePlanner.Api.Email.EmailCooldown>(e =>
+        {
+            e.HasKey(c => new { c.UserId, c.Kind });
+            e.Property(c => c.Kind).HasMaxLength(20);
+            e.HasOne<AppUser>().WithMany().HasForeignKey(c => c.UserId).OnDelete(DeleteBehavior.Cascade);
+        });
 
         b.Entity<MealPlan>()
             .HasOne<AppUser>().WithMany()

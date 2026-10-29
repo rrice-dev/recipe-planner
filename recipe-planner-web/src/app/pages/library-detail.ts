@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { catchError, firstValueFrom, map, of, switchMap } from 'rxjs';
 import { ApiService } from '../api.service';
+import { apiErrorMessage } from '../api-errors';
 import { TechniqueChip } from '../technique-chip';
 import { SettingsService } from '../settings.service';
 import { AuthService } from '../auth.service';
@@ -154,7 +155,7 @@ export class LibraryDetailPage {
     } catch (e) {
       this.error.set(e instanceof HttpErrorResponse && e.status === 429
         ? "You're adding recipes quickly. Wait a minute and try again."
-        : "Couldn't add this recipe. Please try again.");
+        : apiErrorMessage(e, "Couldn't add this recipe. Please try again."));
     } finally {
       this.busy.set(false);
     }

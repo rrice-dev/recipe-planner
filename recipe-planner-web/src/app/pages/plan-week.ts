@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { apiErrorMessage } from '../api-errors';
 import { SettingsService } from '../settings.service';
 import { PlanCandidate } from '../models';
 import { nextMonday, parseDate, toIsoDate } from '../date-utils';
@@ -201,7 +202,7 @@ export class PlanWeekPage {
       }
     } catch (e) {
       this.error.set(e instanceof HttpErrorResponse && e.status === 400
-        ? 'Check the week and servings, then try again.' : "Couldn't save the plan. Please try again.");
+        ? apiErrorMessage(e, 'Check the week and servings, then try again.') : "Couldn't save the plan. Please try again.");
     } finally {
       this.saving.set(false);
     }

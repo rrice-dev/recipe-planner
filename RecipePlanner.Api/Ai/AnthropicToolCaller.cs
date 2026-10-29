@@ -27,6 +27,8 @@ internal static class AnthropicToolCaller
         request.Headers.Add("anthropic-version", "2023-06-01");
 
         using var response = await http.SendAsync(request, cancellationToken);
+        if (response.Headers.Contains(AiDailyLimitHandler.MarkerHeader))
+            throw new AiDailyLimitReachedException();
         if (!response.IsSuccessStatusCode)
         {
             // Log the status only: the response body could echo the prompt back

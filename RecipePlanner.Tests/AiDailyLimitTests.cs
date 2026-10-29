@@ -107,8 +107,8 @@ public class AiDailyLimitTests
         };
         foreach (var call in calls)
         {
-            var ex = await Assert.ThrowsAsync<MealIdeaException>(call);
-            Assert.Contains("429", ex.Message);
+            // Its own exception, so pages can say AI is off for the day rather than "try again in a minute"
+            await Assert.ThrowsAsync<AiDailyLimitReachedException>(call);
         }
     }
 }

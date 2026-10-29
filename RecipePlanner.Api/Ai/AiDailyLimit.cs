@@ -52,14 +52,21 @@ public class AiDailyLimit(IServiceScopeFactory scopes, TimeProvider clock, IOpti
 
 /// <summary>
 /// Sits in front of every Anthropic HttpClient. Over the daily limit, the request never leaves the app:
-/// it gets a 429 back, which the AI classes already turn into "unavailable right now" on the page.
+/// it gets a 429 back, marked so the AI code can tell it from Anthropic's own (short) rate limits and
+/// say AI is off for the day (AiDailyLimitReachedException).
 /// </summary>
 public class AiDailyLimitHandler(AiDailyLimit limit) : DelegatingHandler
 {
+    public const string MarkerHeader = "X-App-Ai-Daily-Limit";
+
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
     {
         if (!await limit.TryUseAsync(ct))
-            return new HttpResponseMessage(HttpStatusCode.TooManyRequests) { RequestMessage = request };
+        {
+            var refused = new HttpResponseMessage(HttpStatusCode.TooManyRequests) { RequestMessage = request };
+            refused.Headers.Add(MarkerHeader, "reached");
+            return refused;
+        }
         return await base.SendAsync(request, ct);
     }
 }

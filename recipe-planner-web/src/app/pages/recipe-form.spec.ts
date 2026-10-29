@@ -101,6 +101,23 @@ describe('RecipeFormPage', () => {
     expect(el.textContent).toContain('0.01 to 10,000');
   });
 
+  it('refuses more than 100 servings or a time over a week before asking the API', async () => {
+    const { fixture, el } = await setup();
+    fillIn(el);
+    type(el.querySelector('input[formControlName=servings]')!, '150');
+    saveButton(el).click();
+    fixture.detectChanges();
+    expect(await answer(http, () => undefined)).toEqual([]);
+    expect(el.textContent).toContain('Servings must be 1 to 100');
+
+    type(el.querySelector('input[formControlName=servings]')!, '100');
+    type(el.querySelector('input[formControlName=cookMinutes]')!, '20000');
+    saveButton(el).click();
+    fixture.detectChanges();
+    expect(await answer(http, () => undefined)).toEqual([]);
+    expect(el.textContent).toContain('10,080 minutes');
+  });
+
   it("shows the API's reason when it refuses the recipe", async () => {
     const { fixture, el } = await setup();
     fillIn(el);

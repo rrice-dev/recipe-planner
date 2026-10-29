@@ -263,7 +263,7 @@ export class FridgePage {
           needsConfirmedEmail(e) ? CONFIRM_EMAIL_MESSAGE :
           status === 429 ? "You've opened a lot of recipes this hour. Try again later." :
           status === 400 ? "That dish name couldn't be used. Try another idea." :
-          "Couldn't write that recipe right now. Please try again.");
+          apiErrorMessage(e, "Couldn't write that recipe right now. Please try again."));
         return;
       } finally {
         this.loadingRecipe.set(null);
@@ -324,7 +324,7 @@ export class FridgePage {
         status === 429 ? "You've used your photo scans for this hour. Try again later." :
         status === 413 ? 'That photo is too large.' :
         status === 400 || status === 415 ? "That file couldn't be read as a photo." :
-        status === 503 ? 'Photo scanning is unavailable right now.' :
+        status === 503 ? apiErrorMessage(e, 'Photo scanning is unavailable right now.') :
         e instanceof PhotoReadError ? "That file couldn't be read as a photo." :
         'Something went wrong scanning the photo. Please try again.');
     } finally {

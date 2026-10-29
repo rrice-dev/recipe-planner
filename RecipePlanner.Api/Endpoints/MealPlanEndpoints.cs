@@ -13,6 +13,18 @@ public static class MealPlanEndpoints
     // A week of breakfast, lunch, dinner and snacks fits easily; this just stops absurd lists
     public const int MaxEntries = 50;
 
+    // Plans are for weeks you'll actually cook, so a week has to be within a few years of today.
+    // (Far-off dates also break the date math: 9999-12-31 plus six days doesn't exist.)
+    public const int MaxYearsAway = 5;
+
+    private static Dictionary<string, string[]>? ValidateWeek(DateOnly weekStart, TimeProvider clock)
+    {
+        var today = DateOnly.FromDateTime(clock.GetUtcNow().UtcDateTime);
+        return weekStart < today.AddYears(-MaxYearsAway) || weekStart > today.AddYears(MaxYearsAway)
+            ? new() { ["WeekStart"] = [$"Pick a week within {MaxYearsAway} years of today."] }
+            : null;
+    }
+
     public static void MapMealPlanEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/mealplans").RequireAuthorization();
@@ -37,17 +49,21 @@ public static class MealPlanEndpoints
             return plan is null ? Results.NotFound() : Results.Ok(ToResponse(plan));
         });
 
-        group.MapPost("/", async (MealPlanRequest request, ClaimsPrincipal user, AppDbContext db) =>
+        group.MapPost("/", async (MealPlanRequest request, ClaimsPrincipal user, AppDbContext db, TimeProvider clock) =>
         {
             if (string.IsNullOrWhiteSpace(request.Name) || request.Name.Length > 100)
                 return Results.ValidationProblem(new Dictionary<string, string[]>
                     { ["Name"] = ["Name is required (100 characters max)."] });
+            if (ValidateWeek(request.WeekStart, clock) is { } weekErrors) return Results.ValidationProblem(weekErrors);
+            var userId = user.UserId();
+            if (await db.MealPlans.CountAsync(p => p.OwnerId == userId) >= AccountLimits.MaxMealPlans)
+                return AccountLimits.TooManyMealPlans();
 
             var plan = new MealPlan
             {
                 Name = request.Name.Trim(),
                 WeekStart = request.WeekStart,
-                OwnerId = user.UserId()
+                OwnerId = userId
             };
             db.MealPlans.Add(plan);
             await db.SaveChangesAsync();
@@ -91,8 +107,11 @@ public static class MealPlanEndpoints
         });
 
         // Saves a planned week. Library picks become the user's own recipes, reusing an earlier copy if there is one.
-        group.MapPost("/plan", async (CreatePlanRequest request, ClaimsPrincipal user, AppDbContext db, RecipeLibrary library) =>
+        group.MapPost("/plan", async (CreatePlanRequest request, ClaimsPrincipal user, AppDbContext db, RecipeLibrary library,
+            TimeProvider clock) =>
         {
+            // First, so the date math below never sees an impossible week
+            if (ValidateWeek(request.WeekStart, clock) is { } weekErrors) return Results.ValidationProblem(weekErrors);
             var errors = new Dictionary<string, string[]>();
             if (string.IsNullOrWhiteSpace(request.Name) || request.Name.Trim().Length > 100)
                 errors["Name"] = ["Name is required (100 characters max)."];
@@ -110,6 +129,14 @@ public static class MealPlanEndpoints
             var myIds = picks.Where(p => p.Key.StartsWith("mine:")).Select(p => int.TryParse(p.Key[5..], out var id) ? id : -1).ToHashSet();
             var mine = await db.Recipes.Where(r => r.OwnerId == userId && (myIds.Contains(r.Id) || r.LibrarySlug != null))
                 .ToListAsync();
+            if (await db.MealPlans.CountAsync(p => p.OwnerId == userId) >= AccountLimits.MaxMealPlans)
+                return AccountLimits.TooManyMealPlans();
+
+            // Library picks you don't have a copy of yet become new recipes, so they count toward the recipe limit
+            var newCopies = picks.Select(p => p.Key).Distinct()
+                .Count(k => k.StartsWith("lib:") && library.Find(k[4..]) is { } lib && !mine.Any(r => r.LibrarySlug == lib.Slug));
+            if (newCopies > 0 && await db.Recipes.CountAsync(r => r.OwnerId == userId) + newCopies > AccountLimits.MaxRecipes)
+                return AccountLimits.TooManyRecipes();
 
             var resolved = new Dictionary<string, Recipe>();
             foreach (var key in picks.Select(p => p.Key).Distinct())

@@ -100,10 +100,16 @@ public sealed class EmailSendingService(Channel<QueuedEmail> queue, IEmailDelive
 }
 
 // What Identity calls for "forgot password" and for confirming an email address
-public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOptions> options) : IEmailSender<AppUser>
+public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOptions> options, EmailCooldowns cooldowns,
+    ILogger<AppEmailSender> logger) : IEmailSender<AppUser>
 {
-    public Task SendPasswordResetCodeAsync(AppUser user, string email, string resetCode)
+    public async Task SendPasswordResetCodeAsync(AppUser user, string email, string resetCode)
     {
+        if (!await cooldowns.TryClaimAsync(user.Id, EmailCooldowns.Reset))
+        {
+            logger.LogInformation("Reset email for user {UserId} skipped: one was sent in the last 15 minutes", user.Id);
+            return;
+        }
         var link = $"{options.Value.AppBaseUrl!.TrimEnd('/')}/reset-password?email={Uri.EscapeDataString(email)}&code={Uri.EscapeDataString(resetCode)}";
         var safeLink = WebUtility.HtmlEncode(link);
         var html = $"""
@@ -114,7 +120,7 @@ public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOpti
             </div>
             """;
         var text = $"Someone asked to reset the password for your Thyme Capsule account.\n\nChoose a new password: {link}\n\nThis link works for 1 hour. If you didn't ask for this, ignore this email; your password won't change.";
-        return transport.SendAsync(email, "Reset your Thyme Capsule password", html, text);
+        await transport.SendAsync(email, "Reset your Thyme Capsule password", html, text);
     }
 
     public Task SendPasswordResetLinkAsync(AppUser user, string email, string resetLink) =>
@@ -123,8 +129,13 @@ public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOpti
     // Identity calls this after sign-up (and after an email change, or "resend"). Its link points at the API
     // and is built from the request's host, so only its query (userId, code, changedEmail) is kept, and the
     // link is rebuilt on AppBaseUrl, the same way reset links are, ending on the app's own confirm page.
-    public Task SendConfirmationLinkAsync(AppUser user, string email, string confirmationLink)
+    public async Task SendConfirmationLinkAsync(AppUser user, string email, string confirmationLink)
     {
+        if (!await cooldowns.TryClaimAsync(user.Id, EmailCooldowns.Confirmation))
+        {
+            logger.LogInformation("Confirmation email for user {UserId} skipped: one was sent in the last 15 minutes", user.Id);
+            return;
+        }
         var query = new Uri(WebUtility.HtmlDecode(confirmationLink), UriKind.Absolute).Query;
         var link = $"{options.Value.AppBaseUrl!.TrimEnd('/')}/confirm-email{query}";
         var safeLink = WebUtility.HtmlEncode(link);
@@ -136,7 +147,7 @@ public sealed class AppEmailSender(IEmailTransport transport, IOptions<EmailOpti
             </div>
             """;
         var text = $"Confirm this email address for your Thyme Capsule account. Confirming turns on the AI features.\n\nConfirm my email: {link}\n\nIf you didn't sign up for Thyme Capsule, ignore this email.";
-        return transport.SendAsync(email, "Confirm your Thyme Capsule email", html, text);
+        await transport.SendAsync(email, "Confirm your Thyme Capsule email", html, text);
     }
 }
 
@@ -152,6 +163,7 @@ public static class EmailServiceCollectionExtensions
             services.AddSingleton<IEmailTransport, BackgroundEmailTransport>();
             services.AddSingleton<IEmailDelivery, AcsEmailDelivery>();
             services.AddHostedService<EmailSendingService>();
+            services.AddSingleton<EmailCooldowns>();
             services.AddSingleton<IEmailSender<AppUser>, AppEmailSender>();
         }
         // Not configured: Identity keeps its built-in sender, which sends nothing, and the app hides "Forgot password"

@@ -53,8 +53,11 @@ public static class RecipeEndpoints
         {
             var errors = Validate(request);
             if (errors.Count > 0) return Results.ValidationProblem(errors);
+            var userId = user.UserId();
+            if (await db.Recipes.CountAsync(r => r.OwnerId == userId) >= AccountLimits.MaxRecipes)
+                return AccountLimits.TooManyRecipes();
 
-            var recipe = new Recipe { Title = request.Title.Trim(), OwnerId = user.UserId() };
+            var recipe = new Recipe { Title = request.Title.Trim(), OwnerId = userId };
             Apply(recipe, request);
             db.Recipes.Add(recipe);
             await db.SaveChangesAsync();
@@ -256,10 +259,10 @@ public static class RecipeEndpoints
             errors["Description"] = [$"Description must be {RecipeLimits.MaxDescriptionLength} characters or fewer."];
         if (r.Cuisine?.Length > RecipeLimits.MaxCuisineLength)
             errors["Cuisine"] = [$"Cuisine must be {RecipeLimits.MaxCuisineLength} characters or fewer."];
-        if (r.Servings < 1)
-            errors["Servings"] = ["Servings must be at least 1."];
-        if (r.PrepMinutes < 0 || r.CookMinutes < 0)
-            errors["Time"] = ["Times cannot be negative."];
+        if (r.Servings is < 1 or > RecipeLimits.MaxServings)
+            errors["Servings"] = [$"Servings must be between 1 and {RecipeLimits.MaxServings}."];
+        if (r.PrepMinutes is < 0 or > RecipeLimits.MaxMinutes || r.CookMinutes is < 0 or > RecipeLimits.MaxMinutes)
+            errors["Time"] = [$"Prep and cook times must each be between 0 and {RecipeLimits.MaxMinutes:N0} minutes (a week)."];
         // Shown as a link, so only ever an ordinary web address (never javascript: or data:)
         if (!string.IsNullOrWhiteSpace(r.SourceUrl)
             && (r.SourceUrl.Length > RecipeLimits.MaxSourceUrlLength

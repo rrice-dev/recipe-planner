@@ -132,8 +132,8 @@ public class PersonalTests
         await client.PostAsync("/api/library/aip-guacamole/add", null);
         await client.PostAsync("/api/library/beef-and-broccoli/add", null);
 
-        var list = await client.GetFromJsonAsync<List<RecipeResponse>>("/api/recipes");
-        var guac = list!.Single(r => r.Title == "AIP Guacamole");
+        var list = (await client.GetFromJsonAsync<List<RecipeResponse>>("/api/recipes"))!;
+        var guac = list.Single(r => r.Title == "AIP Guacamole");
         Assert.Contains("Avocado", guac.IngredientNames!);
         Assert.Equal(["AIP", "Vegetarian"], guac.DietTags);
         Assert.Empty(list.Single(r => r.Title == "Beef and Broccoli").DietTags!);

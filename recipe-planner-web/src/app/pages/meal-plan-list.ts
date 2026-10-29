@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from '../api.service';
+import { apiErrorMessage } from '../api-errors';
 import { MealPlan } from '../models';
 import { formatWeek, nextMonday } from '../date-utils';
 
@@ -82,8 +83,8 @@ export class MealPlanListPage implements OnInit {
     try {
       const plan = await firstValueFrom(this.api.createMealPlan(name, this.weekStart()));
       this.router.navigate(['/meal-plans', plan.id]);
-    } catch {
-      this.error.set('Could not create the plan.');
+    } catch (e) {
+      this.error.set(apiErrorMessage(e, 'Could not create the plan.'));
     }
   }
 

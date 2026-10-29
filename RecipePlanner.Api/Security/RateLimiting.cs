@@ -46,8 +46,21 @@ public static class RateLimiting
     public const string KrogerPolicy = "kroger";
     public const int KrogerPermitLimit = 30;
 
-    // Only POSTs to these paths count against the strict limit.
-    // /manage/info is left out because the web app calls it on every page load.
+    // Calls that send an email: stricter still, per IP address. The site's email allowance is small
+    // (see Email/EmailCooldowns.cs), so one visitor mustn't be able to spend it.
+    public const int EmailPermitLimit = 5;
+    public static readonly TimeSpan EmailWindow = TimeSpan.FromHours(1);
+
+    private static readonly HashSet<string> EmailSendingPaths = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "/api/auth/register",
+        "/api/auth/forgotPassword",
+        "/api/auth/resendConfirmationEmail",
+        "/api/account/forgot-password"
+    };
+
+    // Only POSTs to these paths count against the strict limit. That's why /manage/info can be listed:
+    // the web app GETs it on every page load, which isn't counted; a POST changes the password or email.
     private static readonly HashSet<string> SensitiveAuthPaths = new(StringComparer.OrdinalIgnoreCase)
     {
         "/api/auth/login",
@@ -138,7 +151,7 @@ public static class RateLimiting
                     QueueLimit = 0
                 }));
 
-            // Both limiters run on every request; either one can reject it
+            // All three limiters run on every request; any one can reject it
             o.GlobalLimiter = PartitionedRateLimiter.CreateChained(
                 PartitionedRateLimiter.Create<HttpContext, string>(context =>
                     RateLimitPartition.GetFixedWindowLimiter(GeneralKey(context), _ => new FixedWindowRateLimiterOptions
@@ -153,6 +166,15 @@ public static class RateLimiting
                         {
                             PermitLimit = AuthPermitLimit,
                             Window = AuthWindow,
+                            QueueLimit = 0
+                        })
+                        : RateLimitPartition.GetNoLimiter("unlimited")),
+                PartitionedRateLimiter.Create<HttpContext, string>(context =>
+                    IsEmailSendingCall(context)
+                        ? RateLimitPartition.GetFixedWindowLimiter($"email:{ClientIp(context)}", _ => new FixedWindowRateLimiterOptions
+                        {
+                            PermitLimit = EmailPermitLimit,
+                            Window = EmailWindow,
                             QueueLimit = 0
                         })
                         : RateLimitPartition.GetNoLimiter("unlimited")));
@@ -170,4 +192,7 @@ public static class RateLimiting
 
     private static bool IsSensitiveAuthCall(HttpContext context) =>
         HttpMethods.IsPost(context.Request.Method) && SensitiveAuthPaths.Contains(context.Request.Path.Value ?? "");
+
+    private static bool IsEmailSendingCall(HttpContext context) =>
+        HttpMethods.IsPost(context.Request.Method) && EmailSendingPaths.Contains(context.Request.Path.Value ?? "");
 }
