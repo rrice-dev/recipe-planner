@@ -12,6 +12,7 @@
 # ("attestation") inside it. Those inner manifests have no tag of their own, so a manifest is only
 # deleted when it isn't one of the kept images and none of the kept images points to it.
 set -euo pipefail
+export AZURE_CORE_ONLY_SHOW_ERRORS=true   # hides the "acr manifest is in preview" warnings
 
 : "${ACR:?Set ACR to the registry name}"
 RG="${RG:-recipe-planner-rg}"
