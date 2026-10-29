@@ -13,7 +13,8 @@ namespace RecipePlanner.Tests;
 
 public class ApiFactory : WebApplicationFactory<Program>
 {
-    // Two factories with the same name share one database, which is how tests simulate an API restart
+    // Two factories with the same name share one Postgres database (see TestDatabase), which is how tests
+    // simulate an API restart
     public string DatabaseName { get; init; } = Guid.NewGuid().ToString();
 
     // Set this to a fake to test the AI feature without calling a real provider
@@ -43,7 +44,7 @@ public class ApiFactory : WebApplicationFactory<Program>
         {
             services.RemoveAll<DbContextOptions<AppDbContext>>();
             services.RemoveAll<IDbContextOptionsConfiguration<AppDbContext>>();
-            services.AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase(DatabaseName));
+            services.AddDbContext<AppDbContext>(o => o.UseNpgsql(TestDatabase.ConnectionString(DatabaseName)));
 
             if (MealIdeas is not null)
             {

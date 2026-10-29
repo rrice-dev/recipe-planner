@@ -16,7 +16,7 @@ public class SeedDataTests
     [Fact]
     public async Task Seed_data_is_valid_and_seeding_twice_adds_nothing()
     {
-        var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseNpgsql(await TestDatabase.ConnectionStringAsync(Guid.NewGuid().ToString())).Options;
         await using var db = new AppDbContext(options);
 
         await DbSeeder.SeedAsync(db, ApiContentRoot());
