@@ -2,8 +2,9 @@
 
 The API sends requests, database and outside-service calls, exceptions and its own log messages to
 **Azure Application Insights** when the `APPLICATIONINSIGHTS_CONNECTION_STRING` setting is present.
-Without it, nothing is sent anywhere. An **availability test** calls `/api/health` from Chicago
-every 15 minutes, and **alerts** email you when the site is down or the API starts failing.
+Without it, nothing is sent anywhere. An **availability test** can check `/api/health` from outside
+(it's set up but turned **off**, to save money; see below), and **alerts** email you when the API starts
+failing.
 
 ## What's collected, and what isn't
 
@@ -63,7 +64,16 @@ az monitor app-insights web-test create --name recipe-health --defined-web-test-
 The first run can take up to a minute while the API wakes from scale-to-zero, which is why the
 timeout is 30 seconds and retries are on.
 
-**Why one region every 15 minutes:** each check is billed (Standard Web Test Execution), and each one
+**It's turned off.** Each check is billed, and each one wakes both apps, which then stay on for a few
+minutes, so even every 15 minutes it kept the apps running about a third of the time. With it off, the
+apps only run when someone uses the site, and "API errors" still emails you about failures then. To
+turn it back on, or off again:
+
+```bash
+az monitor app-insights web-test update --name recipe-health -g $RG --enabled true --output none   # or false
+```
+
+**Why one region every 15 minutes, when it's on:** each check is billed (Standard Web Test Execution), and each one
 wakes both apps, which then stay on for a few minutes. Three regions every 5 minutes was 864 checks a
 day, about $0.40, and kept the apps from ever scaling to zero, so it was most of the Azure bill. One
 region every 15 minutes is 96 checks a day, and the apps can sleep between them. The trade-off: an
@@ -76,6 +86,8 @@ az monitor action-group create -g $RG -n recipe-alerts --short-name recipealert 
 az monitor metrics alert create -n "Site is down" -g $RG --scopes "$AI_ID" --condition "avg availabilityResults/availabilityPercentage < 100" --window-size 15m --evaluation-frequency 5m --severity 1 --action recipe-alerts --description "The uptime check of /api/health failed" --output none
 az monitor metrics alert create -n "API errors" -g $RG --scopes "$AI_ID" --condition "count requests/failed > 5" --window-size 15m --evaluation-frequency 5m --severity 2 --action recipe-alerts --description "More than 5 failed API requests in 15 minutes" --output none
 ```
+
+"Site is down" only fires while the availability test is on; with it off, it stays quiet and costs nothing.
 
 ## Looking at it
 
