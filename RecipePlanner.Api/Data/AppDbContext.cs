@@ -35,6 +35,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     // and logins survive restarts and scale-to-zero.
     public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
 
+    // One row per AI call, for the app-wide daily limit (see Ai/AiDailyLimit.cs)
+    public DbSet<RecipePlanner.Api.Ai.AiUsage> AiUsage => Set<RecipePlanner.Api.Ai.AiUsage>();
+
     protected override void OnModelCreating(ModelBuilder b)
     {
         base.OnModelCreating(b); // Required: sets up Identity's tables
@@ -156,6 +159,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             // Deleting the recipe keeps the leftovers; they're still in your fridge
             e.HasOne<Recipe>().WithMany().HasForeignKey(l => l.RecipeId).OnDelete(DeleteBehavior.SetNull);
         });
+
+        b.Entity<RecipePlanner.Api.Ai.AiUsage>().HasIndex(u => u.UsedAt);
 
         b.Entity<MealPlan>()
             .HasOne<AppUser>().WithMany()

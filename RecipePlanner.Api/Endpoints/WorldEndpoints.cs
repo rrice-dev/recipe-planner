@@ -58,6 +58,7 @@ public static class WorldEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.AiPolicy);
 
         // Full recipe for one suggested dish, in the same shape as the fridge page's recipes
@@ -100,6 +101,7 @@ public static class WorldEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.AiRecipePolicy);
     }
 

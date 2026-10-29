@@ -173,6 +173,24 @@ namespace RecipePlanner.Api.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("RecipePlanner.Api.Ai.AiUsage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("UsedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsedAt");
+
+                    b.ToTable("AiUsage");
+                });
+
             modelBuilder.Entity("RecipePlanner.Api.Kitchen.Leftover", b =>
                 {
                     b.Property<int>("Id")

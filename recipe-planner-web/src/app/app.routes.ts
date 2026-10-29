@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginPage },
   { path: 'register', component: RegisterPage },
   { path: 'forgot-password', loadComponent: () => import('./pages/forgot-password').then(m => m.ForgotPasswordPage) },
+  { path: 'confirm-email', loadComponent: () => import('./pages/confirm-email').then(m => m.ConfirmEmailPage) },
   { path: 'reset-password', loadComponent: () => import('./pages/reset-password').then(m => m.ResetPasswordPage) },
   { path: 'techniques', component: TechniqueListPage },
   { path: 'r/:token', component: SharedRecipePage }, // public: shared recipe links

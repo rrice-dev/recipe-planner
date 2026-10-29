@@ -50,6 +50,7 @@ public static class FridgeEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.AiPolicy);
 
         // Full recipe for one AI idea: ingredients with amounts, and steps linked to real techniques
@@ -84,6 +85,7 @@ public static class FridgeEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.AiRecipePolicy);
 
         // The body is the raw image bytes; see PhotoUpload for why that's safer than a form
@@ -117,6 +119,7 @@ public static class FridgeEndpoints
             }
         })
         .RequireAuthorization()
+        .RequireConfirmedEmail()
         .RequireRateLimiting(RateLimiting.AiScanPolicy);
     }
 }
