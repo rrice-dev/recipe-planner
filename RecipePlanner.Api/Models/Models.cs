@@ -83,6 +83,9 @@ public class Ingredient
     public int Id { get; set; }
     public required string Name { get; set; }
     public string? StoreSection { get; set; }
+
+    /// <summary>Who added it. Null means shared: seeded, copied in from the library, or added by an admin.</summary>
+    public string? OwnerId { get; set; }
 }
 
 public class RecipeIngredient

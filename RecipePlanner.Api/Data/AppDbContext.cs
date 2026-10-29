@@ -57,7 +57,11 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
         b.Entity<RecipeIngredient>().HasKey(ri => new { ri.RecipeId, ri.IngredientId });
         b.Entity<RecipeIngredient>().Property(ri => ri.Quantity).HasPrecision(10, 2);
-        b.Entity<Ingredient>().HasIndex(i => i.Name).IsUnique();
+        // Names are unique per owner, and among shared ingredients (NULLS NOT DISTINCT: without it Postgres
+        // would let two shared rows have the same name, since NULL never equals NULL)
+        b.Entity<Ingredient>().HasIndex(i => new { i.OwnerId, i.Name }).IsUnique().AreNullsDistinct(false);
+        // A user's own ingredients go with their account
+        b.Entity<Ingredient>().HasOne<AppUser>().WithMany().HasForeignKey(i => i.OwnerId).OnDelete(DeleteBehavior.Cascade);
         b.Entity<Technique>().HasIndex(t => t.Name).IsUnique();
 
         // Every recipe and meal plan belongs to a user

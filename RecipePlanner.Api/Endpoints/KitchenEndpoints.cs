@@ -33,7 +33,7 @@ public static class KitchenEndpoints
 
             // Use a known ingredient's spelling when there is one, so the list reads consistently
             var keys = toAdd.Select(KitchenRules.Key).ToList();
-            var known = await db.Ingredients.Where(i => keys.Contains(i.Name.ToLower())).Select(i => i.Name).ToListAsync();
+            var known = await db.Ingredients.VisibleTo(userId).Where(i => keys.Contains(i.Name.ToLower())).Select(i => i.Name).ToListAsync();
             foreach (var name in toAdd)
             {
                 var display = known.FirstOrDefault(k => KitchenRules.Key(k) == KitchenRules.Key(name)) ?? name;

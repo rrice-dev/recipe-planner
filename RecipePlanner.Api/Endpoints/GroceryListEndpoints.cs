@@ -44,7 +44,7 @@ public static class GroceryListEndpoints
 
             // Link names to known ingredients so they land in the right store section
             var names = items.Select(i => i.Name.Trim().ToLower()).Distinct().ToList();
-            var known = await db.Ingredients.Where(x => names.Contains(x.Name.ToLower())).ToListAsync();
+            var known = await db.Ingredients.VisibleTo(user.UserId()).Where(x => names.Contains(x.Name.ToLower())).ToListAsync();
             var lines = items.Select(i =>
             {
                 var match = known.FirstOrDefault(k => k.Name.Equals(i.Name.Trim(), StringComparison.OrdinalIgnoreCase));
