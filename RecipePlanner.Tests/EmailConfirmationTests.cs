@@ -111,7 +111,8 @@ public partial class EmailConfirmationTests
     public async Task Ai_features_need_a_confirmed_email(string url, object? body)
     {
         var mail = new FakeEmail();
-        using var factory = new ApiFactory { Email = mail, MealIdeas = new FakeMealIdeas() };
+        // Fake web pages, so the import case never reaches the real internet
+        using var factory = new ApiFactory { Email = mail, MealIdeas = new FakeMealIdeas(), Pages = new FakePages("<html><body>No recipe here</body></html>") };
         var email = $"ai-{Guid.NewGuid():N}@test.local";
         var client = await factory.CreateUserClientAsync(email);
 
