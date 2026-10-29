@@ -19,9 +19,9 @@ public class AiDailyLimitTests
 
     private static (AiDailyLimit Limit, ServiceProvider Services) Create(int dailyCalls, TimeProvider clock)
     {
-        var name = Guid.NewGuid().ToString();
+        var connection = TestDatabase.ConnectionString(Guid.NewGuid().ToString());
         var services = new ServiceCollection()
-            .AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase(name))
+            .AddDbContext<AppDbContext>(o => o.UseNpgsql(connection))
             .BuildServiceProvider();
         var limit = new AiDailyLimit(services.GetRequiredService<IServiceScopeFactory>(), clock,
             Options.Create(new AiDailyLimitOptions { DailyCalls = dailyCalls }), NullLogger<AiDailyLimit>.Instance);
