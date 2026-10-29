@@ -9,6 +9,7 @@ import { DraftSaver } from '../draft-saver';
 import { FridgeMealIdea, FridgeResponse, GroceryAdd, RecipeDraft } from '../models';
 import { PhotoReadError, shrinkPhoto } from '../photo-utils';
 import { CONFIRM_EMAIL_MESSAGE, ConfirmEmailNotice, needsConfirmedEmail } from '../confirm-email';
+import { apiErrorMessage } from '../api-errors';
 
 // Keep in sync with FridgePlanner on the API (the API enforces these; this is just friendlier)
 const MAX_INGREDIENTS = 25;
@@ -282,8 +283,8 @@ export class FridgePage {
     try {
       const id = await this.saver.save(draft);
       await this.router.navigate(['/recipes', id]);
-    } catch {
-      this.saveError.set("Couldn't save the recipe. Please try again.");
+    } catch (e) {
+      this.saveError.set(apiErrorMessage(e, "Couldn't save the recipe. Please try again."));
     } finally {
       this.saving.set(false);
     }

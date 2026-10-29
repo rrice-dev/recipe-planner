@@ -124,6 +124,20 @@ describe('ImportRecipePage', () => {
     expect(el.textContent).toContain('Oven temperature was smudged');
   });
 
+  it("shows the API's reason when the recipe can't be saved", async () => {
+    const { fixture, el } = await setup();
+    await importLink(fixture, 'https://example.com/pancakes', ok({ recipe: draft, sourceUrl: 'https://example.com/pancakes', method: 'structured' }));
+
+    [...el.querySelectorAll('button')].find(b => b.textContent!.includes('Save to my recipes'))!.click();
+    await answer(http, (m, url) =>
+      m === 'GET' && url === '/api/ingredients' ? ok([]) :
+      m === 'POST' && url === '/api/ingredients' ? fail(400, { errors: { Name: ['You can add up to 500 ingredients of your own.'] } }) : undefined);
+    fixture.detectChanges();
+
+    expect(el.querySelector('.recipe-draft [role=alert]')!.textContent).toContain('You can add up to 500 ingredients of your own.');
+    expect(navigated).toEqual([]);
+  });
+
   it('saves the reviewed recipe with a link back to the original page, then opens it', async () => {
     const { fixture, el } = await setup();
     await importLink(fixture, 'https://example.com/pancakes', ok({ recipe: draft, sourceUrl: 'https://example.com/pancakes', method: 'structured' }));

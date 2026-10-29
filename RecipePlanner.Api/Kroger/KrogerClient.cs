@@ -127,7 +127,16 @@ public class KrogerClient(HttpClient http, IOptions<KrogerOptions> options, Krog
             logger.LogWarning("Kroger {Path} returned {Status}", request.RequestUri?.AbsolutePath, (int)response.StatusCode);
             throw new KrogerException("Kroger request failed.", (int)response.StatusCode);
         }
-        return await response.Content.ReadFromJsonAsync<T>(Json, ct) ?? throw new KrogerException("Empty response from Kroger.");
+        try
+        {
+            return await response.Content.ReadFromJsonAsync<T>(Json, ct) ?? throw new KrogerException("Empty response from Kroger.");
+        }
+        catch (JsonException)
+        {
+            // A gateway error page instead of JSON, say. Treated like any other Kroger failure ("not responding").
+            logger.LogWarning("Kroger {Path} returned something that isn't valid JSON", request.RequestUri?.AbsolutePath);
+            throw new KrogerException("Kroger sent an unreadable response.", (int)response.StatusCode);
+        }
     }
 
     private static string Short(string s, int max) { s = s.Trim(); return s.Length <= max ? s : s[..(max - 1)] + "…"; }

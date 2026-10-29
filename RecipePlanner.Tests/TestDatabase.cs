@@ -64,8 +64,7 @@ public static class TestDatabase
         var server = Environment.GetEnvironmentVariable("TEST_POSTGRES");
         if (string.IsNullOrWhiteSpace(server))
         {
-            var container = new PostgreSqlBuilder()
-                .WithImage("postgres:16-alpine")
+            var container = new PostgreSqlBuilder("postgres:16-alpine")
                 // Speed over durability (it's thrown away), and room for many test databases at once
                 .WithCommand("-c", "fsync=off", "-c", "synchronous_commit=off", "-c", "max_connections=500")
                 .Build();

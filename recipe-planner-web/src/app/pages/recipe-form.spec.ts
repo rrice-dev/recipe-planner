@@ -115,6 +115,28 @@ describe('RecipeFormPage', () => {
     expect(navigated).toEqual([]);
   });
 
+  it("explains when you can't add another ingredient of your own", async () => {
+    const { fixture, el } = await setup();
+    type(el.querySelector('input[placeholder="New ingredient name"]')!, 'Sumac');
+    [...el.querySelectorAll('button')].find(b => b.textContent!.trim() === 'Create')!.click();
+    await answer(http, (method, url) => method === 'POST' && url === '/api/ingredients'
+      ? fail(400, { errors: { Name: ['You can add up to 500 ingredients of your own.'] } }) : undefined);
+    fixture.detectChanges();
+
+    expect(el.querySelector('.error')!.textContent).toContain('You can add up to 500 ingredients of your own.');
+  });
+
+  it('says so when the ingredient already exists', async () => {
+    const { fixture, el } = await setup();
+    type(el.querySelector('input[placeholder="New ingredient name"]')!, 'Leek');
+    [...el.querySelectorAll('button')].find(b => b.textContent!.trim() === 'Create')!.click();
+    await answer(http, (method, url) => method === 'POST' && url === '/api/ingredients'
+      ? fail(409, { message: "An ingredient named 'Leek' already exists." }) : undefined);
+    fixture.detectChanges();
+
+    expect(el.querySelector('.error')!.textContent).toContain('"Leek" is already in the list');
+  });
+
   it('loads an existing recipe and saves changes to it rather than creating a new one', async () => {
     const recipe = {
       id: 5, title: 'Old soup', description: 'Plain', cuisine: 'French', servings: 4, prepMinutes: 5, cookMinutes: 30,
