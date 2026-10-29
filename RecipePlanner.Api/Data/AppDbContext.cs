@@ -11,6 +11,19 @@ public static class RecipeLimits
     public const int MaxCollectionNameLength = 60;
     public const int MaxCollectionsPerUser = 50;
     public const int MaxSourceUrlLength = 2000;
+
+    // Recipe text. Checked by the API rather than the database, so recipes saved before these limits still load.
+    public const int MaxDescriptionLength = 2000;
+    public const int MaxCuisineLength = 60;
+    public const int MaxSteps = 100;
+    public const int MaxStepLength = 2000;
+    public const int MaxIngredients = 100;
+    public const int MaxUnitLength = 20;      // shopping list units are stored in 20 characters
+    public const int MaxIngredientNoteLength = 200;
+
+    // Amounts are stored with 2 decimals (numeric(10,2)): below 0.01 rounds to 0, and the shopping list caps at 10,000
+    public const decimal MinQuantity = 0.01m;
+    public const decimal MaxQuantity = 10_000m;
 }
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IDataProtectionKeyContext

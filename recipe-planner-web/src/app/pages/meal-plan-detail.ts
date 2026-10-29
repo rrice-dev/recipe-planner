@@ -63,7 +63,7 @@ interface EntryDraft {
                   <option [value]="r.id">{{ r.title }}</option>
                 }
               </select>
-              <input #servings type="number" min="1" value="4" class="tiny" title="Servings" />
+              <input #servings type="number" min="1" max="100" value="4" class="tiny" title="Servings" />
               <button (click)="add(day.iso, recipe.value, servings.value); recipe.value = ''">Add</button>
             </div>
           </section>
@@ -117,8 +117,12 @@ export class MealPlanDetailPage implements OnInit {
     const rid = Number(recipeId);
     const s = Number(servings);
     if (!rid) return;
-    if (!s || s < 1) {
-      this.error.set('Servings must be at least 1.');
+    if (!Number.isInteger(s) || s < 1 || s > 100) {
+      this.error.set('Servings must be a whole number from 1 to 100.');
+      return;
+    }
+    if (this.entries().length >= 50) {
+      this.error.set('A plan can hold up to 50 meals.');
       return;
     }
     this.error.set(null);

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, computed, OnInit, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -23,11 +24,11 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
       }
 
       <label>Description
-        <textarea formControlName="description" rows="2"></textarea>
+        <textarea formControlName="description" rows="2" maxlength="2000"></textarea>
       </label>
 
       <div class="row">
-        <label>Cuisine <input formControlName="cuisine" /></label>
+        <label>Cuisine <input formControlName="cuisine" maxlength="60" /></label>
         <label>Servings <input type="number" formControlName="servings" min="1" /></label>
         <label>Prep (min) <input type="number" formControlName="prepMinutes" min="0" /></label>
         <label>Cook (min) <input type="number" formControlName="cookMinutes" min="0" /></label>
@@ -47,9 +48,9 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
             </optgroup>
           }
         </select>
-        <input type="number" formControlName="quantity" step="0.25" min="0" class="narrow" />
-        <input formControlName="unit" placeholder="unit" class="narrow" />
-        <input formControlName="note" placeholder="note (optional)" class="grow" />
+        <input type="number" formControlName="quantity" step="0.25" min="0.01" max="10000" class="narrow" />
+        <input formControlName="unit" placeholder="unit" class="narrow" maxlength="20" />
+        <input formControlName="note" placeholder="note (optional)" class="grow" maxlength="200" />
         <button type="button" class="link" (click)="ingredientRows.removeAt(i)">Remove</button>
       </div>
     }
@@ -63,7 +64,7 @@ import { Ingredient, RecipeIngredient, RecipeStep, Technique } from '../models';
     @for (row of stepRows.controls; track row; let i = $index) {
       <div class="row item" [formGroup]="row">
         <span class="step-num">{{ i + 1 }}.</span>
-        <textarea formControlName="instruction" rows="2" class="grow" placeholder="What to do"></textarea>
+        <textarea formControlName="instruction" rows="2" class="grow" placeholder="What to do" maxlength="2000"></textarea>
         <select formControlName="techniqueId">
           <option [ngValue]="null">No technique</option>
           @for (t of techniques(); track t.id) {
@@ -118,7 +119,7 @@ export class RecipeFormPage implements OnInit {
   ingredientRow(v?: RecipeIngredient) {
     return this.fb.group({
       ingredientId: this.fb.control<number | null>(v?.ingredientId ?? null, Validators.required),
-      quantity: this.fb.nonNullable.control(v?.quantity ?? 1, [Validators.required, Validators.min(0.01)]),
+      quantity: this.fb.nonNullable.control(v?.quantity ?? 1, [Validators.required, Validators.min(0.01), Validators.max(10000)]),
       unit: this.fb.nonNullable.control(v?.unit ?? '', Validators.required),
       note: this.fb.nonNullable.control(v?.note ?? '')
     });
@@ -179,7 +180,7 @@ export class RecipeFormPage implements OnInit {
     this.stepRows.markAllAsTouched();
 
     if (this.form.invalid || this.ingredientRows.invalid || this.stepRows.invalid) {
-      this.error.set('Please fill in all required fields: title, each ingredient with a quantity and unit, and each step.');
+      this.error.set('Please fill in all required fields: title, each ingredient with a quantity (0.01 to 10,000) and unit, and each step.');
       return;
     }
 
@@ -229,8 +230,10 @@ export class RecipeFormPage implements OnInit {
       }
 
       this.router.navigate(['/recipes', recipeId]);
-    } catch {
-      this.error.set('Something went wrong saving the recipe. Check the API terminal for details.');
+    } catch (e) {
+      // The API explains what it refused (a limit, a duplicate); show that instead of a generic message
+      const problems = e instanceof HttpErrorResponse ? e.error?.errors as Record<string, string[]> | undefined : undefined;
+      this.error.set(problems ? Object.values(problems).flat().join(' ') : 'Something went wrong saving the recipe. Please try again.');
     } finally {
       this.saving.set(false);
     }

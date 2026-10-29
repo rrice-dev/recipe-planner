@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using RecipePlanner.Api.Contracts;
 using RecipePlanner.Api.Models;
+using RecipePlanner.Api.Data;
 
 namespace RecipePlanner.Api.Ai;
 
@@ -87,7 +88,7 @@ public static partial class FridgePlanner
     private const int MaxRecipeIngredients = 30;
     private const int MaxSteps = 25;
     private const int MaxInstructionLength = 600;
-    private const int MaxUnitLength = 20;
+    private const int MaxUnitLength = RecipeLimits.MaxUnitLength;
     private const int MaxNoteLength = 80;
     private const decimal MaxQuantity = 10_000m;
 
@@ -105,8 +106,10 @@ public static partial class FridgePlanner
                 var name = Truncate(i.Name!, MaxListItemLength);
                 return new RecipeDraftIngredient(
                     name,
-                    Math.Round(i.Quantity!.Value, 2),
-                    string.IsNullOrWhiteSpace(i.Unit) ? "whole" : Truncate(i.Unit, MaxUnitLength),
+                    // At least 0.01: the recipe editor (and the database's 2 decimals) can't hold less
+                    Math.Max(RecipeLimits.MinQuantity, Math.Round(i.Quantity!.Value, 2)),
+                    // One under the limit, because Truncate adds "…"
+                    string.IsNullOrWhiteSpace(i.Unit) ? "whole" : Truncate(i.Unit, MaxUnitLength - 1),
                     string.IsNullOrWhiteSpace(i.Note) ? null : Truncate(i.Note, MaxNoteLength),
                     onHand.Any(h => SameIngredient(name, h)));
             })

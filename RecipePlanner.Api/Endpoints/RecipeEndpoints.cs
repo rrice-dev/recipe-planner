@@ -136,12 +136,18 @@ public static class RecipeEndpoints
             if (recipe is null) return Results.NotFound();
 
             var errors = new Dictionary<string, string[]>();
+            if (items.Count > RecipeLimits.MaxIngredients)
+                errors["Ingredients"] = [$"A recipe can have up to {RecipeLimits.MaxIngredients} ingredients."];
             if (items.Select(i => i.IngredientId).Distinct().Count() != items.Count)
                 errors["Ingredients"] = ["Each ingredient can only appear once."];
-            if (items.Any(i => i.Quantity <= 0))
-                errors["Quantity"] = ["Quantities must be greater than zero."];
+            if (items.Any(i => i.Quantity is < RecipeLimits.MinQuantity or > RecipeLimits.MaxQuantity))
+                errors["Quantity"] = [$"Quantities must be between {RecipeLimits.MinQuantity} and {RecipeLimits.MaxQuantity:N0}."];
             if (items.Any(i => string.IsNullOrWhiteSpace(i.Unit)))
                 errors["Unit"] = ["Unit is required."];
+            else if (items.Any(i => i.Unit.Trim().Length > RecipeLimits.MaxUnitLength))
+                errors["Unit"] = [$"Units must be {RecipeLimits.MaxUnitLength} characters or fewer."];
+            if (items.Any(i => i.Note?.Length > RecipeLimits.MaxIngredientNoteLength))
+                errors["Note"] = [$"Notes must be {RecipeLimits.MaxIngredientNoteLength} characters or fewer."];
             if (errors.Count > 0) return Results.ValidationProblem(errors);
 
             var ids = items.Select(i => i.IngredientId).ToList();
@@ -188,9 +194,15 @@ public static class RecipeEndpoints
                 .FirstOrDefaultAsync(r => r.Id == id && r.OwnerId == userId);
             if (recipe is null) return Results.NotFound();
 
+            if (steps.Count > RecipeLimits.MaxSteps)
+                return Results.ValidationProblem(new Dictionary<string, string[]>
+                    { ["Steps"] = [$"A recipe can have up to {RecipeLimits.MaxSteps} steps."] });
             if (steps.Any(s => string.IsNullOrWhiteSpace(s.Instruction)))
                 return Results.ValidationProblem(new Dictionary<string, string[]>
                     { ["Instruction"] = ["Every step needs an instruction."] });
+            if (steps.Any(s => s.Instruction.Trim().Length > RecipeLimits.MaxStepLength))
+                return Results.ValidationProblem(new Dictionary<string, string[]>
+                    { ["Instruction"] = [$"Each step must be {RecipeLimits.MaxStepLength} characters or fewer."] });
 
             var techniqueIds = steps.Where(s => s.TechniqueId.HasValue)
                 .Select(s => s.TechniqueId!.Value).Distinct().ToList();
@@ -239,6 +251,10 @@ public static class RecipeEndpoints
             errors["Title"] = ["Title is required."];
         else if (r.Title.Length > 200)
             errors["Title"] = ["Title must be 200 characters or fewer."];
+        if (r.Description?.Length > RecipeLimits.MaxDescriptionLength)
+            errors["Description"] = [$"Description must be {RecipeLimits.MaxDescriptionLength} characters or fewer."];
+        if (r.Cuisine?.Length > RecipeLimits.MaxCuisineLength)
+            errors["Cuisine"] = [$"Cuisine must be {RecipeLimits.MaxCuisineLength} characters or fewer."];
         if (r.Servings < 1)
             errors["Servings"] = ["Servings must be at least 1."];
         if (r.PrepMinutes < 0 || r.CookMinutes < 0)

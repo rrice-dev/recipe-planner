@@ -61,6 +61,10 @@ public static class TechniqueEndpoints
             var technique = await db.Techniques.FindAsync(id);
             if (technique is null) return Results.NotFound();
 
+            // Recipe steps point at their technique, and the database won't drop one that's still in use
+            if (await db.Set<Step>().AnyAsync(s => s.TechniqueId == id))
+                return Results.Conflict(new { message = "This technique is used in one or more recipe steps." });
+
             db.Techniques.Remove(technique);
             await db.SaveChangesAsync();
             return Results.NoContent();
