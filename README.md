@@ -21,6 +21,7 @@ Recipes worth keeping. A technique-focused recipe and meal planning app that can
 
 ## Deployment notes
 
+- **Encrypt the login keys with Key Vault.** Until `DataProtection__KeyVaultKeyId` is set, the keys that sign logins and encrypt Kroger tokens are stored in plain text in the database. Setup: [docs/key-encryption.md](docs/key-encryption.md).
 - **Keep the API's ingress internal.** The API trusts `X-Forwarded-For`/`X-Forwarded-Host` from any sender because only the web container's nginx can reach it (see `Program.cs`). Making the API's ingress external would let clients fake their IP and dodge rate limits.
 
 ## Monitoring
