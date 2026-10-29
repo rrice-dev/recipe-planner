@@ -6,6 +6,11 @@ updates:
       - "/RecipePlanner.Tests"
     schedule:
       interval: weekly
+    groups:
+      # SkiaSharp checks that its native library is the same version, so the two must update together
+      skiasharp:
+        patterns:
+          - "SkiaSharp*"
 
   - package-ecosystem: npm
     directory: "/recipe-planner-web"
